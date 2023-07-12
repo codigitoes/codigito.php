@@ -48,3 +48,6 @@ Thumbs.db
 *.mov
 *.wmv
 
+
+**/docker-compose.override.yml
+**/docker-compose.yml

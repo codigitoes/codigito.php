@@ -1,9 +1,9 @@
  **MARCAS DE REEMPLAZOS**
 
-codigito         => usuario base de datos
-codigito         => password base de datos
-codigito         => nombre base de datos
-codigito         => directorio document_root / var/www/vhosts/DOCUMENT_ROOT
+codigito       => usuario base de datos
+codigito       => password base de datos
+codigito       => nombre base de datos
+codigito       => directorio document_root / var/www/vhosts/DOCUMENT_ROOT
 codigito       => prefijo para los nombres de los contenedores
 
 ** Puesta en marcha **
