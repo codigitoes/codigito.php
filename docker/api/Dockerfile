@@ -82,9 +82,9 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY entrypoint.sh /tmp
 COPY firstboot.sh /tmp
 RUN chmod 777 /tmp/*
-WORKDIR /var/www/vhosts/codigo.com.es
-RUN echo 'alias maria="mysql -h codigo-com-es.mariadb -u codigoce -pcodigoce codigoce"' >> /etc/bash.bashrc;
-RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigo.com.es/vendor/bin' >> /etc/bash.bashrc;
+WORKDIR /var/www/vhosts/codigito
+RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
+RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito/vendor/bin' >> /etc/bash.bashrc;
 
 #: la primera vez, bash /tmp/firstboot.sh
 

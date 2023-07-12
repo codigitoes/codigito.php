@@ -1,4 +1,4 @@
-use codigoce;
+use codigito;
 LOCK TABLES `credentials` WRITE;
 INSERT INTO `credentials` VALUES ('fc4458c0-7ffd-40c1-b391-fcb62b6c25cd','admin@admin.com','$2y$13$A9f72p5zksO7UyX3q0vAx.3OhkeF/ZCylJIpTN0gskQ916Ted3QKq','[\"ROLE_ADMIN\"]','2023-02-01 17:33:36','2023-02-01 17:33:36');
 UNLOCK TABLES;

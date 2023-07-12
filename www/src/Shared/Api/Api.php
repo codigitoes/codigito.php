@@ -9,7 +9,7 @@ use GuzzleHttp\Exception\RequestException;
 
 class Api
 {
-    private const BASE_ENDPOINT = 'http://codigo-com-es.api';
+    private const BASE_ENDPOINT = 'http://codigito.api';
 
     private static function post(
         string $enpoint,
@@ -59,7 +59,7 @@ class Api
     ): string {
         $url = '/api/client/web/suscription';
 
-        return json_decode(self::post($url, $payload)->getBody()->getContents())->message   ;
+        return json_decode(self::post($url, $payload)->getBody()->getContents())->message;
     }
 
     final public static function contentBlogpostIndex(

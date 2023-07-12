@@ -12,20 +12,20 @@ sleep 1
 echo ""
 echo "API"
 echo ""
-docker exec -it `docker ps | grep codigo-com-es.maria | head -n1 | awk '{print $1;}'` mysql -u root -proot -h codigo-com-es.mariadb  -e "$(cat mariadb/all.sql)"
-docker exec -it `docker ps | grep codigo-com-es.api | head -n1 | awk '{print $1;}'`  rm -fr vendor composer.lock symfony.lock var/cache/* var/log/*.log
-docker exec -it `docker ps | grep codigo-com-es.api | head -n1 | awk '{print $1;}'`  composer install --no-interaction
-docker exec -it `docker ps | grep codigo-com-es.api | head -n1 | awk '{print $1;}'`  php bin/console doctrine:database:drop --force
-docker exec -it `docker ps | grep codigo-com-es.api | head -n1 | awk '{print $1;}'`  php bin/console doctrine:database:create
-docker exec -it `docker ps | grep codigo-com-es.api | head -n1 | awk '{print $1;}'`  php bin/console doctrine:schema:update --force
-docker exec -it `docker ps | grep codigo-com-es.api | head -n1 | awk '{print $1;}'`  php bin/console lexik:jwt:generate-keypair --overwrite --no-interaction
-docker exec -it `docker ps | grep codigo-com-es.maria | head -n1 | awk '{print $1;}'` mysql -u root -proot -h codigo-com-es.mariadb  -e "$(cat mariadb/fixture.sql)"
+docker exec -it `docker ps | grep codigito.maria | head -n1 | awk '{print $1;}'` mysql -u root -proot -h codigito.mariadb  -e "$(cat mariadb/all.sql)"
+docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  rm -fr vendor composer.lock symfony.lock var/cache/* var/log/*.log
+docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  composer install --no-interaction
+docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  php bin/console doctrine:database:drop --force
+docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  php bin/console doctrine:database:create
+docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  php bin/console doctrine:schema:update --force
+docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  php bin/console lexik:jwt:generate-keypair --overwrite --no-interaction
+docker exec -it `docker ps | grep codigito.maria | head -n1 | awk '{print $1;}'` mysql -u root -proot -h codigito.mariadb  -e "$(cat mariadb/fixture.sql)"
 sleep 1
 echo ""
 echo "ADMIN"
 echo ""
-docker exec -it `docker ps | grep codigo-com-es.admin | head -n1 | awk '{print $1;}'`  rm -fr vendor composer.lock symfony.lock var/cache/* var/log/*.log
-docker exec -it `docker ps | grep codigo-com-es.admin | head -n1 | awk '{print $1;}'`  composer install --no-interaction
+docker exec -it `docker ps | grep codigito.admin | head -n1 | awk '{print $1;}'`  rm -fr vendor composer.lock symfony.lock var/cache/* var/log/*.log
+docker exec -it `docker ps | grep codigito.admin | head -n1 | awk '{print $1;}'`  composer install --no-interaction
 echo ""
 echo "END"
 echo ""

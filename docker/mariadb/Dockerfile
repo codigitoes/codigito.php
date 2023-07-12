@@ -2,7 +2,7 @@ FROM mariadb:10.4
 
 ENV MYSQL_USER root
 ENV MYSQL_ROOT_PASSWORD root
-ENV MYSQL_DATABASE codigoce
+ENV MYSQL_DATABASE codigito
 
 # Restore sql dump file
 COPY all.sql /docker-entrypoint-initdb.d/
@@ -18,4 +18,4 @@ RUN rm -f /etc/localtime ; ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtim
 # Clean up
 RUN rm -fr /tmp/*
 
-WORKDIR /var/www/vhosts/codigo.com.es
+WORKDIR /var/www/vhosts/codigito

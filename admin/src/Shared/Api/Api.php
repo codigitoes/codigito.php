@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class Api
 {
-    private const BASE_ENDPOINT = 'http://codigo-com-es.api';
+    private const BASE_ENDPOINT = 'http://codigito.api';
 
     private static function get(
         string $token,
@@ -18,7 +18,7 @@ class Api
         try {
             return (new Client())->get(self::getApiEndpoint($endpoint), [
                 RequestOptions::HEADERS => [
-                    'Authorization' => 'Bearer '.$token,
+                    'Authorization' => 'Bearer ' . $token,
                     'Accept' => 'application/json',
                 ],
             ]);
@@ -29,7 +29,7 @@ class Api
 
     private static function getApiEndpoint(string $uri): string
     {
-        return self::BASE_ENDPOINT.$uri;
+        return self::BASE_ENDPOINT . $uri;
     }
 
     final public static function contentFortuneAll(string $token): ResponseInterface
@@ -46,7 +46,7 @@ class Api
         string $token,
         string $blogpostId
     ): ResponseInterface {
-        return self::get($token, '/api/admin/content/blogposts/'.$blogpostId.'/blogcontents');
+        return self::get($token, '/api/admin/content/blogposts/' . $blogpostId . '/blogcontents');
     }
 
     final public static function contentTagAll(string $token): ResponseInterface
@@ -60,7 +60,7 @@ class Api
             return (new Client())->post(self::getApiEndpoint($enpoint), [
                 RequestOptions::JSON => $body,
                 RequestOptions::HEADERS => [
-                    'Authorization' => 'Bearer '.$token,
+                    'Authorization' => 'Bearer ' . $token,
                     'Accept' => 'application/json',
                 ],
             ]);
@@ -85,7 +85,7 @@ class Api
         ?string $html = null,
         ?string $youtube = null
     ): ResponseInterface {
-        return self::post($token, '/api/admin/content/blogposts/'.$blogpostId.'/blogcontents', [
+        return self::post($token, '/api/admin/content/blogposts/' . $blogpostId . '/blogcontents', [
             'html' => $html,
             'base64image' => $base64Image,
             'youtube' => $youtube,

@@ -29,5 +29,5 @@ done
 
 
 
-docker exec -it `docker ps | grep codigo-com-es.maria | head -n1 | awk '{print $1;}'` mysql -u codigoce -pcodigoce codigoce -e "$allDeletes"
-docker exec -it `docker ps | grep codigo-com-es.maria | head -n1 | awk '{print $1;}'` mysql -u codigoce -pcodigoce codigoce -e "$allQuerys"
+docker exec -it `docker ps | grep codigito.maria | head -n1 | awk '{print $1;}'` mysql -u codigito -pcodigito codigito -e "$allDeletes"
+docker exec -it `docker ps | grep codigito.maria | head -n1 | awk '{print $1;}'` mysql -u codigito -pcodigito codigito -e "$allQuerys"

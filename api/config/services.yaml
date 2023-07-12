@@ -16,9 +16,9 @@ services:
     #{.".}>------------------------------------------------------------
     _instanceof:
         Codigoce\Context\Shared\Domain\Command\CommandHandler:
-            tags: ['codigo.com.es.domain_command_handler']
+            tags: ['codigito.domain_command_handler']
         Codigoce\Context\Shared\Domain\Query\QueryHandler:
-            tags: ['codigo.com.es.domain_query_handler']
+            tags: ['codigito.domain_query_handler']
     #{.".}>------------------------------------------------------------
 
     #{.".}>------------------------------------------------------------
@@ -42,10 +42,10 @@ services:
     #{.".}>------------------------------------------------------------
     Codigoce\Context\Shared\Infraestructure\Command\CommandStaticBus:
         arguments:
-            $handlers: !tagged codigo.com.es.domain_command_handler
+            $handlers: !tagged codigito.domain_command_handler
     Codigoce\Context\Shared\Infraestructure\Query\QueryStaticBus:
         arguments:
-            $handlers: !tagged codigo.com.es.domain_query_handler
+            $handlers: !tagged codigito.domain_query_handler
     #{.".}>------------------------------------------------------------
 
     #{.".}>------------------------------------------------------------

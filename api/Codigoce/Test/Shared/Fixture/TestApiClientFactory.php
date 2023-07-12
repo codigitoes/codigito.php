@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 
 trait TestApiClientFactory
 {
-    public static string $BASE_URL       = 'http://codigo-com-es.api';
+    public static string $BASE_URL       = 'http://codigito.api';
     public static string $ENDPOINT_LOGIN = '/api/login_check';
 
     protected function login(string $email, string $password): string
@@ -29,7 +29,7 @@ trait TestApiClientFactory
     {
         return [
             'headers' => [
-                'Authorization' => 'Bearer '.$token,
+                'Authorization' => 'Bearer ' . $token,
                 'Accept'        => 'application/json',
             ],
         ];
@@ -37,14 +37,14 @@ trait TestApiClientFactory
 
     protected function requestGetErrors(string $endpoint, array $options): array
     {
-        $response = $this->get($endpoint.'NO_VALID_VALUE', $options);
+        $response = $this->get($endpoint . 'NO_VALID_VALUE', $options);
 
         return json_decode($response->getBody()->getContents())->errors;
     }
 
     protected function requestGetId(string $endpoint, array $options): string
     {
-        $response = $this->get($endpoint.'NO_VALID_VALUE', $options);
+        $response = $this->get($endpoint . 'NO_VALID_VALUE', $options);
 
         return json_decode($response->getBody()->getContents())->id;
     }
@@ -61,7 +61,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'DELETE',
-            self::$BASE_URL.$endpoint,
+            self::$BASE_URL . $endpoint,
             $options
         );
     }
@@ -75,7 +75,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'POST',
-            self::$BASE_URL.$endpoint,
+            self::$BASE_URL . $endpoint,
             $options
         );
     }
@@ -97,7 +97,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'PATCH',
-            self::$BASE_URL.$endpoint,
+            self::$BASE_URL . $endpoint,
             $options
         );
     }
@@ -119,7 +119,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'GET',
-            self::$BASE_URL.$endpoint,
+            self::$BASE_URL . $endpoint,
             $options
         );
     }

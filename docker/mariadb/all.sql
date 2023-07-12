@@ -1,14 +1,14 @@
-DROP DATABASE IF EXISTS `codigoce`;
-CREATE DATABASE `codigoce` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+DROP DATABASE IF EXISTS `codigito`;
+CREATE DATABASE `codigito` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-GRANT ALL PRIVILEGES ON `codigoce`.* TO `codigoce`@localhost IDENTIFIED BY  'codigoce' WITH GRANT OPTION;
-GRANT ALL PRIVILEGES ON `codigoce`.* TO `codigoce`@'%' IDENTIFIED BY  'codigoce' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON `codigito`.* TO `codigito`@localhost IDENTIFIED BY  'codigito' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON `codigito`.* TO `codigito`@'%' IDENTIFIED BY  'codigito' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-use `codigoce`;
+use `codigito`;
 SET FOREIGN_KEY_CHECKS=0;
 
 --

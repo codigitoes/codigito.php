@@ -20,7 +20,7 @@ class MailingSendTestCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $email = (new Email())
-            ->from('codigo.com.es@gmail.com')
+            ->from('codigito@gmail.com')
             ->to('markitosco@gmail.com')
             ->subject('Time for Symfony Mailer!')
             ->text('Sending emails is fun again!')

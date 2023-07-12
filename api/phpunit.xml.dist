@@ -18,7 +18,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="codigo.com.es Test Suite">
+        <testsuite name="codigito Test Suite">
             <directory>Codigoce/Test</directory>
         </testsuite>
     </testsuites>

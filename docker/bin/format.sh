@@ -9,6 +9,6 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )/"
 cd $DIR"../"
 
-docker exec -it `docker ps | grep codigo-com-es.api | head -n1 | awk '{print $1;}'` vendor/bin/php-cs-fixer fix Codigoce
-docker exec -it `docker ps | grep codigo-com-es.admin | head -n1 | awk '{print $1;}'` vendor/bin/php-cs-fixer fix src
-docker exec -it `docker ps | grep codigo-com-es.www | head -n1 | awk '{print $1;}'` vendor/bin/php-cs-fixer fix src
+docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'` vendor/bin/php-cs-fixer fix Codigoce
+docker exec -it `docker ps | grep codigito.admin | head -n1 | awk '{print $1;}'` vendor/bin/php-cs-fixer fix src
+docker exec -it `docker ps | grep codigito.www | head -n1 | awk '{print $1;}'` vendor/bin/php-cs-fixer fix src

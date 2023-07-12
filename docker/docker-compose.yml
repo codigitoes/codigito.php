@@ -5,71 +5,71 @@ version: '3.3'
 # 172.27.102 ip net
 #----------------------------------------------------------
 networks:
-    codigo-com-es-network:
+    codigito-network:
         ipam:
             config:
                 - subnet: 172.27.102.0/24
 services:
-    codigo-com-es.api:
+    codigito.api:
         user: "1000:1000"
         build: api
-        container_name: 'codigo-com-es.api'
+        container_name: 'codigito.api'
         ports:
             - 80:80
             - 443:443
         volumes:
-            - ../api/:/var/www/vhosts/codigo.com.es/
+            - ../api/:/var/www/vhosts/codigito/
         extra_hosts:
             - 'mariadb:172.27.102.12'
-            - 'codigo-com-es.cdn:127.0.0.1'
-        hostname: codigo-com-es.api
+            - 'codigito.cdn:127.0.0.1'
+        hostname: codigito.api
         networks:
-            codigo-com-es-network:
+            codigito-network:
                 ipv4_address: 172.27.102.11
 
-    codigo-com-es.mariadb:
+    codigito.mariadb:
         build: mariadb
-        container_name: 'codigo-com-es.mariadb'
+        container_name: 'codigito.mariadb'
         ports:
             - 3306:3306
         restart: always
-        hostname: codigo-com-es.mariadb
+        hostname: codigito.mariadb
         networks:
-            codigo-com-es-network:
+            codigito-network:
                 ipv4_address: 172.27.102.12
 
-    codigo-com-es.admin:
+    codigito.admin:
          user: "1000:1000"
          build: admin
-         container_name: 'codigo-com-es.admin'
+         container_name: 'codigito.admin'
          ports:
              - 8002:80
              - 4432:443
          volumes:
-             - ../admin/:/var/www/vhosts/codigo.com.es/
+             - ../admin/:/var/www/vhosts/codigito/
          extra_hosts:
              - 'mariadb:172.27.102.12'
-             - 'codigo-com-es.api:172.27.102.11'
-             - 'codigo-com-es.cdn:172.27.102.11'
-         hostname: codigo-com-es.admin
+             - 'codigito.api:172.27.102.11'
+             - 'codigito.cdn:172.27.102.11'
+         hostname: codigito.admin
          networks:
-             codigo-com-es-network:
+             codigito-network:
                  ipv4_address: 172.27.102.13
 
-    codigo-com-es.www:
+    codigito.www:
          user: "1000:1000"
          build: www
-         container_name: 'codigo-com-es.www'
+         container_name: 'codigito.www'
          ports:
              - 8003:80
              - 4433:443
          volumes:
-             - ../www/:/var/www/vhosts/codigo.com.es/
+             - ../www/:/var/www/vhosts/codigito/
          extra_hosts:
              - 'mariadb:172.27.102.12'
-             - 'codigo-com-es.api:172.27.102.11'
-             - 'codigo-com-es.cdn:172.27.102.11'
-         hostname: codigo-com-es.www
+             - 'codigito.api:172.27.102.11'
+             - 'codigito.cdn:172.27.102.11'
+         hostname: codigito.www
          networks:
-             codigo-com-es-network:
+             codigito-network:
                  ipv4_address: 172.27.102.14             

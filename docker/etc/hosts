@@ -1,10 +1,10 @@
 
 #{.".} ==================================================
-#{.".} codigo.com.es local hosts
+#{.".} codigito local hosts
 #{.".} ==================================================
-172.27.102.11 local.api.codigo.com.es
-172.27.102.11 local.cdn.codigo.com.es
-172.27.102.12 codigo-com-es.mariadb
-172.27.102.13 local.admin.codigo.com.es
+172.27.102.11 local.api.codigito
+172.27.102.11 local.cdn.codigito
+172.27.102.12 codigito.mariadb
+172.27.102.13 local.admin.codigito
 #{.".} ==================================================
 
