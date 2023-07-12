@@ -1,0 +1,51 @@
+{% include '/shared/start.html.twig' %}
+
+<div class="section-wrapper mg-t-20">
+    <label class="section-title">Alta de una Fortune</label>
+    <p class="mg-b-20 mg-sm-b-40">Creacion de una fortune nueva</p>
+
+    <form action="{{ path('content_fortune_create') }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="do_submit" value="do_submit"/>
+        <div class="form-layout form-layout-6">
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">
+                    Nombre:
+                </div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="name" placeholder="Nombre de la fortune" required>
+                </div>
+            </div>
+            <div class="form-layout-footer bd bd-gray-800 pd-20 bd-t-0">
+                <button type="submit" class="btn btn-primary bd-0"><i class="fa fa-plus mg-r-5"></i> Nueva Fortune</button>
+            </div>
+        </div>
+    </form>
+    <p class="section-label mg-t-40">Ayuda</p>
+    <table class="table table-reference">
+        <thead>
+        <tr>
+            <th class="wd-40p">Campo</th>
+            <th class="wd-60p">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><code class="pd-0 bg-transparent">Nombre de la fortune</code></td>
+            <td>Debe ser un nombre único en el sistema y solo puede contener letras, números espacio y - _</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="section-wrapper mg-t-20">
+    <label class="section-title">Que podemos hacer?</label>
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <div class="btn-demo">
+                <a href="{{ path('content_fortune_index') }}" class="btn btn-secondary btn-block mg-b-10"><i class="fa fa-fast-backward mg-r-5"></i> Volver al listado</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include '/shared/end.html.twig' %}

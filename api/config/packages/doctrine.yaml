@@ -1,29 +1,31 @@
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
+        logging: false
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '15'
     orm:
         auto_generate_proxy_classes: true
-        enable_lazy_ghost_objects: true
-        report_fields_where_declared: true
-        validate_xml_mapping: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            App:
+            Codigoce:
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+                type: annotation
+                dir: '%kernel.project_dir%/Codigoce/Context'
+                prefix: 'Codigoce\Context'#        auto_generate_proxy_classes: true
+                alias: Codigoce
+        dql:
+            numeric_functions:
+                Rand: Codigoce\Context\Shared\Infraestructure\Doctrine\Misc\Rand
 
 when@test:
     doctrine:
         dbal:
             # "TEST_TOKEN" is typically set by ParaTest
-            dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+            dbname_suffix: ''
 
 when@prod:
     doctrine:

@@ -24,6 +24,8 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     build-essential \
     mariadb-client \
+    librabbitmq-dev \
+    librabbitmq4 \
     && docker-php-ext-install \
     mbstring  \
     pdo_mysql
@@ -33,8 +35,16 @@ RUN apt-get update && \
     libzip-dev \
     libjpeg62-turbo-dev \
     libpng-dev
+
+RUN apt-get -y update \
+&& apt-get install -y libicu-dev \ 
+&& docker-php-ext-configure intl \
+&& docker-php-ext-install intl
+
+RUN pecl install amqp
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
+RUN docker-php-ext-enable amqp
 
 COPY php.ini /usr/local/etc/php/php.ini
 RUN rm -f /tmp/.htaccess
@@ -48,7 +58,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # create user
 RUN groupadd -g 1000 markitos
-RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash
+RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && chown -R markitos:markitos /var/www
+
+# timezone
+RUN rm -f /etc/localtime ; ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
 
 # Install symfony
 RUN wget https://get.symfony.com/cli/installer -O - | bash
@@ -69,19 +82,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY entrypoint.sh /tmp
 COPY firstboot.sh /tmp
 RUN chmod 777 /tmp/*
-WORKDIR /var/www/vhosts/codigito
-RUN echo 'alias maria="mysql -h mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
+WORKDIR /var/www/vhosts/codigo.com.es
+RUN echo 'alias maria="mysql -h codigo-com-es.mariadb -u codigoce -pcodigoce codigoce"' >> /etc/bash.bashrc;
+RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigo.com.es/vendor/bin' >> /etc/bash.bashrc;
 
-#: la primera vez, o bash /tmp/firstboot.sh
-#git config --global user.email "codigito.es@gmail.com"
-#git config --global user.name "{.''.} ~ Marco Antonio ~ mArKit0s"
-#cd /tmp/ && /usr/local/bin/symfony new codigito  && cd codigito && chown -R 1000:1000 * && find ./ -name .git -type d | xargs rm -fr
-#rm -fr /var/www/vhosts/codigito/.* /var/www/vhosts/codigito/*
-#mv * .env .gitignore /var/www/vhosts/codigito/
-#cd /var/www/vhosts/codigito/
-#composer install
-#composer require symfony/orm-pack
-#composer require --dev phpunit
+#: la primera vez, bash /tmp/firstboot.sh
 
 ENTRYPOINT ["/tmp/entrypoint.sh"]
 #CMD ["apachectl", "-D", "FOREGROUND"]

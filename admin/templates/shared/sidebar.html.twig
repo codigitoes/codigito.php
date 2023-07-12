@@ -1,0 +1,29 @@
+<div class="slim-sidebar">
+    <label class="sidebar-label">Navigation</label>
+
+    <ul class="nav nav-sidebar">
+        <li class="sidebar-nav-item">
+            <a href="{{ path('dashboard_index') }}"
+               class="sidebar-nav-link {% if menu == 'dashboard' %}active{% endif %}"><i
+                        class="icon ion-ios-home-outline"></i>&nbsp;&nbsp;Dashboard</a>
+        </li>
+        <li class="sidebar-nav-item with-sub">
+            <a href="javascript:;" class="sidebar-nav-link {% if menu == 'content' %}active{% endif %}"><i
+                        class="fa fa-sitemap"></i>&nbsp;&nbsp;Contenido</a>
+            <ul class="nav sidebar-nav-sub">
+                <li class="nav-sub-item">
+                    <a href="{{ path('content_blogpost_index') }}" class="nav-sub-link {% if submenu == 'blogpost' %}active{% endif %}">&nbsp;&nbsp;Blog Post</a>
+                </li>
+                <li class="nav-sub-item">
+                    <a href="{{ path('content_blogpost_create') }}" class="nav-sub-link {% if submenu == 'blogpost' %}active{% endif %}">&nbsp;&nbsp;Blog Post [+]</a>
+                </li>
+                <li class="nav-sub-item">
+                    <a href="{{ path('content_tag_index') }}" class="nav-sub-link {% if submenu == 'tag' %}active{% endif %}">&nbsp;&nbsp;Tags</a>
+                </li>
+                <li class="nav-sub-item">
+                    <a href="{{ path('content_fortune_index') }}" class="nav-sub-link {% if submenu == 'fortune' %}active{% endif %}">&nbsp;&nbsp;Fortune</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,44 @@
+{% include '/shared/start.html.twig' %}
+
+
+<div class="section-wrapper mg-t-20">
+    <label class="section-title">Listado de blog posts</label>
+    <div class="row">
+        <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+            <div class="list-group list-group-striped list-group-user">
+
+                {% for blogpost in blogposts %}
+                <div class="list-group-item">
+                    <div class="user-name-address">
+                        <p>{{ blogpost.name }}</p>
+                        <span>{{ blogpost.tags }}</span>
+                        <span>{{ blogpost.id }}</span>
+                    </div>      
+                    <img class="media-img" src="{{ blogpost.image }}" alt="Image">          
+                    <div class="user-btn-wrapper">
+                      <a href="{{ path('content_blogcontent_index',{blogpost_id: blogpost.id}) }}" class="btn btn-outline-light btn-icon">
+                        <div class="tx-20"><i class="icon ion-android-chat"></i></div>
+                      </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="section-wrapper mg-t-20">
+    <label class="section-title">Que podemos hacer?</label>
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <div class="btn-demo">
+                <a href="{{ path('content_blogpost_create') }}" class="btn btn-primary btn-block mg-b-10"><i class="fa fa-plus mg-r-5"></i> Nuevo Post</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include '/shared/end.html.twig' %}

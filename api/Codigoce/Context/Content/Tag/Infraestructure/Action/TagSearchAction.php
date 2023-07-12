@@ -1,0 +1,51 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Codigoce\Context\Content\Tag\Infraestructure\Action;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Codigoce\Context\Shared\Domain\Filter\Page;
+use Symfony\Component\Routing\Annotation\Route;
+use Codigoce\Context\Shared\Domain\Exception\DomainException;
+use Codigoce\Context\Shared\Infraestructure\Query\QueryStaticBus;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Codigoce\Context\Content\Tag\Application\TagSearch\TagSearchQuery;
+
+class TagSearchAction extends AbstractController
+{
+    public function __construct(
+        private readonly QueryStaticBus $bus
+    ) {
+    }
+
+    #[Route('/api/admin/content/tags', name: 'content_tags_search', methods: ['GET'])]
+    public function execute(Request $request): Response
+    {
+        $result = null;
+
+        try {
+            $query = new TagSearchQuery(
+                $request->get('pattern', ''),
+                (int) $request->get('page', Page::FIRST_PAGE),
+                (int) $request->get('limit', Page::PAGE_LIMIT)
+            );
+            $model  = $this->bus->execute($query);
+            $result = $this->json([
+                'tags' => $model->toPrimitives(),
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            $code = Response::HTTP_INTERNAL_SERVER_ERROR;
+            if ($th instanceof DomainException) {
+                $code = $th->getErrorCode();
+            }
+            $result = $this->json(
+                ['errors' => [$th->getMessage()]],
+                $code
+            );
+        }
+
+        return $result;
+    }
+}

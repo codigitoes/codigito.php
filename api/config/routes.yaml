@@ -1,5 +1,13 @@
-controllers:
+api_login_check:
+    path: /api/login_check
+
+controllersApi:
     resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+        path: ../Codigoce/Context/
+        namespace: Codigoce\Context
+    type: attribute
+controllersClient:
+    resource:
+        path: ../Codigoce/Client/
+        namespace: Codigoce\Client
     type: attribute

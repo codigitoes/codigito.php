@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ title }}">
+    <meta name="author" content="{{ author }}">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <title>{{ title }}</title>
+    <link href="/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="/lib/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="/lib/rickshaw/css/rickshaw.min.css" rel="stylesheet">
+    {% if css_files is defined %}
+    {% for css_file in css_files %}
+    <link href="{{ css_file }}" rel="stylesheet">
+    {% endfor %}
+    {% endif %}
+
+    <link rel="stylesheet" href="/css/slim.css">
+    <link rel="stylesheet" href="/css/slim.one.css">
+</head>

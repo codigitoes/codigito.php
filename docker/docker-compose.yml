@@ -2,58 +2,74 @@ version: '3.3'
 #----------------------------------------------------------
 # definicion de la red y rango de ips 
 #
-# codigito project
+# 172.27.102 ip net
 #----------------------------------------------------------
 networks:
-    codigito-network:
+    codigo-com-es-network:
         ipam:
             config:
-                - subnet: 172.27.1.0/24
+                - subnet: 172.27.102.0/24
 services:
-    codigito.api:
-        user:  "1000:1000"
+    codigo-com-es.api:
+        user: "1000:1000"
         build: api
-        container_name: 'codigito.api'
+        container_name: 'codigo-com-es.api'
         ports:
-          - 80:80
-          - 443:443
+            - 80:80
+            - 443:443
         volumes:
-            - ../api/:/var/www/vhosts/codigito/
+            - ../api/:/var/www/vhosts/codigo.com.es/
         extra_hosts:
-          - 'mariadb:172.27.1.12'
-        hostname: codigito.api
+            - 'mariadb:172.27.102.12'
+            - 'codigo-com-es.cdn:127.0.0.1'
+        hostname: codigo-com-es.api
         networks:
-            codigito-network:
-                ipv4_address: 172.27.1.11
+            codigo-com-es-network:
+                ipv4_address: 172.27.102.11
 
-    codigito.mariadb:
+    codigo-com-es.mariadb:
         build: mariadb
-        container_name: 'codigito.mariadb'
+        container_name: 'codigo-com-es.mariadb'
         ports:
             - 3306:3306
-        volumes:
-            - /var/lib/mysql
         restart: always
-        hostname: codigito.mariadb
+        hostname: codigo-com-es.mariadb
         networks:
-            codigito-network:
-                ipv4_address: 172.27.1.12
-    #----------------------------------------------------------
-    # servicio para mensajeria que podemos ver
-    # via http en localhost:15672 guest/guest
-    #
-    # el dsn de conexion es: amqp://guest:guest@localhost:5672/
-    #----------------------------------------------------------
-    codigito.rabbitmq:
-        image: rabbitmq:3-management-alpine
-        container_name: 'codigito.rabbitmq'
-        ports:
-            - 5672:5672
-            - 15672:15672
-        volumes:
-            - /var/lib/rabbitmq/
-            - /var/log/rabbitmq
-        hostname: codigito.rabbitmq
-        networks:
-            codigito-network:
-                ipv4_address: 172.27.1.13
+            codigo-com-es-network:
+                ipv4_address: 172.27.102.12
+
+    codigo-com-es.admin:
+         user: "1000:1000"
+         build: admin
+         container_name: 'codigo-com-es.admin'
+         ports:
+             - 8002:80
+             - 4432:443
+         volumes:
+             - ../admin/:/var/www/vhosts/codigo.com.es/
+         extra_hosts:
+             - 'mariadb:172.27.102.12'
+             - 'codigo-com-es.api:172.27.102.11'
+             - 'codigo-com-es.cdn:172.27.102.11'
+         hostname: codigo-com-es.admin
+         networks:
+             codigo-com-es-network:
+                 ipv4_address: 172.27.102.13
+
+    codigo-com-es.www:
+         user: "1000:1000"
+         build: www
+         container_name: 'codigo-com-es.www'
+         ports:
+             - 8003:80
+             - 4433:443
+         volumes:
+             - ../www/:/var/www/vhosts/codigo.com.es/
+         extra_hosts:
+             - 'mariadb:172.27.102.12'
+             - 'codigo-com-es.api:172.27.102.11'
+             - 'codigo-com-es.cdn:172.27.102.11'
+         hostname: codigo-com-es.www
+         networks:
+             codigo-com-es-network:
+                 ipv4_address: 172.27.102.14             

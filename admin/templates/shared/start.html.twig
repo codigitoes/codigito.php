@@ -1,0 +1,46 @@
+{% include '/shared/head.html.twig' %}
+<body class="slim-sticky-header">
+
+<div class="slim-header with-sidebar">
+    <div class="container-fluid">
+        <div class="slim-header-left">
+            <h2 class="slim-logo"><a href="{{ path('dashboard_index') }}">{{ title_short }}</a></h2>
+            <a href="" id="slimSidebarMenu" class="slim-sidebar-menu"><span></span></a>
+            <div class="search-box">
+                <input type="text" class="form-control" placeholder="Search">
+                <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <div class="slim-header-right">
+            {% include '/shared/notifications.html.twig' %}
+            {% include '/shared/user-top-menu.html.twig' %}
+        </div>
+    </div>
+</div>
+
+<div class="slim-body">
+    {% include '/shared/sidebar.html.twig' %}
+
+    <div class="slim-mainpanel">
+        <div class="container">
+            {% if app.session.flashBag.has('error') or app.session.flashBag.has('info') %}
+            <div class="section-wrapper">
+                <label class="section-title">Informacion del proceso</label>
+                <p class="mg-b-20 mg-sm-b-40">Que ha pasado?</p>
+                {% for flash_message in app.session.flashbag.get('error') %}
+                    <div class="alert alert-outline alert-danger" role="alert">
+                        <strong>Oh snap!</strong> {{ flash_message }}
+                    </div>
+                {% endfor %}
+                {% for flash_message in app.session.flashbag.get('info') %}
+                    <div class="alert alert-outline alert-success" role="alert">
+                        <strong>Well done!</strong> {{ flash_message }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+
+
+

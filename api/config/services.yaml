@@ -11,6 +11,50 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+    #{.".}>------------------------------------------------------------
+    #{.".}>- tag for injection
+    #{.".}>------------------------------------------------------------
+    _instanceof:
+        Codigoce\Context\Shared\Domain\Command\CommandHandler:
+            tags: ['codigo.com.es.domain_command_handler']
+        Codigoce\Context\Shared\Domain\Query\QueryHandler:
+            tags: ['codigo.com.es.domain_query_handler']
+    #{.".}>------------------------------------------------------------
+
+    #{.".}>------------------------------------------------------------
+    #{.".}>- all src component as service for injection
+    #{.".}>------------------------------------------------------------
+    Codigoce\Context\:
+        resource: '../Codigoce/Context/'
+    Codigoce\Client\:
+        resource: '../Codigoce/Client/'
+    #{.".}>------------------------------------------------------------
+
+    #{.".}>------------------------------------------------------------
+    #{.".}>- bus selector, query and command
+    #{.".}>------------------------------------------------------------
+    Codigoce\Context\Shared\Domain\Command\CommandBus: '@Codigoce\Context\Shared\Infraestructure\Command\CommandStaticBus'
+    Codigoce\Context\Shared\Domain\Query\QueryBus: '@Codigoce\Context\Shared\Infraestructure\Query\QueryStaticBus'
+
+    #{.".}>------------------------------------------------------------
+    #{.".}>- all implementations of handlers are passed as argument to
+    #{.".}>- each bus - command and query static in memory bus
+    #{.".}>------------------------------------------------------------
+    Codigoce\Context\Shared\Infraestructure\Command\CommandStaticBus:
+        arguments:
+            $handlers: !tagged codigo.com.es.domain_command_handler
+    Codigoce\Context\Shared\Infraestructure\Query\QueryStaticBus:
+        arguments:
+            $handlers: !tagged codigo.com.es.domain_query_handler
+    #{.".}>------------------------------------------------------------
+
+    #{.".}>------------------------------------------------------------
+    #{.".}>- cdn service need an explicitly  value
+    #{.".}>------------------------------------------------------------
+    Codigoce\Context\Shared\Infraestructure\Service\CdnLocalCreator:
+        arguments: ["%env(CDN_BASEDIR)%"]
+    #{.".}>------------------------------------------------------------
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
