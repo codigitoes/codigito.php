@@ -1,0 +1,59 @@
+version: '3.3'
+#----------------------------------------------------------
+# definicion de la red y rango de ips 
+#
+# codigito project
+#----------------------------------------------------------
+networks:
+    codigito-network:
+        ipam:
+            config:
+                - subnet: 172.27.1.0/24
+services:
+    codigito.api:
+        user:  "1000:1000"
+        build: api
+        container_name: 'codigito.api'
+        ports:
+          - 80:80
+          - 443:443
+        volumes:
+            - ../api/:/var/www/vhosts/codigito/
+        extra_hosts:
+          - 'mariadb:172.27.1.12'
+        hostname: codigito.api
+        networks:
+            codigito-network:
+                ipv4_address: 172.27.1.11
+
+    codigito.mariadb:
+        build: mariadb
+        container_name: 'codigito.mariadb'
+        ports:
+            - 3306:3306
+        volumes:
+            - /var/lib/mysql
+        restart: always
+        hostname: codigito.mariadb
+        networks:
+            codigito-network:
+                ipv4_address: 172.27.1.12
+    #----------------------------------------------------------
+    # servicio para mensajeria que podemos ver
+    # via http en localhost:15672 guest/guest
+    #
+    # el dsn de conexion es: amqp://guest:guest@localhost:5672/
+    #----------------------------------------------------------
+    codigito.rabbitmq:
+        image: rabbitmq:3-management-alpine
+        container_name: 'codigito.rabbitmq'
+        ports:
+            - 5672:5672
+            - 15672:15672
+        volumes:
+            - /var/lib/rabbitmq/
+            - /var/log/rabbitmq
+        hostname: codigito.rabbitmq
+        networks:
+            codigito-network:
+                ipv4_address: 172.27.1.13
