@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller\Suscription;
 
+use App\Controller\Base\BaseWebActionController;
 use App\Shared\Api\Api;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Controller\Base\BaseWebActionController;
 
 class SuscriptionIndexController extends BaseWebActionController
 {

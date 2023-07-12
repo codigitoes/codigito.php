@@ -13,7 +13,7 @@ class SuscriptionAction extends BaseAction
     public function execute(): Response
     {
         return $this->json([
-            'message' => 'suscription realizada, gracias :)'
+            'message' => 'suscription realizada, gracias :)',
         ]);
     }
 }

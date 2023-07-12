@@ -101,7 +101,7 @@ trait TestContentBlogpostFactory
         is_null($id)      && $id      = BlogpostId::random();
         is_null($name)    && $name    = new BlogpostName(Codigoce::randomString());
         is_null($image)   && $image   = $this->BlogpostImage();
-        is_null($tags)    && $tags         = $this->BlogpostTags();
+        is_null($tags)    && $tags    = $this->BlogpostTags();
         is_null($created) && $created = new \DateTimeImmutable();
 
         return Blogpost::createForRead(

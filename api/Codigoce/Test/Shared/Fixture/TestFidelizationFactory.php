@@ -75,10 +75,10 @@ trait TestFidelizationFactory
         ?MailingConfirmed $confirmed = null,
         ?\DateTimeInterface $created = null
     ): Mailing {
-        is_null($id)        && $id            = MailingId::random();
-        is_null($email)     && $email         = new MailingEmail(Codigoce::randomEmail());
+        is_null($id)        && $id        = MailingId::random();
+        is_null($email)     && $email     = new MailingEmail(Codigoce::randomEmail());
         is_null($confirmed) && $confirmed = MailingConfirmed::confirmed();
-        is_null($created)   && $created       = new \DateTimeImmutable();
+        is_null($created)   && $created   = new \DateTimeImmutable();
 
         return Mailing::createForRead(
             $id,

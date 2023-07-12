@@ -72,8 +72,8 @@ trait TestContentFortuneFactory
         ?FortuneName $name = null,
         ?\DateTimeInterface $created = null
     ): Fortune {
-        is_null($id)      && $id           = FortuneId::random();
-        is_null($name)    && $name       = new FortuneName(Codigoce::randomString());
+        is_null($id)      && $id      = FortuneId::random();
+        is_null($name)    && $name    = new FortuneName(Codigoce::randomString());
         is_null($created) && $created = new \DateTimeImmutable();
 
         return Fortune::createForRead(

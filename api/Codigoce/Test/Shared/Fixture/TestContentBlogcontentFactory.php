@@ -127,7 +127,7 @@ trait TestContentBlogcontentFactory
         is_null($created)    && $created    = new \DateTimeImmutable();
         is_null($html)       && $html       = new BlogcontentHtml(Codigoce::randomString());
         is_null($image)      && $image      = $this->BlogcontentImage();
-        is_null($youtube)    && $youtube  = $this->BlogcontentYoutube();
+        is_null($youtube)    && $youtube    = $this->BlogcontentYoutube();
 
         return Blogcontent::createForRead(
             $id,

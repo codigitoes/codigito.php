@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Codigoce\Context\Content\Blogcontent\Infraestructure\Action;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Codigoce\Context\Shared\Domain\Exception\DomainException;
