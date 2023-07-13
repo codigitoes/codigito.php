@@ -52,3 +52,4 @@ Thumbs.db
 **/docker-compose.override.yml
 **/docker-compose.yml
 **/.env
+api/.php-cs-fixer.cache

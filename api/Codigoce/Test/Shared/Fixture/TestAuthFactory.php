@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Codigoce\Test\Shared\Fixture;
 
-use Codigoce\Context\Auth\Credential\Domain\Criteria\CredentialSearchByEmailCriteria;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use Codigoce\Context\Shared\Domain\Helper\Codigoce;
 use Codigoce\Context\Auth\Credential\Domain\Model\Credential;
+use Codigoce\Context\Auth\Credential\Domain\ValueObject\CredentialId;
 use Codigoce\Context\Auth\Credential\Domain\Repository\CredentialReader;
 use Codigoce\Context\Auth\Credential\Domain\Repository\CredentialWriter;
 use Codigoce\Context\Auth\Credential\Domain\ValueObject\CredentialEmail;
-use Codigoce\Context\Auth\Credential\Domain\ValueObject\CredentialId;
-use Codigoce\Context\Auth\Credential\Domain\ValueObject\CredentialPassword;
 use Codigoce\Context\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Codigoce\Context\Auth\Credential\Domain\ValueObject\CredentialPassword;
+use Codigoce\Context\Auth\Credential\Domain\Criteria\CredentialSearchByEmailCriteria;
 use Codigoce\Context\Auth\Credential\Infraestructure\Repository\CredentialReaderDoctrine;
 use Codigoce\Context\Auth\Credential\Infraestructure\Repository\CredentialWriterDoctrine;
-use Codigoce\Context\Shared\Domain\Helper\Codigoce;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 trait TestAuthFactory
 {
@@ -93,18 +93,10 @@ trait TestAuthFactory
         ?CredentialPassword $password = null,
         ?CredentialRoles $roles = null
     ): Credential {
-        if (is_null($id)) {
-            $id = CredentialId::random();
-        }
-        if (is_null($email)) {
-            $email = new CredentialEmail(Codigoce::randomEmail());
-        }
-        if (is_null($password)) {
-            $password = new CredentialPassword(Codigoce::randomString());
-        }
-        if (is_null($roles)) {
-            $roles = CredentialRoles::user();
-        }
+        is_object($id) ? $id : $id                   = CredentialId::random();
+        is_object($email) ? $email : $email          = new CredentialEmail(Codigoce::randomEmail());
+        is_object($password) ? $password : $password = new CredentialPassword(Codigoce::randomString());
+        is_object($roles) ? $roles : $roles          = CredentialRoles::user();
 
         return $this->CredentialFromValuesForNew(
             $id,
