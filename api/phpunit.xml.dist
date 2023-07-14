@@ -19,7 +19,7 @@
 
     <testsuites>
         <testsuite name="codigito Test Suite">
-            <directory>Codigoce/Test</directory>
+            <directory>Core/Test</directory>
         </testsuite>
     </testsuites>
 

@@ -15,35 +15,35 @@ services:
     #{.".}>- tag for injection
     #{.".}>------------------------------------------------------------
     _instanceof:
-        Codigoce\Context\Shared\Domain\Command\CommandHandler:
+        Core\Context\Shared\Domain\Command\CommandHandler:
             tags: ['codigito.domain_command_handler']
-        Codigoce\Context\Shared\Domain\Query\QueryHandler:
+        Core\Context\Shared\Domain\Query\QueryHandler:
             tags: ['codigito.domain_query_handler']
     #{.".}>------------------------------------------------------------
 
     #{.".}>------------------------------------------------------------
     #{.".}>- all src component as service for injection
     #{.".}>------------------------------------------------------------
-    Codigoce\Context\:
-        resource: '../Codigoce/Context/'
-    Codigoce\Client\:
-        resource: '../Codigoce/Client/'
+    Core\Context\:
+        resource: '../Core/Context/'
+    Core\Client\:
+        resource: '../Core/Client/'
     #{.".}>------------------------------------------------------------
 
     #{.".}>------------------------------------------------------------
     #{.".}>- bus selector, query and command
     #{.".}>------------------------------------------------------------
-    Codigoce\Context\Shared\Domain\Command\CommandBus: '@Codigoce\Context\Shared\Infraestructure\Command\CommandStaticBus'
-    Codigoce\Context\Shared\Domain\Query\QueryBus: '@Codigoce\Context\Shared\Infraestructure\Query\QueryStaticBus'
+    Core\Context\Shared\Domain\Command\CommandBus: '@Core\Context\Shared\Infraestructure\Command\CommandStaticBus'
+    Core\Context\Shared\Domain\Query\QueryBus: '@Core\Context\Shared\Infraestructure\Query\QueryStaticBus'
 
     #{.".}>------------------------------------------------------------
     #{.".}>- all implementations of handlers are passed as argument to
     #{.".}>- each bus - command and query static in memory bus
     #{.".}>------------------------------------------------------------
-    Codigoce\Context\Shared\Infraestructure\Command\CommandStaticBus:
+    Core\Context\Shared\Infraestructure\Command\CommandStaticBus:
         arguments:
             $handlers: !tagged codigito.domain_command_handler
-    Codigoce\Context\Shared\Infraestructure\Query\QueryStaticBus:
+    Core\Context\Shared\Infraestructure\Query\QueryStaticBus:
         arguments:
             $handlers: !tagged codigito.domain_query_handler
     #{.".}>------------------------------------------------------------
@@ -51,7 +51,7 @@ services:
     #{.".}>------------------------------------------------------------
     #{.".}>- cdn service need an explicitly  value
     #{.".}>------------------------------------------------------------
-    Codigoce\Context\Shared\Infraestructure\Service\CdnLocalCreator:
+    Core\Context\Shared\Infraestructure\Service\CdnLocalCreator:
         arguments: ["%env(CDN_BASEDIR)%"]
     #{.".}>------------------------------------------------------------
 

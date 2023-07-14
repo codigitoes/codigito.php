@@ -33,14 +33,14 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "Codigoce\\Context\\": "Codigoce/Context/",
-            "Codigoce\\Client\\": "Codigoce/Client/"
+            "Core\\Context\\": "Core/Context/",
+            "Core\\Client\\": "Core/Client/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "App\\Tests\\": "tests/",
-            "Codigoce\\Test\\": "Codigoce/Test/"
+            "Core\\Test\\": "Core/Test/"
         }
     },
     "replace": {
