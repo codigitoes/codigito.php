@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\Service;
+namespace Core\Shared\Domain\Service;
 
 interface CdnCreator
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Infraestructure\Action;
+namespace Core\Auth\Credential\Infraestructure\Action;
 
-use Core\\Auth\Credential\Application\CredentialGet\CredentialGetQuery;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialId;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Auth\Credential\Application\CredentialGet\CredentialGetQuery;
+use Core\Auth\Credential\Domain\ValueObject\CredentialId;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 

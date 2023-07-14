@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Domain\Exception;
+namespace Core\Fidelization\Mailing\Domain\Exception;
 
-use Core\\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Exception\DomainException;
 
 class InvalidMailingEmailException extends DomainException
 {
@@ -12,7 +12,7 @@ class InvalidMailingEmailException extends DomainException
 
     public function __construct(string $value)
     {
-        parent::__construct(self::PREFIX . ' ' . $value);
+        parent::__construct(self::PREFIX.' '.$value);
     }
 
     public const ERROR_CODE = 400;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Domain\Model;
+namespace Core\Content\Fortune\Domain\Model;
 
-use Core\\Content\Fortune\Domain\ValueObject\FortuneId;
-use Core\\Content\Fortune\Domain\ValueObject\FortuneName;
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Shared\Domain\Model\DomainModel;
+use Core\Content\Fortune\Domain\ValueObject\FortuneId;
+use Core\Content\Fortune\Domain\ValueObject\FortuneName;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Shared\Domain\Model\DomainModel;
 
 class Fortune implements DomainModel
 {

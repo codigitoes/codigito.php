@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Infraestructure\Doctrine\Model;
+namespace Core\Content\Blogcontent\Infraestructure\Doctrine\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Core\\Shared\Domain\Model\DomainModel;
-use Core\\Content\Blogcontent\Domain\Model\Blogcontent;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentImage;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentPosition;
+use Core\Shared\Domain\Model\DomainModel;
+use Core\Content\Blogcontent\Domain\Model\Blogcontent;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentImage;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentPosition;
 
 /**
- * @ORM\Entity(repositoryClass="Core\\Content\Blogcontent\Infraestructure\Repository\BlogcontentWriterDoctrine", readOnly=true)
+ * @ORM\Entity(repositoryClass="Core\Content\Blogcontent\Infraestructure\Repository\BlogcontentWriterDoctrine", readOnly=true)
  *
  * @ORM\Table(name="blogcontents")
  */

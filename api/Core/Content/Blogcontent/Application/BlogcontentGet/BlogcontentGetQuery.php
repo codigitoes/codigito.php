@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Application\BlogcontentGet;
+namespace Core\Content\Blogcontent\Application\BlogcontentGet;
 
-use Core\\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\Query;
 
 class BlogcontentGetQuery implements Query
 {

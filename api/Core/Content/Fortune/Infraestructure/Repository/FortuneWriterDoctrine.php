@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Infraestructure\Repository;
+namespace Core\Content\Fortune\Infraestructure\Repository;
 
-use Core\\Content\Fortune\Domain\Exception\FortuneCantDeleteException;
-use Core\\Content\Fortune\Domain\Exception\FortuneCantSaveException;
-use Core\\Content\Fortune\Domain\Exception\FortuneNotFoundException;
-use Core\\Content\Fortune\Domain\Exception\InvalidFortuneDuplicateEmailException;
-use Core\\Content\Fortune\Domain\Model\Fortune;
-use Core\\Content\Fortune\Domain\Repository\FortuneWriter;
-use Core\\Content\Fortune\Domain\ValueObject\FortuneId;
-use Core\\Content\Fortune\Infraestructure\Doctrine\Model\FortuneDoctrine;
+use Core\Content\Fortune\Domain\Exception\FortuneCantDeleteException;
+use Core\Content\Fortune\Domain\Exception\FortuneCantSaveException;
+use Core\Content\Fortune\Domain\Exception\FortuneNotFoundException;
+use Core\Content\Fortune\Domain\Exception\InvalidFortuneDuplicateEmailException;
+use Core\Content\Fortune\Domain\Model\Fortune;
+use Core\Content\Fortune\Domain\Repository\FortuneWriter;
+use Core\Content\Fortune\Domain\ValueObject\FortuneId;
+use Core\Content\Fortune\Infraestructure\Doctrine\Model\FortuneDoctrine;
 use Doctrine\ORM\EntityManagerInterface;
 use Throwable;
 

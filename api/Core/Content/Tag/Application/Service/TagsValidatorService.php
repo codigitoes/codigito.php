@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Application\Service;
+namespace Core\Content\Tag\Application\Service;
 
-use Core\\Content\Tag\Domain\Repository\TagReader;
-use Core\\Content\Tag\Domain\Criteria\TagGetByNameCriteria;
-use Core\\Content\Tag\Domain\Exception\TagNotFoundException;
+use Core\Content\Tag\Domain\Repository\TagReader;
+use Core\Content\Tag\Domain\Criteria\TagGetByNameCriteria;
+use Core\Content\Tag\Domain\Exception\TagNotFoundException;
 
 class TagsValidatorService
 {
@@ -28,7 +28,7 @@ class TagsValidatorService
         }
 
         if (count($errors) > 0) {
-            throw new TagNotFoundException('names: ' . implode(', ', $errors));
+            throw new TagNotFoundException('names: '.implode(', ', $errors));
         }
     }
 }

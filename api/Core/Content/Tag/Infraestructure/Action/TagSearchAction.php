@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Infraestructure\Action;
+namespace Core\Content\Tag\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Core\\Shared\Domain\Filter\Page;
+use Core\Shared\Domain\Filter\Page;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Exception\DomainException;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Shared\Domain\Exception\DomainException;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Core\\Content\Tag\Application\TagSearch\TagSearchQuery;
+use Core\Content\Tag\Application\TagSearch\TagSearchQuery;
 
 class TagSearchAction extends AbstractController
 {

@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Core\Client\Web\Action;
 
 use Throwable;
-use Core\\Shared\Domain\Filter\Page;
-use Core\\Content\Tag\Application\TagAll\TagAllQuery;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Shared\Domain\Filter\Page;
+use Core\Content\Tag\Application\TagAll\TagAllQuery;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Core\\Content\Fortune\Application\FortuneGet\FortuneGetQuery;
-use Core\\Content\Blogpost\Application\BlogpostGet\BlogpostGetQuery;
-use Core\\Content\Blogpost\Application\BlogpostLatest\BlogpostLatestQuery;
-use Core\\Content\Blogpost\Application\BlogpostRandom\BlogpostRandomQuery;
-use Core\\Content\Blogpost\Application\BlogpostSearch\BlogpostSearchQuery;
-use Core\\Content\Blogcontent\Application\BlogcontentAll\BlogcontentAllQuery;
+use Core\Content\Fortune\Application\FortuneGet\FortuneGetQuery;
+use Core\Content\Blogpost\Application\BlogpostGet\BlogpostGetQuery;
+use Core\Content\Blogpost\Application\BlogpostLatest\BlogpostLatestQuery;
+use Core\Content\Blogpost\Application\BlogpostRandom\BlogpostRandomQuery;
+use Core\Content\Blogpost\Application\BlogpostSearch\BlogpostSearchQuery;
+use Core\Content\Blogcontent\Application\BlogcontentAll\BlogcontentAllQuery;
 
 abstract class BaseAction extends AbstractController
 {
@@ -139,6 +139,6 @@ abstract class BaseAction extends AbstractController
             return null;
         }
 
-        return $_ENV['CDN_URL'] . '/cdn/' . $uri;
+        return $_ENV['CDN_URL'].'/cdn/'.$uri;
     }
 }

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Infraestructure\Repository;
+namespace Core\Content\Tag\Infraestructure\Repository;
 
-use Core\\Content\Tag\Domain\Exception\TagNotFoundException;
-use Core\\Content\Tag\Domain\Model\Tag;
-use Core\\Content\Tag\Domain\Model\TagCollectionReadModel;
-use Core\\Content\Tag\Domain\Model\TagGetReadModel;
-use Core\\Content\Tag\Domain\Repository\TagReader;
-use Core\\Content\Tag\Infraestructure\Doctrine\Model\TagDoctrine;
-use Core\\Shared\Domain\Filter\Criteria;
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Shared\Infraestructure\Filter\CriteriaDoctrine;
+use Core\Content\Tag\Domain\Exception\TagNotFoundException;
+use Core\Content\Tag\Domain\Model\Tag;
+use Core\Content\Tag\Domain\Model\TagCollectionReadModel;
+use Core\Content\Tag\Domain\Model\TagGetReadModel;
+use Core\Content\Tag\Domain\Repository\TagReader;
+use Core\Content\Tag\Infraestructure\Doctrine\Model\TagDoctrine;
+use Core\Shared\Domain\Filter\Criteria;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Shared\Infraestructure\Filter\CriteriaDoctrine;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Throwable;

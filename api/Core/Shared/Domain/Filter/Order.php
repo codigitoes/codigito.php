@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\Filter;
+namespace Core\Shared\Domain\Filter;
 
-use Core\\Shared\Domain\Exception\InvalidOrderException;
+use Core\Shared\Domain\Exception\InvalidOrderException;
 
 final class Order
 {
@@ -33,6 +33,6 @@ final class Order
 
     public function toString(): string
     {
-        return $this->field->field . ' ' . $this->order;
+        return $this->field->field.' '.$this->order;
     }
 }

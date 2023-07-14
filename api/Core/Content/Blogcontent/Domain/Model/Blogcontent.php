@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Domain\Model;
+namespace Core\Content\Blogcontent\Domain\Model;
 
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Shared\Domain\Model\DomainModel;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentImage;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentPosition;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Shared\Domain\Model\DomainModel;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentImage;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentPosition;
 
 class Blogcontent implements DomainModel
 {

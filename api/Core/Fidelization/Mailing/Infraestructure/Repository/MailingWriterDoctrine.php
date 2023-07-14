@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Infraestructure\Repository;
+namespace Core\Fidelization\Mailing\Infraestructure\Repository;
 
 use Throwable;
 use Doctrine\ORM\EntityManagerInterface;
-use Core\\Fidelization\Mailing\Domain\Model\Mailing;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingId;
-use Core\\Fidelization\Mailing\Domain\Repository\MailingWriter;
-use Core\\Fidelization\Mailing\Domain\Exception\MailingCantSaveException;
-use Core\\Fidelization\Mailing\Domain\Exception\MailingNotFoundException;
-use Core\\Fidelization\Mailing\Domain\Exception\MailingCantDeleteException;
-use Core\\Fidelization\Mailing\Domain\Exception\MailingCantUpdateException;
-use Core\\Fidelization\Mailing\Infraestructure\Doctrine\Model\MailingDoctrine;
-use Core\\Fidelization\Mailing\Domain\Exception\InvalidMailingDuplicateEmailException;
+use Core\Fidelization\Mailing\Domain\Model\Mailing;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingId;
+use Core\Fidelization\Mailing\Domain\Repository\MailingWriter;
+use Core\Fidelization\Mailing\Domain\Exception\MailingCantSaveException;
+use Core\Fidelization\Mailing\Domain\Exception\MailingNotFoundException;
+use Core\Fidelization\Mailing\Domain\Exception\MailingCantDeleteException;
+use Core\Fidelization\Mailing\Domain\Exception\MailingCantUpdateException;
+use Core\Fidelization\Mailing\Infraestructure\Doctrine\Model\MailingDoctrine;
+use Core\Fidelization\Mailing\Domain\Exception\InvalidMailingDuplicateEmailException;
 
 class MailingWriterDoctrine implements MailingWriter
 {

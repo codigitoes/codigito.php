@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Application\TagSearch;
+namespace Core\Content\Tag\Application\TagSearch;
 
-use Core\\Shared\Domain\Filter\Page;
-use Core\\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Filter\Page;
+use Core\Shared\Domain\Query\Query;
 
 class TagSearchQuery implements Query
 {

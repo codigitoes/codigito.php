@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Infraestructure\Query;
+namespace Core\Shared\Infraestructure\Query;
 
-use Core\\Shared\Domain\Exception\InvalidQueryCantFindHandlerException;
-use Core\\Shared\Domain\Model\ReadModel;
-use Core\\Shared\Domain\Query\Query;
-use Core\\Shared\Domain\Query\QueryBus;
+use Core\Shared\Domain\Exception\InvalidQueryCantFindHandlerException;
+use Core\Shared\Domain\Model\ReadModel;
+use Core\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\QueryBus;
 
 class QueryStaticBus implements QueryBus
 {

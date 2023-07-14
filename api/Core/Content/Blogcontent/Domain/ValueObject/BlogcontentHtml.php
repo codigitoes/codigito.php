@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Domain\ValueObject;
+namespace Core\Content\Blogcontent\Domain\ValueObject;
 
-use Core\\Shared\Domain\ValueObject\LimitedString;
-use Core\\Content\Blogcontent\Domain\Exception\InvalidBlogcontentHtmlException;
+use Core\Shared\Domain\ValueObject\LimitedString;
+use Core\Content\Blogcontent\Domain\Exception\InvalidBlogcontentHtmlException;
 
 class BlogcontentHtml extends LimitedString
 {
@@ -19,6 +19,6 @@ class BlogcontentHtml extends LimitedString
 
     protected function throwException(string $value): void
     {
-        throw new InvalidBlogcontentHtmlException(strlen($value) . ' min:' . self::MINIMUM_CHARS . ' max:' . self::MAXIMUM_CHARS);
+        throw new InvalidBlogcontentHtmlException(strlen($value).' min:'.self::MINIMUM_CHARS.' max:'.self::MAXIMUM_CHARS);
     }
 }

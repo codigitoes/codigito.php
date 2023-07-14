@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Application\MailingConfirm;
+namespace Core\Fidelization\Mailing\Application\MailingConfirm;
 
-use Core\\Shared\Domain\Command\Command;
-use Core\\Shared\Domain\Command\CommandHandler;
-use Core\\Fidelization\Mailing\Domain\Repository\MailingReader;
-use Core\\Fidelization\Mailing\Domain\Repository\MailingWriter;
-use Core\\Fidelization\Mailing\Domain\Criteria\MailingGetByIdCriteria;
+use Core\Shared\Domain\Command\Command;
+use Core\Shared\Domain\Command\CommandHandler;
+use Core\Fidelization\Mailing\Domain\Repository\MailingReader;
+use Core\Fidelization\Mailing\Domain\Repository\MailingWriter;
+use Core\Fidelization\Mailing\Domain\Criteria\MailingGetByIdCriteria;
 
 class MailingConfirmCommandHandler implements CommandHandler
 {

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Infraestructure\Doctrine\Model;
+namespace Core\Content\Fortune\Infraestructure\Doctrine\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Core\\Shared\Domain\Model\DomainModel;
-use Core\\Content\Fortune\Domain\ValueObject\FortuneId;
-use Core\\Content\Fortune\Domain\Model\Fortune;
-use Core\\Content\Fortune\Domain\ValueObject\FortuneName;
-use Core\\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
+use Core\Shared\Domain\Model\DomainModel;
+use Core\Content\Fortune\Domain\ValueObject\FortuneId;
+use Core\Content\Fortune\Domain\Model\Fortune;
+use Core\Content\Fortune\Domain\ValueObject\FortuneName;
+use Core\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
 
 /**
- * @ORM\Entity(repositoryClass="Core\\Content\Fortune\Infraestructure\Repository\FortuneWriterDoctrine", readOnly=true)
+ * @ORM\Entity(repositoryClass="Core\Content\Fortune\Infraestructure\Repository\FortuneWriterDoctrine", readOnly=true)
  *
  * @ORM\Table(name="fortunes")
  */

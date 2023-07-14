@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Domain\Exception;
+namespace Core\Content\Tag\Domain\Exception;
 
-use Core\\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Exception\DomainException;
 
 class InvalidTagTypeException extends DomainException
 {

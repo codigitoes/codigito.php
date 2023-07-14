@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\ValueObject;
+namespace Core\Shared\Domain\ValueObject;
 
-use Core\\Shared\Domain\Exception\InvalidUserIdException;
+use Core\Shared\Domain\Exception\InvalidUserIdException;
 
 class UserId extends UuidV4Id
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Domain\Model;
+namespace Core\Auth\Credential\Domain\Model;
 
-use Core\\Auth\Credential\Domain\ValueObject\CredentialEmail;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialId;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialPassword;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialRoles;
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Shared\Domain\Model\DomainModel;
+use Core\Auth\Credential\Domain\ValueObject\CredentialEmail;
+use Core\Auth\Credential\Domain\ValueObject\CredentialId;
+use Core\Auth\Credential\Domain\ValueObject\CredentialPassword;
+use Core\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Shared\Domain\Model\DomainModel;
 
 class Credential implements DomainModel
 {

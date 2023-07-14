@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Domain\Exception;
+namespace Core\Fidelization\Mailing\Domain\Exception;
 
-use Core\\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Exception\DomainException;
 
 class InvalidMailingTypeException extends DomainException
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Domain\ValueObject;
+namespace Core\Auth\Credential\Domain\ValueObject;
 
-use Core\\Auth\Credential\Domain\Exception\InvalidCredentialEmailException;
+use Core\Auth\Credential\Domain\Exception\InvalidCredentialEmailException;
 
 class CredentialEmail
 {

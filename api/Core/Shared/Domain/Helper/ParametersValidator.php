@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\Helper;
+namespace Core\Shared\Domain\Helper;
 
-use Core\\Shared\Domain\Exception\DomainException;
-use Core\\Shared\Domain\ValueObject\ParameterInstantError;
+use Core\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\ValueObject\ParameterInstantError;
 
 final class ParametersValidator
 {
@@ -41,7 +41,7 @@ final class ParametersValidator
                 $aClassName = $this->validators[$aKey];
                 new $aClassName($aValue);
             } catch (\Throwable $th) {
-                $error = 'invalid parameter ' . $aKey . ' with value ' . json_encode($aValue);
+                $error = 'invalid parameter '.$aKey.' with value '.json_encode($aValue);
                 if ($th instanceof DomainException) {
                     $error = $th->getMessage();
                 }

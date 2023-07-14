@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\ValueObject;
+namespace Core\Shared\Domain\ValueObject;
 
 use Throwable;
 
@@ -32,7 +32,7 @@ abstract class Base64Image
         $fileInfo      = mime_content_type($temporalyFile);
         $extension     = str_replace('image/', '', $fileInfo);
         if (!$this->isValidExtension($extension)) {
-            $this->throwException('file of ' . $fileInfo . ' is not allow. Use ' . implode(', ', self::AVAILABLE_EXTENSIONS));
+            $this->throwException('file of '.$fileInfo.' is not allow. Use '.implode(', ', self::AVAILABLE_EXTENSIONS));
         }
     }
 
@@ -43,7 +43,7 @@ abstract class Base64Image
         } catch (Throwable) {
             $this->throwException('cant create image from received base64');
         }
-        $temporalyFile = sys_get_temp_dir() . DIRECTORY_SEPARATOR . UuidV4Id::randomUuidV4();
+        $temporalyFile = sys_get_temp_dir().DIRECTORY_SEPARATOR.UuidV4Id::randomUuidV4();
 
         $created = imagepng($gdImage, $temporalyFile);
         if (false === $created) {

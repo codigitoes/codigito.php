@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Domain\ValueObject;
+namespace Core\Content\Fortune\Domain\ValueObject;
 
-use Core\\Shared\Domain\ValueObject\UuidV4Id;
-use Core\\Content\Fortune\Domain\Exception\InvalidFortuneIdException;
+use Core\Shared\Domain\ValueObject\UuidV4Id;
+use Core\Content\Fortune\Domain\Exception\InvalidFortuneIdException;
 
 class FortuneId extends UuidV4Id
 {

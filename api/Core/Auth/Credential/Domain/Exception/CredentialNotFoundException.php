@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Domain\Exception;
+namespace Core\Auth\Credential\Domain\Exception;
 
-use Core\\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Exception\DomainException;
 
 class CredentialNotFoundException extends DomainException
 {
@@ -12,7 +12,7 @@ class CredentialNotFoundException extends DomainException
 
     public function __construct(string $value)
     {
-        parent::__construct(self::PREFIX . ' ' . $value);
+        parent::__construct(self::PREFIX.' '.$value);
     }
 
     public const ERROR_CODE = 404;

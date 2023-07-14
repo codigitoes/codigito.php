@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Infraestructure\Command;
+namespace Core\Fidelization\Mailing\Infraestructure\Command;
 
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\MailerInterface;

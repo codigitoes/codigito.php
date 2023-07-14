@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Infraestructure\Repository;
+namespace Core\Auth\Credential\Infraestructure\Repository;
 
-use Core\\Auth\Credential\Domain\Exception\CredentialCantDeleteException;
-use Core\\Auth\Credential\Domain\Exception\CredentialCantSaveException;
-use Core\\Auth\Credential\Domain\Exception\CredentialCantUpdateException;
-use Core\\Auth\Credential\Domain\Exception\CredentialNotFoundException;
-use Core\\Auth\Credential\Domain\Exception\InvalidCredentialDuplicateEmailException;
-use Core\\Auth\Credential\Domain\Model\Credential;
-use Core\\Auth\Credential\Domain\Repository\CredentialWriter;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialId;
-use Core\\Auth\Credential\Infraestructure\Doctrine\Model\CredentialDoctrine;
+use Core\Auth\Credential\Domain\Exception\CredentialCantDeleteException;
+use Core\Auth\Credential\Domain\Exception\CredentialCantSaveException;
+use Core\Auth\Credential\Domain\Exception\CredentialCantUpdateException;
+use Core\Auth\Credential\Domain\Exception\CredentialNotFoundException;
+use Core\Auth\Credential\Domain\Exception\InvalidCredentialDuplicateEmailException;
+use Core\Auth\Credential\Domain\Model\Credential;
+use Core\Auth\Credential\Domain\Repository\CredentialWriter;
+use Core\Auth\Credential\Domain\ValueObject\CredentialId;
+use Core\Auth\Credential\Infraestructure\Doctrine\Model\CredentialDoctrine;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;

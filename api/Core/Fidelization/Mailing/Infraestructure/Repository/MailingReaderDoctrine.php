@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Infraestructure\Repository;
+namespace Core\Fidelization\Mailing\Infraestructure\Repository;
 
 use Throwable;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManagerInterface;
-use Core\\Shared\Domain\Filter\Criteria;
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Fidelization\Mailing\Domain\Model\Mailing;
-use Core\\Shared\Infraestructure\Filter\CriteriaDoctrine;
-use Core\\Fidelization\Mailing\Domain\Repository\MailingReader;
-use Core\\Fidelization\Mailing\Domain\Model\MailingGetReadModel;
-use Core\\Fidelization\Mailing\Domain\Model\MailingCollectionReadModel;
-use Core\\Fidelization\Mailing\Domain\Exception\MailingNotFoundException;
-use Core\\Fidelization\Mailing\Infraestructure\Doctrine\Model\MailingDoctrine;
+use Core\Shared\Domain\Filter\Criteria;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Fidelization\Mailing\Domain\Model\Mailing;
+use Core\Shared\Infraestructure\Filter\CriteriaDoctrine;
+use Core\Fidelization\Mailing\Domain\Repository\MailingReader;
+use Core\Fidelization\Mailing\Domain\Model\MailingGetReadModel;
+use Core\Fidelization\Mailing\Domain\Model\MailingCollectionReadModel;
+use Core\Fidelization\Mailing\Domain\Exception\MailingNotFoundException;
+use Core\Fidelization\Mailing\Infraestructure\Doctrine\Model\MailingDoctrine;
 
 class MailingReaderDoctrine implements MailingReader
 {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Infraestructure\Action;
+namespace Core\Content\Blogpost\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Core\\Shared\Domain\Filter\Page;
+use Core\Shared\Domain\Filter\Page;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Exception\DomainException;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Shared\Domain\Exception\DomainException;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Core\\Content\Blogpost\Application\BlogpostSearch\BlogpostSearchQuery;
+use Core\Content\Blogpost\Application\BlogpostSearch\BlogpostSearchQuery;
 
 class BlogpostSearchAction extends AbstractController
 {

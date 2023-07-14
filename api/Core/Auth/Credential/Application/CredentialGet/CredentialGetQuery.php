@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Application\CredentialGet;
+namespace Core\Auth\Credential\Application\CredentialGet;
 
-use Core\\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\Query;
 
 class CredentialGetQuery implements Query
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Infraestructure\Action;
+namespace Core\Content\Tag\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Exception\DomainException;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Shared\Domain\Exception\DomainException;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Core\\Content\Tag\Application\TagAll\TagAllQuery;
+use Core\Content\Tag\Application\TagAll\TagAllQuery;
 
 class TagAllAction extends AbstractController
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Application\TagAll;
+namespace Core\Content\Tag\Application\TagAll;
 
-use Core\\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\Query;
 
 class TagAllQuery implements Query
 {

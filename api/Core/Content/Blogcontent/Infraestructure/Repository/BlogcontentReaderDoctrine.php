@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Infraestructure\Repository;
+namespace Core\Content\Blogcontent\Infraestructure\Repository;
 
 use Throwable;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManagerInterface;
-use Core\\Shared\Domain\Filter\Criteria;
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Content\Blogcontent\Domain\Model\Blogcontent;
-use Core\\Shared\Infraestructure\Filter\CriteriaDoctrine;
-use Core\\Content\Blogcontent\Domain\Repository\BlogcontentReader;
-use Core\\Content\Blogcontent\Domain\Model\BlogcontentGetReadModel;
-use Core\\Content\Blogcontent\Domain\Model\BlogcontentCollectionReadModel;
-use Core\\Content\Blogcontent\Domain\Exception\BlogcontentNotFoundException;
-use Core\\Content\Blogcontent\Infraestructure\Doctrine\Model\BlogcontentDoctrine;
+use Core\Shared\Domain\Filter\Criteria;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Content\Blogcontent\Domain\Model\Blogcontent;
+use Core\Shared\Infraestructure\Filter\CriteriaDoctrine;
+use Core\Content\Blogcontent\Domain\Repository\BlogcontentReader;
+use Core\Content\Blogcontent\Domain\Model\BlogcontentGetReadModel;
+use Core\Content\Blogcontent\Domain\Model\BlogcontentCollectionReadModel;
+use Core\Content\Blogcontent\Domain\Exception\BlogcontentNotFoundException;
+use Core\Content\Blogcontent\Infraestructure\Doctrine\Model\BlogcontentDoctrine;
 
 class BlogcontentReaderDoctrine implements BlogcontentReader
 {

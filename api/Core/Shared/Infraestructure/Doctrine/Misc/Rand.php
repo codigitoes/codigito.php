@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Infraestructure\Doctrine\Misc;
+namespace Core\Shared\Infraestructure\Doctrine\Misc;
 
 use Doctrine\ORM\Query\Lexer;
 

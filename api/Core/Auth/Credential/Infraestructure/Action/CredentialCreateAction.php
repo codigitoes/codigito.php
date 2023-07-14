@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Infraestructure\Action;
+namespace Core\Auth\Credential\Infraestructure\Action;
 
-use Core\\Auth\Credential\Application\CredentialCreate\CredentialCreateCommand;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialEmail;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialId;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialRoles;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Domain\ValueObject\PlainPassword;
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Shared\Infraestructure\Command\CommandStaticBus;
+use Core\Auth\Credential\Application\CredentialCreate\CredentialCreateCommand;
+use Core\Auth\Credential\Domain\ValueObject\CredentialEmail;
+use Core\Auth\Credential\Domain\ValueObject\CredentialId;
+use Core\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Domain\ValueObject\PlainPassword;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Shared\Infraestructure\Command\CommandStaticBus;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Domain\ValueObject;
+namespace Core\Content\Tag\Domain\ValueObject;
 
-use Core\\Content\Tag\Domain\Exception\InvalidTagIdException;
-use Core\\Shared\Domain\ValueObject\UuidV4Id;
+use Core\Content\Tag\Domain\Exception\InvalidTagIdException;
+use Core\Shared\Domain\ValueObject\UuidV4Id;
 
 class TagId extends UuidV4Id
 {

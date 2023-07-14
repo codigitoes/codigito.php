@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Infraestructure\Service;
+namespace Core\Shared\Infraestructure\Service;
 
-use Core\\Shared\Domain\Exception\CantCreateCdnLocalException;
-use Core\\Shared\Domain\Exception\CantDeleteCdnLocalException;
-use Core\\Shared\Domain\Service\CdnCreator;
-use Core\\Shared\Domain\ValueObject\UuidV4Id;
+use Core\Shared\Domain\Exception\CantCreateCdnLocalException;
+use Core\Shared\Domain\Exception\CantDeleteCdnLocalException;
+use Core\Shared\Domain\Service\CdnCreator;
+use Core\Shared\Domain\ValueObject\UuidV4Id;
 use Throwable;
 
 class CdnLocalCreator implements CdnCreator
@@ -20,12 +20,12 @@ class CdnLocalCreator implements CdnCreator
     public function delete(string $filename): void
     {
         try {
-            $fullpath = $this->basedir . DIRECTORY_SEPARATOR . $filename;
+            $fullpath = $this->basedir.DIRECTORY_SEPARATOR.$filename;
             if (false === file_exists($fullpath)) {
                 throw new CantDeleteCdnLocalException($filename);
             }
 
-            @unlink($this->basedir . DIRECTORY_SEPARATOR . $filename);
+            @unlink($this->basedir.DIRECTORY_SEPARATOR.$filename);
         } catch (Throwable) {
             throw new CantDeleteCdnLocalException($filename);
         }
@@ -33,9 +33,9 @@ class CdnLocalCreator implements CdnCreator
 
     public function create(string $base64source): string
     {
-        $filename = UuidV4Id::randomUuidV4() . '.jpg';
+        $filename = UuidV4Id::randomUuidV4().'.jpg';
         try {
-            $fullpath = $this->basedir . DIRECTORY_SEPARATOR . $filename;
+            $fullpath = $this->basedir.DIRECTORY_SEPARATOR.$filename;
             $content  = base64_decode($base64source);
             if (!$content) {
                 throw new CantCreateCdnLocalException($filename);

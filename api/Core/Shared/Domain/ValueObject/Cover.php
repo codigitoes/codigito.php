@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\ValueObject;
+namespace Core\Shared\Domain\ValueObject;
 
 abstract class Cover
 {
@@ -26,10 +26,10 @@ abstract class Cover
 
     private function validateIsValidExtensionFromFullPathException(): void
     {
-        if (preg_match('/.+\.[' . implode(',', self::AVAILABLE_EXTENSIONS) . ']+$/i', $this->value)) {
+        if (preg_match('/.+\.['.implode(',', self::AVAILABLE_EXTENSIONS).']+$/i', $this->value)) {
             return;
         }
 
-        $this->throwException('cover must be a filename with an extension: ' . implode(',', self::AVAILABLE_EXTENSIONS) . ' received: ' . $this->value);
+        $this->throwException('cover must be a filename with an extension: '.implode(',', self::AVAILABLE_EXTENSIONS).' received: '.$this->value);
     }
 }

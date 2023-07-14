@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Domain\Model;
+namespace Core\Fidelization\Mailing\Domain\Model;
 
-use Core\\Shared\Domain\Model\ReadModel;
-use Core\\Fidelization\Mailing\Domain\Exception\InvalidMailingTypeException;
+use Core\Shared\Domain\Model\ReadModel;
+use Core\Fidelization\Mailing\Domain\Exception\InvalidMailingTypeException;
 
 class MailingCollectionReadModel implements ReadModel
 {

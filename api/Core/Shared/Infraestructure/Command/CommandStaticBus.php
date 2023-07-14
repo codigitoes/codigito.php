@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Infraestructure\Command;
+namespace Core\Shared\Infraestructure\Command;
 
-use Core\\Shared\Domain\Command\Command;
-use Core\\Shared\Domain\Command\CommandBus;
-use Core\\Shared\Domain\Exception\InvalidCommandCantFindHandlerException;
+use Core\Shared\Domain\Command\Command;
+use Core\Shared\Domain\Command\CommandBus;
+use Core\Shared\Domain\Exception\InvalidCommandCantFindHandlerException;
 
 class CommandStaticBus implements CommandBus
 {

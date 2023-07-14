@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Application\MailingCreate;
+namespace Core\Fidelization\Mailing\Application\MailingCreate;
 
-use Core\\Shared\Domain\Command\Command;
+use Core\Shared\Domain\Command\Command;
 
 class MailingCreateCommand implements Command
 {

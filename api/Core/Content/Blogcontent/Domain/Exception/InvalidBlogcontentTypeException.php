@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Domain\Exception;
+namespace Core\Content\Blogcontent\Domain\Exception;
 
-use Core\\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Exception\DomainException;
 
 class InvalidBlogcontentTypeException extends DomainException
 {

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Infraestructure\Action;
+namespace Core\Content\Blogcontent\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Exception\DomainException;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
-use Core\\Content\Blogcontent\Application\BlogcontentGet\BlogcontentGetQuery;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
+use Core\Content\Blogcontent\Application\BlogcontentGet\BlogcontentGetQuery;
 
 class BlogcontentGetAction extends AbstractController
 {

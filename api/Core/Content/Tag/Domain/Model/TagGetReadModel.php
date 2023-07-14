@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Domain\Model;
+namespace Core\Content\Tag\Domain\Model;
 
-use Core\\Shared\Domain\Model\ReadModel;
+use Core\Shared\Domain\Model\ReadModel;
 
 class TagGetReadModel implements ReadModel
 {

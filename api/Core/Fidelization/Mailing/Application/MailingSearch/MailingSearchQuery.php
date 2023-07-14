@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Application\MailingSearch;
+namespace Core\Fidelization\Mailing\Application\MailingSearch;
 
-use Core\\Shared\Domain\Filter\Page;
-use Core\\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Filter\Page;
+use Core\Shared\Domain\Query\Query;
 
 class MailingSearchQuery implements Query
 {

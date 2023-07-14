@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Application\TagSearch;
+namespace Core\Content\Tag\Application\TagSearch;
 
-use Core\\Content\Tag\Domain\Criteria\TagSearchCriteria;
-use Core\\Content\Tag\Domain\Model\TagCollectionReadModel;
-use Core\\Content\Tag\Domain\Repository\TagReader;
-use Core\\Shared\Domain\Query\Query;
-use Core\\Shared\Domain\Query\QueryHandler;
+use Core\Content\Tag\Domain\Criteria\TagSearchCriteria;
+use Core\Content\Tag\Domain\Model\TagCollectionReadModel;
+use Core\Content\Tag\Domain\Repository\TagReader;
+use Core\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\QueryHandler;
 
 class TagSearchQueryHandler implements QueryHandler
 {

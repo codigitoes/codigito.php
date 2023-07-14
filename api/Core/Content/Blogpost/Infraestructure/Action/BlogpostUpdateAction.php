@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Infraestructure\Action;
+namespace Core\Content\Blogpost\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Exception\DomainException;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Shared\Infraestructure\Command\CommandStaticBus;
-use Core\\Content\Blogpost\Domain\ValueObject\BlogpostName;
-use Core\\Content\Blogpost\Domain\ValueObject\BlogpostTags;
-use Core\\Content\Blogpost\Domain\ValueObject\BlogpostBase64Image;
-use Core\\Content\Blogpost\Application\BlogpostUpdate\BlogpostUpdateCommand;
-use Core\\Content\Blogpost\Domain\Exception\InvalidBlogpostUpdateEmptyRequestException;
+use Core\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Shared\Infraestructure\Command\CommandStaticBus;
+use Core\Content\Blogpost\Domain\ValueObject\BlogpostName;
+use Core\Content\Blogpost\Domain\ValueObject\BlogpostTags;
+use Core\Content\Blogpost\Domain\ValueObject\BlogpostBase64Image;
+use Core\Content\Blogpost\Application\BlogpostUpdate\BlogpostUpdateCommand;
+use Core\Content\Blogpost\Domain\Exception\InvalidBlogpostUpdateEmptyRequestException;
 
 class BlogpostUpdateAction extends BaseAction
 {

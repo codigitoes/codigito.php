@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\ValueObject;
+namespace Core\Shared\Domain\ValueObject;
 
 abstract class UuidV4Id
 {

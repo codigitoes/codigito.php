@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Infraestructure\Doctrine\Model;
+namespace Core\Shared\Infraestructure\Doctrine\Model;
 
-use Core\\Shared\Domain\Model\DomainModel;
+use Core\Shared\Domain\Model\DomainModel;
 
 interface DoctrineModel
 {

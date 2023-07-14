@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Domain\Repository;
+namespace Core\Auth\Credential\Domain\Repository;
 
-use Core\\Auth\Credential\Domain\Model\Credential;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialId;
+use Core\Auth\Credential\Domain\Model\Credential;
+use Core\Auth\Credential\Domain\ValueObject\CredentialId;
 
 interface CredentialWriter
 {

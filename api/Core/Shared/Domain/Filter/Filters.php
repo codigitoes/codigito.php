@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\Filter;
+namespace Core\Shared\Domain\Filter;
 
-use Core\\Shared\Domain\Exception\InvalidFilterException;
+use Core\Shared\Domain\Exception\InvalidFilterException;
 
 final class Filters
 {

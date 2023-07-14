@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Domain\Model;
+namespace Core\Fidelization\Mailing\Domain\Model;
 
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Shared\Domain\Model\DomainModel;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingId;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingConfirmed;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Shared\Domain\Model\DomainModel;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingId;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingConfirmed;
 
 class Mailing implements DomainModel
 {

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Infraestructure\Repository;
+namespace Core\Content\Fortune\Infraestructure\Repository;
 
 use Throwable;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManagerInterface;
-use Core\\Shared\Domain\Filter\Criteria;
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Content\Fortune\Domain\Model\Fortune;
-use Core\\Shared\Infraestructure\Filter\CriteriaDoctrine;
-use Core\\Content\Fortune\Domain\Repository\FortuneReader;
-use Core\\Content\Fortune\Domain\Model\FortuneGetReadModel;
-use Core\\Content\Fortune\Domain\Criteria\FortuneSearchCriteria;
-use Core\\Content\Fortune\Domain\Model\FortuneCollectionReadModel;
-use Core\\Content\Fortune\Domain\Exception\FortuneNotFoundException;
-use Core\\Content\Fortune\Infraestructure\Doctrine\Model\FortuneDoctrine;
+use Core\Shared\Domain\Filter\Criteria;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Content\Fortune\Domain\Model\Fortune;
+use Core\Shared\Infraestructure\Filter\CriteriaDoctrine;
+use Core\Content\Fortune\Domain\Repository\FortuneReader;
+use Core\Content\Fortune\Domain\Model\FortuneGetReadModel;
+use Core\Content\Fortune\Domain\Criteria\FortuneSearchCriteria;
+use Core\Content\Fortune\Domain\Model\FortuneCollectionReadModel;
+use Core\Content\Fortune\Domain\Exception\FortuneNotFoundException;
+use Core\Content\Fortune\Infraestructure\Doctrine\Model\FortuneDoctrine;
 
 class FortuneReaderDoctrine implements FortuneReader
 {

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Infraestructure\Doctrine\Model;
+namespace Core\Auth\Credential\Infraestructure\Doctrine\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Core\\Shared\Domain\Model\DomainModel;
+use Core\Shared\Domain\Model\DomainModel;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Core\\Auth\Credential\Domain\Model\Credential;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialId;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialEmail;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialRoles;
-use Core\\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialPassword;
+use Core\Auth\Credential\Domain\Model\Credential;
+use Core\Auth\Credential\Domain\ValueObject\CredentialId;
+use Core\Auth\Credential\Domain\ValueObject\CredentialEmail;
+use Core\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Core\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
+use Core\Auth\Credential\Domain\ValueObject\CredentialPassword;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="Core\\Auth\Credential\Infraestructure\Repository\CredentialWriterDoctrine", readOnly=true)
+ * @ORM\Entity(repositoryClass="Core\Auth\Credential\Infraestructure\Repository\CredentialWriterDoctrine", readOnly=true)
  *
  * @ORM\Table(name="credentials")
  */

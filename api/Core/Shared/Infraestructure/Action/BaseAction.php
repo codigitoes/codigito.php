@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Infraestructure\Action;
+namespace Core\Shared\Infraestructure\Action;
 
-use Core\\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Exception\DomainException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

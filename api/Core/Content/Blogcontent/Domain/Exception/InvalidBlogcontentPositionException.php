@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Domain\Exception;
+namespace Core\Content\Blogcontent\Domain\Exception;
 
-use Core\\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Exception\DomainException;
 
 class InvalidBlogcontentPositionException extends DomainException
 {
@@ -12,7 +12,7 @@ class InvalidBlogcontentPositionException extends DomainException
 
     public function __construct(int $value)
     {
-        parent::__construct(self::PREFIX . ' ' . $value);
+        parent::__construct(self::PREFIX.' '.$value);
     }
 
     public const ERROR_CODE = 400;

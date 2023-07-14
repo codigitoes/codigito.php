@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Infraestructure\Action;
+namespace Core\Content\Tag\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Exception\DomainException;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Content\Tag\Domain\ValueObject\TagId;
-use Core\\Content\Shared\Domain\ValueObject\TagName;
-use Core\\Shared\Infraestructure\Command\CommandStaticBus;
-use Core\\Content\Tag\Domain\ValueObject\TagBase64Image;
-use Core\\Content\Tag\Application\TagCreate\TagCreateCommand;
+use Core\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Content\Tag\Domain\ValueObject\TagId;
+use Core\Content\Shared\Domain\ValueObject\TagName;
+use Core\Shared\Infraestructure\Command\CommandStaticBus;
+use Core\Content\Tag\Domain\ValueObject\TagBase64Image;
+use Core\Content\Tag\Application\TagCreate\TagCreateCommand;
 
 class TagCreateAction extends BaseAction
 {

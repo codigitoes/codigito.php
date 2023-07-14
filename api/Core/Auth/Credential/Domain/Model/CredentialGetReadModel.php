@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Domain\Model;
+namespace Core\Auth\Credential\Domain\Model;
 
-use Core\\Shared\Domain\Model\ReadModel;
+use Core\Shared\Domain\Model\ReadModel;
 
 class CredentialGetReadModel implements ReadModel
 {

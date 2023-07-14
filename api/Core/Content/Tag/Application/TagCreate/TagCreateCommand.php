@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Application\TagCreate;
+namespace Core\Content\Tag\Application\TagCreate;
 
-use Core\\Shared\Domain\Command\Command;
+use Core\Shared\Domain\Command\Command;
 
 class TagCreateCommand implements Command
 {

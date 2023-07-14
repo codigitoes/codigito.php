@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Application\TagUpdate;
+namespace Core\Content\Tag\Application\TagUpdate;
 
-use Core\\Content\Tag\Domain\Criteria\TagGetByIdCriteria;
-use Core\\Content\Tag\Domain\Repository\TagReader;
-use Core\\Content\Tag\Domain\Repository\TagWriter;
-use Core\\Content\Tag\Domain\ValueObject\TagImage;
-use Core\\Content\Shared\Domain\ValueObject\TagName;
-use Core\\Shared\Domain\Command\Command;
-use Core\\Shared\Domain\Command\CommandHandler;
-use Core\\Shared\Domain\Service\CdnCreator;
+use Core\Content\Tag\Domain\Criteria\TagGetByIdCriteria;
+use Core\Content\Tag\Domain\Repository\TagReader;
+use Core\Content\Tag\Domain\Repository\TagWriter;
+use Core\Content\Tag\Domain\ValueObject\TagImage;
+use Core\Content\Shared\Domain\ValueObject\TagName;
+use Core\Shared\Domain\Command\Command;
+use Core\Shared\Domain\Command\CommandHandler;
+use Core\Shared\Domain\Service\CdnCreator;
 
 class TagUpdateCommandHandler implements CommandHandler
 {

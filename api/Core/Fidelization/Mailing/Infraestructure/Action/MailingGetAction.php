@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Infraestructure\Action;
+namespace Core\Fidelization\Mailing\Infraestructure\Action;
 
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingId;
-use Core\\Fidelization\Mailing\Application\MailingGet\MailingGetQuery;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingId;
+use Core\Fidelization\Mailing\Application\MailingGet\MailingGetQuery;
 
 class MailingGetAction extends BaseAction
 {

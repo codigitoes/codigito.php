@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\Exception;
+namespace Core\Shared\Domain\Exception;
 
 class InvalidQueryCantFindHandlerException extends DomainException
 {
@@ -10,7 +10,7 @@ class InvalidQueryCantFindHandlerException extends DomainException
 
     public function __construct(string $value)
     {
-        parent::__construct(self::PREFIX . ' ' . $value);
+        parent::__construct(self::PREFIX.' '.$value);
     }
 
     public const ERROR_CODE = 500;

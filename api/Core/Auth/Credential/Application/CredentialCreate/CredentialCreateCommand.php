@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Application\CredentialCreate;
+namespace Core\Auth\Credential\Application\CredentialCreate;
 
-use Core\\Shared\Domain\Command\Command;
+use Core\Shared\Domain\Command\Command;
 
 class CredentialCreateCommand implements Command
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Application\MailingGet;
+namespace Core\Fidelization\Mailing\Application\MailingGet;
 
-use Core\\Fidelization\Mailing\Domain\Criteria\MailingGetByIdCriteria;
-use Core\\Shared\Domain\Query\Query;
-use Core\\Shared\Domain\Query\QueryHandler;
-use Core\\Fidelization\Mailing\Domain\Repository\MailingReader;
-use Core\\Fidelization\Mailing\Domain\Model\MailingGetReadModel;
+use Core\Fidelization\Mailing\Domain\Criteria\MailingGetByIdCriteria;
+use Core\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\QueryHandler;
+use Core\Fidelization\Mailing\Domain\Repository\MailingReader;
+use Core\Fidelization\Mailing\Domain\Model\MailingGetReadModel;
 
 class MailingGetQueryHandler implements QueryHandler
 {

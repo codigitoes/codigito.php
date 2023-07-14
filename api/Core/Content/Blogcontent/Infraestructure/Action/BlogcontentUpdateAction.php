@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Infraestructure\Action;
+namespace Core\Content\Blogcontent\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Exception\DomainException;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Shared\Infraestructure\Command\CommandStaticBus;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentBase64Image;
-use Core\\Content\Blogcontent\Application\BlogcontentUpdate\BlogcontentUpdateCommand;
-use Core\\Content\Blogcontent\Domain\Exception\InvalidBlogcontentUpdateEmptyRequestException;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
+use Core\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Shared\Infraestructure\Command\CommandStaticBus;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentBase64Image;
+use Core\Content\Blogcontent\Application\BlogcontentUpdate\BlogcontentUpdateCommand;
+use Core\Content\Blogcontent\Domain\Exception\InvalidBlogcontentUpdateEmptyRequestException;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
 
 class BlogcontentUpdateAction extends BaseAction
 {

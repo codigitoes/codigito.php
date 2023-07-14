@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Shared\Domain\ValueObject;
+namespace Core\Content\Shared\Domain\ValueObject;
 
-use Core\\Shared\Domain\ValueObject\UuidV4Id;
-use Core\\Content\Shared\Domain\Exception\InvalidBlogpostIdException;
+use Core\Shared\Domain\ValueObject\UuidV4Id;
+use Core\Content\Shared\Domain\Exception\InvalidBlogpostIdException;
 
 class BlogpostId extends UuidV4Id
 {

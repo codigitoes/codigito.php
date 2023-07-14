@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Application\BlogpostLatest;
+namespace Core\Content\Blogpost\Application\BlogpostLatest;
 
-use Core\\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\Query;
 
 class BlogpostLatestQuery implements Query
 {

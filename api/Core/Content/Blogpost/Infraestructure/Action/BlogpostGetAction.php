@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Infraestructure\Action;
+namespace Core\Content\Blogpost\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Exception\DomainException;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Content\Blogpost\Application\BlogpostGet\BlogpostGetQuery;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Content\Blogpost\Application\BlogpostGet\BlogpostGetQuery;
 
 class BlogpostGetAction extends AbstractController
 {

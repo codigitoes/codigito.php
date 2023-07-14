@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Infraestructure\Doctrine\Model;
+namespace Core\Content\Blogpost\Infraestructure\Doctrine\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Core\\Shared\Domain\Model\DomainModel;
-use Core\\Content\Blogpost\Domain\Model\Blogpost;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Content\Blogpost\Domain\ValueObject\BlogpostName;
-use Core\\Content\Blogpost\Domain\ValueObject\BlogpostImage;
-use Core\\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
-use Core\\Content\Blogpost\Domain\ValueObject\BlogpostTags;
+use Core\Shared\Domain\Model\DomainModel;
+use Core\Content\Blogpost\Domain\Model\Blogpost;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Content\Blogpost\Domain\ValueObject\BlogpostName;
+use Core\Content\Blogpost\Domain\ValueObject\BlogpostImage;
+use Core\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
+use Core\Content\Blogpost\Domain\ValueObject\BlogpostTags;
 
 /**
- * @ORM\Entity(repositoryClass="Core\\Content\Blogpost\Infraestructure\Repository\BlogpostWriterDoctrine", readOnly=true)
+ * @ORM\Entity(repositoryClass="Core\Content\Blogpost\Infraestructure\Repository\BlogpostWriterDoctrine", readOnly=true)
  *
  * @ORM\Table(name="blogposts")
  */

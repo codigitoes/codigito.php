@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Application\BlogpostCreate;
+namespace Core\Content\Blogpost\Application\BlogpostCreate;
 
-use Core\\Shared\Domain\Command\Command;
+use Core\Shared\Domain\Command\Command;
 
 class BlogpostCreateCommand implements Command
 {

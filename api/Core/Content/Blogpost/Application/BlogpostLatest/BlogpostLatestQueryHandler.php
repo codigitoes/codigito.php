@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Application\BlogpostLatest;
+namespace Core\Content\Blogpost\Application\BlogpostLatest;
 
-use Core\\Shared\Domain\Filter\Page;
-use Core\\Shared\Domain\Query\Query;
-use Core\\Shared\Domain\Query\QueryHandler;
-use Core\\Content\Blogpost\Domain\Repository\BlogpostReader;
-use Core\\Content\Blogpost\Domain\Criteria\BlogpostSearchCriteria;
-use Core\\Content\Blogpost\Domain\Model\BlogpostCollectionReadModel;
+use Core\Shared\Domain\Filter\Page;
+use Core\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\QueryHandler;
+use Core\Content\Blogpost\Domain\Repository\BlogpostReader;
+use Core\Content\Blogpost\Domain\Criteria\BlogpostSearchCriteria;
+use Core\Content\Blogpost\Domain\Model\BlogpostCollectionReadModel;
 
 class BlogpostLatestQueryHandler implements QueryHandler
 {

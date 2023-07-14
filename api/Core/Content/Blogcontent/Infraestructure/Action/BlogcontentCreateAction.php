@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Infraestructure\Action;
+namespace Core\Content\Blogcontent\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Shared\Infraestructure\Command\CommandStaticBus;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentBase64Image;
-use Core\\Content\Blogcontent\Application\BlogcontentCreate\BlogcontentCreateCommand;
-use Core\\Content\Blogcontent\Domain\Exception\InvalidBlogcontentCreateEmptyRequestException;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Shared\Infraestructure\Command\CommandStaticBus;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentBase64Image;
+use Core\Content\Blogcontent\Application\BlogcontentCreate\BlogcontentCreateCommand;
+use Core\Content\Blogcontent\Domain\Exception\InvalidBlogcontentCreateEmptyRequestException;
 
 class BlogcontentCreateAction extends BaseAction
 {
@@ -75,7 +75,7 @@ class BlogcontentCreateAction extends BaseAction
         $hasBase64Image = (isset($this->parameters['base64image']) && '' !== $this->parameters['base64image']);
         $hasContent     = ($hasHtml || $hasBase64Image || $hasYoutube);
         if (false === $hasContent) {
-            return [InvalidBlogcontentCreateEmptyRequestException::PREFIX . ' ' . $blogpost_id];
+            return [InvalidBlogcontentCreateEmptyRequestException::PREFIX.' '.$blogpost_id];
         }
         $validator = new ParametersValidator();
         $validator->register('blogpost_id', BlogpostId::class);

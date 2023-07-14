@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Application\CredentialGet;
+namespace Core\Auth\Credential\Application\CredentialGet;
 
-use Core\\Auth\Credential\Domain\Criteria\CredentialSearchByIdCriteria;
-use Core\\Auth\Credential\Domain\Model\CredentialGetReadModel;
-use Core\\Auth\Credential\Domain\Repository\CredentialReader;
-use Core\\Shared\Domain\Query\Query;
-use Core\\Shared\Domain\Query\QueryHandler;
+use Core\Auth\Credential\Domain\Criteria\CredentialSearchByIdCriteria;
+use Core\Auth\Credential\Domain\Model\CredentialGetReadModel;
+use Core\Auth\Credential\Domain\Repository\CredentialReader;
+use Core\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\QueryHandler;
 
 class CredentialGetQueryHandler implements QueryHandler
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Application\MailingGet;
+namespace Core\Fidelization\Mailing\Application\MailingGet;
 
-use Core\\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\Query;
 
 class MailingGetQuery implements Query
 {

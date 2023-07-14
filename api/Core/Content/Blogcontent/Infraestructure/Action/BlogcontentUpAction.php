@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Infraestructure\Action;
+namespace Core\Content\Blogcontent\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Domain\Helper\ParametersValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
-use Core\\Shared\Infraestructure\Command\CommandStaticBus;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
+use Core\Shared\Infraestructure\Command\CommandStaticBus;
 
 class BlogcontentUpAction extends AbstractController
 {

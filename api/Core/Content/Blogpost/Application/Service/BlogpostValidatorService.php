@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Application\Service;
+namespace Core\Content\Blogpost\Application\Service;
 
-use Core\\Content\Blogpost\Domain\Repository\BlogpostReader;
-use Core\\Content\Blogpost\Domain\Criteria\BlogpostGetByIdCriteria;
-use Core\\Content\Shared\Domain\Exception\BlogpostNotFoundException;
+use Core\Content\Blogpost\Domain\Repository\BlogpostReader;
+use Core\Content\Blogpost\Domain\Criteria\BlogpostGetByIdCriteria;
+use Core\Content\Shared\Domain\Exception\BlogpostNotFoundException;
 
 class BlogpostValidatorService
 {
@@ -28,7 +28,7 @@ class BlogpostValidatorService
         }
 
         if (count($errors) > 0) {
-            throw new BlogpostNotFoundException('ids: ' . implode(', ', $errors));
+            throw new BlogpostNotFoundException('ids: '.implode(', ', $errors));
         }
     }
 }

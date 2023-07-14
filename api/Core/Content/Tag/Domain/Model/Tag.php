@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Domain\Model;
+namespace Core\Content\Tag\Domain\Model;
 
-use Core\\Content\Tag\Domain\ValueObject\TagImage;
-use Core\\Content\Tag\Domain\ValueObject\TagId;
-use Core\\Content\Shared\Domain\ValueObject\TagName;
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Shared\Domain\Model\DomainModel;
+use Core\Content\Tag\Domain\ValueObject\TagImage;
+use Core\Content\Tag\Domain\ValueObject\TagId;
+use Core\Content\Shared\Domain\ValueObject\TagName;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Shared\Domain\Model\DomainModel;
 
 class Tag implements DomainModel
 {

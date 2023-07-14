@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Infraestructure\Action;
+namespace Core\Fidelization\Mailing\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Shared\Infraestructure\Command\CommandStaticBus;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingId;
-use Core\\Fidelization\Mailing\Application\MailingConfirm\MailingConfirmCommand;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Shared\Infraestructure\Command\CommandStaticBus;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingId;
+use Core\Fidelization\Mailing\Application\MailingConfirm\MailingConfirmCommand;
 
 class MailingConfirmAction extends BaseAction
 {

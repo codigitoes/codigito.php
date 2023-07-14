@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Shared\Application\Service;
+namespace Core\Content\Shared\Application\Service;
 
-use Core\\Content\Blogpost\Application\Service\BlogpostValidatorService;
-use Core\\Shared\Domain\Service\ValidatorBoundaryFacadeService;
+use Core\Content\Blogpost\Application\Service\BlogpostValidatorService;
+use Core\Shared\Domain\Service\ValidatorBoundaryFacadeService;
 
 class BlogpostValidatorBoundaryFacadeService implements ValidatorBoundaryFacadeService
 {

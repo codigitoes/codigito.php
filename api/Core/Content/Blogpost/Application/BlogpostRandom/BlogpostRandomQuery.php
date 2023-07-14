@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Application\BlogpostRandom;
+namespace Core\Content\Blogpost\Application\BlogpostRandom;
 
-use Core\\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\Query;
 
 class BlogpostRandomQuery implements Query
 {

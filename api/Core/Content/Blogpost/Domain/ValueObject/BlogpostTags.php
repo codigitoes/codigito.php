@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Domain\ValueObject;
+namespace Core\Content\Blogpost\Domain\ValueObject;
 
 use Throwable;
-use Core\\Content\Shared\Domain\ValueObject\TagName;
-use Core\\Content\Blogpost\Domain\Exception\InvalidBlogpostTagsException;
+use Core\Content\Shared\Domain\ValueObject\TagName;
+use Core\Content\Blogpost\Domain\Exception\InvalidBlogpostTagsException;
 
 class BlogpostTags
 {
@@ -26,7 +26,7 @@ class BlogpostTags
             }
         }
         if (count($worngValues) > 0) {
-            $this->throwException($value . 'invalid names: ' . implode(',', $worngValues));
+            $this->throwException($value.'invalid names: '.implode(',', $worngValues));
         }
     }
 

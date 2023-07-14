@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Domain\Model;
+namespace Core\Fidelization\Mailing\Domain\Model;
 
-use Core\\Shared\Domain\Model\ReadModel;
+use Core\Shared\Domain\Model\ReadModel;
 
 class MailingGetReadModel implements ReadModel
 {

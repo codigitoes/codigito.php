@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Domain\Criteria;
+namespace Core\Fidelization\Mailing\Domain\Criteria;
 
-use Core\\Shared\Domain\Filter\Page;
-use Core\\Shared\Domain\Filter\Order;
-use Core\\Shared\Domain\Filter\Filters;
-use Core\\Shared\Domain\Filter\Criteria;
-use Core\\Shared\Domain\Filter\FilterField;
+use Core\Shared\Domain\Filter\Page;
+use Core\Shared\Domain\Filter\Order;
+use Core\Shared\Domain\Filter\Filters;
+use Core\Shared\Domain\Filter\Criteria;
+use Core\Shared\Domain\Filter\FilterField;
 
 class MailingGetByIdCriteria extends Criteria
 {

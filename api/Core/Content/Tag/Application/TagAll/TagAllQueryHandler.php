@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Application\TagAll;
+namespace Core\Content\Tag\Application\TagAll;
 
-use Core\\Shared\Domain\Filter\Page;
-use Core\\Shared\Domain\Query\Query;
-use Core\\Shared\Domain\Query\QueryHandler;
-use Core\\Content\Tag\Domain\Repository\TagReader;
-use Core\\Content\Tag\Domain\Criteria\TagSearchCriteria;
-use Core\\Content\Tag\Domain\Model\TagCollectionReadModel;
+use Core\Shared\Domain\Filter\Page;
+use Core\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\QueryHandler;
+use Core\Content\Tag\Domain\Repository\TagReader;
+use Core\Content\Tag\Domain\Criteria\TagSearchCriteria;
+use Core\Content\Tag\Domain\Model\TagCollectionReadModel;
 
 class TagAllQueryHandler implements QueryHandler
 {

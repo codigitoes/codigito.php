@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Application\CredentialCreate;
+namespace Core\Auth\Credential\Application\CredentialCreate;
 
-use Core\\Auth\Credential\Domain\Model\Credential;
-use Core\\Auth\Credential\Domain\Repository\CredentialWriter;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialEmail;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialId;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialPassword;
-use Core\\Auth\Credential\Domain\ValueObject\CredentialRoles;
-use Core\\Shared\Domain\Command\Command;
-use Core\\Shared\Domain\Command\CommandHandler;
+use Core\Auth\Credential\Domain\Model\Credential;
+use Core\Auth\Credential\Domain\Repository\CredentialWriter;
+use Core\Auth\Credential\Domain\ValueObject\CredentialEmail;
+use Core\Auth\Credential\Domain\ValueObject\CredentialId;
+use Core\Auth\Credential\Domain\ValueObject\CredentialPassword;
+use Core\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Core\Shared\Domain\Command\Command;
+use Core\Shared\Domain\Command\CommandHandler;
 
 class CredentialCreateCommandHandler implements CommandHandler
 {

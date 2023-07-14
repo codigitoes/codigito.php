@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Infraestructure\Doctrine\Model;
+namespace Core\Content\Tag\Infraestructure\Doctrine\Model;
 
-use Core\\Content\Tag\Domain\Model\Tag;
-use Core\\Content\Tag\Domain\ValueObject\TagImage;
-use Core\\Content\Tag\Domain\ValueObject\TagId;
-use Core\\Content\Shared\Domain\ValueObject\TagName;
-use Core\\Shared\Domain\Model\DomainModel;
-use Core\\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
+use Core\Content\Tag\Domain\Model\Tag;
+use Core\Content\Tag\Domain\ValueObject\TagImage;
+use Core\Content\Tag\Domain\ValueObject\TagId;
+use Core\Content\Shared\Domain\ValueObject\TagName;
+use Core\Shared\Domain\Model\DomainModel;
+use Core\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Core\\Content\Tag\Infraestructure\Repository\TagWriterDoctrine", readOnly=true)
+ * @ORM\Entity(repositoryClass="Core\Content\Tag\Infraestructure\Repository\TagWriterDoctrine", readOnly=true)
  *
  * @ORM\Table(name="tags")
  */

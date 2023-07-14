@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Domain\Repository;
+namespace Core\Content\Blogpost\Domain\Repository;
 
-use Core\\Content\Blogpost\Domain\Model\Blogpost;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Content\Blogpost\Domain\Model\Blogpost;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
 
 interface BlogpostWriter
 {

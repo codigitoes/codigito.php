@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Application\TagGet;
+namespace Core\Content\Tag\Application\TagGet;
 
-use Core\\Content\Tag\Domain\Criteria\TagGetByIdCriteria;
-use Core\\Content\Tag\Domain\Model\TagGetReadModel;
-use Core\\Content\Tag\Domain\Repository\TagReader;
-use Core\\Shared\Domain\Query\Query;
-use Core\\Shared\Domain\Query\QueryHandler;
+use Core\Content\Tag\Domain\Criteria\TagGetByIdCriteria;
+use Core\Content\Tag\Domain\Model\TagGetReadModel;
+use Core\Content\Tag\Domain\Repository\TagReader;
+use Core\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\QueryHandler;
 
 class TagGetQueryHandler implements QueryHandler
 {

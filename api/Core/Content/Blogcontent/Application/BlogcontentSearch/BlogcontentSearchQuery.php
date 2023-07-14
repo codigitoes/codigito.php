@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Application\BlogcontentSearch;
+namespace Core\Content\Blogcontent\Application\BlogcontentSearch;
 
-use Core\\Shared\Domain\Filter\Page;
-use Core\\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Filter\Page;
+use Core\Shared\Domain\Query\Query;
 
 class BlogcontentSearchQuery implements Query
 {

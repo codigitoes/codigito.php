@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Domain\Repository;
+namespace Core\Fidelization\Mailing\Domain\Repository;
 
-use Core\\Shared\Domain\Filter\Criteria;
-use Core\\Fidelization\Mailing\Domain\Model\Mailing;
-use Core\\Fidelization\Mailing\Domain\Model\MailingGetReadModel;
-use Core\\Fidelization\Mailing\Domain\Model\MailingCollectionReadModel;
+use Core\Shared\Domain\Filter\Criteria;
+use Core\Fidelization\Mailing\Domain\Model\Mailing;
+use Core\Fidelization\Mailing\Domain\Model\MailingGetReadModel;
+use Core\Fidelization\Mailing\Domain\Model\MailingCollectionReadModel;
 
 interface MailingReader
 {

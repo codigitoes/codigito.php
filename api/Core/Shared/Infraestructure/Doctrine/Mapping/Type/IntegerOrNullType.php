@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Infraestructure\Doctrine\Mapping\Type;
+namespace Core\Shared\Infraestructure\Doctrine\Mapping\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;

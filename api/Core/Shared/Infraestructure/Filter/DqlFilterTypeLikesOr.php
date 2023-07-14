@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Infraestructure\Filter;
+namespace Core\Shared\Infraestructure\Filter;
 
 use Doctrine\ORM\QueryBuilder;
-use Core\\Shared\Domain\Filter\Filter;
+use Core\Shared\Domain\Filter\Filter;
 
 final class DqlFilterTypeLikesOr implements DqlFilterType
 {
@@ -26,20 +26,20 @@ final class DqlFilterTypeLikesOr implements DqlFilterType
         $index = 1;
         foreach ($filterFields as $aFieldField) {
             foreach ($filterValues as $aFieldValue) {
-                $dql       = $dql . $separator . ' ' . $alias . '.' . $aFieldField . ' LIKE :a_value_' . $index;
+                $dql       = $dql.$separator.' '.$alias.'.'.$aFieldField.' LIKE :a_value_'.$index;
                 $separator = ' OR ';
 
                 $index = $index + 1;
             }
         }
 
-        $dql = $dql . ')';
+        $dql = $dql.')';
         $queryBuilder->andWhere($dql);
 
         $index = 1;
         foreach ($filterFields as $aFieldField) {
             foreach ($filterValues as $aFieldValue) {
-                $queryBuilder->setParameter('a_value_' . $index, '%' . $aFieldValue . '%');
+                $queryBuilder->setParameter('a_value_'.$index, '%'.$aFieldValue.'%');
 
                 $index = $index + 1;
             }

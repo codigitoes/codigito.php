@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\Service;
+namespace Core\Shared\Domain\Service;
 
-use Core\\Shared\Domain\ValueObject\Title;
+use Core\Shared\Domain\ValueObject\Title;
 
 interface ResourceTitleExistsService
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Application\FortuneGet;
+namespace Core\Content\Fortune\Application\FortuneGet;
 
-use Core\\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\Query;
 
 class FortuneGetQuery implements Query
 {

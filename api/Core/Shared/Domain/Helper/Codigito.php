@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\Helper;
+namespace Core\Shared\Domain\Helper;
 
 final class Codigito
 {
@@ -22,7 +22,7 @@ final class Codigito
 
     final public static function randomEmail()
     {
-        return self::randomString() . '@' . self::randomString() . '.' . self::randomString(3);
+        return self::randomString().'@'.self::randomString().'.'.self::randomString(3);
     }
 
     final public static function randomString(int $length = 10)

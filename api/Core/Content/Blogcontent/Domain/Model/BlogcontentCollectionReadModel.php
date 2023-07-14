@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Domain\Model;
+namespace Core\Content\Blogcontent\Domain\Model;
 
-use Core\\Shared\Domain\Model\ReadModel;
-use Core\\Content\Blogcontent\Domain\Exception\InvalidBlogcontentTypeException;
+use Core\Shared\Domain\Model\ReadModel;
+use Core\Content\Blogcontent\Domain\Exception\InvalidBlogcontentTypeException;
 
 class BlogcontentCollectionReadModel implements ReadModel
 {

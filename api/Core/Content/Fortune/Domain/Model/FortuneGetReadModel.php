@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Domain\Model;
+namespace Core\Content\Fortune\Domain\Model;
 
-use Core\\Shared\Domain\Model\ReadModel;
+use Core\Shared\Domain\Model\ReadModel;
 
 class FortuneGetReadModel implements ReadModel
 {

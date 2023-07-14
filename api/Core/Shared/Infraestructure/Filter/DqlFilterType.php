@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Infraestructure\Filter;
+namespace Core\Shared\Infraestructure\Filter;
 
-use Core\\Shared\Domain\Filter\Filter;
+use Core\Shared\Domain\Filter\Filter;
 use Doctrine\ORM\QueryBuilder;
 
 interface DqlFilterType

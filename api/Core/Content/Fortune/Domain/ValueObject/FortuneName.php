@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Domain\ValueObject;
+namespace Core\Content\Fortune\Domain\ValueObject;
 
-use Core\\Shared\Domain\ValueObject\LimitedString;
-use Core\\Content\Fortune\Domain\Exception\InvalidFortuneNameException;
+use Core\Shared\Domain\ValueObject\LimitedString;
+use Core\Content\Fortune\Domain\Exception\InvalidFortuneNameException;
 
 class FortuneName extends LimitedString
 {

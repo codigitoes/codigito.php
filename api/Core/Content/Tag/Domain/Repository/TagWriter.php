@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Domain\Repository;
+namespace Core\Content\Tag\Domain\Repository;
 
-use Core\\Content\Tag\Domain\Model\Tag;
-use Core\\Content\Tag\Domain\ValueObject\TagId;
+use Core\Content\Tag\Domain\Model\Tag;
+use Core\Content\Tag\Domain\ValueObject\TagId;
 
 interface TagWriter
 {

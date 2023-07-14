@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Infraestructure\Repository;
+namespace Core\Auth\Credential\Infraestructure\Repository;
 
-use Core\\Auth\Credential\Domain\Exception\CredentialNotFoundException;
-use Core\\Auth\Credential\Domain\Model\Credential;
-use Core\\Auth\Credential\Domain\Model\CredentialGetReadModel;
-use Core\\Auth\Credential\Domain\Repository\CredentialReader;
-use Core\\Auth\Credential\Infraestructure\Doctrine\Model\CredentialDoctrine;
-use Core\\Shared\Domain\Filter\Criteria;
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Shared\Infraestructure\Filter\CriteriaDoctrine;
+use Core\Auth\Credential\Domain\Exception\CredentialNotFoundException;
+use Core\Auth\Credential\Domain\Model\Credential;
+use Core\Auth\Credential\Domain\Model\CredentialGetReadModel;
+use Core\Auth\Credential\Domain\Repository\CredentialReader;
+use Core\Auth\Credential\Infraestructure\Doctrine\Model\CredentialDoctrine;
+use Core\Shared\Domain\Filter\Criteria;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Shared\Infraestructure\Filter\CriteriaDoctrine;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Throwable;

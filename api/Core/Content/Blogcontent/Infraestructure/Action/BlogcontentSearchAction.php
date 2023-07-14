@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Infraestructure\Action;
+namespace Core\Content\Blogcontent\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Core\\Shared\Domain\Filter\Page;
+use Core\Shared\Domain\Filter\Page;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Exception\DomainException;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Shared\Domain\Exception\DomainException;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Content\Blogcontent\Application\BlogcontentSearch\BlogcontentSearchQuery;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Content\Blogcontent\Application\BlogcontentSearch\BlogcontentSearchQuery;
 
 class BlogcontentSearchAction extends AbstractController
 {

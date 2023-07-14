@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Domain\Model;
+namespace Core\Content\Blogpost\Domain\Model;
 
-use Core\\Content\Blogpost\Domain\ValueObject\BlogpostImage;
-use Core\\Content\Blogpost\Domain\ValueObject\BlogpostTags;
-use Core\\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\\Content\Blogpost\Domain\ValueObject\BlogpostName;
-use Core\\Shared\Domain\Helper\Codigito;
-use Core\\Shared\Domain\Model\DomainModel;
+use Core\Content\Blogpost\Domain\ValueObject\BlogpostImage;
+use Core\Content\Blogpost\Domain\ValueObject\BlogpostTags;
+use Core\Content\Shared\Domain\ValueObject\BlogpostId;
+use Core\Content\Blogpost\Domain\ValueObject\BlogpostName;
+use Core\Shared\Domain\Helper\Codigito;
+use Core\Shared\Domain\Model\DomainModel;
 
 class Blogpost implements DomainModel
 {

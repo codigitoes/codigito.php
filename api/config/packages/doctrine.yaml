@@ -19,7 +19,7 @@ doctrine:
                 alias: Core
         dql:
             numeric_functions:
-                Rand: Core\\Shared\Infraestructure\Doctrine\Misc\Rand
+                Rand: Core\Shared\Infraestructure\Doctrine\Misc\Rand
 
 when@test:
     doctrine:

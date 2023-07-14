@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Domain\ValueObject;
+namespace Core\Content\Blogpost\Domain\ValueObject;
 
-use Core\\Content\Blogpost\Domain\Exception\InvalidBlogpostNameException;
-use Core\\Shared\Domain\ValueObject\LimitedString;
+use Core\Content\Blogpost\Domain\Exception\InvalidBlogpostNameException;
+use Core\Shared\Domain\ValueObject\LimitedString;
 
 class BlogpostName extends LimitedString
 {

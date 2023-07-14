@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Infraestructure\Action;
+namespace Core\Fidelization\Mailing\Infraestructure\Action;
 
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Domain\Filter\Page;
+use Core\Shared\Domain\Filter\Page;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Core\\Fidelization\Mailing\Application\MailingSearch\MailingSearchQuery;
+use Core\Fidelization\Mailing\Application\MailingSearch\MailingSearchQuery;
 
 class MailingSearchAction extends BaseAction
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Application\BlogcontentGet;
+namespace Core\Content\Blogcontent\Application\BlogcontentGet;
 
-use Core\\Shared\Domain\Query\Query;
-use Core\\Shared\Domain\Query\QueryHandler;
-use Core\\Content\Blogcontent\Domain\Repository\BlogcontentReader;
-use Core\\Content\Blogcontent\Domain\Model\BlogcontentGetReadModel;
-use Core\\Content\Blogcontent\Domain\Criteria\BlogcontentGetByIdCriteria;
+use Core\Shared\Domain\Query\Query;
+use Core\Shared\Domain\Query\QueryHandler;
+use Core\Content\Blogcontent\Domain\Repository\BlogcontentReader;
+use Core\Content\Blogcontent\Domain\Model\BlogcontentGetReadModel;
+use Core\Content\Blogcontent\Domain\Criteria\BlogcontentGetByIdCriteria;
 
 class BlogcontentGetQueryHandler implements QueryHandler
 {

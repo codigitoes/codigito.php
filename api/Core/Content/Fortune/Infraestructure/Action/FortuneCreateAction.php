@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Infraestructure\Action;
+namespace Core\Content\Fortune\Infraestructure\Action;
 
-use Core\\Content\Fortune\Application\FortuneCreate\FortuneCreateCommand;
-use Core\\Content\Fortune\Domain\ValueObject\FortuneId;
-use Core\\Content\Fortune\Domain\ValueObject\FortuneName;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Shared\Infraestructure\Command\CommandStaticBus;
+use Core\Content\Fortune\Application\FortuneCreate\FortuneCreateCommand;
+use Core\Content\Fortune\Domain\ValueObject\FortuneId;
+use Core\Content\Fortune\Domain\ValueObject\FortuneName;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Shared\Infraestructure\Command\CommandStaticBus;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

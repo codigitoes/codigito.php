@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Infraestructure\Doctrine\Model;
+namespace Core\Fidelization\Mailing\Infraestructure\Doctrine\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Core\\Shared\Domain\Model\DomainModel;
-use Core\\Fidelization\Mailing\Domain\Model\Mailing;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingId;
-use Core\\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingConfirmed;
+use Core\Shared\Domain\Model\DomainModel;
+use Core\Fidelization\Mailing\Domain\Model\Mailing;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingId;
+use Core\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingConfirmed;
 
 /**
- * @ORM\Entity(repositoryClass="Core\\Fidelization\Mailing\Infraestructure\Repository\MailingWriterDoctrine", readOnly=true)
+ * @ORM\Entity(repositoryClass="Core\Fidelization\Mailing\Infraestructure\Repository\MailingWriterDoctrine", readOnly=true)
  *
  * @ORM\Table(name="mailings")
  */

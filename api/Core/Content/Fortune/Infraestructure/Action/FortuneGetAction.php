@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Infraestructure\Action;
+namespace Core\Content\Fortune\Infraestructure\Action;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Shared\Infraestructure\Query\QueryStaticBus;
-use Core\\Content\Fortune\Application\FortuneGet\FortuneGetQuery;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\Content\Fortune\Application\FortuneGet\FortuneGetQuery;
 
 class FortuneGetAction extends BaseAction
 {

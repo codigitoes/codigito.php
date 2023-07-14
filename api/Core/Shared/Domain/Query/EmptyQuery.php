@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\Query;
+namespace Core\Shared\Domain\Query;
 
 class EmptyQuery implements Query
 {

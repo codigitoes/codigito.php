@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Infraestructure\Action;
+namespace Core\Fidelization\Mailing\Infraestructure\Action;
 
-use Core\\Fidelization\Mailing\Application\MailingCreate\MailingCreateCommand;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingId;
-use Core\\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
-use Core\\Shared\Domain\Helper\ParametersValidator;
-use Core\\Shared\Infraestructure\Action\BaseAction;
-use Core\\Shared\Infraestructure\Command\CommandStaticBus;
+use Core\Fidelization\Mailing\Application\MailingCreate\MailingCreateCommand;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingId;
+use Core\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
+use Core\Shared\Domain\Helper\ParametersValidator;
+use Core\Shared\Infraestructure\Action\BaseAction;
+use Core\Shared\Infraestructure\Command\CommandStaticBus;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

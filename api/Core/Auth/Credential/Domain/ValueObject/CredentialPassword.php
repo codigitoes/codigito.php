@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Auth\Credential\Domain\ValueObject;
+namespace Core\Auth\Credential\Domain\ValueObject;
 
-use Core\\Auth\Credential\Domain\Exception\InvalidCredentialPasswordException;
-use Core\\Shared\Domain\ValueObject\LimitedString;
+use Core\Auth\Credential\Domain\Exception\InvalidCredentialPasswordException;
+use Core\Shared\Domain\ValueObject\LimitedString;
 
 class CredentialPassword extends LimitedString
 {

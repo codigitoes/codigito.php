@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Shared\Domain\ValueObject;
+namespace Core\Content\Shared\Domain\ValueObject;
 
-use Core\\Content\Shared\Domain\Exception\InvalidTagNameException;
-use Core\\Shared\Domain\ValueObject\LimitedString;
+use Core\Content\Shared\Domain\Exception\InvalidTagNameException;
+use Core\Shared\Domain\ValueObject\LimitedString;
 
 class TagName extends LimitedString
 {

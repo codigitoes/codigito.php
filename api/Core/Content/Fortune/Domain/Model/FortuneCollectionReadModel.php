@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Fortune\Domain\Model;
+namespace Core\Content\Fortune\Domain\Model;
 
-use Core\\Shared\Domain\Model\ReadModel;
-use Core\\Content\Fortune\Domain\Exception\InvalidFortuneTypeException;
+use Core\Shared\Domain\Model\ReadModel;
+use Core\Content\Fortune\Domain\Exception\InvalidFortuneTypeException;
 
 class FortuneCollectionReadModel implements ReadModel
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Shared\Domain\ValueObject;
+namespace Core\Shared\Domain\ValueObject;
 
-use Core\\Shared\Domain\Exception\InvalidPlainPasswordException;
+use Core\Shared\Domain\Exception\InvalidPlainPasswordException;
 
 class PlainPassword extends LimitedString
 {

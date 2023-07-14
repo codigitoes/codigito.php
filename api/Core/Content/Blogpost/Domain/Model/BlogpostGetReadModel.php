@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Domain\Model;
+namespace Core\Content\Blogpost\Domain\Model;
 
-use Core\\Shared\Domain\Model\ReadModel;
+use Core\Shared\Domain\Model\ReadModel;
 
 class BlogpostGetReadModel implements ReadModel
 {

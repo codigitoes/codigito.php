@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Application\BlogpostUpdate;
+namespace Core\Content\Blogpost\Application\BlogpostUpdate;
 
-use Core\\Shared\Domain\Command\Command;
+use Core\Shared\Domain\Command\Command;
 
 class BlogpostUpdateCommand implements Command
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogpost\Domain\Repository;
+namespace Core\Content\Blogpost\Domain\Repository;
 
-use Core\\Shared\Domain\Filter\Criteria;
-use Core\\Content\Blogpost\Domain\Model\Blogpost;
-use Core\\Content\Blogpost\Domain\Model\BlogpostGetReadModel;
-use Core\\Content\Blogpost\Domain\Model\BlogpostCollectionReadModel;
+use Core\Shared\Domain\Filter\Criteria;
+use Core\Content\Blogpost\Domain\Model\Blogpost;
+use Core\Content\Blogpost\Domain\Model\BlogpostGetReadModel;
+use Core\Content\Blogpost\Domain\Model\BlogpostCollectionReadModel;
 
 interface BlogpostReader
 {

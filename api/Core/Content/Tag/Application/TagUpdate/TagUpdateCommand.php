@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Tag\Application\TagUpdate;
+namespace Core\Content\Tag\Application\TagUpdate;
 
-use Core\\Shared\Domain\Command\Command;
+use Core\Shared\Domain\Command\Command;
 
 class TagUpdateCommand implements Command
 {

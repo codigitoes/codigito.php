@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Core\\Fidelization\Mailing\Domain\ValueObject;
+namespace Core\Fidelization\Mailing\Domain\ValueObject;
 
 class MailingConfirmed
 {

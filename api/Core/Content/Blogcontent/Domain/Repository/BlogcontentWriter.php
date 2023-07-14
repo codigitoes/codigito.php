@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Core\\Content\Blogcontent\Domain\Repository;
+namespace Core\Content\Blogcontent\Domain\Repository;
 
-use Core\\Content\Blogcontent\Domain\Model\Blogcontent;
-use Core\\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
+use Core\Content\Blogcontent\Domain\Model\Blogcontent;
+use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
 
 interface BlogcontentWriter
 {
