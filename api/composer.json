@@ -33,14 +33,13 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "Core\\Context\\": "Core/Context/",
-            "Core\\Client\\": "Core/Client/"
+            "Core\\": "Core/",
         }
     },
     "autoload-dev": {
         "psr-4": {
             "App\\Tests\\": "tests/",
-            "Core\\Test\\": "Core/Test/"
+            "Core\\Test\\": "Test/"
         }
     },
     "replace": {

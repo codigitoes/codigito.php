@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Core\Client\Web\Action;
 
 use Throwable;
-use Core\Context\Shared\Domain\Filter\Page;
-use Core\Context\Content\Tag\Application\TagAll\TagAllQuery;
-use Core\Context\Shared\Infraestructure\Query\QueryStaticBus;
+use Core\\Shared\Domain\Filter\Page;
+use Core\\Content\Tag\Application\TagAll\TagAllQuery;
+use Core\\Shared\Infraestructure\Query\QueryStaticBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Core\Context\Content\Fortune\Application\FortuneGet\FortuneGetQuery;
-use Core\Context\Content\Blogpost\Application\BlogpostGet\BlogpostGetQuery;
-use Core\Context\Content\Blogpost\Application\BlogpostLatest\BlogpostLatestQuery;
-use Core\Context\Content\Blogpost\Application\BlogpostRandom\BlogpostRandomQuery;
-use Core\Context\Content\Blogpost\Application\BlogpostSearch\BlogpostSearchQuery;
-use Core\Context\Content\Blogcontent\Application\BlogcontentAll\BlogcontentAllQuery;
+use Core\\Content\Fortune\Application\FortuneGet\FortuneGetQuery;
+use Core\\Content\Blogpost\Application\BlogpostGet\BlogpostGetQuery;
+use Core\\Content\Blogpost\Application\BlogpostLatest\BlogpostLatestQuery;
+use Core\\Content\Blogpost\Application\BlogpostRandom\BlogpostRandomQuery;
+use Core\\Content\Blogpost\Application\BlogpostSearch\BlogpostSearchQuery;
+use Core\\Content\Blogcontent\Application\BlogcontentAll\BlogcontentAllQuery;
 
 abstract class BaseAction extends AbstractController
 {

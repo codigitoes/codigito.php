@@ -3,8 +3,8 @@ api_login_check:
 
 controllersApi:
     resource:
-        path: ../Core/Context/
-        namespace: Core\Context
+        path: ../Core/
+        namespace: Core\
     type: attribute
 controllersClient:
     resource:

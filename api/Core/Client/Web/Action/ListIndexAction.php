@@ -6,7 +6,7 @@ namespace Core\Client\Web\Action;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Core\Context\Shared\Domain\Filter\Page;
+use Core\\Shared\Domain\Filter\Page;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ListIndexAction extends BaseAction
