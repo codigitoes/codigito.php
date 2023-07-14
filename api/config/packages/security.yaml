@@ -7,7 +7,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: Codigoce\Context\Auth\Credential\Infraestructure\Doctrine\Model\CredentialDoctrine
+                class: Core\Auth\Credential\Infraestructure\Doctrine\Model\CredentialDoctrine
                 property: email
     firewalls:
         login:

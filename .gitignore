@@ -53,3 +53,4 @@ Thumbs.db
 **/docker-compose.yml
 **/.env
 api/.php-cs-fixer.cache
+api/.phpunit.result.cache

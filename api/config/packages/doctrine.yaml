@@ -11,15 +11,15 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            Codigoce:
+            Core:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/Codigoce/Context'
-                prefix: 'Codigoce\Context'#        auto_generate_proxy_classes: true
-                alias: Codigoce
+                dir: '%kernel.project_dir%/Core/'
+                prefix: 'Core\'#        auto_generate_proxy_classes: true
+                alias: Core
         dql:
             numeric_functions:
-                Rand: Codigoce\Context\Shared\Infraestructure\Doctrine\Misc\Rand
+                Rand: Core\Shared\Infraestructure\Doctrine\Misc\Rand
 
 when@test:
     doctrine:

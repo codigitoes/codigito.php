@@ -3,11 +3,11 @@ api_login_check:
 
 controllersApi:
     resource:
-        path: ../Codigoce/Context/
-        namespace: Codigoce\Context
+        path: ../Core/
+        namespace: Core\
     type: attribute
 controllersClient:
     resource:
-        path: ../Codigoce/Client/
-        namespace: Codigoce\Client
+        path: ../Core/Client/
+        namespace: Core\Client
     type: attribute
