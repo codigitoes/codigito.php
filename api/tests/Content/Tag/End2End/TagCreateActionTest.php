@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Tag\End2End;
+namespace Codigito\Tests\Content\Tag\End2End;
 
 use Symfony\Component\HttpFoundation\Response;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Content\CoreContentKernelTest;
-use Core\Content\Shared\Domain\Exception\InvalidTagNameException;
-use Core\Content\Tag\Domain\Exception\InvalidTagImageException;
-use Core\Content\Tag\Domain\Exception\InvalidTagDuplicateNameException;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Content\CoreContentKernelTest;
+use Codigito\Content\Shared\Domain\Exception\InvalidTagNameException;
+use Codigito\Content\Tag\Domain\Exception\InvalidTagImageException;
+use Codigito\Content\Tag\Domain\Exception\InvalidTagDuplicateNameException;
 
 class TagCreateActionTest extends CoreContentKernelTest
 {

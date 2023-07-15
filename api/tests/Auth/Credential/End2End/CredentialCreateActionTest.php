@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Auth\Credential\End2End;
+namespace Codigito\Tests\Auth\Credential\End2End;
 
-use Core\Auth\Credential\Domain\Criteria\CredentialSearchByIdCriteria;
-use Core\Auth\Credential\Domain\Exception\InvalidCredentialDuplicateEmailException;
-use Core\Auth\Credential\Domain\Exception\InvalidCredentialEmailException;
-use Core\Auth\Credential\Domain\Exception\InvalidCredentialRolesException;
-use Core\Auth\Credential\Domain\ValueObject\CredentialId;
-use Core\Auth\Credential\Domain\ValueObject\CredentialRoles;
-use Core\Shared\Domain\Exception\InvalidPlainPasswordException;
-use Core\Shared\Domain\Helper\Codigito;
-use Core\Shared\Domain\ValueObject\UuidV4Id;
-use App\Tests\Auth\CoreAuthKernelTestCase;
+use Codigito\Auth\Credential\Domain\Criteria\CredentialSearchByIdCriteria;
+use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialDuplicateEmailException;
+use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialEmailException;
+use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialRolesException;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialId;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Codigito\Shared\Domain\Exception\InvalidPlainPasswordException;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Shared\Domain\ValueObject\UuidV4Id;
+use Codigito\Tests\Auth\CoreAuthKernelTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 class CredentialCreateActionTest extends CoreAuthKernelTestCase

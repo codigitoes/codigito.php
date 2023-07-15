@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Unit\Exception;
+namespace Codigito\Tests\Shared\Unit\Exception;
 
-use Core\Shared\Domain\Exception\ParameterNotFoundException;
-use Core\Shared\Domain\Helper\ParametersValidator;
-use Core\Shared\Domain\ValueObject\LimitedString;
+use Codigito\Shared\Domain\Exception\ParameterNotFoundException;
+use Codigito\Shared\Domain\Helper\ParametersValidator;
+use Codigito\Shared\Domain\ValueObject\LimitedString;
 use PHPUnit\Framework\TestCase;
 
 class ParametersValidatorTestVO extends LimitedString

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Fortune\End2End;
+namespace Codigito\Tests\Content\Fortune\End2End;
 
 use Symfony\Component\HttpFoundation\Response;
-use App\Tests\Content\CoreContentKernelTest;
-use Core\Content\Fortune\Domain\Exception\InvalidFortuneNameException;
-use Core\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Content\CoreContentKernelTest;
+use Codigito\Content\Fortune\Domain\Exception\InvalidFortuneNameException;
+use Codigito\Shared\Domain\Helper\Codigito;
 
 class FortuneCreateActionTest extends CoreContentKernelTest
 {

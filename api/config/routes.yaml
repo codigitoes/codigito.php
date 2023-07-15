@@ -3,11 +3,11 @@ api_login_check:
 
 controllersApi:
     resource:
-        path: ../Core/
-        namespace: Core\
+        path: ../src/
+        namespace: Codigito\
     type: attribute
 controllersClient:
     resource:
-        path: ../Core/Client/
-        namespace: Core\Client
+        path: ../src/Client/
+        namespace: Codigito\Client
     type: attribute

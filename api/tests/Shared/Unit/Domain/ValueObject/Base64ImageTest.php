@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Unit\Domain\ValueObject;
+namespace Codigito\Tests\Shared\Unit\Domain\ValueObject;
 
-use Core\Shared\Domain\ValueObject\Base64Image;
+use Codigito\Shared\Domain\ValueObject\Base64Image;
 use PHPUnit\Framework\TestCase;
 
 class Base64ImageImp extends Base64Image

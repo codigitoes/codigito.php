@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Codigito\Content\Tag\Domain\Criteria;
+
+use Codigito\Shared\Domain\Filter\Criteria;
+use Codigito\Shared\Domain\Filter\FilterField;
+use Codigito\Shared\Domain\Filter\Filters;
+use Codigito\Shared\Domain\Filter\Order;
+use Codigito\Shared\Domain\Filter\Page;
+
+class TagSearchByNameCriteria extends Criteria
+{
+    public function __construct(
+        public readonly string $name
+    ) {
+        $filters = [$this->equalName($name)];
+
+        parent::__construct(
+            new Filters($filters),
+            Order::asc(new FilterField('name')),
+            Page::first25()
+        );
+    }
+}

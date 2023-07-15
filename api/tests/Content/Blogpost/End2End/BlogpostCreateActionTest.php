@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Blogpost\End2End;
+namespace Codigito\Tests\Content\Blogpost\End2End;
 
 use Symfony\Component\HttpFoundation\Response;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Content\CoreContentKernelTest;
-use Core\Content\Blogpost\Domain\Model\Blogpost;
-use Core\Content\Tag\Domain\Exception\TagNotFoundException;
-use Core\Content\Blogpost\Domain\Exception\InvalidBlogpostNameException;
-use Core\Content\Blogpost\Domain\Exception\InvalidBlogpostImageException;
-use Core\Content\Blogpost\Domain\Exception\InvalidBlogpostTagsException;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Content\CoreContentKernelTest;
+use Codigito\Content\Blogpost\Domain\Model\Blogpost;
+use Codigito\Content\Tag\Domain\Exception\TagNotFoundException;
+use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostNameException;
+use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostImageException;
+use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostTagsException;
 
 class BlogpostCreateActionTest extends CoreContentKernelTest
 {

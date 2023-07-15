@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Tag\Integration;
+namespace Codigito\Tests\Content\Tag\Integration;
 
-use Core\Content\Tag\Application\Service\TagsValidatorService;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Content\CoreContentKernelTest;
-use Core\Shared\Domain\ValueObject\UuidV4Id;
-use Core\Content\Shared\Domain\ValueObject\TagName;
-use Core\Content\Tag\Domain\Exception\TagNotFoundException;
+use Codigito\Content\Tag\Application\Service\TagsValidatorService;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Content\CoreContentKernelTest;
+use Codigito\Shared\Domain\ValueObject\UuidV4Id;
+use Codigito\Content\Shared\Domain\ValueObject\TagName;
+use Codigito\Content\Tag\Domain\Exception\TagNotFoundException;
 
 class TagsValidatorServiceTest extends CoreContentKernelTest
 {

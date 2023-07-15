@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Fixture;
+namespace Codigito\Tests\Shared\Fixture;
 
 use Doctrine\ORM\EntityManager;
-use Core\Shared\Domain\Helper\Codigito;
-use Core\Content\Blogcontent\Domain\Model\Blogcontent;
-use Core\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
-use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
-use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentImage;
-use Core\Content\Blogcontent\Domain\Model\BlogcontentGetReadModel;
-use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
-use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentPosition;
-use Core\Content\Blogcontent\Domain\Criteria\BlogcontentGetByIdCriteria;
-use Core\Content\Blogcontent\Infraestructure\Repository\BlogcontentReaderDoctrine;
-use Core\Content\Blogcontent\Infraestructure\Repository\BlogcontentWriterDoctrine;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Content\Blogcontent\Domain\Model\Blogcontent;
+use Codigito\Content\Shared\Domain\ValueObject\BlogpostId;
+use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
+use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
+use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentImage;
+use Codigito\Content\Blogcontent\Domain\Model\BlogcontentGetReadModel;
+use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
+use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentPosition;
+use Codigito\Content\Blogcontent\Domain\Criteria\BlogcontentGetByIdCriteria;
+use Codigito\Content\Blogcontent\Infraestructure\Repository\BlogcontentReaderDoctrine;
+use Codigito\Content\Blogcontent\Infraestructure\Repository\BlogcontentWriterDoctrine;
 
 trait TestContentBlogcontentFactory
 {

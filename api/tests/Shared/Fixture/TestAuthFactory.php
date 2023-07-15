@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Fixture;
+namespace Codigito\Tests\Shared\Fixture;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
-use Core\Shared\Domain\Helper\Codigito;
-use Core\Auth\Credential\Domain\Model\Credential;
-use Core\Auth\Credential\Domain\ValueObject\CredentialId;
-use Core\Auth\Credential\Domain\Repository\CredentialReader;
-use Core\Auth\Credential\Domain\Repository\CredentialWriter;
-use Core\Auth\Credential\Domain\ValueObject\CredentialEmail;
-use Core\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Auth\Credential\Domain\Model\Credential;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialId;
+use Codigito\Auth\Credential\Domain\Repository\CredentialReader;
+use Codigito\Auth\Credential\Domain\Repository\CredentialWriter;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialEmail;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Core\Auth\Credential\Domain\ValueObject\CredentialPassword;
-use Core\Auth\Credential\Domain\Criteria\CredentialSearchByEmailCriteria;
-use Core\Auth\Credential\Infraestructure\Repository\CredentialReaderDoctrine;
-use Core\Auth\Credential\Infraestructure\Repository\CredentialWriterDoctrine;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialPassword;
+use Codigito\Auth\Credential\Domain\Criteria\CredentialSearchByEmailCriteria;
+use Codigito\Auth\Credential\Infraestructure\Repository\CredentialReaderDoctrine;
+use Codigito\Auth\Credential\Infraestructure\Repository\CredentialWriterDoctrine;
 
 trait TestAuthFactory
 {

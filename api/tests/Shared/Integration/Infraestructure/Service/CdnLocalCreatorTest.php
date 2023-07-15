@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Integration\Infraestructure\Service;
+namespace Codigito\Tests\Shared\Integration\Infraestructure\Service;
 
-use Core\Shared\Domain\Exception\CantCreateCdnLocalException;
-use Core\Shared\Domain\Service\CdnCreator;
-use Core\Shared\Infraestructure\Service\CdnLocalCreator;
+use Codigito\Shared\Domain\Exception\CantCreateCdnLocalException;
+use Codigito\Shared\Domain\Service\CdnCreator;
+use Codigito\Shared\Infraestructure\Service\CdnLocalCreator;
 use PHPUnit\Framework\TestCase;
 
 class CdnLocalCreatorTest extends TestCase

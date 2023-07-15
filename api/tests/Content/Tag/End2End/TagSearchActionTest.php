@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Tag\End2End;
+namespace Codigito\Tests\Content\Tag\End2End;
 
-use Core\Content\Shared\Domain\ValueObject\TagName;
-use Core\Shared\Domain\ValueObject\UuidV4Id;
-use App\Tests\Content\CoreContentKernelTest;
+use Codigito\Content\Shared\Domain\ValueObject\TagName;
+use Codigito\Shared\Domain\ValueObject\UuidV4Id;
+use Codigito\Tests\Content\CoreContentKernelTest;
 
 class TagSearchActionTest extends CoreContentKernelTest
 {

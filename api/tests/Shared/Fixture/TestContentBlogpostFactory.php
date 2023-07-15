@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Fixture;
+namespace Codigito\Tests\Shared\Fixture;
 
-use Core\Content\Blogpost\Domain\Criteria\BlogpostGetByIdCriteria;
-use Core\Content\Blogpost\Domain\Model\Blogpost;
-use Core\Content\Blogpost\Domain\ValueObject\BlogpostImage;
-use Core\Content\Blogpost\Domain\ValueObject\BlogpostTags;
-use Core\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\Content\Blogpost\Domain\ValueObject\BlogpostName;
-use Core\Content\Blogpost\Infraestructure\Repository\BlogpostReaderDoctrine;
-use Core\Content\Blogpost\Infraestructure\Repository\BlogpostWriterDoctrine;
-use Core\Shared\Domain\Helper\Codigito;
+use Codigito\Content\Blogpost\Domain\Criteria\BlogpostGetByIdCriteria;
+use Codigito\Content\Blogpost\Domain\Model\Blogpost;
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostImage;
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
+use Codigito\Content\Shared\Domain\ValueObject\BlogpostId;
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
+use Codigito\Content\Blogpost\Infraestructure\Repository\BlogpostReaderDoctrine;
+use Codigito\Content\Blogpost\Infraestructure\Repository\BlogpostWriterDoctrine;
+use Codigito\Shared\Domain\Helper\Codigito;
 use Doctrine\ORM\EntityManager;
 
 trait TestContentBlogpostFactory

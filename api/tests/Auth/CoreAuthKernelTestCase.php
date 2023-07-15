@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Auth;
+namespace Codigito\Tests\Auth;
 
-use Core\Auth\Credential\Domain\Model\Credential;
-use Core\Auth\Credential\Domain\ValueObject\CredentialEmail;
-use Core\Auth\Credential\Domain\ValueObject\CredentialPassword;
-use Core\Auth\Credential\Domain\ValueObject\CredentialRoles;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Shared\Fixture\TestApiClientFactory;
-use App\Tests\Shared\Fixture\TestAuthFactory;
+use Codigito\Auth\Credential\Domain\Model\Credential;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialEmail;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialPassword;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Shared\Fixture\TestApiClientFactory;
+use Codigito\Tests\Shared\Fixture\TestAuthFactory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

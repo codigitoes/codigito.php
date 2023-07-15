@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Blogcontent\End2End;
+namespace Codigito\Tests\Content\Blogcontent\End2End;
 
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Content\CoreContentKernelTest;
-use Core\Shared\Domain\ValueObject\UuidV4Id;
-use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Content\CoreContentKernelTest;
+use Codigito\Shared\Domain\ValueObject\UuidV4Id;
+use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
 
 class BlogcontentSearchActionTest extends CoreContentKernelTest
 {

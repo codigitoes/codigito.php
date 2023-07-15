@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Blogcontent\End2End;
+namespace Codigito\Tests\Content\Blogcontent\End2End;
 
 use Symfony\Component\HttpFoundation\Response;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Content\CoreContentKernelTest;
-use Core\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\Content\Shared\Domain\Exception\BlogpostNotFoundException;
-use Core\Content\Blogcontent\Domain\Exception\InvalidBlogcontentImageException;
-use Core\Content\Blogcontent\Domain\Exception\InvalidBlogcontentYoutubeException;
-use Core\Content\Blogcontent\Domain\Exception\InvalidBlogcontentCreateEmptyRequestException;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Content\CoreContentKernelTest;
+use Codigito\Content\Shared\Domain\ValueObject\BlogpostId;
+use Codigito\Content\Shared\Domain\Exception\BlogpostNotFoundException;
+use Codigito\Content\Blogcontent\Domain\Exception\InvalidBlogcontentImageException;
+use Codigito\Content\Blogcontent\Domain\Exception\InvalidBlogcontentYoutubeException;
+use Codigito\Content\Blogcontent\Domain\Exception\InvalidBlogcontentCreateEmptyRequestException;
 
 class BlogcontentCreateActionTest extends CoreContentKernelTest
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Blogcontent\End2End;
+namespace Codigito\Tests\Content\Blogcontent\End2End;
 
 trait BlogcontentEndpointTrait
 {

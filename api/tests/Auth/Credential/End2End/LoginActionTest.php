@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Auth\Credential\End2End;
+namespace Codigito\Tests\Auth\Credential\End2End;
 
-use App\Tests\Auth\CoreAuthKernelTestCase;
-use Core\Shared\Domain\Helper\Codigito;
-use Core\Auth\Credential\Domain\ValueObject\CredentialEmail;
-use Core\Auth\Credential\Domain\ValueObject\CredentialRoles;
-use Core\Auth\Credential\Domain\ValueObject\CredentialPassword;
+use Codigito\Tests\Auth\CoreAuthKernelTestCase;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialEmail;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialPassword;
 
 class LoginActionTest extends CoreAuthKernelTestCase
 {

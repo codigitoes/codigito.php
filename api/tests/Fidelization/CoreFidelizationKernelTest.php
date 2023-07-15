@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Fidelization;
+namespace Codigito\Tests\Fidelization;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Tests\Shared\Fixture\TestAuthFactory;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Shared\Fixture\TestApiClientFactory;
+use Codigito\Tests\Shared\Fixture\TestAuthFactory;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Shared\Fixture\TestApiClientFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use App\Tests\Shared\Fixture\TestFidelizationFactory;
-use Core\Fidelization\Mailing\Domain\Model\Mailing;
-use Core\Auth\Credential\Domain\ValueObject\CredentialEmail;
-use Core\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Codigito\Tests\Shared\Fixture\TestFidelizationFactory;
+use Codigito\Fidelization\Mailing\Domain\Model\Mailing;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialEmail;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Core\Auth\Credential\Domain\ValueObject\CredentialPassword;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialPassword;
 
 abstract class CoreFidelizationKernelTest extends KernelTestCase
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Unit\Domain\ValueObject;
+namespace Codigito\Tests\Shared\Unit\Domain\ValueObject;
 
-use Core\Shared\Domain\ValueObject\Cover;
+use Codigito\Shared\Domain\ValueObject\Cover;
 use PHPUnit\Framework\TestCase;
 
 class CoverImp extends Cover

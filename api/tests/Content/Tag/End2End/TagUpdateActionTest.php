@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Tag\End2End;
+namespace Codigito\Tests\Content\Tag\End2End;
 
-use App\Tests\Content\CoreContentKernelTest;
+use Codigito\Tests\Content\CoreContentKernelTest;
 use Symfony\Component\HttpFoundation\Response;
 
 class TagUpdateActionTest extends CoreContentKernelTest

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Tag\End2End;
+namespace Codigito\Tests\Content\Tag\End2End;
 
-use Core\Content\Tag\Domain\Exception\TagNotFoundException;
-use Core\Content\Tag\Domain\Exception\InvalidTagIdException;
-use Core\Content\Tag\Domain\ValueObject\TagId;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Content\CoreContentKernelTest;
+use Codigito\Content\Tag\Domain\Exception\TagNotFoundException;
+use Codigito\Content\Tag\Domain\Exception\InvalidTagIdException;
+use Codigito\Content\Tag\Domain\ValueObject\TagId;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Content\CoreContentKernelTest;
 use Symfony\Component\HttpFoundation\Response;
 
 class TagGetActionTest extends CoreContentKernelTest

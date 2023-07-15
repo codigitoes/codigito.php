@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Blogcontent\End2End;
+namespace Codigito\Tests\Content\Blogcontent\End2End;
 
 use Symfony\Component\HttpFoundation\Response;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Content\CoreContentKernelTest;
-use Core\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
-use Core\Content\Blogcontent\Domain\Exception\BlogcontentNotFoundException;
-use Core\Content\Blogcontent\Domain\Exception\InvalidBlogcontentIdException;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Content\CoreContentKernelTest;
+use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
+use Codigito\Content\Blogcontent\Domain\Exception\BlogcontentNotFoundException;
+use Codigito\Content\Blogcontent\Domain\Exception\InvalidBlogcontentIdException;
 
 class BlogcontentGetActionTest extends CoreContentKernelTest
 {

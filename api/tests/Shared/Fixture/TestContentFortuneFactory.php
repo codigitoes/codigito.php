@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Fixture;
+namespace Codigito\Tests\Shared\Fixture;
 
 use Doctrine\ORM\EntityManager;
-use Core\Shared\Domain\Helper\Codigito;
-use Core\Content\Fortune\Domain\Model\Fortune;
-use Core\Content\Fortune\Domain\ValueObject\FortuneId;
-use Core\Content\Fortune\Domain\ValueObject\FortuneName;
-use Core\Content\Fortune\Domain\Criteria\FortuneGetByIdCriteria;
-use Core\Content\Fortune\Infraestructure\Repository\FortuneReaderDoctrine;
-use Core\Content\Fortune\Infraestructure\Repository\FortuneWriterDoctrine;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Content\Fortune\Domain\Model\Fortune;
+use Codigito\Content\Fortune\Domain\ValueObject\FortuneId;
+use Codigito\Content\Fortune\Domain\ValueObject\FortuneName;
+use Codigito\Content\Fortune\Domain\Criteria\FortuneGetByIdCriteria;
+use Codigito\Content\Fortune\Infraestructure\Repository\FortuneReaderDoctrine;
+use Codigito\Content\Fortune\Infraestructure\Repository\FortuneWriterDoctrine;
 
 trait TestContentFortuneFactory
 {

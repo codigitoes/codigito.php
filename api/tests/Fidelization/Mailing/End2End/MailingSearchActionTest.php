@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Fidelization\Mailing\End2End;
+namespace Codigito\Tests\Fidelization\Mailing\End2End;
 
-use Core\Shared\Domain\Helper\Codigito;
-use Core\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
-use Core\Shared\Domain\ValueObject\UuidV4Id;
-use App\Tests\Fidelization\CoreFidelizationKernelTest;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
+use Codigito\Shared\Domain\ValueObject\UuidV4Id;
+use Codigito\Tests\Fidelization\CoreFidelizationKernelTest;
 
 class MailingSearchActionTest extends CoreFidelizationKernelTest
 {

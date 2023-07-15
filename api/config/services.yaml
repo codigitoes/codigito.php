@@ -15,33 +15,33 @@ services:
     #{.".}>- tag for injection
     #{.".}>------------------------------------------------------------
     _instanceof:
-        Core\Shared\Domain\Command\CommandHandler:
+        Codigito\Shared\Domain\Command\CommandHandler:
             tags: ['codigito.domain_command_handler']
-        Core\Shared\Domain\Query\QueryHandler:
+        Codigito\Shared\Domain\Query\QueryHandler:
             tags: ['codigito.domain_query_handler']
     #{.".}>------------------------------------------------------------
 
     #{.".}>------------------------------------------------------------
     #{.".}>- all src component as service for injection
     #{.".}>------------------------------------------------------------
-    Core\:
-        resource: '../Core/'
+    Codigito\:
+        resource: '../src/'
     #{.".}>------------------------------------------------------------
 
     #{.".}>------------------------------------------------------------
     #{.".}>- bus selector, query and command
     #{.".}>------------------------------------------------------------
-    Core\Shared\Domain\Command\CommandBus: '@Core\Shared\Infraestructure\Command\CommandStaticBus'
-    Core\Shared\Domain\Query\QueryBus: '@Core\Shared\Infraestructure\Query\QueryStaticBus'
+    Codigito\Shared\Domain\Command\CommandBus: '@Codigito\Shared\Infraestructure\Command\CommandStaticBus'
+    Codigito\Shared\Domain\Query\QueryBus: '@Codigito\Shared\Infraestructure\Query\QueryStaticBus'
 
     #{.".}>------------------------------------------------------------
     #{.".}>- all implementations of handlers are passed as argument to
     #{.".}>- each bus - command and query static in memory bus
     #{.".}>------------------------------------------------------------
-    Core\Shared\Infraestructure\Command\CommandStaticBus:
+    Codigito\Shared\Infraestructure\Command\CommandStaticBus:
         arguments:
             $handlers: !tagged codigito.domain_command_handler
-    Core\Shared\Infraestructure\Query\QueryStaticBus:
+    Codigito\Shared\Infraestructure\Query\QueryStaticBus:
         arguments:
             $handlers: !tagged codigito.domain_query_handler
     #{.".}>------------------------------------------------------------
@@ -49,18 +49,12 @@ services:
     #{.".}>------------------------------------------------------------
     #{.".}>- cdn service need an explicitly  value
     #{.".}>------------------------------------------------------------
-    Core\Shared\Infraestructure\Service\CdnLocalCreator:
+    Codigito\Shared\Infraestructure\Service\CdnLocalCreator:
         arguments: ["%env(CDN_BASEDIR)%"]
     #{.".}>------------------------------------------------------------
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

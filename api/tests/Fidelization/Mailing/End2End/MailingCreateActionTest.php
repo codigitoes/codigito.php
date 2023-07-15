@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Fidelization\Mailing\End2End;
+namespace Codigito\Tests\Fidelization\Mailing\End2End;
 
 use Symfony\Component\HttpFoundation\Response;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Fidelization\CoreFidelizationKernelTest;
-use Core\Fidelization\Mailing\Domain\Exception\InvalidMailingEmailException;
-use Core\Fidelization\Mailing\Domain\Exception\InvalidMailingDuplicateEmailException;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Fidelization\CoreFidelizationKernelTest;
+use Codigito\Fidelization\Mailing\Domain\Exception\InvalidMailingEmailException;
+use Codigito\Fidelization\Mailing\Domain\Exception\InvalidMailingDuplicateEmailException;
 
 class MailingCreateActionTest extends CoreFidelizationKernelTest
 {

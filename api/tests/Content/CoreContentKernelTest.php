@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content;
+namespace Codigito\Tests\Content;
 
-use Core\Auth\Credential\Domain\ValueObject\CredentialEmail;
-use Core\Auth\Credential\Domain\ValueObject\CredentialPassword;
-use Core\Auth\Credential\Domain\ValueObject\CredentialRoles;
-use Core\Content\Blogpost\Domain\Model\Blogpost;
-use Core\Content\Blogcontent\Domain\Model\Blogcontent;
-use Core\Content\Tag\Domain\Model\Tag;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Shared\Fixture\TestApiClientFactory;
-use App\Tests\Shared\Fixture\TestAuthFactory;
-use App\Tests\Shared\Fixture\TestContentBlogcontentFactory;
-use App\Tests\Shared\Fixture\TestContentBlogpostFactory;
-use App\Tests\Shared\Fixture\TestContentTagFactory;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialEmail;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialPassword;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
+use Codigito\Content\Blogpost\Domain\Model\Blogpost;
+use Codigito\Content\Blogcontent\Domain\Model\Blogcontent;
+use Codigito\Content\Tag\Domain\Model\Tag;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Shared\Fixture\TestApiClientFactory;
+use Codigito\Tests\Shared\Fixture\TestAuthFactory;
+use Codigito\Tests\Shared\Fixture\TestContentBlogcontentFactory;
+use Codigito\Tests\Shared\Fixture\TestContentBlogpostFactory;
+use Codigito\Tests\Shared\Fixture\TestContentTagFactory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Core\Content\Fortune\Domain\Model\Fortune;
-use App\Tests\Shared\Fixture\TestContentFortuneFactory;
+use Codigito\Content\Fortune\Domain\Model\Fortune;
+use Codigito\Tests\Shared\Fixture\TestContentFortuneFactory;
 
 abstract class CoreContentKernelTest extends KernelTestCase
 {

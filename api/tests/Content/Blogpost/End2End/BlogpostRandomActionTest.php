@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Blogpost\End2End;
+namespace Codigito\Tests\Content\Blogpost\End2End;
 
-use App\Tests\Content\CoreContentKernelTest;
-use Core\Shared\Domain\ValueObject\UuidV4Id;
-use Core\Content\Blogpost\Domain\ValueObject\BlogpostName;
+use Codigito\Tests\Content\CoreContentKernelTest;
+use Codigito\Shared\Domain\ValueObject\UuidV4Id;
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 
 class BlogpostRandomActionTest extends CoreContentKernelTest
 {

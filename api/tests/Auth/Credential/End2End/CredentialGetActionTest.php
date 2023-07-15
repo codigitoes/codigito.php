@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Auth\Credential\End2End;
+namespace Codigito\Tests\Auth\Credential\End2End;
 
-use Core\Auth\Credential\Domain\Exception\CredentialNotFoundException;
-use Core\Auth\Credential\Domain\Exception\InvalidCredentialIdException;
-use Core\Auth\Credential\Domain\ValueObject\CredentialId;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Auth\CoreAuthKernelTestCase;
+use Codigito\Auth\Credential\Domain\Exception\CredentialNotFoundException;
+use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialIdException;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialId;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Auth\CoreAuthKernelTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 class CredentialGetActionTest extends CoreAuthKernelTestCase

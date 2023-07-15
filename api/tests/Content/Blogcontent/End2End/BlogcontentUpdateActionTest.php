@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Content\Blogcontent\End2End;
+namespace Codigito\Tests\Content\Blogcontent\End2End;
 
 use Symfony\Component\HttpFoundation\Response;
-use Core\Shared\Domain\Helper\Codigito;
-use App\Tests\Content\CoreContentKernelTest;
-use Core\Content\Shared\Domain\ValueObject\BlogpostId;
-use Core\Content\Blogcontent\Domain\Exception\BlogcontentNotFoundException;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Tests\Content\CoreContentKernelTest;
+use Codigito\Content\Shared\Domain\ValueObject\BlogpostId;
+use Codigito\Content\Blogcontent\Domain\Exception\BlogcontentNotFoundException;
 
 class BlogcontentUpdateActionTest extends CoreContentKernelTest
 {

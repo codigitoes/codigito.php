@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Fixture;
+namespace Codigito\Tests\Shared\Fixture;
 
-use Core\Content\Tag\Domain\Criteria\TagGetByIdCriteria;
-use Core\Content\Tag\Domain\Model\Tag;
-use Core\Content\Tag\Domain\Model\TagGetReadModel;
-use Core\Content\Tag\Domain\ValueObject\TagImage;
-use Core\Content\Tag\Domain\ValueObject\TagId;
-use Core\Content\Shared\Domain\ValueObject\TagName;
-use Core\Content\Tag\Infraestructure\Repository\TagReaderDoctrine;
-use Core\Content\Tag\Infraestructure\Repository\TagWriterDoctrine;
-use Core\Shared\Domain\Helper\Codigito;
+use Codigito\Content\Tag\Domain\Criteria\TagGetByIdCriteria;
+use Codigito\Content\Tag\Domain\Model\Tag;
+use Codigito\Content\Tag\Domain\Model\TagGetReadModel;
+use Codigito\Content\Tag\Domain\ValueObject\TagImage;
+use Codigito\Content\Tag\Domain\ValueObject\TagId;
+use Codigito\Content\Shared\Domain\ValueObject\TagName;
+use Codigito\Content\Tag\Infraestructure\Repository\TagReaderDoctrine;
+use Codigito\Content\Tag\Infraestructure\Repository\TagWriterDoctrine;
+use Codigito\Shared\Domain\Helper\Codigito;
 use Doctrine\ORM\EntityManager;
 
 trait TestContentTagFactory

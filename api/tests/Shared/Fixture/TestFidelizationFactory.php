@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Fixture;
+namespace Codigito\Tests\Shared\Fixture;
 
 use Doctrine\ORM\EntityManager;
-use Core\Shared\Domain\Helper\Codigito;
-use Core\Fidelization\Mailing\Domain\Model\Mailing;
-use Core\Fidelization\Mailing\Domain\ValueObject\MailingId;
-use Core\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
-use Core\Fidelization\Mailing\Domain\ValueObject\MailingConfirmed;
-use Core\Fidelization\Mailing\Domain\Criteria\MailingGetByIdCriteria;
-use Core\Fidelization\Mailing\Infraestructure\Repository\MailingReaderDoctrine;
-use Core\Fidelization\Mailing\Infraestructure\Repository\MailingWriterDoctrine;
+use Codigito\Shared\Domain\Helper\Codigito;
+use Codigito\Fidelization\Mailing\Domain\Model\Mailing;
+use Codigito\Fidelization\Mailing\Domain\ValueObject\MailingId;
+use Codigito\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
+use Codigito\Fidelization\Mailing\Domain\ValueObject\MailingConfirmed;
+use Codigito\Fidelization\Mailing\Domain\Criteria\MailingGetByIdCriteria;
+use Codigito\Fidelization\Mailing\Infraestructure\Repository\MailingReaderDoctrine;
+use Codigito\Fidelization\Mailing\Infraestructure\Repository\MailingWriterDoctrine;
 
 trait TestFidelizationFactory
 {

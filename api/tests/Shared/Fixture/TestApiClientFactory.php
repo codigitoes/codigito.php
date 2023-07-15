@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Shared\Fixture;
+namespace Codigito\Tests\Shared\Fixture;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 
 trait TestApiClientFactory
 {
-    public static string $BASE_URL       = 'http://codigito.api';
+    public static string $BASE_URL       = 'http://localhost';
     public static string $ENDPOINT_LOGIN = '/api/login_check';
 
     protected function login(string $email, string $password): string
