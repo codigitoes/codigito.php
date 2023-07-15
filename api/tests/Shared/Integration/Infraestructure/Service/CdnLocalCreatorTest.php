@@ -26,9 +26,9 @@ class CdnLocalCreatorTest extends TestCase
 
         $filename = $sut->create(self::BASE64_VALID_IMAGE);
 
-        $this->assertFileExists(sys_get_temp_dir() . DIRECTORY_SEPARATOR . $filename);
+        $this->assertFileExists(sys_get_temp_dir().DIRECTORY_SEPARATOR.$filename);
 
-        @unlink(sys_get_temp_dir() . DIRECTORY_SEPARATOR . $filename);
+        @unlink(sys_get_temp_dir().DIRECTORY_SEPARATOR.$filename);
     }
 
     public function testItShouldThrowACantCreateCdnLocalExceptionIfBasedirCantCreateFiles(): void

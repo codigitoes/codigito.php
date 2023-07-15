@@ -15,10 +15,10 @@ trait BlogcontentEndpointTrait
     ): string {
         $endpoint = str_replace('{blogpost_id}', $blogpost_id, $this->ENDPOINT);
         if (is_string($id)) {
-            $endpoint = $endpoint . '/' . $id;
+            $endpoint = $endpoint.'/'.$id;
         }
         if (is_string($extraQuery)) {
-            $endpoint = $endpoint . $extraQuery;
+            $endpoint = $endpoint.$extraQuery;
         }
 
         return $endpoint;

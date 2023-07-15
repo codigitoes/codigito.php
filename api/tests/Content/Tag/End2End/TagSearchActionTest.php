@@ -15,32 +15,32 @@ class TagSearchActionTest extends CoreContentKernelTest
     public function testItResultPaginateWithPageAndLimit(): void
     {
         $searchName = UuidV4Id::randomUuidV4();
-        $tag1       = $this->TagPersisted($this->getManager(), $this->TagFromValues(null, new TagName($searchName . 'aaaaaaa')));
+        $tag1       = $this->TagPersisted($this->getManager(), $this->TagFromValues(null, new TagName($searchName.'aaaaaaa')));
         sleep(1);
-        $tag2 = $this->TagPersisted($this->getManager(), $this->TagFromValues(null, new TagName($searchName . 'bbbbbbb')));
+        $tag2 = $this->TagPersisted($this->getManager(), $this->TagFromValues(null, new TagName($searchName.'bbbbbbb')));
 
-        $endpoint = self::ENDPOINT . '?pattern=' . $searchName . '&page=1&limit=1';
+        $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=1&limit=1';
         $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $tags     = json_decode(
             $response->getBody()->getContents()
         )->tags;
         $this->assertEquals($tag1->id->value, $tags[0]->id);
 
-        $endpoint = self::ENDPOINT . '?pattern=' . $searchName . '&page=2&limit=1';
+        $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=2&limit=1';
         $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $tags     = json_decode(
             $response->getBody()->getContents()
         )->tags;
         $this->assertEquals($tag2->id->value, $tags[0]->id);
 
-        $endpoint = self::ENDPOINT . '?pattern=' . $searchName . '&page=4&limit=1';
+        $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=4&limit=1';
         $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $tags     = json_decode(
             $response->getBody()->getContents()
         )->tags;
         $this->assertEmpty($tags);
 
-        $endpoint = self::ENDPOINT . '?pattern=' . $searchName . '&page=1&limit=100';
+        $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=1&limit=100';
         $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $tags     = json_decode(
             $response->getBody()->getContents()

@@ -52,7 +52,7 @@ trait TestContentBlogpostFactory
     final protected function BlogpostDelete(EntityManager $manager, Blogpost $user): void
     {
         $this->BlogpostWriter($manager)->delete($user->id);
-        @unlink($_ENV['CDN_BASEDIR'] . $user->image->value);
+        @unlink($_ENV['CDN_BASEDIR'].$user->image->value);
     }
 
     final protected function BlogpostPersisted(EntityManager $manager, ?Blogpost $model = null): Blogpost

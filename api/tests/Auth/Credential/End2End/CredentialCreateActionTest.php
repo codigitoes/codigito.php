@@ -66,9 +66,9 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
             $response->getBody()->getContents()
         )->errors;
         $expected = [
-            InvalidCredentialEmailException::PREFIX . ' ',
-            InvalidPlainPasswordException::PREFIX . ' ',
-            InvalidCredentialRolesException::PREFIX . ' ',
+            InvalidCredentialEmailException::PREFIX.' ',
+            InvalidPlainPasswordException::PREFIX.' ',
+            InvalidCredentialRolesException::PREFIX.' ',
         ];
 
         self::assertCount(3, $errors);

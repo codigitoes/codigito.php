@@ -19,28 +19,28 @@ class BlogpostSearchActionTest extends CoreContentKernelTest
         sleep(1);
         $blogpost2 = $this->BlogpostPersisted($this->getManager(), $this->BlogpostFromValues(null, new BlogpostName($searchName)));
 
-        $endpoint  = self::ENDPOINT . '?pattern=' . $searchName . '&page=1&limit=1';
+        $endpoint  = self::ENDPOINT.'?pattern='.$searchName.'&page=1&limit=1';
         $response  = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $blogposts = json_decode(
             $response->getBody()->getContents()
         )->blogposts;
         $this->assertEquals($blogpost2->id->value, $blogposts[0]->id);
 
-        $endpoint  = self::ENDPOINT . '?pattern=' . $searchName . '&page=2&limit=1';
+        $endpoint  = self::ENDPOINT.'?pattern='.$searchName.'&page=2&limit=1';
         $response  = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $blogposts = json_decode(
             $response->getBody()->getContents()
         )->blogposts;
         $this->assertEquals($blogpost1->id->value, $blogposts[0]->id);
 
-        $endpoint  = self::ENDPOINT . '?pattern=' . $searchName . '&page=4&limit=1';
+        $endpoint  = self::ENDPOINT.'?pattern='.$searchName.'&page=4&limit=1';
         $response  = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $blogposts = json_decode(
             $response->getBody()->getContents()
         )->blogposts;
         $this->assertEmpty($blogposts);
 
-        $endpoint  = self::ENDPOINT . '?pattern=' . $searchName . '&page=1&limit=100';
+        $endpoint  = self::ENDPOINT.'?pattern='.$searchName.'&page=1&limit=100';
         $response  = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $blogposts = json_decode(
             $response->getBody()->getContents()

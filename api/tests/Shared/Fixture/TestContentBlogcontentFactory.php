@@ -73,7 +73,7 @@ trait TestContentBlogcontentFactory
     final protected function BlogcontentDelete(EntityManager $manager, Blogcontent $model): void
     {
         $this->BlogcontentWriter($manager)->delete($model->id);
-        @unlink($_ENV['CDN_BASEDIR'] . $model->image->value);
+        @unlink($_ENV['CDN_BASEDIR'].$model->image->value);
     }
 
     final protected function BlogcontentPersisted(EntityManager $manager, ?Blogcontent $model = null): Blogcontent

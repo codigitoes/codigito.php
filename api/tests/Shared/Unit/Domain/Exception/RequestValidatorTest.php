@@ -44,8 +44,8 @@ class RequestValidatorTest extends TestCase
 
         $this->assertIsArray($actual);
         $this->assertCount(2, $actual);
-        $this->assertEquals(ParameterNotFoundException::PREFIX . ' ' . ParametersValidatorTestVO::STUB_MESSAGE, $actual[0]);
-        $this->assertEquals(ParameterNotFoundException::PREFIX . ' ' . ParametersValidatorTestVO::STUB_MESSAGE, $actual[1]);
+        $this->assertEquals(ParameterNotFoundException::PREFIX.' '.ParametersValidatorTestVO::STUB_MESSAGE, $actual[0]);
+        $this->assertEquals(ParameterNotFoundException::PREFIX.' '.ParametersValidatorTestVO::STUB_MESSAGE, $actual[1]);
     }
 
     public function testItShouldResult1ErrorForEachParameterKeyNotFound(): void
@@ -60,8 +60,8 @@ class RequestValidatorTest extends TestCase
         ];
         $actual   = $sut->validate($parameters);
         $expected = [
-            ParameterNotFoundException::PREFIX . ' key1',
-            ParameterNotFoundException::PREFIX . ' key3',
+            ParameterNotFoundException::PREFIX.' key1',
+            ParameterNotFoundException::PREFIX.' key3',
         ];
         $this->assertIsArray($actual);
         $this->assertCount(2, $actual);

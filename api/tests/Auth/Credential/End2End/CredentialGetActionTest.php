@@ -19,7 +19,7 @@ class CredentialGetActionTest extends CoreAuthKernelTestCase
     {
         $options  = $this->getAdminOptions($this->getAdminToken());
         $response = $this->get(
-            self::ENDPOINT . 'NO_VALID_VALUE',
+            self::ENDPOINT.'NO_VALID_VALUE',
             $options
         );
         $errors = json_decode($response->getBody()->getContents())->errors;
@@ -35,7 +35,7 @@ class CredentialGetActionTest extends CoreAuthKernelTestCase
         $options = $this->getAdminOptions($this->getAdminToken());
 
         $response = $this->get(
-            self::ENDPOINT . CredentialId::randomUuidV4(),
+            self::ENDPOINT.CredentialId::randomUuidV4(),
             $options
         );
         $errors = json_decode($response->getBody()->getContents())->errors;
@@ -50,7 +50,7 @@ class CredentialGetActionTest extends CoreAuthKernelTestCase
     {
         $expected = $this->getUserCredential();
         $response = $this->get(
-            self::ENDPOINT . $expected->id->value,
+            self::ENDPOINT.$expected->id->value,
             $this->getAdminOptions($this->getAdminToken())
         );
 

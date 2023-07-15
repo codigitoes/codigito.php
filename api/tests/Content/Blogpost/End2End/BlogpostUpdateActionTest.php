@@ -25,7 +25,7 @@ class BlogpostUpdateActionTest extends CoreContentKernelTest
         $options = array_merge($auth, $body);
 
         $response = $this->postAsAdmin(
-            self::ENDPOINT . $this->getBlogpostId(),
+            self::ENDPOINT.$this->getBlogpostId(),
             $this->getAdminToken(),
             $options
         );
@@ -37,7 +37,7 @@ class BlogpostUpdateActionTest extends CoreContentKernelTest
         self::assertNotEquals($previousName, $actual->name->value);
         self::assertNotEquals($previousImage, $actual->image->value);
 
-        @unlink($_ENV['CDN_BASEDIR'] . $previousImage);
-        @unlink($_ENV['CDN_BASEDIR'] . $actual->image->value);
+        @unlink($_ENV['CDN_BASEDIR'].$previousImage);
+        @unlink($_ENV['CDN_BASEDIR'].$actual->image->value);
     }
 }

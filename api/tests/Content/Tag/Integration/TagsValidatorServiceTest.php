@@ -16,8 +16,8 @@ class TagsValidatorServiceTest extends CoreContentKernelTest
     public function testItShouldThrowExceptionIfSomeNameNotExists(): void
     {
         $searchName = UuidV4Id::randomUuidV4();
-        $tag1       = $this->TagPersisted($this->getManager(), $this->TagFromValues(null, new TagName($searchName . Codigito::randomString())));
-        $tag2       = $this->TagPersisted($this->getManager(), $this->TagFromValues(null, new TagName($searchName . Codigito::randomString())));
+        $tag1       = $this->TagPersisted($this->getManager(), $this->TagFromValues(null, new TagName($searchName.Codigito::randomString())));
+        $tag2       = $this->TagPersisted($this->getManager(), $this->TagFromValues(null, new TagName($searchName.Codigito::randomString())));
 
         $names   = [$tag1->name->value, $tag2->name->value];
         $service = new TagsValidatorService($this->TagReader($this->getManager()));

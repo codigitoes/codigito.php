@@ -18,7 +18,7 @@ class MailingGetActionTest extends CoreFidelizationKernelTest
     public function testItResultAnInvalidMailingIdIfGetNonValidUuidV4Id(): void
     {
         $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get(self::ENDPOINT . 'its not an uuid v4 id', $options);
+        $response = $this->get(self::ENDPOINT.'its not an uuid v4 id', $options);
 
         $errors = json_decode(
             $response->getBody()->getContents()
@@ -33,7 +33,7 @@ class MailingGetActionTest extends CoreFidelizationKernelTest
     public function testItResultAMailingNotFoundIfGetNonExistingMailing(): void
     {
         $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get(self::ENDPOINT . MailingId::randomUuidV4(), $options);
+        $response = $this->get(self::ENDPOINT.MailingId::randomUuidV4(), $options);
 
         $errors = json_decode(
             $response->getBody()->getContents()
@@ -49,7 +49,7 @@ class MailingGetActionTest extends CoreFidelizationKernelTest
     {
         $mailing  = $this->MailingPersisted($this->getManager());
         $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get(self::ENDPOINT . $mailing->id->value, $options);
+        $response = $this->get(self::ENDPOINT.$mailing->id->value, $options);
 
         $actual = json_decode($response->getBody()->getContents())->mailing;
 

@@ -18,7 +18,7 @@ class TagGetActionTest extends CoreContentKernelTest
     public function testItResultAnInvalidTagIdIfGetNonValidUuidV4Id(): void
     {
         $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get(self::ENDPOINT . 'its not an uuid v4 id', $options);
+        $response = $this->get(self::ENDPOINT.'its not an uuid v4 id', $options);
 
         $errors = json_decode(
             $response->getBody()->getContents()
@@ -33,7 +33,7 @@ class TagGetActionTest extends CoreContentKernelTest
     public function testItResultATagNotFoundIfGetNonExistingTag(): void
     {
         $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get(self::ENDPOINT . TagId::randomUuidV4(), $options);
+        $response = $this->get(self::ENDPOINT.TagId::randomUuidV4(), $options);
 
         $errors = json_decode(
             $response->getBody()->getContents()
@@ -49,7 +49,7 @@ class TagGetActionTest extends CoreContentKernelTest
     {
         $tag      = $this->TagPersisted($this->getManager());
         $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get(self::ENDPOINT . $tag->id->value, $options);
+        $response = $this->get(self::ENDPOINT.$tag->id->value, $options);
 
         $actual = json_decode($response->getBody()->getContents())->tag;
 

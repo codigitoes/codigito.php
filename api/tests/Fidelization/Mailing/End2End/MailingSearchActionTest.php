@@ -16,32 +16,32 @@ class MailingSearchActionTest extends CoreFidelizationKernelTest
     public function testItResultPaginateWithPageAndLimit(): void
     {
         $searchName = UuidV4Id::randomUuidV4();
-        $mailing1   = $this->MailingPersisted($this->getManager(), $this->MailingFromValues(null, new MailingEmail($searchName . Codigito::randomEmail())));
+        $mailing1   = $this->MailingPersisted($this->getManager(), $this->MailingFromValues(null, new MailingEmail($searchName.Codigito::randomEmail())));
         sleep(1);
-        $mailing2 = $this->MailingPersisted($this->getManager(), $this->MailingFromValues(null, new MailingEmail($searchName . Codigito::randomEmail())));
+        $mailing2 = $this->MailingPersisted($this->getManager(), $this->MailingFromValues(null, new MailingEmail($searchName.Codigito::randomEmail())));
 
-        $endpoint = self::ENDPOINT . '?pattern=' . $searchName . '&page=1&limit=1';
+        $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=1&limit=1';
         $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $mailings = json_decode(
             $response->getBody()->getContents()
         )->mailings;
         $this->assertEquals($mailing2->id->value, $mailings[0]->id);
 
-        $endpoint = self::ENDPOINT . '?pattern=' . $searchName . '&page=2&limit=1';
+        $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=2&limit=1';
         $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $mailings = json_decode(
             $response->getBody()->getContents()
         )->mailings;
         $this->assertEquals($mailing1->id->value, $mailings[0]->id);
 
-        $endpoint = self::ENDPOINT . '?pattern=' . $searchName . '&page=4&limit=1';
+        $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=4&limit=1';
         $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $mailings = json_decode(
             $response->getBody()->getContents()
         )->mailings;
         $this->assertEmpty($mailings);
 
-        $endpoint = self::ENDPOINT . '?pattern=' . $searchName . '&page=1&limit=100';
+        $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=1&limit=100';
         $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
         $mailings = json_decode(
             $response->getBody()->getContents()

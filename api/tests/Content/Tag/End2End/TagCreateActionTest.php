@@ -28,8 +28,8 @@ class TagCreateActionTest extends CoreContentKernelTest
         )->errors;
 
         $expected = [
-            InvalidTagNameException::PREFIX . ' ',
-            InvalidTagImageException::PREFIX . ' base64 image cannot be empty',
+            InvalidTagNameException::PREFIX.' ',
+            InvalidTagImageException::PREFIX.' base64 image cannot be empty',
         ];
 
         self::assertCount(2, $errors);

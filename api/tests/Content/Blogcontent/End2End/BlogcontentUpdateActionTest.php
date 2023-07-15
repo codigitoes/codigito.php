@@ -45,8 +45,8 @@ class BlogcontentUpdateActionTest extends CoreContentKernelTest
         self::assertNotEquals($previousName, $actual->html->value);
         self::assertNotEquals($previousImage, $actual->image->value);
 
-        @unlink($_ENV['CDN_BASEDIR'] . $previousImage);
-        @unlink($_ENV['CDN_BASEDIR'] . $actual->image->value);
+        @unlink($_ENV['CDN_BASEDIR'].$previousImage);
+        @unlink($_ENV['CDN_BASEDIR'].$actual->image->value);
     }
 
     public function testItShouldAnErrorIfBlogpostidNotFound(): void

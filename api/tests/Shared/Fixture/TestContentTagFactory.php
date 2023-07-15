@@ -52,7 +52,7 @@ trait TestContentTagFactory
     final protected function TagDelete(EntityManager $manager, Tag $model): void
     {
         $this->TagWriter($manager)->delete($model->id);
-        @unlink($_ENV['CDN_BASEDIR'] . $model->image->value);
+        @unlink($_ENV['CDN_BASEDIR'].$model->image->value);
     }
 
     final protected function TagPersisted(EntityManager $manager, ?Tag $model = null): Tag
