@@ -54,3 +54,4 @@ Thumbs.db
 **/.env
 api/.php-cs-fixer.cache
 api/.phpunit.result.cache
+admin/.env
