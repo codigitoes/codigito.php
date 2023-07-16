@@ -33,6 +33,7 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
             self::ENDPOINT,
             $options
         );
+
         $id = json_decode(
             $response->getBody()->getContents()
         )->id;

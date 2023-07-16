@@ -9,12 +9,10 @@ use Psr\Http\Message\ResponseInterface;
 
 trait TestApiClientFactory
 {
-    public static string $ENDPOINT_LOGIN = '/api/login_check';
-
     protected function login(string $email, string $password): string
     {
         $response = $this->post(
-            self::$ENDPOINT_LOGIN,
+            '/api/login_check',
             ['json' => [
                 'email'    => $email,
                 'password' => $password,
@@ -60,7 +58,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'DELETE',
-            $_ENV['API_URL'].$endpoint,
+            $this->composeEndpointUrl($endpoint),
             $options
         );
     }
@@ -74,7 +72,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'POST',
-            $_ENV['API_URL'].$endpoint,
+            $this->composeEndpointUrl($endpoint),
             $options
         );
     }
@@ -96,7 +94,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'PATCH',
-            $_ENV['API_URL'].$endpoint,
+            $this->composeEndpointUrl($endpoint),
             $options
         );
     }
@@ -118,7 +116,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'GET',
-            $_ENV['API_URL'].$endpoint,
+            $this->composeEndpointUrl($endpoint),
             $options
         );
     }
@@ -129,5 +127,9 @@ trait TestApiClientFactory
             $endpoint,
             array_merge($options, $this->getAdminOptions($token))
         );
+    }
+
+    protected function composeEndpointUrl($uri):string{
+        return $_ENV['API_URL'].ltrim($uri, '/');
     }
 }

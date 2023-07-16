@@ -47,8 +47,8 @@ trait TestAuthFactory
             $manager,
             $registry,
             $hasher
-            )->create($credential);
-            
+        )->create($credential);
+
         return $credential;
     }
 
