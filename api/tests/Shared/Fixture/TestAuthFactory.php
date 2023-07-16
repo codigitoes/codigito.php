@@ -43,13 +43,12 @@ trait TestAuthFactory
         ?CredentialRoles $roles = null
     ): Credential {
         $credential = $this->RandomCredentialForNew(null, $email, $password, $roles);
-
         $this->CredentialWriter(
             $manager,
             $registry,
             $hasher
-        )->create($credential);
-
+            )->create($credential);
+            
         return $credential;
     }
 

@@ -51,7 +51,7 @@ class Api
 
     private static function getApiEndpoint(string $uri): string
     {
-        return self::BASE_ENDPOINT.$uri;
+        return $_ENV['API_URL'].ltrim($uri, '/');
     }
 
     final public static function suscription(

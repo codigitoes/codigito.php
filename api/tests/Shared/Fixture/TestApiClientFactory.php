@@ -9,7 +9,6 @@ use Psr\Http\Message\ResponseInterface;
 
 trait TestApiClientFactory
 {
-    public static string $BASE_URL       = 'http://api.codigito.es';
     public static string $ENDPOINT_LOGIN = '/api/login_check';
 
     protected function login(string $email, string $password): string
@@ -61,7 +60,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'DELETE',
-            self::$BASE_URL.$endpoint,
+            $_ENV['API_URL'].$endpoint,
             $options
         );
     }
@@ -75,7 +74,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'POST',
-            self::$BASE_URL.$endpoint,
+            $_ENV['API_URL'].$endpoint,
             $options
         );
     }
@@ -97,7 +96,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'PATCH',
-            self::$BASE_URL.$endpoint,
+            $_ENV['API_URL'].$endpoint,
             $options
         );
     }
@@ -119,7 +118,7 @@ trait TestApiClientFactory
             ]
         ))->request(
             'GET',
-            self::$BASE_URL.$endpoint,
+            $_ENV['API_URL'].$endpoint,
             $options
         );
     }

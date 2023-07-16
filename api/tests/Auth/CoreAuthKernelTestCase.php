@@ -68,7 +68,6 @@ abstract class CoreAuthKernelTestCase extends KernelTestCase
             'credential' => $adminCredential,
             'token'      => $this->login($adminCredential->email->value, $adminCredential->password->value),
         ];
-
         $userCredential = $this->CredentialPersisted(
             $this->getManager(),
             $this->getRegistry(),
