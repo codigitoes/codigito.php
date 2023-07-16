@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 
 trait TestApiClientFactory
 {
-    public static string $BASE_URL       = 'http://localhost';
+    public static string $BASE_URL       = 'http://api.codigito.es';
     public static string $ENDPOINT_LOGIN = '/api/login_check';
 
     protected function login(string $email, string $password): string
