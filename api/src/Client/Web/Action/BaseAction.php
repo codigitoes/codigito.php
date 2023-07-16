@@ -139,6 +139,6 @@ abstract class BaseAction extends AbstractController
             return null;
         }
 
-        return $_ENV['CDN_URL'].'/cdn/'.$uri;
+        return $_ENV['CDN_URL'].ltrim($uri, '/');
     }
 }
