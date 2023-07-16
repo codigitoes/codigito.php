@@ -1,0 +1,75 @@
+version: '3.3'
+#----------------------------------------------------------
+# definicion de la red y rango de ips 
+#
+# 172.27.102 ip net
+#----------------------------------------------------------
+networks:
+    codigito-network:
+        ipam:
+            config:
+                - subnet: 172.27.102.0/24
+services:
+    codigito.api:
+        user: "1000:1000"
+        build: api
+        container_name: 'codigito.api'
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ../api/:/var/www/vhosts/codigito/
+        extra_hosts:
+            - 'mariadb:172.27.102.12'
+            - 'codigito.cdn:127.0.0.1'
+        hostname: codigito.api
+        networks:
+            codigito-network:
+                ipv4_address: 172.27.102.11
+
+    codigito.mariadb:
+        build: mariadb
+        container_name: 'codigito.mariadb'
+        ports:
+            - 3306:3306
+        restart: always
+        hostname: codigito.mariadb
+        networks:
+            codigito-network:
+                ipv4_address: 172.27.102.12
+
+    codigito.admin:
+         user: "1000:1000"
+         build: admin
+         container_name: 'codigito.admin'
+         ports:
+             - 8002:80
+             - 4432:443
+         volumes:
+             - ../admin/:/var/www/vhosts/codigito/
+         extra_hosts:
+             - 'mariadb:172.27.102.12'
+             - 'codigito.api:172.27.102.11'
+             - 'codigito.cdn:172.27.102.11'
+         hostname: codigito.admin
+         networks:
+             codigito-network:
+                 ipv4_address: 172.27.102.13
+
+    codigito.www:
+         user: "1000:1000"
+         build: www
+         container_name: 'codigito.www'
+         ports:
+             - 8003:80
+             - 4433:443
+         volumes:
+             - ../www/:/var/www/vhosts/codigito/
+         extra_hosts:
+             - 'mariadb:172.27.102.12'
+             - 'codigito.api:172.27.102.11'
+             - 'codigito.cdn:172.27.102.11'
+         hostname: codigito.www
+         networks:
+             codigito-network:
+                 ipv4_address: 172.27.102.14             
