@@ -15,6 +15,7 @@ class MailingSendWelcomeOnMailingConfirmed implements DomainEventSubscriber
     public function __construct(private readonly MailerInterface $mailer)
     {
     }
+
     public function subscribedTo(): array
     {
         return [DomainEventEnum::MAILING_CONFIRMED];
@@ -22,7 +23,6 @@ class MailingSendWelcomeOnMailingConfirmed implements DomainEventSubscriber
 
     public function handlerEvent(DomainEvent $event): void
     {
-
         $email = (new Email())
             ->from('codigito@gmail.com')
             ->to($event->payload->value['email'])

@@ -14,7 +14,7 @@ class SuscriptionAction extends BaseAction
     public function subscription(Request $request): Response
     {
         $parameters = json_decode($request->getContent(), true);
-        $email = isset($parameters['email']) ? $parameters['email'] : '';
+        $email      = isset($parameters['email']) ? $parameters['email'] : '';
 
         $this->fidelizationMailingCreate($email);
 
