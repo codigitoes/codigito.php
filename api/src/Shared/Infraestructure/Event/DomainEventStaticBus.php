@@ -15,7 +15,7 @@ class DomainEventStaticBus implements DomainEventBus
     public function __construct(iterable $subscribers)
     {
         foreach ($subscribers as $aSubscriber) {
-            if ($aSubscriber instanceof DomainEventSubscriber === false) {
+            if (false === $aSubscriber instanceof DomainEventSubscriber) {
                 continue;
             }
 
