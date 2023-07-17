@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Codigito\Fidelization\Mailing\Application\MailingCreate;
 
 use Codigito\Shared\Domain\Command\Command;
+use Codigito\Shared\Domain\Event\DomainEventBus;
 use Codigito\Shared\Domain\Command\CommandHandler;
 use Codigito\Fidelization\Mailing\Domain\Model\Mailing;
 use Codigito\Fidelization\Mailing\Domain\ValueObject\MailingId;
@@ -15,14 +16,19 @@ class MailingCreateCommandHandler implements CommandHandler
 {
     public function __construct(
         private readonly MailingWriter $writer,
+        private readonly DomainEventBus $eventor
     ) {
     }
 
     public function execute(Command $command): void
     {
-        $this->writer->create(Mailing::createForNew(
+        $mailing = Mailing::createForNew(
             new MailingId($command->id),
             new MailingEmail($command->email)
-        ));
+        );
+
+        $this->writer->create($mailing);
+
+        $this->eventor->publish($mailing->pullEvents());
     }
 }

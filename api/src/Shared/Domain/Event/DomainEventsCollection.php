@@ -8,7 +8,7 @@ use Codigito\Shared\Domain\Exception\InvalidEventException;
 
 final class DomainEventsCollection
 {
-    public function __construct(public readonly array $events)
+    public function __construct(private array $events = [])
     {
         foreach ($events as $anEvent) {
             if ($anEvent instanceof DomainEvent) {
@@ -19,8 +19,18 @@ final class DomainEventsCollection
         }
     }
 
-    public function empty(): bool
+    public function push(DomainEvent $event): void
     {
-        return empty($this->events);
+        $this->events[] = $event;
+    }
+
+    public function toArray(): array
+    {
+        return $this->events;
+    }
+
+    public function clear(): void
+    {
+        $this->events = [];
     }
 }

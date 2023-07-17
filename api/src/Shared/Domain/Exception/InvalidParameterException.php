@@ -10,7 +10,7 @@ class InvalidParameterException extends DomainException
 
     public function __construct(string $value)
     {
-        parent::__construct(self::PREFIX . ' ' . $value);
+        parent::__construct(self::PREFIX.' '.$value);
     }
 
     public const ERROR_CODE = 400;

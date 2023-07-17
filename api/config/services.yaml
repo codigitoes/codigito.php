@@ -31,10 +31,11 @@ services:
     #{.".}>------------------------------------------------------------
 
     #{.".}>------------------------------------------------------------
-    #{.".}>- bus selector, query and command
+    #{.".}>- bus selector, query command event
     #{.".}>------------------------------------------------------------
     Codigito\Shared\Domain\Command\CommandBus: '@Codigito\Shared\Infraestructure\Command\CommandStaticBus'
     Codigito\Shared\Domain\Query\QueryBus: '@Codigito\Shared\Infraestructure\Query\QueryStaticBus'
+    Codigito\Shared\Domain\Event\DomainEventBus: '@Codigito\Shared\Infraestructure\Event\DomainEventStaticBus'
 
     #{.".}>------------------------------------------------------------
     #{.".}>- all implementations of handlers are passed as argument to
@@ -46,6 +47,9 @@ services:
     Codigito\Shared\Infraestructure\Query\QueryStaticBus:
         arguments:
             $handlers: !tagged codigito.domain_query_handler
+    Codigito\Shared\Infraestructure\Event\DomainEventStaticBus:
+        arguments:
+            $subscribers: !tagged codigito.domain_event_subscriber
     #{.".}>------------------------------------------------------------
 
     #{.".}>------------------------------------------------------------

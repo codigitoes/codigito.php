@@ -7,15 +7,24 @@ namespace Codigito\Shared\Domain\Event;
 use Codigito\Shared\Domain\ValueObject\DomainEventId;
 use Codigito\Shared\Domain\ValueObject\DomainEventName;
 use Codigito\Shared\Domain\ValueObject\DomainEventPayload;
-use DateTime;
 
 class DomainEvent
 {
-    public function __construct(
+    private function __construct(
         public readonly DomainEventId $id,
         public readonly DomainEventName $name,
         public readonly DomainEventPayload $payload,
-        public readonly DateTime $ocurredOn
+        public readonly \DateTime $ocurredOn
     ) {
+    }
+
+    final public static function fromPrimitives(string $name, array $payload): DomainEvent
+    {
+        return new DomainEvent(
+            DomainEventId::random(),
+            new DomainEventName($name),
+            new DomainEventPayload($payload),
+            new \DateTime()
+        );
     }
 }
