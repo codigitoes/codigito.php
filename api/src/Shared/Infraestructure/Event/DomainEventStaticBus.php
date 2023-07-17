@@ -14,6 +14,24 @@ class DomainEventStaticBus implements DomainEventBus
 
     public function __construct(iterable $subscribers)
     {
+        $this->register($subscribers);
+    }
+
+    public function publish(DomainEventsCollection $events): void
+    {
+        foreach ($events->toArray() as $anEvent) {
+            $subscribers = [];
+            if (isset($this->eventsWithSubscribers[$anEvent->name->value])) {
+                $subscribers = $this->eventsWithSubscribers[$anEvent->name->value];
+            }
+            foreach ($subscribers as $aSubscriber) {
+                $aSubscriber->handlerEvent($anEvent);
+            }
+        }
+    }
+
+    private function register(iterable $subscribers): void
+    {
         foreach ($subscribers as $aSubscriber) {
             if (false === $aSubscriber instanceof DomainEventSubscriber) {
                 continue;
@@ -27,19 +45,6 @@ class DomainEventStaticBus implements DomainEventBus
                 $subscribersRegisteredPerEvent[] = $aSubscriber;
 
                 $this->eventsWithSubscribers[$anEventName] = $subscribersRegisteredPerEvent;
-            }
-        }
-    }
-
-    public function publish(DomainEventsCollection $events): void
-    {
-        foreach ($events->toArray() as $anEvent) {
-            $subscribers = [];
-            if (isset($this->eventsWithSubscribers[$anEvent->name->value])) {
-                $subscribers = $this->eventsWithSubscribers[$anEvent->name->value];
-            }
-            foreach ($subscribers as $aSubscriber) {
-                $aSubscriber->handlerEvent($anEvent);
             }
         }
     }
