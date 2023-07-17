@@ -1,0 +1,17 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Codigito\Shared\Domain\ValueObject;
+
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
+
+class DomainEventPayload
+{
+    protected function __construct(public readonly array $value): void
+    {
+        if (empty($value)) {
+            throw new InvalidParameterException('wrong payload: ' . json_encode($value));
+        }
+    }
+}

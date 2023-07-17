@@ -18,4 +18,9 @@ final class DomainEvents
             throw new InvalidEventException(json_encode($anEvent));
         }
     }
+
+    public function empty(): bool
+    {
+        return empty($this->events);
+    }
 }
