@@ -129,7 +129,8 @@ trait TestApiClientFactory
         );
     }
 
-    protected function composeEndpointUrl($uri):string{
+    protected function composeEndpointUrl($uri): string
+    {
         return $_ENV['API_URL'].ltrim($uri, '/');
     }
 }
