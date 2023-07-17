@@ -9,8 +9,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class Api
 {
-    private const BASE_ENDPOINT = 'http://codigito.api';
-
     private static function post(
         string $enpoint,
         array $body
@@ -38,7 +36,7 @@ class Api
         ];
         if ($token) {
             $headers[RequestOptions::HEADERS] = [
-                'Authorization' => 'Bearer '.$token,
+                'Authorization' => 'Bearer ' . $token,
             ];
         }
 
@@ -51,7 +49,7 @@ class Api
 
     private static function getApiEndpoint(string $uri): string
     {
-        return $_ENV['API_URL'].ltrim($uri, '/');
+        return $_ENV['API_URL'] . ltrim($uri, '/');
     }
 
     final public static function suscription(
@@ -68,16 +66,16 @@ class Api
     ): array {
         $url = '/api/client/web/list';
         if ($pattern) {
-            $url = $url.'/'.$pattern;
+            $url = $url . '/' . $pattern;
         }
-        $url = $url.'?page='.$page;
+        $url = $url . '?page=' . $page;
 
         return json_decode(self::get($url)->getBody()->getContents(), JSON_OBJECT_AS_ARRAY);
     }
 
     final public static function contentBlogpostDetails(string $id): array
     {
-        return json_decode(self::get('/api/client/web/detail/'.$id)->getBody()->getContents(), JSON_OBJECT_AS_ARRAY);
+        return json_decode(self::get('/api/client/web/detail/' . $id)->getBody()->getContents(), JSON_OBJECT_AS_ARRAY);
     }
 
     final public static function home(): array

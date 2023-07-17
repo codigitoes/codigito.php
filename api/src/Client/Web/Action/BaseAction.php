@@ -8,6 +8,8 @@ use Throwable;
 use Codigito\Shared\Domain\Filter\Page;
 use Codigito\Content\Tag\Application\TagAll\TagAllQuery;
 use Codigito\Shared\Infraestructure\Query\QueryStaticBus;
+use Codigito\Shared\Infraestructure\Command\CommandStaticBus;
+use Codigito\Fidelization\Mailing\Domain\ValueObject\MailingId;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Codigito\Content\Fortune\Application\FortuneGet\FortuneGetQuery;
 use Codigito\Content\Blogpost\Application\BlogpostGet\BlogpostGetQuery;
@@ -15,12 +17,25 @@ use Codigito\Content\Blogpost\Application\BlogpostLatest\BlogpostLatestQuery;
 use Codigito\Content\Blogpost\Application\BlogpostRandom\BlogpostRandomQuery;
 use Codigito\Content\Blogpost\Application\BlogpostSearch\BlogpostSearchQuery;
 use Codigito\Content\Blogcontent\Application\BlogcontentAll\BlogcontentAllQuery;
+use Codigito\Fidelization\Mailing\Application\MailingCreate\MailingCreateCommand;
+use Codigito\Fidelization\Mailing\Application\MailingConfirm\MailingConfirmCommand;
 
 abstract class BaseAction extends AbstractController
 {
     public function __construct(
-        private readonly QueryStaticBus $bus
+        private readonly QueryStaticBus $bus,
+        private readonly CommandStaticBus $command,
     ) {
+    }
+
+    protected function fidelizationMailingConfirm(string $id): void
+    {
+        $this->command->execute(new MailingConfirmCommand($id));
+    }
+
+    protected function fidelizationMailingCreate(string $email): void
+    {
+        $this->command->execute(new MailingCreateCommand(MailingId::randomUuidV4(), $email));
     }
 
     protected function getFortune(): array
@@ -139,6 +154,6 @@ abstract class BaseAction extends AbstractController
             return null;
         }
 
-        return $_ENV['CDN_URL'].ltrim($uri, '/');
+        return $_ENV['CDN_URL'] . ltrim($uri, '/');
     }
 }
