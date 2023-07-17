@@ -6,7 +6,7 @@ namespace Codigito\Shared\Domain\Event;
 
 use Codigito\Shared\Domain\Exception\InvalidEventException;
 
-final class DomainEvents
+final class DomainEventsCollection
 {
     public function __construct(public readonly array $events)
     {

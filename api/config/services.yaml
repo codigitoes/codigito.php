@@ -19,6 +19,8 @@ services:
             tags: ['codigito.domain_command_handler']
         Codigito\Shared\Domain\Query\QueryHandler:
             tags: ['codigito.domain_query_handler']
+        Codigito\Shared\Domain\Event\DomainEventSubscriber:
+            tags: ['codigito.domain_event_subscriber']
     #{.".}>------------------------------------------------------------
 
     #{.".}>------------------------------------------------------------

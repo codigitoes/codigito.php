@@ -8,7 +8,7 @@ use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class DomainEventPayload
 {
-    protected function __construct(public readonly array $value): void
+    protected function __construct(public readonly array $value)
     {
         if (empty($value)) {
             throw new InvalidParameterException('wrong payload: ' . json_encode($value));

@@ -6,5 +6,5 @@ namespace Codigito\Shared\Domain\Event;
 
 interface Eventuable
 {
-    public function pullEvents(): DomainEvents;
+    public function pullEvents(): DomainEventsCollection;
 }
