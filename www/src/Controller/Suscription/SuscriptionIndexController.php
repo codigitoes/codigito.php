@@ -35,7 +35,7 @@ class SuscriptionIndexController extends BaseWebActionController
         try {
             $message = Api::fidelizationMailingConfirm($id);
 
-            return new RedirectResponse($this->json(['message' => $message]);
+            return $this->json(['message' => $message]);
         } catch (Throwable $th) {
             return $this->json(['error' => $th->getMessage()]);
         }

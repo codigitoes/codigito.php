@@ -300,7 +300,7 @@ input[type=number]:focus {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  padding-top: 70px;
+  padding-top: 0px;
   padding-bottom: 30px;
   margin-bottom: 40px;
   position: relative;
@@ -385,7 +385,7 @@ input[type=number]:focus {
 .xoxo_fn_header .search_opener a {
   display: block;
   text-decoration: none;
-  position: relative;
+  /*position: relative;*/
   font-family: var(--hff);
   font-size: 18px;
   color: #000;

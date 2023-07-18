@@ -60,9 +60,9 @@ final class RabbitMqConnection
             if (!self::$connection->isConnected()) {
                 self::$connection->pconnect();
             }
-            //code...
+            // code...
         } catch (\Throwable $th) {
-            //throw $th;
+            // throw $th;
             dd($th);
         }
 
