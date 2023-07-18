@@ -27,4 +27,14 @@ class DomainEvent
             new \DateTime()
         );
     }
+
+    public function toPrimitives(): array
+    {
+        return [
+            'id'        => $this->id->value,
+            'name'      => $this->name->value,
+            'body'      => $this->payload->value,
+            'ocurredOn' => $this->ocurredOn,
+        ];
+    }
 }

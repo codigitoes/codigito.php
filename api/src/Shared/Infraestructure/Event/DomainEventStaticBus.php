@@ -19,7 +19,7 @@ class DomainEventStaticBus implements DomainEventBus
 
     public function publish(DomainEventsCollection $events): void
     {
-        foreach ($events->toArray() as $anEvent) {
+        foreach ($events->all() as $anEvent) {
             $subscribers = [];
             if (isset($this->eventsWithSubscribers[$anEvent->name->value])) {
                 $subscribers = $this->eventsWithSubscribers[$anEvent->name->value];

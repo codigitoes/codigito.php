@@ -7,7 +7,6 @@ namespace Codigito\Client\Web\Action;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Throwable;
 
 class FidelizationMailingSuscriptionAction extends BaseAction
 {
@@ -23,7 +22,7 @@ class FidelizationMailingSuscriptionAction extends BaseAction
             return $this->json([
                 'message' => 'suscription realizada, gracias :)',
             ]);
-        } catch (Throwable $th) {
+        } catch (\Throwable $th) {
             return $this->json([
                 'error' => $th->getMessage(),
             ]);
@@ -39,7 +38,7 @@ class FidelizationMailingSuscriptionAction extends BaseAction
             return $this->json([
                 'message' => 'suscription confirmada, gracias :)',
             ]);
-        } catch (Throwable $th) {
+        } catch (\Throwable $th) {
             return $this->json([
                 'error' => $th->getMessage(),
             ]);

@@ -24,7 +24,7 @@ final class DomainEventsCollection
         $this->events[] = $event;
     }
 
-    public function toArray(): array
+    public function all(): array
     {
         return $this->events;
     }

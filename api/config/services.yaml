@@ -35,7 +35,6 @@ services:
     #{.".}>------------------------------------------------------------
     Codigito\Shared\Domain\Command\CommandBus: '@Codigito\Shared\Infraestructure\Command\CommandStaticBus'
     Codigito\Shared\Domain\Query\QueryBus: '@Codigito\Shared\Infraestructure\Query\QueryStaticBus'
-    Codigito\Shared\Domain\Event\DomainEventBus: '@Codigito\Shared\Infraestructure\Event\DomainEventStaticBus'
 
     #{.".}>------------------------------------------------------------
     #{.".}>- all implementations of handlers are passed as argument to
@@ -47,9 +46,6 @@ services:
     Codigito\Shared\Infraestructure\Query\QueryStaticBus:
         arguments:
             $handlers: !tagged codigito.domain_query_handler
-    Codigito\Shared\Infraestructure\Event\DomainEventStaticBus:
-        arguments:
-            $subscribers: !tagged codigito.domain_event_subscriber
     #{.".}>------------------------------------------------------------
 
     #{.".}>------------------------------------------------------------
@@ -64,3 +60,34 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # RabbitMQ
+    Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqConnection:
+      arguments:
+        - host: '%env(RABBITMQ_HOST)%'
+          port: '%env(RABBITMQ_PORT)%'
+          vhost: '%env(RABBITMQ_MOOC_VHOST)%'
+          login: '%env(RABBITMQ_LOGIN)%'
+          password: '%env(RABBITMQ_PASSWORD)%'
+          read_timeout: 2
+          write_timeout: 2
+          connect_timeout: 5
+
+    Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqEventBus:
+      arguments: ['@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%']
+
+#  Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqDomainEventsConsumer:
+#    arguments:
+#      - '@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqConnection'
+#      - '@Codigito\Shared\Infrastructure\Bus\Event\DomainEventJsonDeserializer'
+#      - '%env(RABBITMQ_EXCHANGE)%'
+#      - '%env(RABBITMQ_MAX_RETRIES)%'
+
+    Codigito\Shared\Infraestructure\Command\ConfigureRabbitMqCommand:
+      arguments:
+        - '@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqConfigurer'
+        - '%env(RABBITMQ_EXCHANGE)%'
+        - !tagged codigito.domain_event_subscriber
+
+    # -- IMPLEMENTATIONS SELECTOR --
+    Codigito\Shared\Domain\Event\DomainEventBus: '@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqEventBus'    

@@ -8,7 +8,7 @@ final class Codigoce
 {
     final public static function numberToMoney(float $amount): string
     {
-        return number_format($amount, 2, ',', '.') . '€';
+        return number_format($amount, 2, ',', '.').'€';
     }
 
     final public static function secondsToHuman(int $seconds): string
