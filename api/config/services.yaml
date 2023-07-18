@@ -90,4 +90,4 @@ services:
         - !tagged codigito.domain_event_subscriber
 
     # -- IMPLEMENTATIONS SELECTOR --
-    Codigito\Shared\Domain\Event\DomainEventBus: '@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqEventBus'    
+    Codigito\Shared\Domain\Event\DomainEventBus: '@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqEventBus'
