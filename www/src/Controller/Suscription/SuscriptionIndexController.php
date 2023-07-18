@@ -6,11 +6,9 @@ namespace App\Controller\Suscription;
 
 use App\Controller\Base\BaseWebActionController;
 use App\Shared\Api\Api;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Throwable;
 
 class SuscriptionIndexController extends BaseWebActionController
 {
@@ -24,7 +22,7 @@ class SuscriptionIndexController extends BaseWebActionController
             $this->markAsSubscribed();
 
             return $this->json(['message' => $message]);
-        } catch (Throwable $th) {
+        } catch (\Throwable $th) {
             return $this->json(['error' => $th->getMessage()]);
         }
     }
@@ -36,7 +34,7 @@ class SuscriptionIndexController extends BaseWebActionController
             $message = Api::fidelizationMailingConfirm($id);
 
             return $this->json(['message' => $message]);
-        } catch (Throwable $th) {
+        } catch (\Throwable $th) {
             return $this->json(['error' => $th->getMessage()]);
         }
     }
