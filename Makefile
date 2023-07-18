@@ -24,6 +24,10 @@ recreatedb:
 format:
 	bash docker/bin/format.sh
 
+#{."."}>------------------------------------------
+#{."."}>- no docker need
+#{."."}>- startof.set.env
+#{."."}>------------------------------------------
 envdev:
 	cp api/.env.template api/.env
 	cp admin/.env.template admin/.env
@@ -32,3 +36,4 @@ envprod:
 	cp api/.env.production api/.env
 	cp admin/.env.production admin/.env
 	cp www/.env.production www/.env
+#>------------------------------------------
