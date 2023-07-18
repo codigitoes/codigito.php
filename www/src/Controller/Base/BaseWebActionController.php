@@ -17,13 +17,16 @@ abstract class BaseWebActionController extends AbstractController
     private const COPYRIGHT = '{.".} ~ {%s} {%s}';
     private ?int $tokenTimeout = null;
     private ?string $token = null;
+    private ?bool $subscribed = false;
+    private $session;
 
     public function __construct(RequestStack $requestStack)
     {
-        $session = $requestStack->getCurrentRequest()->getSession();
+        $this->session = $requestStack->getCurrentRequest()->getSession();
 
-        $this->tokenTimeout = $session->get('token_timeout', null);
-        $this->token = $session->get('token', null);
+        $this->tokenTimeout = $this->session->get('token_timeout', null);
+        $this->token = $this->session->get('token', null);
+        $this->subscribed = $this->session->get('subscribed', false);
     }
 
     protected function getTokenTimeout(): int|null
@@ -36,6 +39,12 @@ abstract class BaseWebActionController extends AbstractController
         return $this->token;
     }
 
+    protected function markAsSubscribed(): void
+    {
+        $this->session->set('subscribed', true);
+        $this->subscribed = true;
+    }
+
     protected function getRender(
         string $view,
         array $model
@@ -43,11 +52,12 @@ abstract class BaseWebActionController extends AbstractController
         $jsFileForView = str_replace('.html.twig', '.js.html.twig', $view);
         $jsFileEmptyForInclude = '/shared/empty.html.twig';
         $jsFileForInclude = $jsFileEmptyForInclude;
-        if (file_exists($this->getParameter('kernel.project_dir').DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$jsFileForView)) {
-            $jsFileForInclude = DIRECTORY_SEPARATOR.$jsFileForView;
+        if (file_exists($this->getParameter('kernel.project_dir') . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $jsFileForView)) {
+            $jsFileForInclude = DIRECTORY_SEPARATOR . $jsFileForView;
         }
 
         $model['title'] = self::TITLE;
+        $model['subscribed'] = $this->subscribed;
         $model['title_short'] = self::TITLE_SHORT;
         $model['author'] = self::AUTHOR;
         $model['copyright'] = sprintf(self::COPYRIGHT, date('Y'), self::AUTHOR);
@@ -64,7 +74,7 @@ abstract class BaseWebActionController extends AbstractController
             return null;
         }
 
-        return $_ENV['CDN_URL'].'/cdn/'.$uri;
+        return $_ENV['CDN_URL'] . '/cdn/' . $uri;
     }
 
     protected function extractErrorsFromResponseIfApply(ResponseInterface $response): array

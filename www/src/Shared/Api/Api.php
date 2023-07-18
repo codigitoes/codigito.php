@@ -2,10 +2,12 @@
 
 namespace App\Shared\Api;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
+use stdClass;
 
 class Api
 {
@@ -57,7 +59,35 @@ class Api
     ): string {
         $url = '/api/client/web/suscription';
 
-        return json_decode(self::post($url, $payload)->getBody()->getContents())->message;
+        $response = json_decode(self::post($url, $payload)->getBody()->getContents(), JSON_OBJECT_AS_ARRAY);
+        if (isset($response['message'])) {
+            return $response['message'];
+        }
+
+        $response =  'Ups! Prueba mas tarde :(';
+        if (isset($response['error'])) {
+            $response = $response['error'];
+        }
+
+        throw new Exception($response);
+    }
+
+    final public static function fidelizationMailingConfirm(
+        string $id
+    ): string {
+        $url = '/api/client/web/suscription/' . $id . '/confirm';
+
+        $response = json_decode(self::get($url)->getBody()->getContents(), JSON_OBJECT_AS_ARRAY);
+        if (isset($response['message'])) {
+            return $response['message'];
+        }
+
+        $response =  'Ups! Prueba mas tarde :(';
+        if (isset($response['error'])) {
+            $response = $response['error'];
+        }
+
+        throw new Exception($response);
     }
 
     final public static function contentBlogpostIndex(
