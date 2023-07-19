@@ -76,12 +76,12 @@ services:
     Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqEventBus:
       arguments: ['@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%']
 
-#  Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqDomainEventsConsumer:
-#    arguments:
-#      - '@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqConnection'
-#      - '@Codigito\Shared\Infrastructure\Bus\Event\DomainEventJsonDeserializer'
-#      - '%env(RABBITMQ_EXCHANGE)%'
-#      - '%env(RABBITMQ_MAX_RETRIES)%'
+    # Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqDomainEventsConsumer:
+    #   arguments:
+    #     - '@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqConnection'
+    #     - '@Codigito\Shared\Infrastructure\Bus\Event\DomainEventJsonDeserializer'
+    #     - '%env(RABBITMQ_EXCHANGE)%'
+    #     - '%env(RABBITMQ_MAX_RETRIES)%'
 
     Codigito\Shared\Infraestructure\Command\ConfigureRabbitMqCommand:
       arguments:

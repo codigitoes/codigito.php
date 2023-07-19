@@ -31,7 +31,5 @@ class MailingSendConfirmationOnMailingCreated implements DomainEventSubscriber
             ->html('<p>Haz click <a href="'.rtrim($_ENV['WWW_URL'], '/').'/suscription/'.$event->payload->value['id'].'/confirm">"aqui"</a> para confirmar tu suscripcion!!');
 
         // $this->mailer->send($email);
-
-        dd($email);
     }
 }
