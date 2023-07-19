@@ -89,5 +89,10 @@ services:
         - '%env(RABBITMQ_EXCHANGE)%'
         - !tagged codigito.domain_event_subscriber
 
+    Codigito\Shared\Infraestructure\Command\ConsumeRabbitMqCommand:
+      arguments:
+        - '@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqConnection'
+        - !tagged codigito.domain_event_subscriber
+
     # -- IMPLEMENTATIONS SELECTOR --
     Codigito\Shared\Domain\Event\DomainEventBus: '@Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqEventBus'
