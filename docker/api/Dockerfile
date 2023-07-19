@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     npm \
     unzip \
     gnupg \
+    supervisor \
     tar \
     sudo \
     wget \
@@ -37,9 +38,9 @@ RUN apt-get update && \
     libpng-dev
 
 RUN apt-get -y update \
-&& apt-get install -y libicu-dev \ 
-&& docker-php-ext-configure intl \
-&& docker-php-ext-install intl
+    && apt-get install -y libicu-dev \ 
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl
 
 RUN pecl install amqp
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
@@ -57,12 +58,13 @@ COPY ssl.key /etc/apache2/ssl/ssl.key
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # create user
+RUN echo markitos
 RUN groupadd -g 1000 markitos
-RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && chown -R markitos:markitos /var/www
+RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && echo "markitos:markitos" | chpasswd && adduser markitos sudo && chown -R markitos:markitos /var/www
+RUN echo "markitos    ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 # timezone
 RUN rm -f /etc/localtime ; ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
-
 # Install symfony
 RUN wget https://get.symfony.com/cli/installer -O - | bash
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
@@ -76,6 +78,9 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2dissite 000-default
 
+
+COPY rabbitmq.supervisor.conf /etc/supervisor/conf.d/rabbitmq.supervisor.conf
+
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -85,6 +90,7 @@ RUN chmod 777 /tmp/*
 WORKDIR /var/www/vhosts/codigito
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito/vendor/bin' >> /etc/bash.bashrc;
+RUN chmod -R 777 /var/log/supervisor
 
 #: la primera vez, bash /tmp/firstboot.sh
 
