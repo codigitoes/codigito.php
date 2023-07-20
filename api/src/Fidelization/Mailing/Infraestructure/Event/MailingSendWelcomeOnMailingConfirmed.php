@@ -28,8 +28,8 @@ class MailingSendWelcomeOnMailingConfirmed implements DomainEventSubscriber
             ->to($event->payload->value['email'])
             ->subject('Bienvenido al mailing. Ahora estarás al día !')
             ->text('Este email es para darte la bienvenida al aviso de nuevos contenidos! :)')
-            ->html('<p>Haz click  <a href="'.rtrim($_ENV['WWW_URL'], '/').'/list">"aqui"</a> para ir a ver nuestro contenido!!');
+            ->html('<p>Haz click  <a href="' . rtrim($_ENV['WWW_URL'], '/') . '/list">"aqui"</a> para ir a ver nuestro contenido!!');
 
-        // $this->mailer->send($email);
+        $this->mailer->send($email);
     }
 }
