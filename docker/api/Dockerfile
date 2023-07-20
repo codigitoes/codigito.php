@@ -89,7 +89,7 @@ COPY firstboot.sh /tmp
 RUN chmod 777 /tmp/*
 WORKDIR /var/www/vhosts/codigito
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
-RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito/vendor/bin' >> /etc/bash.bashrc;
+RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc;
 RUN chmod -R 777 /var/log/supervisor
 
 #: la primera vez, bash /tmp/firstboot.sh

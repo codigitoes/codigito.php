@@ -10,10 +10,10 @@ networks:
             config:
                 - subnet: 172.27.102.0/24
 services:
-    codigito.api:
+    api.codigito.es:
         user: "1000:1000"
         build: api
-        container_name: 'codigito.api'
+        container_name: 'api.codigito.es'
         ports:
             - 80:80
             - 443:443
@@ -21,8 +21,8 @@ services:
             - ../api/:/var/www/vhosts/codigito.es/
         extra_hosts:
             - 'mariadb:172.27.102.12'
-            - 'codigito.cdn:127.0.0.1'
-        hostname: codigito.api
+            - 'cdn.codigito.es:127.0.0.1'
+        hostname: api.codigito.es
         networks:
             codigito-network:
                 ipv4_address: 172.27.102.11
@@ -38,10 +38,10 @@ services:
             codigito-network:
                 ipv4_address: 172.27.102.12
 
-    codigito.admin:
+    admin.codigito.es:
          user: "1000:1000"
          build: admin
-         container_name: 'codigito.admin'
+         container_name: 'admin.codigito.es'
          ports:
              - 8002:80
              - 4432:443
@@ -49,17 +49,17 @@ services:
              - ../admin/:/var/www/vhosts/codigito.es/
          extra_hosts:
              - 'mariadb:172.27.102.12'
-             - 'codigito.api:172.27.102.11'
-             - 'codigito.cdn:172.27.102.11'
-         hostname: codigito.admin
+             - 'api.codigito.es:172.27.102.11'
+             - 'cdn.codigito.es:172.27.102.11'
+         hostname: admin.codigito.es
          networks:
              codigito-network:
                  ipv4_address: 172.27.102.13
 
-    codigito.www:
+    wwww.codigito.es:
          user: "1000:1000"
          build: www
-         container_name: 'codigito.www'
+         container_name: 'www.codigito.es'
          ports:
              - 8003:80
              - 4433:443
@@ -67,9 +67,9 @@ services:
              - ../www/:/var/www/vhosts/codigito.es/
          extra_hosts:
              - 'mariadb:172.27.102.12'
-             - 'codigito.api:172.27.102.11'
-             - 'codigito.cdn:172.27.102.11'
-         hostname: codigito.www
+             - 'api.codigito.es:172.27.102.11'
+             - 'cdn.codigito.es:172.27.102.11'
+         hostname: www.codigito.es
          networks:
              codigito-network:
                  ipv4_address: 172.27.102.14             
