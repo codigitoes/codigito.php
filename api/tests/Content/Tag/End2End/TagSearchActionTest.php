@@ -20,28 +20,28 @@ class TagSearchActionTest extends CoreContentKernelTest
         $tag2 = $this->TagPersisted($this->getManager(), $this->TagFromValues(null, new TagName($searchName.'bbbbbbb')));
 
         $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=1&limit=1';
-        $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $tags     = json_decode(
             $response->getBody()->getContents()
         )->tags;
         $this->assertEquals($tag1->id->value, $tags[0]->id);
 
         $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=2&limit=1';
-        $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $tags     = json_decode(
             $response->getBody()->getContents()
         )->tags;
         $this->assertEquals($tag2->id->value, $tags[0]->id);
 
         $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=4&limit=1';
-        $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $tags     = json_decode(
             $response->getBody()->getContents()
         )->tags;
         $this->assertEmpty($tags);
 
         $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=1&limit=100';
-        $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $tags     = json_decode(
             $response->getBody()->getContents()
         )->tags;
@@ -56,8 +56,8 @@ class TagSearchActionTest extends CoreContentKernelTest
         $tag1 = $this->TagPersisted($this->getManager());
         $tag2 = $this->TagPersisted($this->getManager());
 
-        $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get(self::ENDPOINT, $options);
+        $options  = $this->api->getAdminOptions($this->getAdminToken());
+        $response = $this->api->get(self::ENDPOINT, $options);
         $tags     = json_decode(
             $response->getBody()->getContents()
         )->tags;

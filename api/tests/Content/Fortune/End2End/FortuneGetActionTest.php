@@ -13,23 +13,23 @@ class FortuneGetActionTest extends CoreContentKernelTest
 
     public function testItResultARandomFortuneEachCall(): void
     {
-        $options = $this->getAdminOptions($this->getAdminToken());
+        $options = $this->api->getAdminOptions($this->getAdminToken());
 
-        $response = $this->get(self::ENDPOINT, $options);
+        $response = $this->api->get(self::ENDPOINT, $options);
         $fortune1 = json_decode(
             $response->getBody()->getContents()
         )->fortune;
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertIsString($fortune1);
 
-        $response = $this->get(self::ENDPOINT, $options);
+        $response = $this->api->get(self::ENDPOINT, $options);
         $fortune2 = json_decode(
             $response->getBody()->getContents()
         )->fortune;
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertIsString($fortune2);
 
-        $response = $this->get(self::ENDPOINT, $options);
+        $response = $this->api->get(self::ENDPOINT, $options);
         $fortune3 = json_decode(
             $response->getBody()->getContents()
         )->fortune;

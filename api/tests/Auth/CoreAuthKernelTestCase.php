@@ -9,7 +9,7 @@ use Codigito\Auth\Credential\Domain\ValueObject\CredentialEmail;
 use Codigito\Auth\Credential\Domain\ValueObject\CredentialPassword;
 use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
 use Codigito\Shared\Domain\Helper\Codigito;
-use Codigito\Tests\Shared\Fixture\TestApiClientFactory;
+use Codigito\Tests\Shared\Infraestructure\ApiClient;
 use Codigito\Tests\Shared\Fixture\TestAuthFactory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,10 +19,17 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 abstract class CoreAuthKernelTestCase extends KernelTestCase
 {
     use TestAuthFactory;
-    use TestApiClientFactory;
 
-    private ?array $admin = null;
-    private ?array $user  = null;
+    private ?array $admin     = null;
+    private ?array $user      = null;
+    protected ?ApiClient $api = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->api = new ApiClient();
+    }
 
     protected function getAdminCredential(): Credential
     {
@@ -66,7 +73,7 @@ abstract class CoreAuthKernelTestCase extends KernelTestCase
         );
         $this->admin = [
             'credential' => $adminCredential,
-            'token'      => $this->login($adminCredential->email->value, $adminCredential->password->value),
+            'token'      => $this->api->login($adminCredential->email->value, $adminCredential->password->value),
         ];
         $userCredential = $this->CredentialPersisted(
             $this->getManager(),
@@ -78,7 +85,7 @@ abstract class CoreAuthKernelTestCase extends KernelTestCase
         );
         $this->user = [
             'credential' => $userCredential,
-            'token'      => $this->login($userCredential->email->value, $userCredential->password->value),
+            'token'      => $this->api->login($userCredential->email->value, $userCredential->password->value),
         ];
     }
 

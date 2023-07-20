@@ -16,21 +16,21 @@ class MailingCreateActionTest extends CoreFidelizationKernelTest
 
     public function testItShouldResultADuplicateErrorIfTryCreateExistingEmail(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'email' => Codigito::randomEmail(),
             ],
         ];
         $options  = array_merge($auth, $body);
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
 
         $id = json_decode(
             $response->getBody()->getContents()
         )->id;
         $actual = $this->MailingGetModelById($this->getManager(), $id);
 
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;
@@ -43,7 +43,7 @@ class MailingCreateActionTest extends CoreFidelizationKernelTest
 
     public function testItShouldCreateAnUnconfirmedEmail(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'email' => Codigito::randomEmail(),
@@ -51,7 +51,7 @@ class MailingCreateActionTest extends CoreFidelizationKernelTest
         ];
         $options = array_merge($auth, $body);
 
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $id       = json_decode(
             $response->getBody()->getContents()
         )->id;
@@ -65,13 +65,13 @@ class MailingCreateActionTest extends CoreFidelizationKernelTest
 
     public function testItShouldResultAnErrorIfEmailNotFound(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [],
         ];
         $options = array_merge($auth, $body);
 
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;

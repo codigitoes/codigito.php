@@ -19,7 +19,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
 
     public function testItShouldCreateABlogpost(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'tags'        => $this->getTagName().','.$this->getTagName(),
@@ -28,7 +28,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
             ],
         ];
         $options  = array_merge($auth, $body);
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $id       = json_decode(
             $response->getBody()->getContents()
         )->id;
@@ -41,12 +41,12 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
 
     public function testItShouldResultFixedErrorsIfImageAndNameTagsNotFound(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [],
         ];
         $options  = array_merge($auth, $body);
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;
@@ -64,7 +64,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
 
     public function testItShouldResultFixedErrorsIfAnyTagNameNotFound(): void
     {
-        $auth    = $this->getAdminOptions($this->getAdminToken());
+        $auth    = $this->api->getAdminOptions($this->getAdminToken());
         $newName = 'anynotfound'.Codigito::randomString();
         $body    = [
             'json' => [
@@ -74,7 +74,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
             ],
         ];
         $options  = array_merge($auth, $body);
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;
@@ -87,7 +87,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
 
     public function testItShouldResultAnErrorIfImageNotFound(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'tags' => $this->getTagName(),
@@ -96,7 +96,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         ];
         $options = array_merge($auth, $body);
 
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;
@@ -108,7 +108,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
 
     public function testItShouldResultAImageErrorIfImageItsNotAValidBase64Image(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'tags'        => $this->getTagName(),
@@ -118,7 +118,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         ];
         $options = array_merge($auth, $body);
 
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;

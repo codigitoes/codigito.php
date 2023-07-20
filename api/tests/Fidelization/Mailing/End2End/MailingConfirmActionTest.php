@@ -18,19 +18,19 @@ class MailingConfirmActionTest extends CoreFidelizationKernelTest
 
     public function testItShouldConfirmAnUnconfirmedEmail(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'email' => Codigito::randomEmail(),
             ],
         ];
         $options  = array_merge($auth, $body);
-        $response = $this->post(self::ENDPOINT_CREATE, $options);
+        $response = $this->api->post(self::ENDPOINT_CREATE, $options);
         $id       = json_decode(
             $response->getBody()->getContents()
         )->id;
 
-        $response           = $this->get(sprintf(self::ENDPOINT, $id), $options);
+        $response           = $this->api->get(sprintf(self::ENDPOINT, $id), $options);
         $idFromConfirmation = json_decode(
             $response->getBody()->getContents()
         )->id;
@@ -45,7 +45,7 @@ class MailingConfirmActionTest extends CoreFidelizationKernelTest
 
     public function testItShouldResultAMailingNotFound(): void
     {
-        $response = $this->getAsAdmin(sprintf(self::ENDPOINT, MailingId::randomUuidV4()), $this->getAdminToken());
+        $response = $this->api->getAsAdmin(sprintf(self::ENDPOINT, MailingId::randomUuidV4()), $this->getAdminToken());
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;
@@ -57,7 +57,7 @@ class MailingConfirmActionTest extends CoreFidelizationKernelTest
 
     public function testItShouldResultAnInvalidMailingId(): void
     {
-        $response = $this->getAsAdmin(sprintf(self::ENDPOINT, 'invalid-id'), $this->getAdminToken());
+        $response = $this->api->getAsAdmin(sprintf(self::ENDPOINT, 'invalid-id'), $this->getAdminToken());
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;

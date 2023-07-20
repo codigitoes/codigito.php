@@ -17,12 +17,12 @@ class TagCreateActionTest extends CoreContentKernelTest
 
     public function testItShouldResultFixedErrorsIfEmailImageAndNameNotFound(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [],
         ];
         $options  = array_merge($auth, $body);
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;
@@ -39,7 +39,7 @@ class TagCreateActionTest extends CoreContentKernelTest
 
     public function testItShouldResultAnErrorIfNameNotFound(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'base64image' => self::$BASE64_IMAGE,
@@ -47,7 +47,7 @@ class TagCreateActionTest extends CoreContentKernelTest
         ];
         $options = array_merge($auth, $body);
 
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;
@@ -59,7 +59,7 @@ class TagCreateActionTest extends CoreContentKernelTest
 
     public function testItShouldResultAnErrorIfImageNotFound(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'name'        => Codigito::randomString(),
@@ -68,7 +68,7 @@ class TagCreateActionTest extends CoreContentKernelTest
         ];
         $options = array_merge($auth, $body);
 
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;
@@ -80,7 +80,7 @@ class TagCreateActionTest extends CoreContentKernelTest
 
     public function testItShouldResultADuplicateTagIfNameExists(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'name'        => Codigito::randomString(),
@@ -89,13 +89,13 @@ class TagCreateActionTest extends CoreContentKernelTest
         ];
         $options = array_merge($auth, $body);
 
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $id       = json_decode(
             $response->getBody()->getContents()
         )->id;
         $actual = $this->TagGetModelById($this->getManager(), $id);
 
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;
@@ -110,7 +110,7 @@ class TagCreateActionTest extends CoreContentKernelTest
 
     public function testItShouldResultAImageErrorIfImageItsNotAValidBase64Image(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'name'        => Codigito::randomString(),
@@ -119,7 +119,7 @@ class TagCreateActionTest extends CoreContentKernelTest
         ];
         $options = array_merge($auth, $body);
 
-        $response = $this->post(self::ENDPOINT, $options);
+        $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
         )->errors;

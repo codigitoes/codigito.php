@@ -27,7 +27,7 @@ class LoginActionTest extends CoreAuthKernelTestCase
             CredentialRoles::user()
         );
 
-        $token = $this->login($userCredential->email->value, $userCredential->password->value);
+        $token = $this->api->login($userCredential->email->value, $userCredential->password->value);
         self::assertIsString($token);
 
         $this->CredentialDelete(

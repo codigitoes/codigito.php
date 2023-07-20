@@ -17,8 +17,8 @@ class BlogcontentGetActionTest extends CoreContentKernelTest
 
     public function testItResultAnInvalidBlogcontentIdIfGetNonValidUuidV4Id(): void
     {
-        $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get($this->endpoint($this->getBlogpostId(), 'its not an uuid v4 id'), $options);
+        $options  = $this->api->getAdminOptions($this->getAdminToken());
+        $response = $this->api->get($this->endpoint($this->getBlogpostId(), 'its not an uuid v4 id'), $options);
 
         $errors = json_decode(
             $response->getBody()->getContents()
@@ -32,8 +32,8 @@ class BlogcontentGetActionTest extends CoreContentKernelTest
 
     public function testItResultABlogcontentNotFoundIfGetNonExistingBlogcontent(): void
     {
-        $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get($this->endpoint($this->getBlogpostId(), BlogcontentId::randomUuidV4()), $options);
+        $options  = $this->api->getAdminOptions($this->getAdminToken());
+        $response = $this->api->get($this->endpoint($this->getBlogpostId(), BlogcontentId::randomUuidV4()), $options);
 
         $errors = json_decode(
             $response->getBody()->getContents()
@@ -48,8 +48,8 @@ class BlogcontentGetActionTest extends CoreContentKernelTest
     public function testItShouldGetAnExistingBlogcontent(): void
     {
         $blogcontent = $this->BlogcontentPersisted($this->getManager());
-        $options     = $this->getAdminOptions($this->getAdminToken());
-        $response    = $this->get($this->endpoint($this->getBlogpostId(), $blogcontent->id->value), $options);
+        $options     = $this->api->getAdminOptions($this->getAdminToken());
+        $response    = $this->api->get($this->endpoint($this->getBlogpostId(), $blogcontent->id->value), $options);
 
         $actual = json_decode($response->getBody()->getContents())->blogcontent;
 

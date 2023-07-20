@@ -21,28 +21,28 @@ class MailingSearchActionTest extends CoreFidelizationKernelTest
         $mailing2 = $this->MailingPersisted($this->getManager(), $this->MailingFromValues(null, new MailingEmail($searchName.Codigito::randomEmail())));
 
         $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=1&limit=1';
-        $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $mailings = json_decode(
             $response->getBody()->getContents()
         )->mailings;
         $this->assertEquals($mailing2->id->value, $mailings[0]->id);
 
         $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=2&limit=1';
-        $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $mailings = json_decode(
             $response->getBody()->getContents()
         )->mailings;
         $this->assertEquals($mailing1->id->value, $mailings[0]->id);
 
         $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=4&limit=1';
-        $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $mailings = json_decode(
             $response->getBody()->getContents()
         )->mailings;
         $this->assertEmpty($mailings);
 
         $endpoint = self::ENDPOINT.'?pattern='.$searchName.'&page=1&limit=100';
-        $response = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $mailings = json_decode(
             $response->getBody()->getContents()
         )->mailings;
@@ -57,8 +57,8 @@ class MailingSearchActionTest extends CoreFidelizationKernelTest
         $mailing1 = $this->MailingPersisted($this->getManager());
         $mailing2 = $this->MailingPersisted($this->getManager());
 
-        $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get(self::ENDPOINT, $options);
+        $options  = $this->api->getAdminOptions($this->getAdminToken());
+        $response = $this->api->get(self::ENDPOINT, $options);
         $mailings = json_decode(
             $response->getBody()->getContents()
         )->mailings;

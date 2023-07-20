@@ -27,9 +27,9 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
             'password' => Codigito::randomString(),
             'roles'    => CredentialRoles::user()->value,
         ];
-        $options         = $this->getAdminOptions($this->getAdminToken());
+        $options         = $this->api->getAdminOptions($this->getAdminToken());
         $options['json'] = $parameters;
-        $response        = $this->post(
+        $response        = $this->api->post(
             self::ENDPOINT,
             $options
         );
@@ -57,9 +57,9 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
 
     public function testItShouldResultFixedErrorsIfEmailPasswordRolesNotFound(): void
     {
-        $options         = $this->getAdminOptions($this->getAdminToken());
+        $options         = $this->api->getAdminOptions($this->getAdminToken());
         $options['json'] = [];
-        $response        = $this->post(
+        $response        = $this->api->post(
             self::ENDPOINT,
             $options
         );
@@ -79,13 +79,13 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
 
     public function testItShouldResultAnErrorIfEmailNotFound(): void
     {
-        $options         = $this->getAdminOptions($this->getAdminToken());
+        $options         = $this->api->getAdminOptions($this->getAdminToken());
         $options['json'] = [
             'password' => Codigito::randomString(),
             'roles'    => CredentialRoles::admin()->value,
         ];
 
-        $response = $this->post(
+        $response = $this->api->post(
             self::ENDPOINT,
             $options
         );
@@ -100,13 +100,13 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
 
     public function testItShouldResultAnErrorIfPasswordNotFound(): void
     {
-        $options         = $this->getAdminOptions($this->getAdminToken());
+        $options         = $this->api->getAdminOptions($this->getAdminToken());
         $options['json'] = [
             'email' => Codigito::randomEmail(),
             'roles' => CredentialRoles::admin()->value,
         ];
 
-        $response = $this->post(
+        $response = $this->api->post(
             self::ENDPOINT,
             $options
         );
@@ -121,13 +121,13 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
 
     public function testItShouldResultADuplicateCredentialIfEmailExists(): void
     {
-        $options         = $this->getAdminOptions($this->getAdminToken());
+        $options         = $this->api->getAdminOptions($this->getAdminToken());
         $options['json'] = [
             'email'    => Codigito::randomEmail(),
             'password' => Codigito::randomString(),
             'roles'    => CredentialRoles::admin()->value,
         ];
-        $response = $this->post(
+        $response = $this->api->post(
             self::ENDPOINT,
             $options
         );
@@ -136,7 +136,7 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
         )->id;
 
         $response = null;
-        $response = $this->post(
+        $response = $this->api->post(
             self::ENDPOINT,
             $options
         );

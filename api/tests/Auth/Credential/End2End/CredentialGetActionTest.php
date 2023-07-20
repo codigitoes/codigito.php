@@ -17,8 +17,8 @@ class CredentialGetActionTest extends CoreAuthKernelTestCase
 
     public function testItResultAnInvalidCredentialIdIfGetNonValidUuidV4Id(): void
     {
-        $options  = $this->getAdminOptions($this->getAdminToken());
-        $response = $this->get(
+        $options  = $this->api->getAdminOptions($this->getAdminToken());
+        $response = $this->api->get(
             self::ENDPOINT.'NO_VALID_VALUE',
             $options
         );
@@ -32,9 +32,9 @@ class CredentialGetActionTest extends CoreAuthKernelTestCase
 
     public function testItResultACredentialNotFoundIfGetNonExistingCredential(): void
     {
-        $options = $this->getAdminOptions($this->getAdminToken());
+        $options = $this->api->getAdminOptions($this->getAdminToken());
 
-        $response = $this->get(
+        $response = $this->api->get(
             self::ENDPOINT.CredentialId::randomUuidV4(),
             $options
         );
@@ -49,9 +49,9 @@ class CredentialGetActionTest extends CoreAuthKernelTestCase
     public function testItShouldGetAnExistingCredential(): void
     {
         $expected = $this->getUserCredential();
-        $response = $this->get(
+        $response = $this->api->get(
             self::ENDPOINT.$expected->id->value,
-            $this->getAdminOptions($this->getAdminToken())
+            $this->api->getAdminOptions($this->getAdminToken())
         );
 
         $actual = json_decode($response->getBody()->getContents())->credential;

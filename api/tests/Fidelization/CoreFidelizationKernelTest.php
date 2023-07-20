@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Codigito\Tests\Shared\Fixture\TestAuthFactory;
 use Codigito\Shared\Domain\Helper\Codigito;
-use Codigito\Tests\Shared\Fixture\TestApiClientFactory;
+use Codigito\Tests\Shared\Infraestructure\ApiClient;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Codigito\Tests\Shared\Fixture\TestFidelizationFactory;
 use Codigito\Fidelization\Mailing\Domain\Model\Mailing;
@@ -21,10 +21,17 @@ abstract class CoreFidelizationKernelTest extends KernelTestCase
 {
     use TestFidelizationFactory;
     use TestAuthFactory;
-    use TestApiClientFactory;
 
     private ?Mailing $mailing = null;
     private ?array $admin     = null;
+    protected ?ApiClient $api = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->api = new ApiClient();
+    }
 
     protected function setUp(): void
     {
@@ -41,7 +48,7 @@ abstract class CoreFidelizationKernelTest extends KernelTestCase
         );
         $this->admin = [
             'credential' => $adminCredential,
-            'token'      => $this->login($adminCredential->email->value, $adminCredential->password->value),
+            'token'      => $this->api->login($adminCredential->email->value, $adminCredential->password->value),
         ];
     }
 

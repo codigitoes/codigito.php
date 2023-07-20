@@ -11,7 +11,7 @@ use Codigito\Content\Blogpost\Domain\Model\Blogpost;
 use Codigito\Content\Blogcontent\Domain\Model\Blogcontent;
 use Codigito\Content\Tag\Domain\Model\Tag;
 use Codigito\Shared\Domain\Helper\Codigito;
-use Codigito\Tests\Shared\Fixture\TestApiClientFactory;
+use Codigito\Tests\Shared\Infraestructure\ApiClient;
 use Codigito\Tests\Shared\Fixture\TestAuthFactory;
 use Codigito\Tests\Shared\Fixture\TestContentBlogcontentFactory;
 use Codigito\Tests\Shared\Fixture\TestContentBlogpostFactory;
@@ -30,13 +30,20 @@ abstract class CoreContentKernelTest extends KernelTestCase
     use TestContentBlogcontentFactory;
     use TestContentFortuneFactory;
     use TestAuthFactory;
-    use TestApiClientFactory;
 
     private ?Fortune $fortune         = null;
     private ?Blogcontent $blogcontent = null;
     private ?Blogpost $blogpost       = null;
     private ?Tag $tag                 = null;
     private ?array $admin             = null;
+    protected ?ApiClient $api         = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->api = new ApiClient();
+    }
 
     protected function setUp(): void
     {
@@ -56,7 +63,7 @@ abstract class CoreContentKernelTest extends KernelTestCase
         );
         $this->admin = [
             'credential' => $adminCredential,
-            'token'      => $this->login($adminCredential->email->value, $adminCredential->password->value),
+            'token'      => $this->api->login($adminCredential->email->value, $adminCredential->password->value),
         ];
     }
 

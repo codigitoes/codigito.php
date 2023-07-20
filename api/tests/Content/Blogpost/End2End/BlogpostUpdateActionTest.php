@@ -15,7 +15,7 @@ class BlogpostUpdateActionTest extends CoreContentKernelTest
     {
         $previousName  = $this->getBlogpostName();
         $previousImage = $this->getBlogpostImage();
-        $auth          = $this->getAdminOptions($this->getAdminToken());
+        $auth          = $this->api->getAdminOptions($this->getAdminToken());
         $body          = [
             'json' => [
                 'name'        => 'anynewname',
@@ -24,7 +24,7 @@ class BlogpostUpdateActionTest extends CoreContentKernelTest
         ];
         $options = array_merge($auth, $body);
 
-        $response = $this->postAsAdmin(
+        $response = $this->api->postAsAdmin(
             self::ENDPOINT.$this->getBlogpostId(),
             $this->getAdminToken(),
             $options

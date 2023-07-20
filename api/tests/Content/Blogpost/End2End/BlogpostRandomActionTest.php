@@ -19,11 +19,11 @@ class BlogpostRandomActionTest extends CoreContentKernelTest
         $blogpost2  = $this->BlogpostPersisted($this->getManager(), $this->BlogpostFromValues(null, new BlogpostName($searchName)));
         $blogpost3  = $this->BlogpostPersisted($this->getManager(), $this->BlogpostFromValues(null, new BlogpostName($searchName)));
 
-        $response   = $this->getAsAdmin(self::ENDPOINT, $this->getAdminToken());
+        $response   = $this->api->getAsAdmin(self::ENDPOINT, $this->getAdminToken());
         $blogposts1 = json_decode(
             $response->getBody()->getContents()
         )->blogposts;
-        $response   = $this->getAsAdmin(self::ENDPOINT, $this->getAdminToken());
+        $response   = $this->api->getAsAdmin(self::ENDPOINT, $this->getAdminToken());
         $blogposts2 = json_decode(
             $response->getBody()->getContents()
         )->blogposts;

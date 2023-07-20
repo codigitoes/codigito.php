@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Codigito\Tests\Shared\Fixture;
+namespace Codigito\Tests\Shared\Infraestructure;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 
-trait TestApiClientFactory
+class ApiClient
 {
-    protected function login(string $email, string $password): string
+    public function login(string $email, string $password): string
     {
         $response = $this->post(
             '/api/login_check',
@@ -22,7 +22,7 @@ trait TestApiClientFactory
         return json_decode($response->getBody()->getContents())->token;
     }
 
-    protected function getAdminOptions(string $token): array
+    public function getAdminOptions(string $token): array
     {
         return [
             'headers' => [
@@ -32,21 +32,21 @@ trait TestApiClientFactory
         ];
     }
 
-    protected function requestGetErrors(string $endpoint, array $options): array
+    public function requestGetErrors(string $endpoint, array $options): array
     {
         $response = $this->get($endpoint.'NO_VALID_VALUE', $options);
 
         return json_decode($response->getBody()->getContents())->errors;
     }
 
-    protected function requestGetId(string $endpoint, array $options): string
+    public function requestGetId(string $endpoint, array $options): string
     {
         $response = $this->get($endpoint.'NO_VALID_VALUE', $options);
 
         return json_decode($response->getBody()->getContents())->id;
     }
 
-    protected function delete(string $endpoint, array $options = []): ResponseInterface
+    public function delete(string $endpoint, array $options = []): ResponseInterface
     {
         return (new Client(
             [
@@ -63,7 +63,7 @@ trait TestApiClientFactory
         );
     }
 
-    protected function post(string $endpoint, array $options = []): ResponseInterface
+    public function post(string $endpoint, array $options = []): ResponseInterface
     {
         return (new Client(
             [
@@ -77,7 +77,7 @@ trait TestApiClientFactory
         );
     }
 
-    protected function postAsAdmin(string $endpoint, string $token, array $options = []): ResponseInterface
+    public function postAsAdmin(string $endpoint, string $token, array $options = []): ResponseInterface
     {
         return $this->post(
             $endpoint,
@@ -85,7 +85,7 @@ trait TestApiClientFactory
         );
     }
 
-    protected function patch(string $endpoint, array $options = []): ResponseInterface
+    public function patch(string $endpoint, array $options = []): ResponseInterface
     {
         return (new Client(
             [
@@ -99,7 +99,7 @@ trait TestApiClientFactory
         );
     }
 
-    protected function patchAsAdmin(string $endpoint, string $token, array $options = []): ResponseInterface
+    public function patchAsAdmin(string $endpoint, string $token, array $options = []): ResponseInterface
     {
         return $this->patch(
             $endpoint,
@@ -107,7 +107,7 @@ trait TestApiClientFactory
         );
     }
 
-    protected function get(string $endpoint, array $options = []): ResponseInterface
+    public function get(string $endpoint, array $options = []): ResponseInterface
     {
         return (new Client(
             [
@@ -121,7 +121,7 @@ trait TestApiClientFactory
         );
     }
 
-    protected function getAsAdmin(string $endpoint, string $token, array $options = []): ResponseInterface
+    public function getAsAdmin(string $endpoint, string $token, array $options = []): ResponseInterface
     {
         return $this->get(
             $endpoint,
@@ -129,7 +129,7 @@ trait TestApiClientFactory
         );
     }
 
-    protected function composeEndpointUrl($uri): string
+    public function composeEndpointUrl($uri): string
     {
         return $_ENV['API_URL'].ltrim($uri, '/');
     }

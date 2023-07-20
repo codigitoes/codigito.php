@@ -18,7 +18,7 @@ class BlogcontentUpdateActionTest extends CoreContentKernelTest
     {
         $previousName  = $this->getBlogcontentHtml();
         $previousImage = $this->getBlogcontentImage();
-        $auth          = $this->getAdminOptions($this->getAdminToken());
+        $auth          = $this->api->getAdminOptions($this->getAdminToken());
         $body          = [
             'json' => [
                 'html'        => 'anynewhtml',
@@ -28,7 +28,7 @@ class BlogcontentUpdateActionTest extends CoreContentKernelTest
         ];
         $options = array_merge($auth, $body);
 
-        $response = $this->postAsAdmin(
+        $response = $this->api->postAsAdmin(
             $this->endpoint($this->getBlogpostId(), $this->getBlogcontentId()),
             $this->getAdminToken(),
             $options
@@ -51,7 +51,7 @@ class BlogcontentUpdateActionTest extends CoreContentKernelTest
 
     public function testItShouldAnErrorIfBlogpostidNotFound(): void
     {
-        $auth = $this->getAdminOptions($this->getAdminToken());
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
                 'youtube'     => self::$YOUTUBE,
@@ -62,7 +62,7 @@ class BlogcontentUpdateActionTest extends CoreContentKernelTest
         $options = array_merge($auth, $body);
 
         $id       = BlogpostId::randomUuidV4();
-        $response = $this->postAsAdmin(
+        $response = $this->api->postAsAdmin(
             $this->endpoint($id, $this->getBlogcontentId()),
             $this->getAdminToken(),
             $options

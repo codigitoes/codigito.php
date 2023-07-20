@@ -20,27 +20,27 @@ class BlogcontentSearchActionTest extends CoreContentKernelTest
         $blogcontent2 = $this->BlogcontentPersisted($this->getManager(), $this->BlogcontentFromValues(null, null, null, null, new BlogcontentHtml($searchName.Codigito::randomString())));
 
         $endpoint     = $this->endpoint($this->getBlogpostId(), null, '?pattern='.$searchName.'&page=1&limit=1');
-        $response     = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response     = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $blogcontents = json_decode(
             $response->getBody()->getContents()
         )->blogcontents;
         $this->assertEquals($blogcontent1->id->value, $blogcontents[0]->id);
         $endpoint     = $this->endpoint($this->getBlogpostId(), null, '?pattern='.$searchName.'&page=2&limit=1');
-        $response     = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response     = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $blogcontents = json_decode(
             $response->getBody()->getContents()
         )->blogcontents;
         $this->assertEquals($blogcontent2->id->value, $blogcontents[0]->id);
 
         $endpoint     = $this->endpoint($this->getBlogpostId(), null, '?pattern='.$searchName.'&page=4&limit=1');
-        $response     = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response     = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $blogcontents = json_decode(
             $response->getBody()->getContents()
         )->blogcontents;
         $this->assertEmpty($blogcontents);
 
         $endpoint     = $this->endpoint($this->getBlogpostId(), null, '?pattern='.$searchName.'&page=1&limit=100');
-        $response     = $this->getAsAdmin($endpoint, $this->getAdminToken());
+        $response     = $this->api->getAsAdmin($endpoint, $this->getAdminToken());
         $blogcontents = json_decode(
             $response->getBody()->getContents()
         )->blogcontents;
@@ -55,8 +55,8 @@ class BlogcontentSearchActionTest extends CoreContentKernelTest
         $blogcontent1 = $this->BlogcontentPersisted($this->getManager());
         $blogcontent2 = $this->BlogcontentPersisted($this->getManager());
 
-        $options      = $this->getAdminOptions($this->getAdminToken());
-        $response     = $this->get($this->endpoint($this->getBlogpostId()), $options);
+        $options      = $this->api->getAdminOptions($this->getAdminToken());
+        $response     = $this->api->get($this->endpoint($this->getBlogpostId()), $options);
         $blogcontents = json_decode(
             $response->getBody()->getContents()
         )->blogcontents;
