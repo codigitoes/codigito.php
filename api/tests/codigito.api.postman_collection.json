@@ -26,10 +26,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost/api/login_check",
+									"raw": "http://api.codigito.es/api/login_check",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"api",
+										"codigito",
+										"es"
 									],
 									"path": [
 										"api",
@@ -74,10 +76,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost/api/admin/fidelization/mailings",
+									"raw": "http://api.codigito.es/api/admin/fidelization/mailings",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"api",
+										"codigito",
+										"es"
 									],
 									"path": [
 										"api",
@@ -272,6 +276,55 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "ExternalServices",
+			"item": [
+				{
+					"name": "Loki",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require('moment');",
+									"pm.environment.set('unixns', Math.round(moment() * 1000000));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"streams\": [{\n\t\t\"stream\": {\n\t\t\t\"cluster\": \"cluster-01\",\n\t\t\t\"instance\": \"instance-01\"\n\t\t},\n\t\t\"values\": [\n\t\t\t[\"{{unixns}}\", \"Bienvenidos al curso!\"]\n\t\t]\n\t}]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3100/loki/api/v1/push",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"loki",
+								"api",
+								"v1",
+								"push"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

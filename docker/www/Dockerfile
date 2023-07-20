@@ -33,7 +33,6 @@ RUN apt-get update && \
     libzip-dev \
     libjpeg62-turbo-dev \
     libpng-dev
-RUN pecl install xdebug
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 

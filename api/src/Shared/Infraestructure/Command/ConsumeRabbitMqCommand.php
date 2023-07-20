@@ -33,19 +33,19 @@ final class ConsumeRabbitMqCommand extends Command
 
             $output->writeln('');
             $output->writeln('{.".}> consume iniciado');
-            $output->writeln('{.".}> QUEUE: ' . $queueName);
+            $output->writeln('{.".}> QUEUE: '.$queueName);
 
             try {
                 $queue->consume(function ($envelope, $queue) use ($output): void {
                     $output->writeln('');
                     $body      = json_decode($envelope->getBody());
                     $eventName = $body->data->type;
-                    $output->writeln('{.".}>>>> consumiendo mensaje recibido para el evento: ' . $eventName);
+                    $output->writeln('{.".}>>>> consumiendo mensaje recibido para el evento: '.$eventName);
                     $output->writeln('{.".}>>>> buscando subscriber....');
                     foreach ($this->subscribers as $aSubscriber) {
                         if (in_array($eventName, $aSubscriber->subscribedTo())) {
                             $event = DomainEvent::fromPrimitives($body->data->type, (array) $body->data->attributes->body);
-                            $output->writeln('{.".}>>>> subscriber encontrado, ejecutando service con event(JSON): ' . json_encode($event));
+                            $output->writeln('{.".}>>>> subscriber encontrado, ejecutando service con event(JSON): '.json_encode($event));
                             $aSubscriber->handlerEvent($event);
                             $queue->ack($envelope->getDeliveryTag());
                             $output->writeln('{.".}>>>> mensaje recibido consumido ok');

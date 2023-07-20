@@ -24,7 +24,8 @@ class MailingCreateActionTest extends CoreFidelizationKernelTest
         ];
         $options  = array_merge($auth, $body);
         $response = $this->post(self::ENDPOINT, $options);
-        $id       = json_decode(
+
+        $id = json_decode(
             $response->getBody()->getContents()
         )->id;
         $actual = $this->MailingGetModelById($this->getManager(), $id);

@@ -81,7 +81,7 @@ services:
     # el dsn de conexion es: amqp://guest:guest@localhost:5672/
     #----------------------------------------------------------
     codigito.rabbitmq:
-        image: rabbitmq:3-management-alpine
+        build: rabbitmq
         container_name: 'codigito.rabbitmq'
         ports:
             - 5672:5672
@@ -93,7 +93,6 @@ services:
         networks:
             codigito-network:
                 ipv4_address: 172.27.102.15
-
 
     grafana:
         image: "grafana/grafana:8.4.2"
