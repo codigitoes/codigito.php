@@ -72,7 +72,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY entrypoint.sh /tmp
 COPY firstboot.sh /tmp
 RUN chmod 777 /tmp/*
-WORKDIR /var/www/vhosts/codigito
+WORKDIR /var/www/vhosts/codigito.es
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc;
 
