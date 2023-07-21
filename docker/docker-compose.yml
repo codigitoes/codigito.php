@@ -18,8 +18,8 @@ services:
         DEPLOY_ENV: ${DEPLOY_ENV}
     container_name: 'codigito.api'
     ports:
-      - 80:80
-      - 443:443
+      - 8001:80
+      - 4431:443
     volumes:
       - ../api/:/var/www/vhosts/codigito.es/
     extra_hosts:
@@ -74,8 +74,8 @@ services:
         DEPLOY_ENV: ${DEPLOY_ENV}
     container_name: 'codigito.www'
     ports:
-      - 8003:80
-      - 4433:443
+      - 80:80
+      - 443:443
     volumes:
       - ../www/:/var/www/vhosts/codigito.es/
     extra_hosts:

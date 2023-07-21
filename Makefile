@@ -29,7 +29,7 @@ env.dev:
 env.prod:
 	bash docker/bin/env.prod.sh
 start.dev:
-	bash docker/bin/start.sh dev & bash docker/bin/env.dev.sh
+	bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev
 start.prod:
-	bash docker/bin/start.sh prod & bash docker/bin/env.prod.sh
+	bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod
 #>------------------------------------------
