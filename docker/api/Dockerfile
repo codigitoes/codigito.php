@@ -1,6 +1,7 @@
 FROM php:8.1-apache
 
-RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
+ARG DEPLOY_ENV
+
 RUN apt-get update && apt-get install -y \
     git \
     sshpass \
@@ -73,7 +74,11 @@ RUN mkdir /.symfony5 && chown 1000:1000 /.symfony5 && chmod 777 /.symfony5
 
 # Set apache configuration
 COPY default.conf /etc/apache2/sites-available/default.conf
-RUN ln -s /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
+COPY default.production.conf /etc/apache2/sites-available/default.production.conf
+RUN if [ "$DEPLOY_ENV" = "prod" ]; then ln -s /etc/apache2/sites-available/default.production.conf /etc/apache2/sites-enabled/default.conf ; fi
+RUN if [ "$DEPLOY_ENV" = "prod" ]; then rm /etc/apache2/sites-available/default.conf ;  fi
+RUN if [ "$DEPLOY_ENV" = "dev" ]; then ln -s /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/default.conf ; fi
+RUN if [ "$DEPLOY_ENV" = "dev" ]; then rm /etc/apache2/sites-available/default.production.conf ;  fi
 RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2dissite 000-default
@@ -87,8 +92,9 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY entrypoint.sh /tmp
 COPY firstboot.sh /tmp
 RUN chmod 777 /tmp/*
-WORKDIR /var/www/vhosts/codigito
+WORKDIR /var/www/vhosts/codigito.es
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
+RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc;
 RUN chmod -R 777 /var/log/supervisor
 

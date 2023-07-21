@@ -1,5 +1,7 @@
 FROM php:8.1-apache
 
+ARG DEPLOY_ENV
+
 RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
 RUN apt-get update && apt-get install -y \
     git \
@@ -47,8 +49,11 @@ COPY ssl.key /etc/apache2/ssl/ssl.key
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # create user
+RUN echo markitos
 RUN groupadd -g 1000 markitos
-RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && chown -R markitos:markitos /var/www
+RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && echo "markitos:markitos" | chpasswd && adduser markitos sudo && chown -R markitos:markitos /var/www
+RUN echo "markitos    ALL=(ALL:ALL) ALL" >> /etc/sudoers
+
 
 # timezone
 RUN rm -f /etc/localtime ; ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
@@ -61,7 +66,11 @@ RUN mkdir /.symfony5 && chown 1000:1000 /.symfony5 && chmod 777 /.symfony5
 
 # Set apache configuration
 COPY default.conf /etc/apache2/sites-available/default.conf
-RUN ln -s /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
+COPY default.production.conf /etc/apache2/sites-available/default.production.conf
+RUN if [ "$DEPLOY_ENV" = "prod" ]; then ln -s /etc/apache2/sites-available/default.production.conf /etc/apache2/sites-enabled/default.conf ; fi
+RUN if [ "$DEPLOY_ENV" = "prod" ]; then rm /etc/apache2/sites-available/default.conf ;  fi
+RUN if [ "$DEPLOY_ENV" = "dev" ]; then ln -s /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/default.conf ; fi
+RUN if [ "$DEPLOY_ENV" = "dev" ]; then rm /etc/apache2/sites-available/default.production.conf ;  fi
 RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2dissite 000-default
@@ -72,7 +81,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY entrypoint.sh /tmp
 COPY firstboot.sh /tmp
 RUN chmod 777 /tmp/*
-WORKDIR /var/www/vhosts/codigito
+WORKDIR /var/www/vhosts/codigito.es
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc;
 

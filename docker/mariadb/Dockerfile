@@ -18,4 +18,4 @@ RUN rm -f /etc/localtime ; ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtim
 # Clean up
 RUN rm -fr /tmp/*
 
-WORKDIR /var/www/vhosts/codigito
+WORKDIR /var/www/vhosts/codigito.es

@@ -1,11 +1,7 @@
-start:
-	bash docker/bin/start.sh &
 stop:
 	bash docker/bin/stop.sh
-restart:
-	bash docker/bin/stop.sh ; bash docker/bin/start.sh &
 apish:
-	bash docker/bin/apish.sh
+	bash docker/bin/apish.sh 
 adminsh:
 	bash docker/bin/adminsh.sh
 wwwsh:
@@ -28,12 +24,12 @@ format:
 #{."."}>- no docker need
 #{."."}>- startof.set.env
 #{."."}>------------------------------------------
-envdev:
-	cp api/.env.template api/.env
-	cp admin/.env.template admin/.env
-	cp www/.env.template www/.env
-envprod:
-	cp api/.env.production api/.env
-	cp admin/.env.production admin/.env
-	cp www/.env.production www/.env
+env.dev:
+	bash docker/bin/env.dev.sh
+env.prod:
+	bash docker/bin/env.prod.sh
+start.dev:
+	bash docker/bin/start.sh dev & bash docker/bin/env.dev.sh
+start.prod:
+	bash docker/bin/start.sh prod & bash docker/bin/env.prod.sh
 #>------------------------------------------

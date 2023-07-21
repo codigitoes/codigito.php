@@ -26,11 +26,17 @@ class MailingConfirmActionTest extends CoreFidelizationKernelTest
         ];
         $options  = array_merge($auth, $body);
         $response = $this->api->post(self::ENDPOINT_CREATE, $options);
+        echo " \n\n";
+        echo $response->getBody()->getContents();
+        echo " \n\n";
         $id       = json_decode(
             $response->getBody()->getContents()
         )->id;
 
-        $response           = $this->api->get(sprintf(self::ENDPOINT, $id), $options);
+        $response = $this->api->get(sprintf(self::ENDPOINT, $id), $options);
+        echo " \n\n";
+        echo $response->getBody()->getContents();
+        echo " \n\n";
         $idFromConfirmation = json_decode(
             $response->getBody()->getContents()
         )->id;
@@ -64,6 +70,6 @@ class MailingConfirmActionTest extends CoreFidelizationKernelTest
 
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
         self::assertEquals(1, count($errors));
-        self::assertEquals(InvalidMailingIdException::PREFIX.' invalid-id', $errors[0]);
+        self::assertEquals(InvalidMailingIdException::PREFIX . ' invalid-id', $errors[0]);
     }
 }
