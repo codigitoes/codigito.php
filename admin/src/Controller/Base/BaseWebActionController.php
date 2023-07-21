@@ -27,7 +27,7 @@ abstract class BaseWebActionController extends AbstractController
 
     protected function getCdnUrl(?string $uri = null): string
     {
-        return rtrim($_ENV['CDN_URL'], '/') . $uri;
+        return rtrim($_ENV['CDN_URL'], '/') . '/' . $uri;
     }
 
     protected function getToken(): string|null
