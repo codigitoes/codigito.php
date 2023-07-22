@@ -1,10 +1,10 @@
 {
-	"folders": [
+    "folders": [
         {
             "path": "."
         },
         {
-            "path": "../kars/debtum"
+            "path": "../1-cra-vs-vite-vs-swc-vs-esbuild-vs-snowpack-vs-parcel"
         }
     ]
 }
