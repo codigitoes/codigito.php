@@ -82,19 +82,17 @@ RUN apt-get install -y wget unzip
 RUN apt-get install -y libc6-amd64-cross
 RUN ln -s /usr/x86_64-linux-gnu/lib64/ /lib64
 ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib64:/usr/x86_64-linux-gnu/lib"
+COPY promtail-local-config.yaml /etc/promtail-local-config.yaml
+RUN mkdir -p /data/loki && chown -R 1000:1000 /data && chmod -R 777 /data
 
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY entrypoint.sh /tmp
-COPY firstboot.sh /tmp
 RUN chmod 777 /tmp/*
 WORKDIR /var/www/vhosts/codigito.es
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc;
 
-#: la primera vez, bash /tmp/firstboot.sh
-
 ENTRYPOINT ["/tmp/entrypoint.sh"]
-#CMD ["apachectl", "-D", "FOREGROUND"]
