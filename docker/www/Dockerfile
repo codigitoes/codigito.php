@@ -54,7 +54,6 @@ RUN groupadd -g 1000 markitos
 RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && echo "markitos:markitos" | chpasswd && adduser markitos sudo && chown -R markitos:markitos /var/www
 RUN echo "markitos    ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
-
 # timezone
 RUN rm -f /etc/localtime ; ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
 
@@ -74,6 +73,14 @@ RUN if [ "$DEPLOY_ENV" = "dev" ]; then rm /etc/apache2/sites-available/default.p
 RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN a2dissite 000-default
+
+# promtail for loki
+RUN wget https://github.com/grafana/loki/releases/download/v2.8.3/promtail-linux-amd64.zip && unzip promtail-linux-amd64.zip && mv promtail-linux-amd64 /usr/local/bin/promtail
+RUN apt-get update
+RUN apt-get install -y wget unzip
+RUN apt-get install -y libc6-amd64-cross
+RUN ln -s /usr/x86_64-linux-gnu/lib64/ /lib64
+ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib64:/usr/x86_64-linux-gnu/lib"
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

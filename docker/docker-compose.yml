@@ -26,14 +26,12 @@ services:
       - 'mariadb:172.27.102.12'
       - 'codigito.cdn:127.0.0.1'
       - 'codigito.messenger:172.27.102.15'
+      - 'codigito.loki:172.27.102.17'
     hostname: codigito.api
     networks:
       codigito-network:
         ipv4_address: 172.27.102.11
-    logging:
-      driver: 'loki'
-      options:
-        loki-url: http://localhost:3100/loki/api/v1/push
+
   codigito.mariadb:
     build:
       context: mariadb
@@ -47,10 +45,7 @@ services:
     networks:
       codigito-network:
         ipv4_address: 172.27.102.12
-    logging:
-      driver: 'loki'
-      options:
-        loki-url: http://localhost:3100/loki/api/v1/push
+
 
   codigito.admin:
     user: "1000:1000"
@@ -72,10 +67,7 @@ services:
     networks:
       codigito-network:
         ipv4_address: 172.27.102.13
-    logging:
-      driver: 'loki'
-      options:
-        loki-url: http://localhost:3100/loki/api/v1/push
+
 
   codigito.www:
     user: "1000:1000"
@@ -97,10 +89,7 @@ services:
     networks:
       codigito-network:
         ipv4_address: 172.27.102.14
-    logging:
-      driver: 'loki'
-      options:
-        loki-url: http://localhost:3100/loki/api/v1/push
+
 
   #----------------------------------------------------------
   # servicio para mensajeria que podemos ver
@@ -124,10 +113,7 @@ services:
     networks:
       codigito-network:
         ipv4_address: 172.27.102.15
-    logging:
-      driver: 'loki'
-      options:
-        loki-url: http://localhost:3100/loki/api/v1/push
+
 
   grafana:
     image: "grafana/grafana:8.4.2"
@@ -135,8 +121,18 @@ services:
       - "3000:3000"
     volumes:
       - ./provisioning:/etc/grafana/provisioning
+    extra_hosts:
+      - 'codigito.loki:172.27.102.17'
+      - 'loki:172.27.102.17'
+    networks:
+      codigito-network:
+        ipv4_address: 172.27.102.16
 
   loki:
     image: "grafana/loki:2.4.2"
     ports:
       - "3100:3100"
+    hostname: codigito.loki
+    networks:
+      codigito-network:
+        ipv4_address: 172.27.102.17
