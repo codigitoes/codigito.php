@@ -57,6 +57,6 @@ class MailingConfirmActionTest extends CoreFidelizationKernelTest
 
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
         self::assertEquals(1, count($errors));
-        self::assertEquals(InvalidMailingIdException::PREFIX.' invalid-id', $errors[0]);
+        self::assertEquals(InvalidMailingIdException::PREFIX . ' invalid-id', $errors[0]);
     }
 }
