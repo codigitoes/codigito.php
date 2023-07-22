@@ -19,11 +19,6 @@ recreatedb:
 	bash docker/bin/recreatedb.sh
 format:
 	bash docker/bin/format.sh
-
-#{."."}>------------------------------------------
-#{."."}>- no docker need
-#{."."}>- startof.set.env
-#{."."}>------------------------------------------
 env.dev:
 	bash docker/bin/env.dev.sh
 env.prod:
@@ -36,4 +31,3 @@ start.prod:
 	bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod
 restart.prod:
 	bash docker/bin/stop.sh && bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod
-#>------------------------------------------

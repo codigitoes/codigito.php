@@ -27,7 +27,7 @@ abstract class BaseWebActionController extends AbstractController
 
     protected function getCdnUrl(?string $uri = null): string
     {
-        return rtrim($_ENV['CDN_URL'], '/') . '/' . $uri;
+        return rtrim($_ENV['CDN_URL'], '/').'/'.$uri;
     }
 
     protected function getToken(): string|null
@@ -44,8 +44,8 @@ abstract class BaseWebActionController extends AbstractController
         $jsFileForView = str_replace('.html.twig', '.js.html.twig', $view);
         $jsFileEmptyForInclude = '/shared/empty.html.twig';
         $jsFileForInclude = $jsFileEmptyForInclude;
-        if (file_exists($this->getParameter('kernel.project_dir') . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $jsFileForView)) {
-            $jsFileForInclude = DIRECTORY_SEPARATOR . $jsFileForView;
+        if (file_exists($this->getParameter('kernel.project_dir').DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$jsFileForView)) {
+            $jsFileForInclude = DIRECTORY_SEPARATOR.$jsFileForView;
         }
 
         $model['title'] = self::TITLE;

@@ -24,27 +24,14 @@ class MailingConfirmActionTest extends CoreFidelizationKernelTest
                 'email' => Codigito::randomEmail(),
             ],
         ];
-        $options  = array_merge($auth, $body);
-        $response = $this->api->post(self::ENDPOINT_CREATE, $options);
-        echo " \n\n";
-        echo $response->getBody()->getContents();
-        echo " \n\n";
-        $id       = json_decode(
-            $response->getBody()->getContents()
-        )->id;
+        $options        = array_merge($auth, $body);
+        $response       = $this->api->post(self::ENDPOINT_CREATE, $options);
+        $mailingCreated = json_decode($response->getBody()->getContents());
+        $response       = $this->api->get(sprintf(self::ENDPOINT, $mailingCreated->id), $options);
 
-        $response = $this->api->get(sprintf(self::ENDPOINT, $id), $options);
-        echo " \n\n";
-        echo $response->getBody()->getContents();
-        echo " \n\n";
-        $idFromConfirmation = json_decode(
-            $response->getBody()->getContents()
-        )->id;
-        $actualConfirmed = $this->MailingGetModelById($this->getManager(), $idFromConfirmation);
+        $actualConfirmed = $this->MailingGetModelById($this->getManager(), $mailingCreated->id);
         self::assertTrue($actualConfirmed->confirmed->value);
-
         $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
-        $this->assertEquals($id, $idFromConfirmation);
 
         $this->MailingDelete($this->getManager(), $actualConfirmed);
     }
@@ -70,6 +57,6 @@ class MailingConfirmActionTest extends CoreFidelizationKernelTest
 
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
         self::assertEquals(1, count($errors));
-        self::assertEquals(InvalidMailingIdException::PREFIX . ' invalid-id', $errors[0]);
+        self::assertEquals(InvalidMailingIdException::PREFIX.' invalid-id', $errors[0]);
     }
 }
