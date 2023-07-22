@@ -102,7 +102,6 @@ RUN mkdir -p /data/loki && chown -R 1000:1000 /data && chmod -R 777 /data
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY entrypoint.sh /tmp
-COPY firstboot.sh /tmp
 RUN chmod 777 /tmp/*
 WORKDIR /var/www/vhosts/codigito.es
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
@@ -110,7 +109,4 @@ RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc;
 RUN chmod -R 777 /var/log/supervisor
 
-#: la primera vez, bash /tmp/firstboot.sh
-
 ENTRYPOINT ["/tmp/entrypoint.sh"]
-#CMD ["apachectl", "-D", "FOREGROUND"]
