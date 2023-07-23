@@ -114,7 +114,6 @@ services:
       codigito-network:
         ipv4_address: 172.27.102.15
 
-
   grafana:
     image: "grafana/grafana:8.4.2"
     ports:
