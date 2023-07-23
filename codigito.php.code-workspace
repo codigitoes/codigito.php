@@ -2,9 +2,6 @@
     "folders": [
         {
             "path": "."
-        },
-        {
-            "path": "../1-cra-vs-vite-vs-swc-vs-esbuild-vs-snowpack-vs-parcel"
         }
     ]
 }

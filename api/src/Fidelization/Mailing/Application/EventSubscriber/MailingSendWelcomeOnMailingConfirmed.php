@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Codigito\Fidelization\Mailing\Infraestructure\Event;
+namespace Codigito\Fidelization\Mailing\Application\EventSubscriber;
 
 use Codigito\Shared\Domain\Event\DomainEvent;
 use Codigito\Shared\Domain\Event\DomainEventEnum;
