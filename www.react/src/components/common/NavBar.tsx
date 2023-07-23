@@ -1,6 +1,9 @@
 import { AppBar, Box, Button, Container, Grid, Stack, Toolbar, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const NavBar:React.FC<unknown> = () => {
+    const navigate = useNavigate();
+
     return (
         <Box sx={{
             flexGrow: 1
@@ -10,14 +13,16 @@ const NavBar:React.FC<unknown> = () => {
                     <Container maxWidth='xl'>
                         <Grid container direction='row' justifyContent='space-between' alignItems='center'>
                             <Grid item>
-                                <Typography variant="h6">{'{.".}'}</Typography>
+                                <Button onClick={()=>{navigate('/')}}>
+                                    <Typography variant="h6">{'{.".}'}</Typography>
+                                </Button>
                             </Grid>
                             <Grid item>
                                 <Stack direction="row" spacing={2}>
-                                    <Button variant="outlined">
+                                    <Button variant="outlined" onClick={()=>{navigate('/')}}>
                                         <Typography>Inicio</Typography>
                                     </Button>
-                                    <Button variant="outlined">
+                                    <Button variant="outlined" onClick={()=>{navigate('/videos')}}>
                                         <Typography>Videos</Typography>
                                     </Button>
                                 </Stack>
