@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Codigito\Fidelization\Mailing\Infraestructure\Event;
 
+use Codigito\Fidelization\Mailing\Application\MailingSendEmail\MailingSendEmailCommand;
+use Codigito\Shared\Domain\Command\CommandBus;
 use Codigito\Shared\Domain\Event\DomainEvent;
 use Codigito\Shared\Domain\Event\DomainEventEnum;
 use Codigito\Shared\Domain\Event\DomainEventSubscriber;
-use Codigito\Shared\Infraestructure\Service\MailerSenderSymfony;
 
 class MailingSendConfirmationOnMailingCreated implements DomainEventSubscriber
 {
-    public function __construct(private readonly MailerSenderSymfony $mailer)
+    public function __construct(private readonly CommandBus $eventor)
     {
     }
 
@@ -27,6 +28,6 @@ class MailingSendConfirmationOnMailingCreated implements DomainEventSubscriber
         $subject = 'Confirmacion de subscripcion al mailing!';
         $html    = '<p>Haz click <a href="'.rtrim($_ENV['WWW_URL'], '/').'/suscription/'.$event->payload->value['id'].'/confirm">"aqui"</a> para confirmar tu suscripcion!!';
 
-        $this->mailer->send($from, $to, $subject, $html);
+        $this->eventor->execute(new MailingSendEmailCommand($from, $to, $subject, $html));
     }
 }
