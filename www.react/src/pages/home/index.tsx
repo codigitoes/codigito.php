@@ -1,12 +1,11 @@
-import { Button, Container } from "@mui/material"
+import { Container } from "@mui/material"
 import React from "react";
+import Header from "../../components/common/Header";
 
-const HomePage:React.FC =()=>{
+const HomePage:React.FC<undefined> =()=>{
     return (
         <Container sx={{ mt:9 }} maxWidth="xl">
-            <Button fullWidth variant="contained">
-                Home
-            </Button>
+            <Header title='codigito.es' description='el camino del test'/>
         </Container>
     );
 }
