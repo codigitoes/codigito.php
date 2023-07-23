@@ -1,12 +1,12 @@
 import { Box, Divider, Grid } from "@mui/material";
 
-type HeaderProps = {
+type HomeHeaderProps = {
     title:string;
     description:string;
     element?:React.ReactNode|undefined;
 };
 
-const Header:React.FC<HeaderProps> = ({title,description,element}) => {
+const HomeHeader:React.FC<HomeHeaderProps> = ({title,description,element}) => {
     return (
         <div>
             <Box sx={{
@@ -41,4 +41,4 @@ const Header:React.FC<HeaderProps> = ({title,description,element}) => {
     );
 };
 
-export default Header;
+export default HomeHeader;

@@ -1,4 +1,4 @@
-import { Button, Container } from "@mui/material"
+import { Button, Container, Grid } from "@mui/material"
 import React from "react";
 
 const VideosPage:React.FC<unknown> =()=>{
@@ -7,6 +7,8 @@ const VideosPage:React.FC<unknown> =()=>{
             <Button fullWidth variant="contained">
                 Videos
             </Button>
+            <Grid container direction='row'>
+            </Grid>
         </Container>
     );
 }
