@@ -15,8 +15,8 @@ use Codigito\Fidelization\Mailing\Domain\ValueObject\MailingEmail;
 class MailingCreateCommandHandler implements CommandHandler
 {
     public function __construct(
+        private readonly DomainEventBus $eventor,
         private readonly MailingWriter $writer,
-        private readonly DomainEventBus $eventor
     ) {
     }
 
@@ -29,6 +29,10 @@ class MailingCreateCommandHandler implements CommandHandler
 
         $this->writer->create($mailing);
 
-        $this->eventor->publish($mailing->pullEvents());
+        try {
+            $this->eventor->publish($mailing->pullEvents());
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 }

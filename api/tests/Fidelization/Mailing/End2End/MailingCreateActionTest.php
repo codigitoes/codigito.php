@@ -24,12 +24,10 @@ class MailingCreateActionTest extends CoreFidelizationKernelTest
         ];
         $options  = array_merge($auth, $body);
         $response = $this->api->post(self::ENDPOINT, $options);
-
-        $id = json_decode(
+        $id       = json_decode(
             $response->getBody()->getContents()
         )->id;
-        $actual = $this->MailingGetModelById($this->getManager(), $id);
-
+        $actual   = $this->MailingGetModelById($this->getManager(), $id);
         $response = $this->api->post(self::ENDPOINT, $options);
         $errors   = json_decode(
             $response->getBody()->getContents()
@@ -49,8 +47,7 @@ class MailingCreateActionTest extends CoreFidelizationKernelTest
                 'email' => Codigito::randomEmail(),
             ],
         ];
-        $options = array_merge($auth, $body);
-
+        $options  = array_merge($auth, $body);
         $response = $this->api->post(self::ENDPOINT, $options);
         $id       = json_decode(
             $response->getBody()->getContents()

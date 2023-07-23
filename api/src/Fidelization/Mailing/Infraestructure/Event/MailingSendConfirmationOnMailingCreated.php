@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Codigito\Fidelization\Mailing\Infraestructure\Event;
 
-use Symfony\Component\Mime\Email;
-use Symfony\Component\Mailer\MailerInterface;
 use Codigito\Shared\Domain\Event\DomainEvent;
 use Codigito\Shared\Domain\Event\DomainEventEnum;
 use Codigito\Shared\Domain\Event\DomainEventSubscriber;
+use Codigito\Shared\Infraestructure\Service\MailerSenderSymfony;
 
 class MailingSendConfirmationOnMailingCreated implements DomainEventSubscriber
 {
-    public function __construct(private readonly MailerInterface $mailer)
+    public function __construct(private readonly MailerSenderSymfony $mailer)
     {
     }
 
@@ -23,13 +22,11 @@ class MailingSendConfirmationOnMailingCreated implements DomainEventSubscriber
 
     public function handlerEvent(DomainEvent $event): void
     {
-        $email = (new Email())
-            ->from('codigito@gmail.com')
-            ->to($event->payload->value['email'])
-            ->subject('Confirmacion de subscripcion al mailing!')
-            ->text('Este email es para confirmar que no te estan gastando una broma y quieres subscribirte :)')
-            ->html('<p>Haz click <a href="'.rtrim($_ENV['WWW_URL'], '/').'/suscription/'.$event->payload->value['id'].'/confirm">"aqui"</a> para confirmar tu suscripcion!!');
+        $from    = 'codigito@gmail.com';
+        $to      = $event->payload->value['email'];
+        $subject = 'Confirmacion de subscripcion al mailing!';
+        $html    = '<p>Haz click <a href="'.rtrim($_ENV['WWW_URL'], '/').'/suscription/'.$event->payload->value['id'].'/confirm">"aqui"</a> para confirmar tu suscripcion!!';
 
-        $this->mailer->send($email);
+        $this->mailer->send($from, $to, $subject, $html);
     }
 }
