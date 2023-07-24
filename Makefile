@@ -24,10 +24,10 @@ env.dev:
 env.prod:
 	bash docker/bin/env.prod.sh
 start.dev:
-	bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev
+	bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev && bash docker/bin/env.dev.sh
 restart.dev:
-	bash docker/bin/stop.sh && bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev
+	bash docker/bin/stop.sh && bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev && bash docker/bin/env.dev.sh
 start.prod:
-	bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod
+	bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod && bash docker/bin/env.prod.sh
 restart.prod:
-	bash docker/bin/stop.sh && bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod
+	bash docker/bin/stop.sh && bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod && bash docker/bin/env.prod.sh
