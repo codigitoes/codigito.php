@@ -14,8 +14,8 @@ class ListController extends BaseWebActionController
 {
     #[Route('/list/{pattern?}', name: 'list_index', methods: ['GET'])]
     public function execute(
-        ?string $pattern = null,
-        Request $request
+        Request $request,
+        ?string $pattern = null
     ): Response {
         $page = $request->query->getInt('page', 1);
         if (is_null($pattern)) {
