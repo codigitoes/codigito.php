@@ -20,10 +20,7 @@ const NavBar:React.FC<unknown> = () => {
                             <Grid item>
                                 <Stack direction="row" spacing={2}>
                                     <Button variant="outlined" onClick={()=>{navigate('/')}}>
-                                        <Typography>Inicio</Typography>
-                                    </Button>
-                                    <Button variant="outlined" onClick={()=>{navigate('/videos')}}>
-                                        <Typography>Videos</Typography>
+                                        <Typography>videos</Typography>
                                     </Button>
                                 </Stack>
                             </Grid>

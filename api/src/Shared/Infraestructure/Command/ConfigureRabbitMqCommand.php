@@ -11,7 +11,6 @@ use Codigito\Shared\Infraestructure\Rabbitmq\RabbitMqConfigurer;
 
 final class ConfigureRabbitMqCommand extends Command
 {
-    protected static $defaultName = 'ce:domain-events:rabbitmq:configure';
     private $configurer;
     private $exchangeName;
     private $subscribers;
@@ -27,7 +26,7 @@ final class ConfigureRabbitMqCommand extends Command
 
     protected function configure(): void
     {
-        $this->setDescription('Configure the RabbitMQ to allow publish & consume domain events');
+        $this->setName('ce:domain-events:rabbitmq:configure')->setDescription('Configure the RabbitMQ to allow publish & consume domain events');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
