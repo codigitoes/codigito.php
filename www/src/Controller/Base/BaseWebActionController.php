@@ -52,8 +52,8 @@ abstract class BaseWebActionController extends AbstractController
         $jsFileForView = str_replace('.html.twig', '.js.html.twig', $view);
         $jsFileEmptyForInclude = '/shared/empty.html.twig';
         $jsFileForInclude = $jsFileEmptyForInclude;
-        if (file_exists($this->getParameter('kernel.project_dir').DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$jsFileForView)) {
-            $jsFileForInclude = DIRECTORY_SEPARATOR.$jsFileForView;
+        if (file_exists($this->getParameter('kernel.project_dir') . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $jsFileForView)) {
+            $jsFileForInclude = DIRECTORY_SEPARATOR . $jsFileForView;
         }
 
         $model['title'] = self::TITLE;
@@ -66,15 +66,6 @@ abstract class BaseWebActionController extends AbstractController
         $model['view'] = $view;
 
         return $this->render('/shared/template.html.twig', $model);
-    }
-
-    protected function getCdnUrl(?string $uri = null): string|null
-    {
-        if (is_null($uri)) {
-            return null;
-        }
-
-        return $_ENV['CDN_URL'].'/cdn/'.$uri;
     }
 
     protected function extractErrorsFromResponseIfApply(ResponseInterface $response): array
