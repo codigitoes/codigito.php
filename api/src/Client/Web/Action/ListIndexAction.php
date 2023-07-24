@@ -13,8 +13,8 @@ class ListIndexAction extends BaseAction
 {
     #[Route('/api/client/web/list/{pattern?}', name: 'client_web_list_index', methods: ['GET'])]
     public function execute(
-        ?string $pattern = null,
-        Request $request
+        Request $request,
+        ?string $pattern = null
     ): Response {
         $page = (int) $request->query->get('page', Page::FIRST_PAGE);
         if (false === is_numeric($page)) {
