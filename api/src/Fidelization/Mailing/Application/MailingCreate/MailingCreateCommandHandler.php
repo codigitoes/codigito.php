@@ -29,10 +29,6 @@ class MailingCreateCommandHandler implements CommandHandler
 
         $this->writer->create($mailing);
 
-        try {
-            $this->eventor->publish($mailing->pullEvents());
-        } catch (\Exception $e) {
-            dd($e);
-        }
+        $this->eventor->publish($mailing->pullEvents());
     }
 }

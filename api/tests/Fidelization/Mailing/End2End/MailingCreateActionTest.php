@@ -53,7 +53,6 @@ class MailingCreateActionTest extends CoreFidelizationKernelTest
             $response->getBody()->getContents()
         )->id;
         $actual = $this->MailingGetModelById($this->getManager(), $id);
-
         self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
         self::assertFalse($actual->confirmed->value);
 

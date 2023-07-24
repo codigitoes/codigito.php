@@ -26,13 +26,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://api.codigito.es/api/login_check",
+									"raw": "http://localhost:8001/api/login_check",
 									"protocol": "http",
 									"host": [
-										"api",
-										"codigito",
-										"es"
+										"localhost"
 									],
+									"port": "8001",
 									"path": [
 										"api",
 										"login_check"
@@ -53,6 +52,17 @@
 					"item": [
 						{
 							"name": "Create",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -68,7 +78,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\":\"markitosco6@gmail.com\"\n}",
+									"raw": "{\n    \"email\":\"{{$randomUUID}}@{{$randomUUID}}.com\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -76,13 +86,12 @@
 									}
 								},
 								"url": {
-									"raw": "http://api.codigito.es/api/admin/fidelization/mailings",
+									"raw": "http://localhost:8001/api/admin/fidelization/mailings",
 									"protocol": "http",
 									"host": [
-										"api",
-										"codigito",
-										"es"
+										"localhost"
 									],
+									"port": "8001",
 									"path": [
 										"api",
 										"admin",
