@@ -1,5 +1,4 @@
 - un mysql repo concreto para usar en infra rabbit para fallback :)
-- mysql persistente
 - process manager para contenedores en produccion
 - dashboard grafana
 - alertas que pasa ?
