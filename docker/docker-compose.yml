@@ -39,7 +39,7 @@ services:
         DEPLOY_ENV: ${DEPLOY_ENV}
     container_name: 'codigito.mariadb'
     volumes:
-      - mariadb/data:/var/lib/mysql
+      - mariadb-data:/var/lib/mysql
     ports:
       - 3306:3306
     restart: always
@@ -137,3 +137,6 @@ services:
     networks:
       codigito-network:
         ipv4_address: 172.27.102.17
+
+volumes:
+  mariadb-data:
