@@ -1,4 +1,4 @@
-import { Container } from "@mui/material"
+import { Container, Grid } from "@mui/material"
 import React from "react";
 import HomeHeader from "./HomeHeader";
 import fixture from './fixture.json';
@@ -16,15 +16,22 @@ const HomePage:React.FC =()=>{
     // }
 
     // const blogposts:Blogpost[] = fetchState.data?.blogposts ? fetchState.data.blogposts : [];
-
     return (
         <Container sx={{ mt:9 }} maxWidth="xl">
             <HomeHeader title='codigito.es' description='el camino del test'/>
             <ul>
             {fixture.blogposts.map((blogpost:Blogpost) => {
-                return <li key={blogpost.id}><img src={blogpost.image} width={100}/>{blogpost.name}</li>                
+                return (
+                    <li key={blogpost.id}>
+                        <hr/>
+                        <h4>{blogpost.name}</h4>
+                        <img src={blogpost.image} width={100} />
+                        <h6>{blogpost.tags.join(',')}</h6>
+                    </li>
+                );
             })}
             </ul>
+            <hr/>
         </Container>
     );
 }
