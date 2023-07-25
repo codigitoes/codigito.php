@@ -11,7 +11,9 @@ const HomeHeader:React.FC<HomeHeaderProps> = ({title,description,element}) => {
         <div>
             <Box sx={{
                 width: '100%',
-                height: '350px'
+                height: '80px',
+                m: 1,
+                p: 0
             }}>
                 <Grid 
                     container 
