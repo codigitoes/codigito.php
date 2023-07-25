@@ -57,3 +57,4 @@ api/.php-cs-fixer.cache
 api/.phpunit.result.cache
 admin/.env
 docker/mariadb/data/
+api/public/cdn/*.jpg
