@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Shared\Domain\Filter;
 
-use Codigito\Shared\Domain\Exception\InvalidOrderException;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 
 final class Order
 {
@@ -17,7 +17,7 @@ final class Order
         public readonly string $order
     ) {
         if (false === in_array(strtolower($order), self::ORDERS)) {
-            throw new InvalidOrderException($this->toString());
+            throw new InternalErrorException('invalid order: '.$this->toString());
         }
     }
 

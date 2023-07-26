@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Shared\Domain\ValueObject;
 
-use Codigito\Shared\Domain\Exception\InvalidPlainPasswordException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class PlainPassword extends LimitedString
 {
@@ -18,6 +18,6 @@ class PlainPassword extends LimitedString
 
     protected function throwException(string $value): void
     {
-        throw new InvalidPlainPasswordException($value);
+        throw new InvalidParameterException('invalid plain password: '.$value);
     }
 }

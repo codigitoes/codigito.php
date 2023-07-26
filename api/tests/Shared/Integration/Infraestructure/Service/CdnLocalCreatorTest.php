@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Tests\Shared\Integration\Infraestructure\Service;
 
-use Codigito\Shared\Domain\Exception\CantCreateCdnLocalException;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 use Codigito\Shared\Domain\Service\CdnCreator;
 use Codigito\Shared\Infraestructure\Service\CdnLocalCreator;
 use PHPUnit\Framework\TestCase;
@@ -31,11 +31,11 @@ class CdnLocalCreatorTest extends TestCase
         @unlink(sys_get_temp_dir().DIRECTORY_SEPARATOR.$filename);
     }
 
-    public function testItShouldThrowACantCreateCdnLocalExceptionIfBasedirCantCreateFiles(): void
+    public function testItShouldThrowAnInternalErrorExceptionIfBasedirCantCreateFiles(): void
     {
         $sut = new CdnLocalCreator('/nonexistingdir/');
 
-        $this->expectException(CantCreateCdnLocalException::class);
+        $this->expectException(InternalErrorException::class);
 
         $sut->create(self::BASE64_VALID_IMAGE);
     }

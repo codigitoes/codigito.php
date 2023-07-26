@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Shared\Domain\Event;
 
-use Codigito\Shared\Domain\Exception\InvalidEventException;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 
 final class DomainEventsCollection
 {
@@ -15,7 +15,7 @@ final class DomainEventsCollection
                 continue;
             }
 
-            throw new InvalidEventException(json_encode($anEvent));
+            throw new InternalErrorException('invalid event: '.json_encode($anEvent));
         }
     }
 

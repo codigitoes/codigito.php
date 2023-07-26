@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Shared\Domain\Filter;
 
-use Codigito\Shared\Domain\Exception\InvalidFilterException;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 
 final class Filters
 {
@@ -13,7 +13,7 @@ final class Filters
     ) {
         array_map(function ($aFilter) {
             if (false === $aFilter instanceof Filter) {
-                throw new InvalidFilterException($aFilter->toString());
+                throw new InternalErrorException('invalid filter: '.$aFilter->toString());
             }
 
             return $aFilter;

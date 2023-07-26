@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Shared\Infraestructure\Query;
 
-use Codigito\Shared\Domain\Exception\InvalidQueryCantFindHandlerException;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 use Codigito\Shared\Domain\Model\ReadModel;
 use Codigito\Shared\Domain\Query\Query;
 use Codigito\Shared\Domain\Query\QueryBus;
@@ -28,6 +28,6 @@ class QueryStaticBus implements QueryBus
             return $this->handlers[$shortClassName]->execute($query);
         }
 
-        throw new InvalidQueryCantFindHandlerException($shortClassName);
+        throw new InternalErrorException('invalid query handler for '.$shortClassName);
     }
 }

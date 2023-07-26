@@ -10,7 +10,7 @@ use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialEmailException;
 use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialRolesException;
 use Codigito\Auth\Credential\Domain\ValueObject\CredentialId;
 use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
-use Codigito\Shared\Domain\Exception\InvalidPlainPasswordException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Shared\Domain\ValueObject\UuidV4Id;
 use Codigito\Tests\Auth\CoreAuthKernelTestCase;
@@ -59,6 +59,7 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
     {
         $options         = $this->api->getAdminOptions($this->getAdminToken());
         $options['json'] = [];
+
         $response        = $this->api->post(
             self::ENDPOINT,
             $options
@@ -67,9 +68,9 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
             $response->getBody()->getContents()
         )->errors;
         $expected = [
-            InvalidCredentialEmailException::PREFIX.' ',
-            InvalidPlainPasswordException::PREFIX.' ',
-            InvalidCredentialRolesException::PREFIX.' ',
+            InvalidCredentialEmailException::PREFIX . ' ',
+            InvalidParameterException::PREFIX . ' invalid plain password: ',
+            InvalidCredentialRolesException::PREFIX . ' ',
         ];
 
         self::assertCount(3, $errors);
@@ -115,7 +116,7 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
         )->errors;
 
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidPlainPasswordException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 

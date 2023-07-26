@@ -6,7 +6,7 @@ namespace Codigito\Shared\Infraestructure\Command;
 
 use Codigito\Shared\Domain\Command\Command;
 use Codigito\Shared\Domain\Command\CommandBus;
-use Codigito\Shared\Domain\Exception\InvalidCommandCantFindHandlerException;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 
 class CommandStaticBus implements CommandBus
 {
@@ -29,6 +29,6 @@ class CommandStaticBus implements CommandBus
             return;
         }
 
-        throw new InvalidCommandCantFindHandlerException($shortClassName);
+        throw new InternalErrorException('invalid command handler for '.$shortClassName);
     }
 }

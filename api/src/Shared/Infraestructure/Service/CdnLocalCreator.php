@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Shared\Infraestructure\Service;
 
-use Codigito\Shared\Domain\Exception\CantCreateCdnLocalException;
-use Codigito\Shared\Domain\Exception\CantDeleteCdnLocalException;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 use Codigito\Shared\Domain\Service\CdnCreator;
 use Codigito\Shared\Domain\ValueObject\UuidV4Id;
 use Throwable;
@@ -22,12 +21,12 @@ class CdnLocalCreator implements CdnCreator
         try {
             $fullpath = $this->basedir.DIRECTORY_SEPARATOR.$filename;
             if (false === file_exists($fullpath)) {
-                throw new CantDeleteCdnLocalException($filename);
+                throw new InternalErrorException('dont exists file: '.$filename);
             }
 
             @unlink($this->basedir.DIRECTORY_SEPARATOR.$filename);
         } catch (Throwable) {
-            throw new CantDeleteCdnLocalException($filename);
+            throw new InternalErrorException('cant delete file: '.$filename);
         }
     }
 
@@ -38,12 +37,12 @@ class CdnLocalCreator implements CdnCreator
             $fullpath = $this->basedir.DIRECTORY_SEPARATOR.$filename;
             $content  = base64_decode($base64source);
             if (!$content) {
-                throw new CantCreateCdnLocalException($filename);
+                throw new InternalErrorException('cant create file: '.$filename);
             }
             file_put_contents($fullpath, $content);
             chmod($fullpath, 0664);
         } catch (\Throwable $th) {
-            throw new CantCreateCdnLocalException($th->getMessage());
+            throw new InternalErrorException($th->getMessage());
         }
 
         return $filename;
