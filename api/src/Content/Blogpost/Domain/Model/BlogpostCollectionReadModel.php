@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Blogpost\Domain\Model;
 
-use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostTypeException;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 use Codigito\Shared\Domain\Model\ReadModel;
 
 class BlogpostCollectionReadModel implements ReadModel
@@ -17,7 +17,7 @@ class BlogpostCollectionReadModel implements ReadModel
                 continue;
             }
 
-            throw new InvalidBlogpostTypeException();
+            throw new InternalErrorException('invalid blogpost type its an internal problem');
         }
     }
 

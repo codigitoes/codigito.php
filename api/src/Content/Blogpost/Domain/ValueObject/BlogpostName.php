@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Blogpost\Domain\ValueObject;
 
-use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostNameException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 use Codigito\Shared\Domain\ValueObject\LimitedString;
 
 class BlogpostName extends LimitedString
@@ -19,6 +19,6 @@ class BlogpostName extends LimitedString
 
     protected function throwException(string $value): void
     {
-        throw new InvalidBlogpostNameException($value);
+        throw new InvalidParameterException('invalid blogpost name: '.$value);
     }
 }

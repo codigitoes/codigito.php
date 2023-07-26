@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Codigito\Content\Fortune\Domain\ValueObject;
 
 use Codigito\Shared\Domain\ValueObject\LimitedString;
-use Codigito\Content\Fortune\Domain\Exception\InvalidFortuneNameException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class FortuneName extends LimitedString
 {
@@ -19,6 +19,6 @@ class FortuneName extends LimitedString
 
     protected function throwException(string $value): void
     {
-        throw new InvalidFortuneNameException($value);
+        throw new InvalidParameterException('invalid fortune name: '.$value);
     }
 }

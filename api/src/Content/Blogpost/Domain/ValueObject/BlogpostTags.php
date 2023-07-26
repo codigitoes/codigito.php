@@ -6,7 +6,7 @@ namespace Codigito\Content\Blogpost\Domain\ValueObject;
 
 use Throwable;
 use Codigito\Content\Shared\Domain\ValueObject\TagName;
-use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostTagsException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class BlogpostTags
 {
@@ -32,6 +32,6 @@ class BlogpostTags
 
     protected function throwException(string $value): void
     {
-        throw new InvalidBlogpostTagsException($value);
+        throw new InvalidParameterException('invalid blogpost tags: '.$value);
     }
 }

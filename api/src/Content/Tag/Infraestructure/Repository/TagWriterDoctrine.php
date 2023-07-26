@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Tag\Infraestructure\Repository;
 
-use Codigito\Content\Tag\Domain\Exception\TagCantDeleteException;
-use Codigito\Content\Tag\Domain\Exception\TagCantSaveException;
-use Codigito\Content\Tag\Domain\Exception\TagCantUpdateException;
-use Codigito\Content\Tag\Domain\Exception\TagNotFoundException;
 use Codigito\Content\Tag\Domain\Model\Tag;
 use Codigito\Content\Tag\Domain\Repository\TagWriter;
 use Codigito\Content\Tag\Domain\ValueObject\TagId;
 use Codigito\Content\Tag\Infraestructure\Doctrine\Model\TagDoctrine;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 use Codigito\Shared\Domain\Exception\InvalidParameterException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Throwable;
 
@@ -33,10 +31,10 @@ class TagWriterDoctrine implements TagWriter
             $this->manager->remove($model);
             $this->manager->flush();
         } catch (\Throwable $th) {
-            if ($th instanceof TagNotFoundException) {
+            if ($th instanceof NotFoundException) {
                 throw $th;
             }
-            throw new TagCantDeleteException($id->value);
+            throw new InternalErrorException('cant delete tag: '.$id->value);
         }
     }
 
@@ -54,7 +52,7 @@ class TagWriterDoctrine implements TagWriter
         try {
             $result = $query->getSingleResult();
         } catch (Throwable) {
-            throw new TagNotFoundException($id->value);
+            throw new NotFoundException('tag not found: '.$id->value);
         }
 
         return $result;
@@ -64,7 +62,7 @@ class TagWriterDoctrine implements TagWriter
     {
         $doctrine = $this->manager->find(TagDoctrine::class, $tag->id->value);
         if (is_null($doctrine)) {
-            throw new TagNotFoundException($tag->id->value);
+            throw new NotFoundException('tag not found: '.$tag->id->value);
         }
 
         $doctrine->changeImage($tag->image);
@@ -81,7 +79,7 @@ class TagWriterDoctrine implements TagWriter
             $queryBuilder->setParameter('image', $tag->image->value);
             $queryBuilder->getQuery()->execute();
         } catch (Throwable) {
-            throw new TagCantUpdateException($tag->id->value);
+            throw new InternalErrorException('cant update tag: '.$tag->id->value);
         }
     }
 
@@ -94,7 +92,7 @@ class TagWriterDoctrine implements TagWriter
             if (self::DUPLICATE_ERROR_CODE === $th->getCode()) {
                 throw new InvalidParameterException('invalid tag name exists: '.$tag->name->value);
             }
-            throw new TagCantSaveException($tag->id->value);
+            throw new InternalErrorException('cant save tag: '.$tag->id->value);
         }
     }
 

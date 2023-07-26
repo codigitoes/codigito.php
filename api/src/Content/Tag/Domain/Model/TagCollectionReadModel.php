@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Tag\Domain\Model;
 
-use Codigito\Content\Tag\Domain\Exception\InvalidTagTypeException;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 use Codigito\Shared\Domain\Model\ReadModel;
 
 class TagCollectionReadModel implements ReadModel
@@ -17,7 +17,7 @@ class TagCollectionReadModel implements ReadModel
                 continue;
             }
 
-            throw new InvalidTagTypeException();
+            throw new InternalErrorException('invalid tag type its an internal problem');
         }
     }
 

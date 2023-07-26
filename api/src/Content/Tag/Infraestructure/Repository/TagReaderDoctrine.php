@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Tag\Infraestructure\Repository;
 
-use Codigito\Content\Tag\Domain\Exception\TagNotFoundException;
 use Codigito\Content\Tag\Domain\Model\Tag;
 use Codigito\Content\Tag\Domain\Model\TagCollectionReadModel;
 use Codigito\Content\Tag\Domain\Model\TagGetReadModel;
 use Codigito\Content\Tag\Domain\Repository\TagReader;
 use Codigito\Content\Tag\Infraestructure\Doctrine\Model\TagDoctrine;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 use Codigito\Shared\Domain\Filter\Criteria;
 use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Shared\Infraestructure\Filter\CriteriaDoctrine;
@@ -32,7 +32,7 @@ class TagReaderDoctrine implements TagReader
 
             return $result->toModel();
         } catch (Throwable) {
-            throw new TagNotFoundException(json_encode($criteria));
+            throw new NotFoundException('tag not found: '.json_encode($criteria));
         }
     }
 
@@ -43,7 +43,7 @@ class TagReaderDoctrine implements TagReader
 
             return $this->getReadModel($result);
         } catch (Throwable) {
-            throw new TagNotFoundException(json_encode($criteria));
+            throw new NotFoundException('tag not found: '.json_encode($criteria));
         }
     }
 

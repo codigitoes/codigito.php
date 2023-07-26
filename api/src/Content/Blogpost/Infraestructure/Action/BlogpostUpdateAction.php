@@ -16,7 +16,7 @@ use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostBase64Image;
 use Codigito\Content\Blogpost\Application\BlogpostUpdate\BlogpostUpdateCommand;
-use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostUpdateEmptyRequestException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class BlogpostUpdateAction extends BaseAction
 {
@@ -40,7 +40,7 @@ class BlogpostUpdateAction extends BaseAction
             $parametersWithDefaultValue['tags'] = '';
         }
         if (empty($parametersWithDefaultValue)) {
-            throw new InvalidBlogpostUpdateEmptyRequestException($id);
+            throw new InvalidParameterException('invalid blogpost update request, cant be empty: '.$id);
         }
         $this->setParametersFromRequest($request, $parametersWithDefaultValue);
 

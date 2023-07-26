@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Codigito\Content\Fortune\Domain\Model;
 
 use Codigito\Shared\Domain\Model\ReadModel;
-use Codigito\Content\Fortune\Domain\Exception\InvalidFortuneTypeException;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
 
 class FortuneCollectionReadModel implements ReadModel
 {
@@ -17,7 +17,7 @@ class FortuneCollectionReadModel implements ReadModel
                 continue;
             }
 
-            throw new InvalidFortuneTypeException();
+            throw new InternalErrorException('invalid fortune type its an internal problem');
         }
     }
 

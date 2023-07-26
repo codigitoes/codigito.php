@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Fortune\Infraestructure\Repository;
 
-use Codigito\Content\Fortune\Domain\Exception\FortuneCantDeleteException;
-use Codigito\Content\Fortune\Domain\Exception\FortuneCantSaveException;
-use Codigito\Content\Fortune\Domain\Exception\FortuneNotFoundException;
-use Codigito\Content\Fortune\Domain\Exception\InvalidFortuneDuplicateEmailException;
 use Codigito\Content\Fortune\Domain\Model\Fortune;
 use Codigito\Content\Fortune\Domain\Repository\FortuneWriter;
 use Codigito\Content\Fortune\Domain\ValueObject\FortuneId;
 use Codigito\Content\Fortune\Infraestructure\Doctrine\Model\FortuneDoctrine;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Throwable;
 
@@ -44,9 +43,9 @@ class FortuneWriterDoctrine implements FortuneWriter
             $this->manager->flush();
         } catch (\Throwable $th) {
             if (self::DUPLICATE_ERROR_CODE === $th->getCode()) {
-                throw new InvalidFortuneDuplicateEmailException($fortune->name->value);
+                throw new InvalidParameterException('invalid fortune email exists: '.$fortune->name->value);
             }
-            throw new FortuneCantSaveException($fortune->id->value);
+            throw new InternalErrorException('cant create a new fortune: '.$fortune->id->value);
         }
     }
 
@@ -57,10 +56,10 @@ class FortuneWriterDoctrine implements FortuneWriter
             $this->manager->remove($model);
             $this->manager->flush();
         } catch (\Throwable $th) {
-            if ($th instanceof FortuneNotFoundException) {
+            if ($th instanceof NotFoundException) {
                 throw $th;
             }
-            throw new FortuneCantDeleteException($id->value);
+            throw new InternalErrorException('cant delete a fortune: '.$id->value);
         }
     }
 
@@ -77,7 +76,7 @@ class FortuneWriterDoctrine implements FortuneWriter
         try {
             $result = $query->getSingleResult();
         } catch (Throwable) {
-            throw new FortuneNotFoundException($id->value);
+            throw new NotFoundException('fortune not found: '.$id->value);
         }
 
         return $result;

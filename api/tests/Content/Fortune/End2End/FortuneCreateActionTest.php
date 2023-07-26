@@ -6,7 +6,7 @@ namespace Codigito\Tests\Content\Fortune\End2End;
 
 use Symfony\Component\HttpFoundation\Response;
 use Codigito\Tests\Content\CoreContentKernelTest;
-use Codigito\Content\Fortune\Domain\Exception\InvalidFortuneNameException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 use Codigito\Shared\Domain\Helper\Codigito;
 
 class FortuneCreateActionTest extends CoreContentKernelTest
@@ -48,7 +48,7 @@ class FortuneCreateActionTest extends CoreContentKernelTest
         )->errors;
 
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidFortuneNameException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }

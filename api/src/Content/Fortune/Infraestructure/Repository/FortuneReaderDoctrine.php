@@ -15,8 +15,8 @@ use Codigito\Content\Fortune\Domain\Repository\FortuneReader;
 use Codigito\Content\Fortune\Domain\Model\FortuneGetReadModel;
 use Codigito\Content\Fortune\Domain\Criteria\FortuneSearchCriteria;
 use Codigito\Content\Fortune\Domain\Model\FortuneCollectionReadModel;
-use Codigito\Content\Fortune\Domain\Exception\FortuneNotFoundException;
 use Codigito\Content\Fortune\Infraestructure\Doctrine\Model\FortuneDoctrine;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 
 class FortuneReaderDoctrine implements FortuneReader
 {
@@ -45,7 +45,7 @@ class FortuneReaderDoctrine implements FortuneReader
 
             return $result->toModel();
         } catch (Throwable) {
-            throw new FortuneNotFoundException(json_encode($criteria));
+            throw new NotFoundException('fortune not found: '.json_encode($criteria));
         }
     }
 
@@ -79,7 +79,7 @@ class FortuneReaderDoctrine implements FortuneReader
 
             return $this->getReadModel($result);
         } catch (Throwable) {
-            throw new FortuneNotFoundException('random fortune');
+            throw new NotFoundException('fortune random not found');
         }
     }
 

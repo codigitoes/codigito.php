@@ -9,7 +9,7 @@ use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Tests\Content\CoreContentKernelTest;
 use Codigito\Shared\Domain\ValueObject\UuidV4Id;
 use Codigito\Content\Shared\Domain\ValueObject\TagName;
-use Codigito\Content\Tag\Domain\Exception\TagNotFoundException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 
 class TagsValidatorServiceTest extends CoreContentKernelTest
 {
@@ -29,8 +29,8 @@ class TagsValidatorServiceTest extends CoreContentKernelTest
 
             $this->fail();
         } catch (\Throwable $th) {
-            $this->assertInstanceOf(TagNotFoundException::class, $th);
-            $this->assertStringStartsWith(TagNotFoundException::PREFIX, $th->getMessage());
+            $this->assertInstanceOf(NotFoundException::class, $th);
+            $this->assertStringStartsWith(NotFoundException::PREFIX, $th->getMessage());
         }
 
         $this->TagDelete($this->getManager(), $tag1);

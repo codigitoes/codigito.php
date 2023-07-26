@@ -8,10 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Tests\Content\CoreContentKernelTest;
 use Codigito\Content\Blogpost\Domain\Model\Blogpost;
-use Codigito\Content\Tag\Domain\Exception\TagNotFoundException;
-use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostNameException;
-use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostImageException;
-use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostTagsException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 
 class BlogpostCreateActionTest extends CoreContentKernelTest
 {
@@ -22,7 +20,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
-                'tags'        => $this->getTagName().','.$this->getTagName(),
+                'tags'        => $this->getTagName() . ',' . $this->getTagName(),
                 'name'        => Codigito::randomString(),
                 'base64image' => self::$BASE64_IMAGE,
             ],
@@ -52,9 +50,9 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         )->errors;
 
         $expected = [
-            InvalidBlogpostNameException::PREFIX.' ',
-            InvalidBlogpostImageException::PREFIX.' base64 image cannot be empty',
-            InvalidBlogpostTagsException::PREFIX.' invalid names: ',
+            InvalidParameterException::PREFIX . ' invalid blogpost name: ',
+            InvalidParameterException::PREFIX . ' invalid blogpost base64 image: base64 image cannot be empty',
+            InvalidParameterException::PREFIX . ' invalid blogpost tags: invalid names: ',
         ];
 
         self::assertCount(3, $errors);
@@ -65,10 +63,10 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
     public function testItShouldResultFixedErrorsIfAnyTagNameNotFound(): void
     {
         $auth    = $this->api->getAdminOptions($this->getAdminToken());
-        $newName = 'anynotfound'.Codigito::randomString();
+        $newName = 'anynotfound' . Codigito::randomString();
         $body    = [
             'json' => [
-                'tags'        => $this->getTagName().','.$newName,
+                'tags'        => $this->getTagName() . ',' . $newName,
                 'name'        => Codigito::randomString(),
                 'base64image' => self::$BASE64_IMAGE,
             ],
@@ -81,7 +79,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
 
         self::assertCount(1, $errors);
         self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
-        self::assertStringStartsWith(TagNotFoundException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(NotFoundException::PREFIX, $errors[0]);
         self::assertStringContainsString($newName, $errors[0]);
     }
 
@@ -102,7 +100,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         )->errors;
 
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidBlogpostImageException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
@@ -124,7 +122,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         )->errors;
 
         self::assertIsArray($errors);
-        self::assertStringStartsWith(InvalidBlogpostImageException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }

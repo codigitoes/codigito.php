@@ -15,7 +15,7 @@ use Codigito\Content\Shared\Domain\ValueObject\TagName;
 use Codigito\Shared\Infraestructure\Command\CommandStaticBus;
 use Codigito\Content\Tag\Domain\ValueObject\TagBase64Image;
 use Codigito\Content\Tag\Application\TagUpdate\TagUpdateCommand;
-use Codigito\Content\Tag\Domain\Exception\InvalidTagUpdateEmptyRequestException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class TagUpdateAction extends BaseAction
 {
@@ -36,7 +36,7 @@ class TagUpdateAction extends BaseAction
             $parametersWithDefaultValue['base64image'] = '';
         }
         if (empty($parametersWithDefaultValue)) {
-            throw new InvalidTagUpdateEmptyRequestException($id);
+            throw new InvalidParameterException('invalid tag update request, cant be empty: '.$id);
         }
         $this->setParametersFromRequest($request, $parametersWithDefaultValue);
 

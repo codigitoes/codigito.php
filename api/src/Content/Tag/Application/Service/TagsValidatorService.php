@@ -6,7 +6,7 @@ namespace Codigito\Content\Tag\Application\Service;
 
 use Codigito\Content\Tag\Domain\Repository\TagReader;
 use Codigito\Content\Tag\Domain\Criteria\TagGetByNameCriteria;
-use Codigito\Content\Tag\Domain\Exception\TagNotFoundException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 
 class TagsValidatorService
 {
@@ -28,7 +28,7 @@ class TagsValidatorService
         }
 
         if (count($errors) > 0) {
-            throw new TagNotFoundException('names: '.implode(', ', $errors));
+            throw new NotFoundException('tags not found names: '.implode(', ', $errors));
         }
     }
 }

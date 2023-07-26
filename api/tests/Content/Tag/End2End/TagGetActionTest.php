@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Codigito\Tests\Content\Tag\End2End;
 
-use Codigito\Content\Tag\Domain\Exception\TagNotFoundException;
-use Codigito\Content\Tag\Domain\Exception\InvalidTagIdException;
 use Codigito\Content\Tag\Domain\ValueObject\TagId;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Tests\Content\CoreContentKernelTest;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +26,7 @@ class TagGetActionTest extends CoreContentKernelTest
 
         self::assertIsArray($errors);
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidTagIdException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
@@ -41,7 +41,7 @@ class TagGetActionTest extends CoreContentKernelTest
 
         self::assertIsArray($errors);
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(TagNotFoundException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(NotFoundException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 
