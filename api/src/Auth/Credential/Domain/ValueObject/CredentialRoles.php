@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Auth\Credential\Domain\ValueObject;
 
-use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialRolesException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class CredentialRoles
 {
@@ -39,6 +39,6 @@ class CredentialRoles
 
     protected function throwException(array $value): void
     {
-        throw new InvalidCredentialRolesException(implode(',', $value));
+        throw new InvalidParameterException('invalid credential roles: '.implode(',', $value));
     }
 }

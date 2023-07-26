@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Codigito\Auth\Credential\Infraestructure\Repository;
 
-use Codigito\Auth\Credential\Domain\Exception\CredentialCantDeleteException;
-use Codigito\Auth\Credential\Domain\Exception\CredentialCantSaveException;
-use Codigito\Auth\Credential\Domain\Exception\CredentialCantUpdateException;
-use Codigito\Auth\Credential\Domain\Exception\CredentialNotFoundException;
-use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialDuplicateEmailException;
 use Codigito\Auth\Credential\Domain\Model\Credential;
 use Codigito\Auth\Credential\Domain\Repository\CredentialWriter;
 use Codigito\Auth\Credential\Domain\ValueObject\CredentialId;
 use Codigito\Auth\Credential\Infraestructure\Doctrine\Model\CredentialDoctrine;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -40,10 +38,10 @@ class CredentialWriterDoctrine extends ServiceEntityRepository implements Creden
             $this->manager->remove($model);
             $this->manager->flush();
         } catch (\Throwable $th) {
-            if ($th instanceof CredentialNotFoundException) {
+            if ($th instanceof NotFoundException) {
                 throw $th;
             }
-            throw new CredentialCantDeleteException($id->value);
+            throw new InternalErrorException('cant delete credential: '.$id->value);
         }
     }
 
@@ -61,7 +59,7 @@ class CredentialWriterDoctrine extends ServiceEntityRepository implements Creden
         try {
             $result = $query->getSingleResult();
         } catch (Throwable) {
-            throw new CredentialNotFoundException($id->value);
+            throw new NotFoundException('user not found id: '.$id->value);
         }
 
         return $result;
@@ -71,7 +69,7 @@ class CredentialWriterDoctrine extends ServiceEntityRepository implements Creden
     {
         $doctrine = $this->manager->find(CredentialDoctrine::class, $credential->id->value);
         if (is_null($doctrine)) {
-            throw new CredentialNotFoundException($credential->id->value);
+            throw new NotFoundException('credential not found: '.$credential->id->value);
         }
 
         $doctrine->setPassword($credential->password);
@@ -85,7 +83,7 @@ class CredentialWriterDoctrine extends ServiceEntityRepository implements Creden
             $queryBuilder->setParameter('password', $credential->password->value);
             $queryBuilder->getQuery()->execute();
         } catch (Throwable) {
-            throw new CredentialCantUpdateException($credential->id->value);
+            throw new InternalErrorException('cant update credential: '.$credential->id->value);
         }
     }
 
@@ -103,9 +101,9 @@ class CredentialWriterDoctrine extends ServiceEntityRepository implements Creden
             $this->manager->flush();
         } catch (\Throwable $th) {
             if (self::DUPLICATE_ERROR_CODE === $th->getCode()) {
-                throw new InvalidCredentialDuplicateEmailException($credential->email->value);
+                throw new InvalidParameterException('credential duplicate email: '.$credential->email->value);
             }
-            throw new CredentialCantSaveException($credential->id->value);
+            throw new InternalErrorException('cant save credential: '.$credential->id->value);
         }
     }
 

@@ -10,11 +10,9 @@ use Codigito\Content\Blogcontent\Domain\Model\Blogcontent;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
 use Codigito\Content\Blogcontent\Domain\Repository\BlogcontentWriter;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentPosition;
-use Codigito\Content\Blogcontent\Domain\Exception\BlogcontentCantSaveException;
-use Codigito\Content\Blogcontent\Domain\Exception\BlogcontentNotFoundException;
-use Codigito\Content\Blogcontent\Domain\Exception\BlogcontentCantDeleteException;
-use Codigito\Content\Blogcontent\Domain\Exception\BlogcontentCantUpdateException;
 use Codigito\Content\Blogcontent\Infraestructure\Doctrine\Model\BlogcontentDoctrine;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 
 class BlogcontentWriterDoctrine implements BlogcontentWriter
 {
@@ -33,10 +31,10 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
             $this->manager->remove($model);
             $this->manager->flush();
         } catch (\Throwable $th) {
-            if ($th instanceof BlogcontentNotFoundException) {
+            if ($th instanceof NotFoundException) {
                 throw $th;
             }
-            throw new BlogcontentCantDeleteException($id->value);
+            throw new InternalErrorException('cant delete blogocontent: '.$id->value);
         }
     }
 
@@ -54,7 +52,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
         try {
             $result = $query->getSingleResult();
         } catch (Throwable) {
-            throw new BlogcontentNotFoundException($id->value);
+            throw new NotFoundException('blogcontent not found: '.$id->value);
         }
 
         return $result;
@@ -64,7 +62,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
     {
         $doctrine = $this->manager->find(BlogcontentDoctrine::class, $blogcontent->id->value);
         if (is_null($doctrine)) {
-            throw new BlogcontentNotFoundException($blogcontent->id->value);
+            throw new NotFoundException('blogcontent not found: '.$blogcontent->id->value);
         }
 
         $doctrine->changeImage($blogcontent->image);
@@ -84,7 +82,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
             $queryBuilder->setParameter('youtube', $blogcontent->youtube->value);
             $queryBuilder->getQuery()->execute();
         } catch (Throwable) {
-            throw new BlogcontentCantUpdateException($blogcontent->id->value);
+            throw new InternalErrorException('cant update blogocontent: '.$blogcontent->id->value);
         }
     }
 
@@ -109,7 +107,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
             $this->manager->persist(new BlogcontentDoctrine($blogcontent));
             $this->manager->flush();
         } catch (Throwable) {
-            throw new BlogcontentCantSaveException($blogcontent->id->value);
+            throw new InternalErrorException('cant save blogocontent: '.$blogcontent->id->value);
         }
     }
 

@@ -16,7 +16,7 @@ use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentBase64Image;
 use Codigito\Content\Blogcontent\Application\BlogcontentCreate\BlogcontentCreateCommand;
-use Codigito\Content\Blogcontent\Domain\Exception\InvalidBlogcontentCreateEmptyRequestException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class BlogcontentCreateAction extends BaseAction
 {
@@ -75,7 +75,7 @@ class BlogcontentCreateAction extends BaseAction
         $hasBase64Image = (isset($this->parameters['base64image']) && '' !== $this->parameters['base64image']);
         $hasContent     = ($hasHtml || $hasBase64Image || $hasYoutube);
         if (false === $hasContent) {
-            return [InvalidBlogcontentCreateEmptyRequestException::PREFIX.' '.$blogpost_id];
+            return [InvalidParameterException::PREFIX.', invalid blogcontent create request, may contain content data for blogpost: '.$blogpost_id];
         }
         $validator = new ParametersValidator();
         $validator->register('blogpost_id', BlogpostId::class);

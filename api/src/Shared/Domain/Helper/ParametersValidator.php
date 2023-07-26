@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Codigito\Shared\Domain\Helper;
 
 use Codigito\Shared\Domain\Exception\DomainException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 use Codigito\Shared\Domain\ValueObject\ParameterInstantError;
 
 final class ParametersValidator
@@ -41,7 +42,7 @@ final class ParametersValidator
                 $aClassName = $this->validators[$aKey];
                 new $aClassName($aValue);
             } catch (\Throwable $th) {
-                $error = 'invalid parameter '.$aKey.' with value '.json_encode($aValue);
+                $error = InvalidParameterException::PREFIX.': '.$aKey.' with value '.json_encode($aValue);
                 if ($th instanceof DomainException) {
                     $error = $th->getMessage();
                 }

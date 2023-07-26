@@ -7,9 +7,7 @@ namespace Codigito\Tests\Content\Tag\End2End;
 use Symfony\Component\HttpFoundation\Response;
 use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Tests\Content\CoreContentKernelTest;
-use Codigito\Content\Shared\Domain\Exception\InvalidTagNameException;
-use Codigito\Content\Tag\Domain\Exception\InvalidTagImageException;
-use Codigito\Content\Tag\Domain\Exception\InvalidTagDuplicateNameException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class TagCreateActionTest extends CoreContentKernelTest
 {
@@ -28,8 +26,8 @@ class TagCreateActionTest extends CoreContentKernelTest
         )->errors;
 
         $expected = [
-            InvalidTagNameException::PREFIX.' ',
-            InvalidTagImageException::PREFIX.' base64 image cannot be empty',
+            InvalidParameterException::PREFIX.' invalid tag name: ',
+            InvalidParameterException::PREFIX.' invalid tag image: base64 image cannot be empty',
         ];
 
         self::assertCount(2, $errors);
@@ -53,7 +51,7 @@ class TagCreateActionTest extends CoreContentKernelTest
         )->errors;
 
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidTagNameException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
@@ -74,7 +72,7 @@ class TagCreateActionTest extends CoreContentKernelTest
         )->errors;
 
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidTagImageException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
@@ -102,7 +100,7 @@ class TagCreateActionTest extends CoreContentKernelTest
 
         self::assertIsArray($errors);
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidTagDuplicateNameException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
 
         $this->TagDelete($this->getManager(), $actual);
@@ -125,7 +123,7 @@ class TagCreateActionTest extends CoreContentKernelTest
         )->errors;
 
         self::assertIsArray($errors);
-        self::assertStringStartsWith(InvalidTagImageException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }

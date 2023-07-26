@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Codigito\Auth\Credential\Infraestructure\Repository;
 
-use Codigito\Auth\Credential\Domain\Exception\CredentialNotFoundException;
 use Codigito\Auth\Credential\Domain\Model\Credential;
 use Codigito\Auth\Credential\Domain\Model\CredentialGetReadModel;
 use Codigito\Auth\Credential\Domain\Repository\CredentialReader;
 use Codigito\Auth\Credential\Infraestructure\Doctrine\Model\CredentialDoctrine;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 use Codigito\Shared\Domain\Filter\Criteria;
 use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Shared\Infraestructure\Filter\CriteriaDoctrine;
@@ -30,7 +30,7 @@ class CredentialReaderDoctrine implements CredentialReader
 
             return $result->toModel();
         } catch (Throwable) {
-            throw new CredentialNotFoundException(json_encode($criteria));
+            throw new NotFoundException('credential not found: '.json_encode($criteria));
         }
     }
 
@@ -41,7 +41,7 @@ class CredentialReaderDoctrine implements CredentialReader
 
             return $this->getReadModel($result);
         } catch (Throwable) {
-            throw new CredentialNotFoundException(json_encode($criteria));
+            throw new NotFoundException('credential not found: '.json_encode($criteria));
         }
     }
 

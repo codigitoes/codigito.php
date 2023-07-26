@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Tests\Content\CoreContentKernelTest;
 use Codigito\Content\Shared\Domain\ValueObject\BlogpostId;
-use Codigito\Content\Blogcontent\Domain\Exception\BlogcontentNotFoundException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 
 class BlogcontentUpdateActionTest extends CoreContentKernelTest
 {
@@ -72,7 +72,7 @@ class BlogcontentUpdateActionTest extends CoreContentKernelTest
         )->errors;
 
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(BlogcontentNotFoundException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(NotFoundException::PREFIX, $errors[0]);
         self::assertStringContainsString($id, $errors[0]);
     }
 }

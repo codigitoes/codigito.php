@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Tests\Content\CoreContentKernelTest;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
-use Codigito\Content\Blogcontent\Domain\Exception\BlogcontentNotFoundException;
-use Codigito\Content\Blogcontent\Domain\Exception\InvalidBlogcontentIdException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 
 class BlogcontentGetActionTest extends CoreContentKernelTest
 {
@@ -26,7 +26,7 @@ class BlogcontentGetActionTest extends CoreContentKernelTest
 
         self::assertIsArray($errors);
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidBlogcontentIdException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
@@ -41,7 +41,7 @@ class BlogcontentGetActionTest extends CoreContentKernelTest
 
         self::assertIsArray($errors);
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(BlogcontentNotFoundException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(NotFoundException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 

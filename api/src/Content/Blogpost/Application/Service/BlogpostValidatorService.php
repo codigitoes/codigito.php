@@ -6,7 +6,7 @@ namespace Codigito\Content\Blogpost\Application\Service;
 
 use Codigito\Content\Blogpost\Domain\Repository\BlogpostReader;
 use Codigito\Content\Blogpost\Domain\Criteria\BlogpostGetByIdCriteria;
-use Codigito\Content\Shared\Domain\Exception\BlogpostNotFoundException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 
 class BlogpostValidatorService
 {
@@ -28,7 +28,7 @@ class BlogpostValidatorService
         }
 
         if (count($errors) > 0) {
-            throw new BlogpostNotFoundException('ids: '.implode(', ', $errors));
+            throw new NotFoundException('blogposts not founds, ids: '.implode(', ', $errors));
         }
     }
 }

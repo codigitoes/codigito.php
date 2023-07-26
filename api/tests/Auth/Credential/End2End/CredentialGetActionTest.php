@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Codigito\Tests\Auth\Credential\End2End;
 
-use Codigito\Auth\Credential\Domain\Exception\CredentialNotFoundException;
-use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialIdException;
 use Codigito\Auth\Credential\Domain\ValueObject\CredentialId;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Tests\Auth\CoreAuthKernelTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +26,7 @@ class CredentialGetActionTest extends CoreAuthKernelTestCase
 
         self::assertIsArray($errors);
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidCredentialIdException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
@@ -42,7 +42,7 @@ class CredentialGetActionTest extends CoreAuthKernelTestCase
 
         self::assertIsArray($errors);
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(CredentialNotFoundException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(NotFoundException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 

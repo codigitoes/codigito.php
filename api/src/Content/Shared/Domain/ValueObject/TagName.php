@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Shared\Domain\ValueObject;
 
-use Codigito\Content\Shared\Domain\Exception\InvalidTagNameException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 use Codigito\Shared\Domain\ValueObject\LimitedString;
 
 class TagName extends LimitedString
@@ -19,6 +19,6 @@ class TagName extends LimitedString
 
     protected function throwException(string $value): void
     {
-        throw new InvalidTagNameException($value);
+        throw new InvalidParameterException('invalid tag name: '.$value);
     }
 }

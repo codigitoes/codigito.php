@@ -14,8 +14,8 @@ use Codigito\Shared\Infraestructure\Filter\CriteriaDoctrine;
 use Codigito\Content\Blogpost\Domain\Repository\BlogpostReader;
 use Codigito\Content\Blogpost\Domain\Model\BlogpostGetReadModel;
 use Codigito\Content\Blogpost\Domain\Model\BlogpostCollectionReadModel;
-use Codigito\Content\Shared\Domain\Exception\BlogpostNotFoundException;
 use Codigito\Content\Blogpost\Infraestructure\Doctrine\Model\BlogpostDoctrine;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 
 class BlogpostReaderDoctrine implements BlogpostReader
 {
@@ -53,7 +53,7 @@ class BlogpostReaderDoctrine implements BlogpostReader
 
             return $result->toModel();
         } catch (Throwable) {
-            throw new BlogpostNotFoundException(json_encode($criteria));
+            throw new NotFoundException('blogpost not found: '.json_encode($criteria));
         }
     }
 
@@ -64,7 +64,7 @@ class BlogpostReaderDoctrine implements BlogpostReader
 
             return $this->getReadModel($result);
         } catch (Throwable) {
-            throw new BlogpostNotFoundException(json_encode($criteria));
+            throw new NotFoundException('blogpost not found: '.json_encode($criteria));
         }
     }
 

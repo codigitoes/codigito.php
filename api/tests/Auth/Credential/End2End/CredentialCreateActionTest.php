@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Codigito\Tests\Auth\Credential\End2End;
 
 use Codigito\Auth\Credential\Domain\Criteria\CredentialSearchByIdCriteria;
-use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialDuplicateEmailException;
-use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialEmailException;
-use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialRolesException;
 use Codigito\Auth\Credential\Domain\ValueObject\CredentialId;
 use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
 use Codigito\Shared\Domain\Exception\InvalidParameterException;
@@ -60,7 +57,7 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
         $options         = $this->api->getAdminOptions($this->getAdminToken());
         $options['json'] = [];
 
-        $response        = $this->api->post(
+        $response = $this->api->post(
             self::ENDPOINT,
             $options
         );
@@ -68,9 +65,9 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
             $response->getBody()->getContents()
         )->errors;
         $expected = [
-            InvalidCredentialEmailException::PREFIX . ' ',
-            InvalidParameterException::PREFIX . ' invalid plain password: ',
-            InvalidCredentialRolesException::PREFIX . ' ',
+            InvalidParameterException::PREFIX.' invalid credential email: ',
+            InvalidParameterException::PREFIX.' invalid plain password: ',
+            InvalidParameterException::PREFIX.' invalid credential roles: ',
         ];
 
         self::assertCount(3, $errors);
@@ -95,7 +92,7 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
         )->errors;
 
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidCredentialEmailException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
@@ -147,7 +144,7 @@ class CredentialCreateActionTest extends CoreAuthKernelTestCase
 
         self::assertIsArray($errors);
         self::assertCount(1, $errors);
-        self::assertStringStartsWith(InvalidCredentialDuplicateEmailException::PREFIX, $errors[0]);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
 
         $this->CredentialDelete(

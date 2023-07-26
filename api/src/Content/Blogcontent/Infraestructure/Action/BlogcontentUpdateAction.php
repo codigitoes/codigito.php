@@ -16,8 +16,8 @@ use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentBase64Image;
 use Codigito\Content\Blogcontent\Application\BlogcontentUpdate\BlogcontentUpdateCommand;
-use Codigito\Content\Blogcontent\Domain\Exception\InvalidBlogcontentUpdateEmptyRequestException;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class BlogcontentUpdateAction extends BaseAction
 {
@@ -41,7 +41,7 @@ class BlogcontentUpdateAction extends BaseAction
             $parametersWithDefaultValue['base64image'] = '';
         }
         if (empty($parametersWithDefaultValue)) {
-            throw new InvalidBlogcontentUpdateEmptyRequestException($id);
+            throw new InvalidParameterException('invalid blogcontent update request, cant be empty: '.$id);
         }
         $this->setParametersFromRequest($request, $parametersWithDefaultValue);
 

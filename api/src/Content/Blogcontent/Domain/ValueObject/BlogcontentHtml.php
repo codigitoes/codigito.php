@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Codigito\Content\Blogcontent\Domain\ValueObject;
 
 use Codigito\Shared\Domain\ValueObject\LimitedString;
-use Codigito\Content\Blogcontent\Domain\Exception\InvalidBlogcontentHtmlException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class BlogcontentHtml extends LimitedString
 {
@@ -19,6 +19,6 @@ class BlogcontentHtml extends LimitedString
 
     protected function throwException(string $value): void
     {
-        throw new InvalidBlogcontentHtmlException(strlen($value).' min:'.self::MINIMUM_CHARS.' max:'.self::MAXIMUM_CHARS);
+        throw new InvalidParameterException('invalid blogcontent html: '.strlen($value).' min:'.self::MINIMUM_CHARS.' max:'.self::MAXIMUM_CHARS);
     }
 }

@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Blogpost\Infraestructure\Repository;
 
-use Codigito\Content\Blogpost\Domain\Exception\BlogpostCantDeleteException;
-use Codigito\Content\Blogpost\Domain\Exception\BlogpostCantSaveException;
-use Codigito\Content\Blogpost\Domain\Exception\BlogpostCantUpdateException;
-use Codigito\Content\Shared\Domain\Exception\BlogpostNotFoundException;
-use Codigito\Content\Blogpost\Domain\Exception\InvalidBlogpostDuplicateEmailException;
 use Codigito\Content\Blogpost\Domain\Model\Blogpost;
 use Codigito\Content\Blogpost\Domain\Repository\BlogpostWriter;
 use Codigito\Content\Shared\Domain\ValueObject\BlogpostId;
 use Codigito\Content\Blogpost\Infraestructure\Doctrine\Model\BlogpostDoctrine;
+use Codigito\Shared\Domain\Exception\InternalErrorException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
+use Codigito\Shared\Domain\Exception\NotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Throwable;
 
@@ -33,10 +31,10 @@ class BlogpostWriterDoctrine implements BlogpostWriter
             $this->manager->remove($model);
             $this->manager->flush();
         } catch (\Throwable $th) {
-            if ($th instanceof BlogpostNotFoundException) {
+            if ($th instanceof NotFoundException) {
                 throw $th;
             }
-            throw new BlogpostCantDeleteException($id->value);
+            throw new InternalErrorException('cant delete blogpost: '.$id->value);
         }
     }
 
@@ -54,7 +52,7 @@ class BlogpostWriterDoctrine implements BlogpostWriter
         try {
             $result = $query->getSingleResult();
         } catch (Throwable) {
-            throw new BlogpostNotFoundException($id->value);
+            throw new NotFoundException('blogpost not found: '.$id->value);
         }
 
         return $result;
@@ -64,7 +62,7 @@ class BlogpostWriterDoctrine implements BlogpostWriter
     {
         $doctrine = $this->manager->find(BlogpostDoctrine::class, $blogpost->id->value);
         if (is_null($doctrine)) {
-            throw new BlogpostNotFoundException($blogpost->id->value);
+            throw new NotFoundException('blogpost not found: '.$blogpost->id->value);
         }
 
         $doctrine->changeImage($blogpost->image);
@@ -81,7 +79,7 @@ class BlogpostWriterDoctrine implements BlogpostWriter
             $queryBuilder->setParameter('image', $blogpost->image->value);
             $queryBuilder->getQuery()->execute();
         } catch (Throwable) {
-            throw new BlogpostCantUpdateException($blogpost->id->value);
+            throw new InternalErrorException('cant update blogpost: '.$blogpost->id->value);
         }
     }
 
@@ -91,11 +89,10 @@ class BlogpostWriterDoctrine implements BlogpostWriter
             $this->manager->persist(new BlogpostDoctrine($blogpost));
             $this->manager->flush();
         } catch (\Throwable $th) {
-            dd($th);
             if (self::DUPLICATE_ERROR_CODE === $th->getCode()) {
-                throw new InvalidBlogpostDuplicateEmailException($blogpost->name->value);
+                throw new InvalidParameterException('blogpost duplicate: '.$blogpost->name->value);
             }
-            throw new BlogpostCantSaveException($blogpost->id->value);
+            throw new InternalErrorException('cant save blogpost: '.$blogpost->id->value);
         }
     }
 

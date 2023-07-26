@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Auth\Credential\Domain\ValueObject;
 
-use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialPasswordException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 use Codigito\Shared\Domain\ValueObject\LimitedString;
 
 class CredentialPassword extends LimitedString
@@ -19,6 +19,6 @@ class CredentialPassword extends LimitedString
 
     protected function throwException(string $value): void
     {
-        throw new InvalidCredentialPasswordException($value);
+        throw new InvalidParameterException('invalid credential password: '.$value);
     }
 }

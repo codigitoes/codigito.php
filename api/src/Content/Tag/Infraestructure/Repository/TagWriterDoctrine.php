@@ -8,11 +8,11 @@ use Codigito\Content\Tag\Domain\Exception\TagCantDeleteException;
 use Codigito\Content\Tag\Domain\Exception\TagCantSaveException;
 use Codigito\Content\Tag\Domain\Exception\TagCantUpdateException;
 use Codigito\Content\Tag\Domain\Exception\TagNotFoundException;
-use Codigito\Content\Tag\Domain\Exception\InvalidTagDuplicateNameException;
 use Codigito\Content\Tag\Domain\Model\Tag;
 use Codigito\Content\Tag\Domain\Repository\TagWriter;
 use Codigito\Content\Tag\Domain\ValueObject\TagId;
 use Codigito\Content\Tag\Infraestructure\Doctrine\Model\TagDoctrine;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 use Doctrine\ORM\EntityManagerInterface;
 use Throwable;
 
@@ -92,7 +92,7 @@ class TagWriterDoctrine implements TagWriter
             $this->manager->flush();
         } catch (\Throwable $th) {
             if (self::DUPLICATE_ERROR_CODE === $th->getCode()) {
-                throw new InvalidTagDuplicateNameException($tag->name->value);
+                throw new InvalidParameterException('invalid tag name exists: '.$tag->name->value);
             }
             throw new TagCantSaveException($tag->id->value);
         }

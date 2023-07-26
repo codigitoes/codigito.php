@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Auth\Credential\Domain\ValueObject;
 
-use Codigito\Auth\Credential\Domain\Exception\InvalidCredentialEmailException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class CredentialEmail
 {
@@ -18,6 +18,6 @@ class CredentialEmail
 
     protected function throwException(string $value): void
     {
-        throw new InvalidCredentialEmailException($value);
+        throw new InvalidParameterException('invalid credential email: '.$value);
     }
 }

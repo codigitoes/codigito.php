@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Blogcontent\Domain\ValueObject;
 
-use Codigito\Content\Blogcontent\Domain\Exception\InvalidBlogcontentYoutubeException;
+use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class BlogcontentYoutube
 {
@@ -21,6 +21,6 @@ class BlogcontentYoutube
 
     protected function throwException(string $value): void
     {
-        throw new InvalidBlogcontentYoutubeException($value);
+        throw new InvalidParameterException('invalid blogcontent youtube url: '.$value);
     }
 }
