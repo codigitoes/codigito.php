@@ -2,24 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Codigito\Content\Tag\Application\Service;
+namespace Codigito\Content\Tag\Application\TagExistsValidator;
 
 use Codigito\Content\Tag\Domain\Repository\TagReader;
 use Codigito\Content\Tag\Domain\Criteria\TagGetByNameCriteria;
+use Codigito\Shared\Domain\Command\Command;
+use Codigito\Shared\Domain\Command\CommandHandler;
 use Codigito\Shared\Domain\Exception\NotFoundException;
 
-class TagsValidatorService
+class TagExistsValidatorCommandHandler implements CommandHandler
 {
     public function __construct(
         private readonly TagReader $reader
     ) {
     }
 
-    public function validateThatExistsOrThrowException(array $names): void
+    public function execute(Command $command): void
     {
         $errors = [];
 
-        foreach ($names as $aName) {
+        foreach ($command->names as $aName) {
             try {
                 $this->reader->getTagModelByCriteria(new TagGetByNameCriteria($aName));
             } catch (\Throwable $th) {
@@ -28,7 +30,7 @@ class TagsValidatorService
         }
 
         if (count($errors) > 0) {
-            throw new NotFoundException('tags not found names: '.implode(', ', $errors));
+            throw new NotFoundException('tags not founds, names: '.implode(', ', $errors));
         }
     }
 }

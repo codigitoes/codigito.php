@@ -13,21 +13,17 @@ use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 use Codigito\Content\Blogpost\Domain\Repository\BlogpostWriter;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostImage;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
-use Codigito\Content\Shared\Application\Service\TagsValidatorBoundaryFacadeService;
 
 class BlogpostCreateCommandHandler implements CommandHandler
 {
     public function __construct(
         private readonly BlogpostWriter $writer,
-        private readonly CdnCreator $cdn,
-        private readonly TagsValidatorBoundaryFacadeService $tagsValidator
+        private readonly CdnCreator $cdn
     ) {
     }
 
     public function execute(Command $command): void
     {
-        $this->tagsValidator->validate(explode(',', $command->tags));
-
         $image = $this->cdn->create($command->base64image);
 
         $model = Blogpost::createForNew(

@@ -15,21 +15,17 @@ use Codigito\Content\Blogcontent\Domain\Repository\BlogcontentWriter;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentImage;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentPosition;
-use Codigito\Content\Shared\Application\Service\BlogpostValidatorBoundaryFacadeService;
 
 class BlogcontentCreateCommandHandler implements CommandHandler
 {
     public function __construct(
         private readonly BlogcontentWriter $writer,
-        private readonly CdnCreator $cdn,
-        private readonly BlogpostValidatorBoundaryFacadeService $blogpostValidator
+        private readonly CdnCreator $cdn
     ) {
     }
 
     public function execute(Command $command): void
     {
-        $this->blogpostValidator->validate([$command->blogpostId]);
-
         $html    = $this->getHtmlFromCommand($command);
         $image   = $this->getBase64ImageFromCommand($command);
         $youtube = $this->getYoutubeFromCommand($command);

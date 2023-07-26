@@ -16,6 +16,7 @@ use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostBase64Image;
 use Codigito\Content\Blogpost\Application\BlogpostUpdate\BlogpostUpdateCommand;
+use Codigito\Content\Tag\Application\TagExistsValidator\TagExistsValidatorCommand;
 use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class BlogpostUpdateAction extends BaseAction
@@ -52,6 +53,9 @@ class BlogpostUpdateAction extends BaseAction
 
         $result = null;
         try {
+            if (key_exists('tags', $this->parameters)) {
+                $this->bus->execute(new TagExistsValidatorCommand(explode(',', $this->parameters['tags'])));
+            }
             $this->bus->execute($this->createCommandFromParameters());
 
             $result = $this->json(null, Response::HTTP_OK);

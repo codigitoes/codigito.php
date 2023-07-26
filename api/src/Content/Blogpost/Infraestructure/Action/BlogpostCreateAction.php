@@ -16,6 +16,7 @@ use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostBase64Image;
 use Codigito\Content\Blogpost\Application\BlogpostCreate\BlogpostCreateCommand;
+use Codigito\Content\Tag\Application\TagExistsValidator\TagExistsValidatorCommand;
 
 class BlogpostCreateAction extends BaseAction
 {
@@ -42,6 +43,7 @@ class BlogpostCreateAction extends BaseAction
 
         $this->parameters['id'] = BlogpostId::random()->value;
         try {
+            $this->bus->execute(new TagExistsValidatorCommand(explode(',', $this->parameters['tags'])));
             $this->bus->execute($this->createCommandFromParameters());
 
             $result = $this->json(

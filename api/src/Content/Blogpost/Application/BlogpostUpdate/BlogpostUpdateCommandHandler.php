@@ -13,15 +13,13 @@ use Codigito\Content\Blogpost\Domain\Repository\BlogpostWriter;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostImage;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
 use Codigito\Content\Blogpost\Domain\Criteria\BlogpostGetByIdCriteria;
-use Codigito\Content\Shared\Application\Service\TagsValidatorBoundaryFacadeService;
 
 class BlogpostUpdateCommandHandler implements CommandHandler
 {
     public function __construct(
         private readonly BlogpostWriter $writer,
         private readonly BlogpostReader $reader,
-        private readonly CdnCreator $cdn,
-        private readonly TagsValidatorBoundaryFacadeService $tagsValidator
+        private readonly CdnCreator $cdn
     ) {
     }
 
@@ -35,7 +33,6 @@ class BlogpostUpdateCommandHandler implements CommandHandler
         }
 
         if ($command->tags) {
-            $this->tagsValidator->validate(explode(',', $command->tags));
             $blogpost->changeTags(new BlogpostTags($command->tags));
         }
 

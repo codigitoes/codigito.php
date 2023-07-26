@@ -20,7 +20,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
-                'tags'        => $this->getTagName() . ',' . $this->getTagName(),
+                'tags'        => $this->getTagName().','.$this->getTagName(),
                 'name'        => Codigito::randomString(),
                 'base64image' => self::$BASE64_IMAGE,
             ],
@@ -50,9 +50,9 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         )->errors;
 
         $expected = [
-            InvalidParameterException::PREFIX . ' invalid blogpost name: ',
-            InvalidParameterException::PREFIX . ' invalid blogpost base64 image: base64 image cannot be empty',
-            InvalidParameterException::PREFIX . ' invalid blogpost tags: invalid names: ',
+            InvalidParameterException::PREFIX.' invalid blogpost name: ',
+            InvalidParameterException::PREFIX.' invalid blogpost base64 image: base64 image cannot be empty',
+            InvalidParameterException::PREFIX.' invalid blogpost tags: invalid names: ',
         ];
 
         self::assertCount(3, $errors);
@@ -63,10 +63,10 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
     public function testItShouldResultFixedErrorsIfAnyTagNameNotFound(): void
     {
         $auth    = $this->api->getAdminOptions($this->getAdminToken());
-        $newName = 'anynotfound' . Codigito::randomString();
+        $newName = 'anynotfound'.Codigito::randomString();
         $body    = [
             'json' => [
-                'tags'        => $this->getTagName() . ',' . $newName,
+                'tags'        => $this->getTagName().','.$newName,
                 'name'        => Codigito::randomString(),
                 'base64image' => self::$BASE64_IMAGE,
             ],

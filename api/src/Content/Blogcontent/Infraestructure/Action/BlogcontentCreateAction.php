@@ -16,6 +16,7 @@ use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentHtml;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentYoutube;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentBase64Image;
 use Codigito\Content\Blogcontent\Application\BlogcontentCreate\BlogcontentCreateCommand;
+use Codigito\Content\Blogpost\Application\BlogpostExistsValidator\BlogpostExistsValidatorCommand;
 use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
 class BlogcontentCreateAction extends BaseAction
@@ -45,6 +46,7 @@ class BlogcontentCreateAction extends BaseAction
 
         $this->parameters['id'] = BlogcontentId::random()->value;
         try {
+            $this->bus->execute(new BlogpostExistsValidatorCommand([$this->parameters['blogpost_id']]));
             $this->bus->execute($this->createCommandFromParameters());
 
             $result = $this->json(

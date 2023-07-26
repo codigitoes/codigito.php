@@ -2,24 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Codigito\Content\Blogpost\Application\Service;
+namespace Codigito\Content\Blogpost\Application\BlogpostExistsValidator;
 
 use Codigito\Content\Blogpost\Domain\Repository\BlogpostReader;
 use Codigito\Content\Blogpost\Domain\Criteria\BlogpostGetByIdCriteria;
+use Codigito\Shared\Domain\Command\Command;
+use Codigito\Shared\Domain\Command\CommandHandler;
 use Codigito\Shared\Domain\Exception\NotFoundException;
 
-class BlogpostValidatorService
+class BlogpostExistsValidatorCommandHandler implements CommandHandler
 {
     public function __construct(
         private readonly BlogpostReader $reader
     ) {
     }
 
-    public function validateThatExistsOrThrowException(array $ids): void
+    public function execute(Command $command): void
     {
         $errors = [];
 
-        foreach ($ids as $anId) {
+        foreach ($command->ids as $anId) {
             try {
                 $this->reader->getBlogpostModelByCriteria(new BlogpostGetByIdCriteria($anId));
             } catch (\Throwable $th) {
