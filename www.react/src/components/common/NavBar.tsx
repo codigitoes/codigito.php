@@ -28,6 +28,7 @@ const NavBar:React.FC<unknown> = () => {
                     </Container>
                 </Toolbar>
             </AppBar>
+            <Toolbar/>
         </Box>
     );
 }

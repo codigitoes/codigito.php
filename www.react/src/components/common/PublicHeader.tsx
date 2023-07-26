@@ -8,7 +8,7 @@ type HomeHeaderProps = {
 
 const HomeHeader:React.FC<HomeHeaderProps> = ({title,description,element}) => {
     return (
-        <div>
+        <>
             <Box sx={{
                 width: '100%',
                 height: '80px',
@@ -39,7 +39,7 @@ const HomeHeader:React.FC<HomeHeaderProps> = ({title,description,element}) => {
                 </Grid>
             </Box>
             <Divider/>
-        </div>
+        </>
     );
 };
 

@@ -1,26 +1,25 @@
 import { Container } from "@mui/material"
 import React from "react";
-import HomeHeader from "./HomeHeader";
-import fixture from './fixture.json';
+import HomeHeader from "../../components/common/PublicHeader";
 import Blogpost from "../../types/Blogpost";
+import useFetch from "../../hooks/useFetch";
 
-//const endpoint:string = 'http://localhost:8001/api/client/web/list';
+const endpoint:string = 'http://localhost:8001/api/client/web/list';
 const HomePage:React.FC =()=>{
-    // const fetchState = useFetch<{
-    //     blogposts:Blogpost[]
-    // }>(endpoint);
-    // if (fetchState.state === 'loading' || fetchState.state === 'idle'){
-    //     return (<Container sx={{ mt:9 }} maxWidth="xl">
-    //         <HomeHeader title='{.".} loading...' description=""/>
-    //     </Container>);
-    // }
+    const fetchState = useFetch<{
+        blogposts:Blogpost[]
+    }>(endpoint);
+    if (fetchState.state === 'loading' || fetchState.state === 'idle'){
+        return (<Container sx={{ mt:9 }} maxWidth="xl">
+            <HomeHeader title='{.".} loading...' description=""/>
+        </Container>);
+    }
 
-    // const blogposts:Blogpost[] = fetchState.data?.blogposts ? fetchState.data.blogposts : [];
+    const blogposts:Blogpost[] = fetchState.data?.blogposts ? fetchState.data.blogposts : [];
     return (
         <Container sx={{ mt:9 }} maxWidth="xl">
-            <HomeHeader title='codigito.es' description='el camino del test'/>
             <ul>
-            {fixture.blogposts.map((blogpost:Blogpost) => {
+            {blogposts.map((blogpost:Blogpost) => {
                 return (
                     <li key={blogpost.id}>
                         <hr/>

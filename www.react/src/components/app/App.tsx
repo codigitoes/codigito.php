@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
-import AppRouter from './components/common/AppRouter';
+import AppRouter from './AppRouter';
 
-function App() {
+const App: React.FC<unknown> = () => {
   return (
       <BrowserRouter>
         <AppRouter />
