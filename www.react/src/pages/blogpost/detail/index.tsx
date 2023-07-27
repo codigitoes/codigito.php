@@ -1,12 +1,12 @@
 import { Container, Grid, Paper } from "@mui/material"
 import React from "react";
-import HomeHeader from "../../components/common/PublicHeader";
-import Blogpost from "../../types/Blogpost";
-import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import HomeHeader from "../../../components/common/PublicHeader";
+import useFetch from "../../../hooks/useFetch";
+import Blogpost from "../../../types/Blogpost";
 
 const endpoint:string = 'http://localhost:8001/api/client/web/list';
-const HomePage:React.FC =()=>{
+const BlogpostDetailPage:React.FC =()=>{
     const navigate = useNavigate();
 
     const fetchState = useFetch<{
@@ -38,4 +38,4 @@ const HomePage:React.FC =()=>{
     );
 }
 
-export default HomePage;
+export default BlogpostDetailPage;
