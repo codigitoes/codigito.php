@@ -1,38 +1,22 @@
-import { Container, Grid, Paper } from "@mui/material"
+import { Container, Grid } from "@mui/material"
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import HomeHeader from "../../../components/common/PublicHeader";
 import useFetch from "../../../hooks/useFetch";
-import Blogpost from "../../../types/Blogpost";
 
-const endpoint:string = 'http://localhost:8001/api/client/web/list';
+const endpoint:string = 'http://localhost:8001/api/client/web/detail/93d52a3a-bffe-41a6-a52d-455336219ba0';
 const BlogpostDetailPage:React.FC =()=>{
-    const navigate = useNavigate();
 
-    const fetchState = useFetch<{
-        blogposts:Blogpost[]
-    }>(endpoint);
+    const fetchState = useFetch<unknown>(endpoint);
     if (fetchState.state === 'loading' || fetchState.state === 'idle'){
         return (<Container sx={{ mt:9 }} maxWidth="xl">
             <HomeHeader title='{.".} loading...' description=""/>
         </Container>);
     }
 
-    const blogposts:Blogpost[] = fetchState.data?.blogposts ? fetchState.data.blogposts : [];
     return (
         <Container sx={{ mt:9 }} maxWidth="xl">
             <Grid container>
-            {blogposts.map((blogpost:Blogpost) => {
-                return (
-                    <Grid item xs={12} sm={6} lg={4} key={blogpost.id} onClick={()=>navigate(`/blogpost/${blogpost.id}`)}>
-                        <Paper  sx={{m:1}}>
-                            <h5>{blogpost.name}</h5>
-                            <img src={blogpost.image} width={100} />
-                            <h6>{blogpost.tags.join(',')}</h6>
-                        </Paper>
-                    </Grid>
-                );
-            })}
+                <h1>Hola</h1>
             </Grid>
         </Container>
     );
