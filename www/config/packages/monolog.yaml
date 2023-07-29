@@ -46,7 +46,7 @@ when@prod:
             main:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
-                level: debug
+                level: info
                 channels: ["!event"]
                 formatter: 'monolog.formatter.json'
 
@@ -58,7 +58,7 @@ when@prod:
             nested:
                 type: stream
                 path: php://stderr
-                level: debug
+                level: info
                 formatter: monolog.formatter.json
             console:
                 type: console

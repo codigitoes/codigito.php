@@ -48,7 +48,6 @@ services:
       codigito-network:
         ipv4_address: 172.27.102.12
 
-
   codigito.admin:
     user: "1000:1000"
     build:
@@ -70,7 +69,6 @@ services:
       codigito-network:
         ipv4_address: 172.27.102.13
 
-
   codigito.www:
     user: "1000:1000"
     build:
@@ -91,7 +89,6 @@ services:
     networks:
       codigito-network:
         ipv4_address: 172.27.102.14
-
 
   #----------------------------------------------------------
   # servicio para mensajeria que podemos ver
@@ -116,12 +113,15 @@ services:
       codigito-network:
         ipv4_address: 172.27.102.15
 
-  grafana:
+  codigito.grafana:
     image: "grafana/grafana:8.4.2"
+    container_name: 'codigito.grafana'
     ports:
       - "3000:3000"
+    hostname: codigito.grafana
     volumes:
       - ./provisioning:/etc/grafana/provisioning
+      - grafana:/var/lib/grafana
     extra_hosts:
       - 'codigito.loki:172.27.102.17'
       - 'loki:172.27.102.17'
@@ -129,8 +129,9 @@ services:
       codigito-network:
         ipv4_address: 172.27.102.16
 
-  loki:
+  codigito.loki:
     image: "grafana/loki:2.4.2"
+    container_name: 'codigito.loki'
     ports:
       - "3100:3100"
     hostname: codigito.loki
@@ -140,3 +141,4 @@ services:
 
 volumes:
   mariadb-data:
+  grafana:

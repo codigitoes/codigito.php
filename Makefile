@@ -23,6 +23,7 @@ env.dev:
 	bash docker/bin/env.dev.sh
 env.prod:
 	bash docker/bin/env.prod.sh
+d: start.dev
 start.dev:
 	bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev && bash docker/bin/env.dev.sh
 restart.dev:

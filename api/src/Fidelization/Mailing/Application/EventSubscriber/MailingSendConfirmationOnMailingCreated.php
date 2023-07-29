@@ -23,7 +23,7 @@ class MailingSendConfirmationOnMailingCreated implements DomainEventSubscriber
 
     public function handlerEvent(DomainEvent $event): void
     {
-        $from    = 'codigito@gmail.com';
+        $from    = $_ENV['MAILER_USER'];
         $to      = $event->payload->value['email'];
         $subject = 'Confirmacion de subscripcion al mailing!';
         $html    = '<p>Haz click <a href="'.rtrim($_ENV['WWW_URL'], '/').'/suscription/'.$event->payload->value['id'].'/confirm">"aqui"</a> para confirmar tu suscripcion!!';
