@@ -3,9 +3,12 @@ import React from "react";
 import HomeHeader from "../../components/common/PublicHeader";
 import Blogpost from "../../types/Blogpost";
 import useFetch from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 
 const endpoint:string = 'http://localhost:8001/api/client/web/list';
 const HomePage:React.FC =()=>{
+    const navigate = useNavigate();
+
     const fetchState = useFetch<{
         blogposts:Blogpost[]
     }>(endpoint);
@@ -21,7 +24,7 @@ const HomePage:React.FC =()=>{
             <ul>
             {blogposts.map((blogpost:Blogpost) => {
                 return (
-                    <li key={blogpost.id}>
+                    <li key={blogpost.id} onClick={()=>navigate(`/blogpost/${blogpost.id}`)}>
                         <hr/>
                         <h4>{blogpost.name}</h4>
                         <img src={blogpost.image} width={100} />
