@@ -1,4 +1,4 @@
-import { Container, Grid, Paper } from "@mui/material"
+import { Container, Grid } from "@mui/material"
 import React from "react";
 import HomeHeader from "../../components/common/PublicHeader";
 import Blogpost from "../../types/Blogpost";

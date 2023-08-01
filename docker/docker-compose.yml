@@ -25,8 +25,9 @@ services:
     extra_hosts:
       - 'mariadb:172.27.102.12'
       - 'codigito.cdn:127.0.0.1'
-      - 'codigito.messenger:172.27.102.15'
+      - 'codigito.rabbitmq:172.27.102.15'
       - 'codigito.loki:172.27.102.17'
+      - 'loki:172.27.102.17'
     hostname: codigito.api
     networks:
       codigito-network:
@@ -64,6 +65,8 @@ services:
       - 'mariadb:172.27.102.12'
       - 'codigito.api:172.27.102.11'
       - 'codigito.cdn:172.27.102.11'
+      - 'codigito.loki:172.27.102.17'
+      - 'loki:172.27.102.17'
     hostname: codigito.admin
     networks:
       codigito-network:
@@ -85,6 +88,8 @@ services:
       - 'mariadb:172.27.102.12'
       - 'codigito.api:172.27.102.11'
       - 'codigito.cdn:172.27.102.11'
+      - 'codigito.loki:172.27.102.17'
+      - 'loki:172.27.102.17'
     hostname: codigito.www
     networks:
       codigito-network:
@@ -96,32 +101,39 @@ services:
   #
   # el dsn de conexion es: amqp://guest:guest@localhost:5672/
   #----------------------------------------------------------  
-  codigito.messenger:
+  codigito.rabbitmq:
     build:
       context: rabbitmq
       args:
         DEPLOY_ENV: ${DEPLOY_ENV}
-    container_name: 'codigito.messenger'
+    container_name: 'codigito.rabbitmq'
     ports:
       - 5672:5672
       - 15672:15672
     volumes:
       - /var/lib/rabbitmq/
       - /var/log/rabbitmq
-    hostname: codigito.messenger
+    hostname: codigito.rabbitmq
     networks:
       codigito-network:
         ipv4_address: 172.27.102.15
 
   codigito.grafana:
-    image: "grafana/grafana:8.4.2"
-    container_name: 'codigito.grafana'
+    user: "1000:1000"
+    build:
+      context: grafana
+      args:
+        DEPLOY_ENV: ${DEPLOY_ENV}
+    environment:
+      - "GF_PATHS_PLUGINS=/usr/share/grafana/public/app/plugins"
+    restart: unless-stopped
     ports:
-      - "3000:3000"
+     - '3000:3000'
+    container_name: 'codigito.grafana'
     hostname: codigito.grafana
     volumes:
-      - ./provisioning:/etc/grafana/provisioning
       - grafana:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
     extra_hosts:
       - 'codigito.loki:172.27.102.17'
       - 'loki:172.27.102.17'
@@ -130,10 +142,13 @@ services:
         ipv4_address: 172.27.102.16
 
   codigito.loki:
+    user: "10001:10001"
     image: "grafana/loki:2.4.2"
     container_name: 'codigito.loki'
     ports:
       - "3100:3100"
+    volumes:
+      - loki-data:/loki/data
     hostname: codigito.loki
     networks:
       codigito-network:
@@ -141,4 +156,5 @@ services:
 
 volumes:
   mariadb-data:
+  loki-data:
   grafana:
