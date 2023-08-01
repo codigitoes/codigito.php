@@ -100,12 +100,12 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "sum(count_over_time({job=\"codigito.www\"} | json [30m])) by (method)",
+          "expr": "sum(count_over_time({filename=\"/var/www/vhosts/codigito.es/var/log/access.log\",job=\"codigito.www\"} [30m])) by (method)",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "api.access.log.by.method",
+      "title": "www.access.log.by.method",
       "type": "timeseries"
     },
     {
@@ -157,15 +157,16 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "sum(count_over_time({job=\"codigito.www\"} | json [30m])) by (status)",
+          "expr": "{filename=\"/var/www/vhosts/codigito.es/var/log/access.log\",job=\"codigito.www\"}  | json | line_format \"{{.remoteIP}}:{{.method}}.{{.status}} => {{.request}}\"",
+          "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "api.access.log.by.status",
+      "title": "www.access.log.by.status",
       "type": "bargauge"
     },
     {
-      "description": "apache access log para el api",
+      "description": "apache access log para el www",
       "gridPos": {
         "h": 9,
         "w": 12,
@@ -189,14 +190,13 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "{job=\"codigito.www\"}  | json | line_format \"{{.remoteIP}}:{{.method}}.{{.status}} => {{.request}}\"",
-          "hide": false,
-          "queryType": "instant",
+          "expr": "sum(count_over_time({filename=\"/var/www/vhosts/codigito.es/var/log/access.log\",job=\"codigito.www\"} | json [30m])) by (method)",
+          "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "api.access.log",
-      "type": "logs"
+      "title": "www.access.log.by.method",
+      "type": "timeseries"
     }
   ],
   "refresh": "",
