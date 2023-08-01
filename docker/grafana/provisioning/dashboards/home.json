@@ -21,93 +21,10 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
-    {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 0
-      },
-      "id": 4,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "P8E80F9AEF21F6940"
-          },
-          "expr": "sum(count_over_time({filename=\"/var/www/vhosts/codigito.es/var/log/access.log\",job=\"codigito.www\"} [30m])) by (method)",
-          "queryType": "range",
-          "refId": "A"
-        }
-      ],
-      "title": "www.access.log.by.method",
-      "type": "timeseries"
-    },
     {
       "fieldConfig": {
         "defaults": {
@@ -134,10 +51,10 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
+        "x": 0,
         "y": 0
       },
-      "id": 5,
+      "id": 4,
       "options": {
         "displayMode": "lcd",
         "orientation": "horizontal",
@@ -157,16 +74,72 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "{filename=\"/var/www/vhosts/codigito.es/var/log/access.log\",job=\"codigito.www\"}  | json | line_format \"{{.remoteIP}}:{{.method}}.{{.status}} => {{.request}}\"",
+          "expr": "sum(count_over_time({filename=\"/var/www/vhosts/codigito.es/var/log/access.log\",job=\"codigito.www\"}\n    | json\n    | method != \"-\"\n    | __error__ = \"\"[1m])) by (method)",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "www.access.log.by.status",
+      "title": "www.access.log.by.method",
       "type": "bargauge"
     },
     {
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "pluginVersion": "8.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "P8E80F9AEF21F6940"
+          },
+          "expr": "{filename=\"/var/www/vhosts/codigito.es/var/log/access.log\",job=\"codigito.www\"}  | json | line_format \"{{.remoteIP}}:{{.method}}.{{.status}} => {{.request}}\"",
+          "hide": false,
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "www.access.log",
+      "type": "logs"
+    },
+    {
       "description": "apache access log para el www",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 9,
         "w": 12,
@@ -175,31 +148,34 @@
       },
       "id": 2,
       "options": {
-        "dedupStrategy": "none",
-        "enableLogDetails": true,
-        "prettifyLogMessage": true,
-        "showCommonLabels": false,
-        "showLabels": false,
-        "showTime": true,
-        "sortOrder": "Descending",
-        "wrapLogMessage": false
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
       },
+      "pluginVersion": "8.4.2",
       "targets": [
         {
           "datasource": {
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "expr": "sum(count_over_time({filename=\"/var/www/vhosts/codigito.es/var/log/access.log\",job=\"codigito.www\"} | json [30m])) by (method)",
+          "expr": "sum(count_over_time({filename=\"/var/www/vhosts/codigito.es/var/log/access.log\",job=\"codigito.www\"}\n    | json\n    | __error__ = \"\"[1m])) by (status)",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "www.access.log.by.method",
-      "type": "timeseries"
+      "title": "www.access.log.by.status",
+      "type": "bargauge"
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 35,
   "style": "dark",
   "tags": [],
@@ -207,13 +183,13 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "codigito",
   "uid": "6O6mANqVk",
-  "version": 16,
+  "version": 6,
   "weekStart": ""
 }
