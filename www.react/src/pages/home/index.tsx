@@ -1,4 +1,4 @@
-import { Container } from "@mui/material"
+import { Container, Grid } from "@mui/material"
 import React from "react";
 import HomeHeader from "../../components/common/PublicHeader";
 import Blogpost from "../../types/Blogpost";
@@ -21,7 +21,7 @@ const HomePage:React.FC =()=>{
     const blogposts:Blogpost[] = fetchState.data?.blogposts ? fetchState.data.blogposts : [];
     return (
         <Container sx={{ mt:9 }} maxWidth="xl">
-            <ul>
+            <Grid container>
             {blogposts.map((blogpost:Blogpost) => {
                 return (
                     <li key={blogpost.id} onClick={()=>navigate(`/blogpost/${blogpost.id}`)}>
@@ -32,8 +32,7 @@ const HomePage:React.FC =()=>{
                     </li>
                 );
             })}
-            </ul>
-            <hr/>
+            </Grid>
         </Container>
     );
 }

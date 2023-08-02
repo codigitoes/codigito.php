@@ -3,16 +3,16 @@ server:
   grpc_listen_port: 0
 
 positions:
-  filename: /data/loki/positions.yaml
+  filename: /loki/data/positions.yaml
 
 clients:
   - url: http://codigito.loki:3100/loki/api/v1/push
 
 scrape_configs:
-- job_name: codigito
+- job_name: codigito.xxx
   static_configs:
   - targets:
       - localhost
     labels:
-      job: codigito
+      job: codigito.xxx
       __path__: /var/www/vhosts/codigito.es/var/log/*.log

@@ -6,6 +6,8 @@ adminsh:
 	bash docker/bin/adminsh.sh
 wwwsh:
 	bash docker/bin/wwwsh.sh
+grafanash:
+	bash docker/bin/grafanash.sh
 tests:
 	bash docker/bin/tests.sh
 test: tests
@@ -15,6 +17,8 @@ dumpdb:
 	bash docker/bin/dumpdb.sh
 install:
 	bash docker/bin/install.sh
+rabbit:
+	bash docker/bin/rabbit.sh
 recreatedb:
 	bash docker/bin/recreatedb.sh
 format:
@@ -23,6 +27,7 @@ env.dev:
 	bash docker/bin/env.dev.sh
 env.prod:
 	bash docker/bin/env.prod.sh
+d: start.dev
 start.dev:
 	bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev && bash docker/bin/env.dev.sh
 restart.dev:

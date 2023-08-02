@@ -1,5 +1,4 @@
 #!/bin/bash
-
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
   DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
@@ -9,11 +8,9 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )/"
 cd $DIR"../"
 
-if [ $# -eq 0 ]
-  then
-    echo "No arguments supplied: make start DEPLOY_ENV=dev|prod"
-    exit
-fi
 
-DEPLOY_ENV=$1 docker-compose up --build --remove-orphans --force-recreate &
-
+echo ""
+echo ""
+docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  php bin/console ce:domain-events:rabbitmq:configure
+echo ""
+echo ""

@@ -83,7 +83,7 @@ RUN apt-get install -y libc6-amd64-cross
 RUN ln -s /usr/x86_64-linux-gnu/lib64/ /lib64
 ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib64:/usr/x86_64-linux-gnu/lib"
 COPY promtail-local-config.yaml /etc/promtail-local-config.yaml
-RUN mkdir -p /data/loki && chown -R 1000:1000 /data && chmod -R 777 /data
+RUN mkdir -p /loki/data && chown -R 1000:1000 /loki && chmod -R 777 /loki
 
 
 # Clean up

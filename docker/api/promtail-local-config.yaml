@@ -3,7 +3,7 @@ server:
   grpc_listen_port: 0
 
 positions:
-  filename: /data/loki/positions.yaml
+  filename: /loki/data/positions.yaml
 
 clients:
   - url: http://codigito.loki:3100/loki/api/v1/push
