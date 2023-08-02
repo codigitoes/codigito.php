@@ -136,6 +136,7 @@ services:
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/provisioning:/usr/share/grafana/conf/provisioning
     extra_hosts:
+      - 'mariadb:172.27.102.12'
       - 'codigito.loki:172.27.102.17'
       - 'loki:172.27.102.17'
     networks:
