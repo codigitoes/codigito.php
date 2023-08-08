@@ -1,3 +1,5 @@
+all: 
+	make stop && make start.dev && make install && make rabbit && make recreatedb
 stop:
 	bash docker/bin/stop.sh
 apish:
@@ -15,7 +17,7 @@ truncatealltables:
 	bash docker/bin/truncatealltables.sh
 dumpdb:
 	bash docker/bin/dumpdb.sh
-install:
+install: 
 	bash docker/bin/install.sh
 rabbit:
 	bash docker/bin/rabbit.sh

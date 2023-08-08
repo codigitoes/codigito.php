@@ -15,5 +15,5 @@ if [ $# -eq 0 ]
     exit
 fi
 
-DEPLOY_ENV=$1 docker-compose up --build --remove-orphans --force-recreate &
+DEPLOY_ENV=$1 docker-compose up --build --remove-orphans  &
 

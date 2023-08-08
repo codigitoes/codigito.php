@@ -12,5 +12,6 @@ echo "markitos say: 'starting promtail'"
 echo "markitos say: 'promtail started'"
 
 echo "markitos say: 'starting httpd'"
+killall -9 apache2ctl
 /usr/sbin/apache2ctl -D FOREGROUND
 echo "markitos say: 'httpd started'"
