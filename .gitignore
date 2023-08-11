@@ -58,3 +58,4 @@ api/.phpunit.result.cache
 admin/.env
 docker/mariadb/data/
 api/public/cdn/*.jpg
+api/phpunit.xml

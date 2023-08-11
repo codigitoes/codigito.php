@@ -17,6 +17,6 @@ done
 
 echo ""
 echo ""
-docker exec -it `docker ps | grep codigito.maria | head -n1 | awk '{print $1;}'` mysql -u codigito  -pcodigito codigito -e "$all"
+docker exec -it `docker ps | grep codigito.mariadb | head -n1 | awk '{print $1;}'` mysql -u codigito  -pcodigito codigito -e "$all"
 echo ""
 echo ""

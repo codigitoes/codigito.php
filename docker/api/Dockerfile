@@ -44,12 +44,12 @@ RUN apt-get -y update \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl
 
+COPY php.ini /usr/local/etc/php/php.ini
 RUN pecl install amqp
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 RUN docker-php-ext-enable amqp
 
-COPY php.ini /usr/local/etc/php/php.ini
 RUN rm -f /tmp/.htaccess
 COPY .htaccess /tmp/
 
@@ -86,29 +86,18 @@ RUN a2dissite 000-default
 
 COPY rabbitmq.supervisor.conf /etc/supervisor/conf.d/rabbitmq.supervisor.conf
 
-
-# promtail for loki
-RUN wget https://github.com/grafana/loki/releases/download/v2.8.3/promtail-linux-amd64.zip && unzip promtail-linux-amd64.zip && mv promtail-linux-amd64 /usr/local/bin/promtail
-RUN apt-get update
-RUN apt-get install -y wget unzip
-RUN apt-get install -y libc6-amd64-cross
-RUN ln -s /usr/x86_64-linux-gnu/lib64/ /lib64
-ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/lib64:/usr/x86_64-linux-gnu/lib"
-COPY promtail-local-config.yaml /etc/promtail-local-config.yaml
-RUN mkdir -p /loki/data && chown -R 1000:1000 /loki && chmod -R 777 /loki
-
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+WORKDIR /var/www/vhosts/codigito.es
+
 COPY entrypoint.sh /tmp
 RUN chmod 777 /tmp/*
-WORKDIR /var/www/vhosts/codigito.es
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
 RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc;
-RUN chmod -R 777 /var/log/supervisor
-# RUN /usr/sbin/service supervisor start
-# RUN /usr/local/bin/promtail -config.file /etc/promtail-local-config.yaml &
+RUN /usr/sbin/service supervisor start
 
-# CMD ["apachectl", "-D", "FOREGROUND"]
-ENTRYPOINT ["/tmp/entrypoint.sh"]
+
+CMD ["/tmp/entrypoint.sh"]
+# CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

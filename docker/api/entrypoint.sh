@@ -7,11 +7,6 @@ echo "markitos say: 'starting supervisor'"
 /usr/sbin/service supervisor start
 echo "markitos say: 'supervisor started'"
 
-echo "markitos say: 'starting promtail'"
-/usr/local/bin/promtail -config.file /etc/promtail-local-config.yaml & 
-echo "markitos say: 'promtail started'"
-
 echo "markitos say: 'starting httpd'"
-killall -9 apache2ctl
-/usr/sbin/apache2ctl -D FOREGROUND
+/usr/sbin/apache2ctl -D FOREGROUND && /bin/bash
 echo "markitos say: 'httpd started'"

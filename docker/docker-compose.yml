@@ -10,91 +10,6 @@ networks:
       config:
         - subnet: 172.27.102.0/24
 services:
-  codigito.api:
-    user: "1000:1000"
-    build:
-      context: api
-      args:
-        DEPLOY_ENV: ${DEPLOY_ENV}
-    container_name: 'codigito.api'
-    ports:
-      - 8001:80
-      - 4431:443
-    volumes:
-      - ../api/:/var/www/vhosts/codigito.es/
-    extra_hosts:
-      - 'mariadb:172.27.102.12'
-      - 'codigito.cdn:127.0.0.1'
-      - 'codigito.rabbitmq:172.27.102.15'
-      - 'codigito.loki:172.27.102.17'
-      - 'loki:172.27.102.17'
-    hostname: codigito.api
-    networks:
-      codigito-network:
-        ipv4_address: 172.27.102.11
-
-  codigito.mariadb:
-    build:
-      context: mariadb
-      args:
-        DEPLOY_ENV: ${DEPLOY_ENV}
-    container_name: 'codigito.mariadb'
-    volumes:
-      - mariadb-data:/var/lib/mysql
-    ports:
-      - 3306:3306
-    restart: always
-    hostname: codigito.mariadb
-    networks:
-      codigito-network:
-        ipv4_address: 172.27.102.12
-
-  codigito.admin:
-    user: "1000:1000"
-    build:
-      context: admin
-      args:
-        DEPLOY_ENV: ${DEPLOY_ENV}
-    container_name: 'codigito.admin'
-    ports:
-      - 8002:80
-      - 4432:443
-    volumes:
-      - ../admin/:/var/www/vhosts/codigito.es/
-    extra_hosts:
-      - 'mariadb:172.27.102.12'
-      - 'codigito.api:172.27.102.11'
-      - 'codigito.cdn:172.27.102.11'
-      - 'codigito.loki:172.27.102.17'
-      - 'loki:172.27.102.17'
-    hostname: codigito.admin
-    networks:
-      codigito-network:
-        ipv4_address: 172.27.102.13
-
-  codigito.www:
-    user: "1000:1000"
-    build:
-      context: www
-      args:
-        DEPLOY_ENV: ${DEPLOY_ENV}
-    container_name: 'codigito.www'
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ../www/:/var/www/vhosts/codigito.es/
-    extra_hosts:
-      - 'mariadb:172.27.102.12'
-      - 'codigito.api:172.27.102.11'
-      - 'codigito.cdn:172.27.102.11'
-      - 'codigito.loki:172.27.102.17'
-      - 'loki:172.27.102.17'
-    hostname: codigito.www
-    networks:
-      codigito-network:
-        ipv4_address: 172.27.102.14
-
   #----------------------------------------------------------
   # servicio para mensajeria que podemos ver
   # via http en localhost:15672 guest/guest
@@ -119,50 +34,93 @@ services:
       codigito-network:
         ipv4_address: 172.27.102.15
 
-  codigito.grafana:
+  codigito.mariadb:
     build:
-      context: grafana
+      context: mariadb
       args:
         DEPLOY_ENV: ${DEPLOY_ENV}
-    environment:
-      - "GF_PATHS_PLUGINS=/usr/share/grafana/public/app/plugins"
-    restart: unless-stopped
-    ports:
-      - '3000:3000'
-    container_name: 'codigito.grafana'
-    hostname: codigito.grafana
+    container_name: 'codigito.mariadb'
     volumes:
-      - grafana-data:/var/lib/grafana
-      # - ./grafana/provisioning:/etc/grafana/provisioning
-      - ./grafana/provisioning:/usr/share/grafana/conf/provisioning
-    extra_hosts:
-      - 'mariadb:172.27.102.12'
-      - 'codigito.loki:172.27.102.17'
-      - 'loki:172.27.102.17'
+      - mariadb-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    restart: always
+    hostname: codigito.mariadb
     networks:
       codigito-network:
-        ipv4_address: 172.27.102.16
+        ipv4_address: 172.27.102.12
 
-  codigito.loki:
-    user: "10001:10001"
-    image: "grafana/loki:2.4.2"
-    container_name: 'codigito.loki'
+  codigito.api:
+    user: "1000:1000"
+    build:
+      context: api
+      args:
+        DEPLOY_ENV: ${DEPLOY_ENV}
+    depends_on:
+      - codigito.mariadb
+      - codigito.rabbitmq
+    container_name: 'codigito.api'
     ports:
-      - "3100:3100"
+      - 8001:80
+      - 4431:443
     volumes:
-      - loki-data:/loki/data
+      - ../api/:/var/www/vhosts/codigito.es/
+    extra_hosts:
+      - 'mariadb:172.27.102.12'
+      - 'codigito.cdn:127.0.0.1'
+      - 'codigito.rabbitmq:172.27.102.15'
+    hostname: codigito.api
+    networks:
+      codigito-network:
+        ipv4_address: 172.27.102.11
+
+  codigito.admin:
+    user: "1000:1000"
+    build:
+      context: admin
+      args:
+        DEPLOY_ENV: ${DEPLOY_ENV}
+    depends_on:
+      - codigito.api
+    container_name: 'codigito.admin'
+    ports:
+      - 8002:80
+      - 4432:443
+    volumes:
+      - ../admin/:/var/www/vhosts/codigito.es/
     extra_hosts:
       - 'mariadb:172.27.102.12'
       - 'codigito.api:172.27.102.11'
       - 'codigito.cdn:172.27.102.11'
-    hostname: codigito.loki
+    hostname: codigito.admin
     networks:
       codigito-network:
-        ipv4_address: 172.27.102.17
+        ipv4_address: 172.27.102.13
+
+  codigito.www:
+    user: "1000:1000"
+    build:
+      context: www
+      args:
+        DEPLOY_ENV: ${DEPLOY_ENV}
+    depends_on:
+      - codigito.api
+    container_name: 'codigito.www'
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ../www/:/var/www/vhosts/codigito.es/
+    extra_hosts:
+      - 'mariadb:172.27.102.12'
+      - 'codigito.api:172.27.102.11'
+      - 'codigito.cdn:172.27.102.11'
+    hostname: codigito.www
+    networks:
+      codigito-network:
+        ipv4_address: 172.27.102.14
 
 volumes:
   mariadb-data:
-  loki-data:
-  grafana-data:
   rabbitmq-data:
   rabbitmq-log:
