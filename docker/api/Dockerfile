@@ -120,6 +120,6 @@ RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/ba
 
 RUN chown 1000:1000 -R /var/log/supervisor
 USER markitos
-CMD sudo service supervisor start && tail -f /dev/null 
+CMD sudo service supervisor stop ; sudo supervisord -c /etc/supervisor/supervisord.conf && sudo supervisorctl status  && tail -f /dev/null 
 # CMD ["/tmp/entrypoint.sh"]
 # CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
