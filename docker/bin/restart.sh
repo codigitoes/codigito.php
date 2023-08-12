@@ -37,4 +37,4 @@ echo "{.''.} SERVICE...: $2"
 echo "{.''.}"
 
 
-DEPLOY_ENV=$1 docker-compose up -d --build $2
+DEPLOY_ENV=$1 docker-compose up --no-deps -d --build $2

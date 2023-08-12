@@ -13,7 +13,7 @@ echo ""
 echo "API"
 echo ""
 docker exec -it `docker ps | grep codigito.mariadb | head -n1 | awk '{print $1;}'` mysql -u root -proot -h codigito.mariadb  -e "$(cat mariadb/all.sql)"
-docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  rm -fr vendor composer.lock symfony.lock var/cache/* var/log/*.log
+docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  rm -fr  var/cache/* var/log/*.log
 docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  composer install --no-interaction
 docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  php bin/console doctrine:database:drop --force
 docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`  php bin/console doctrine:database:create
@@ -24,13 +24,13 @@ sleep 1
 echo ""
 echo "ADMIN"
 echo ""
-docker exec -it `docker ps | grep codigito.admin | head -n1 | awk '{print $1;}'`  rm -fr vendor composer.lock symfony.lock var/cache/* var/log/*.log
+docker exec -it `docker ps | grep codigito.admin | head -n1 | awk '{print $1;}'`  rm -fr  var/cache/* var/log/*.log
 docker exec -it `docker ps | grep codigito.admin | head -n1 | awk '{print $1;}'`  composer install --no-interaction
 sleep 1
 echo ""
 echo "WWW"
 echo ""
-docker exec -it `docker ps | grep codigito.www | head -n1 | awk '{print $1;}'`  rm -fr vendor composer.lock symfony.lock var/cache/* var/log/*.log
+docker exec -it `docker ps | grep codigito.www | head -n1 | awk '{print $1;}'`  rm -fr  var/cache/* var/log/*.log
 docker exec -it `docker ps | grep codigito.www | head -n1 | awk '{print $1;}'`  composer install --no-interaction
 echo ""
 echo "END"

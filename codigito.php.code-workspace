@@ -3,5 +3,17 @@
         {
             "path": "."
         }
-    ]
+    ],
+    "settings": {
+        "makefile.configurations": [],
+        "makefile.makePath": "/usr/bin/make",
+        "makefile.buildBeforeLaunch": false,
+        "makefile.phonyOnlyTargets": false,
+        "makefile.buildLog": "",
+    },
+    "extensions": {
+        "recommendations": [
+            "lnav.lnav"
+        ]
+    }
 }

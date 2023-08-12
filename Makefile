@@ -1,3 +1,10 @@
+all: 
+	bash docker/bin/stop.sh  ;
+	bash docker/bin/start.sh dev   ; 
+	bash docker/bin/install.sh   ;
+	# bash docker/bin/recreatedb.sh   ;
+	bash docker/bin/dumpdb.sh   ;
+	bash docker/bin/rabbit.sh
 stop:
 	bash docker/bin/stop.sh
 apish:
@@ -6,6 +13,8 @@ adminsh:
 	bash docker/bin/adminsh.sh
 wwwsh:
 	bash docker/bin/wwwsh.sh
+rabbitsh:
+	bash docker/bin/rabbitsh.sh
 tests:
 	bash docker/bin/tests.sh
 truncatealltables:
@@ -27,6 +36,6 @@ env.prod:
 restart.api.dev:
 	bash docker/bin/restart.sh dev codigito.api
 start.dev:
-	bash docker/bin/stop.sh ; bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev && bash docker/bin/env.dev.sh
+	bash docker/bin/stop.sh ; bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev && bash docker/bin/env.dev.sh 
 start.prod:
 	bash docker/bin/stop.sh ; bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod && bash docker/bin/env.prod.sh

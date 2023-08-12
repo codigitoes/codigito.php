@@ -5,6 +5,7 @@ ARG DEPLOY_ENV
 RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
 RUN apt-get update && apt-get install -y \
     git \
+    grc \
     sshpass \
     iputils-ping \
     net-tools \
@@ -52,7 +53,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN echo markitos
 RUN groupadd -g 1000 markitos
 RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && echo "markitos:markitos" | chpasswd && adduser markitos sudo && chown -R markitos:markitos /var/www
-RUN echo "markitos    ALL=(ALL:ALL) ALL" >> /etc/sudoers
+RUN echo "markitos    ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # timezone
 RUN rm -f /etc/localtime ; ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
@@ -82,5 +83,8 @@ COPY entrypoint.sh /tmp
 RUN chmod 777 /tmp/*
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc;
+RUN echo 'alias slog="grc tail -f /var/log/supervisor/*"' >> /etc/bash.bashrc
+RUN echo 'alias clog="grc tail -f /var/www/vhosts/codigito.es/var/log/*"' >> /etc/bash.bashrc
+RUN echo 'alias alog="grc tail -f /var/www/vhosts/codigito.es/var/log/*   /var/log/supervisor/*"' >> /etc/bash.bashrc
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

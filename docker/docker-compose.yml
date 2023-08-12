@@ -51,11 +51,13 @@ services:
         ipv4_address: 172.27.102.12
 
   codigito.api:
+    platform: 'linux/arm64'
     user: "1000:1000"
     build:
       context: api
       args:
         DEPLOY_ENV: ${DEPLOY_ENV}
+        platform: 'linux/arm64'
     depends_on:
       - codigito.mariadb
       - codigito.rabbitmq
@@ -63,6 +65,8 @@ services:
     ports:
       - 8001:80
       - 4431:443
+      - 9001:9001
+
     volumes:
       - ../api/:/var/www/vhosts/codigito.es/
     extra_hosts:

@@ -2,12 +2,16 @@ FROM php:8.1-apache
 
 ARG DEPLOY_ENV
 
+RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
+RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
 RUN apt-get update && apt-get install -y \
     git \
+    apache2 \
     sshpass \
+    grc \
     iputils-ping \
     net-tools \
-    ccze \
+    lnav \
     nano \
     npm \
     unzip \
@@ -38,6 +42,8 @@ RUN apt-get update && \
     libzip-dev \
     libjpeg62-turbo-dev \
     libpng-dev
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-install gd
 
 RUN apt-get -y update \
     && apt-get install -y libicu-dev \ 
@@ -47,7 +53,7 @@ RUN apt-get -y update \
 COPY php.ini /usr/local/etc/php/php.ini
 RUN pecl install amqp
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-RUN docker-php-ext-install gd
+RUN docker-php-ext-enable gd
 RUN docker-php-ext-enable amqp
 
 RUN rm -f /tmp/.htaccess
@@ -63,7 +69,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN echo markitos
 RUN groupadd -g 1000 markitos
 RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && echo "markitos:markitos" | chpasswd && adduser markitos sudo && chown -R markitos:markitos /var/www
-RUN echo "markitos    ALL=(ALL:ALL) ALL" >> /etc/sudoers
+RUN echo "markitos    ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # timezone
 RUN rm -f /etc/localtime ; ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
@@ -85,6 +91,16 @@ RUN a2enmod ssl
 RUN a2dissite 000-default
 
 COPY rabbitmq.supervisor.conf /etc/supervisor/conf.d/rabbitmq.supervisor.conf
+COPY apache2.supervisor.conf /etc/supervisor/conf.d/apache2.supervisor.conf
+RUN sed -i  s/\-n// /etc/systemd/system/multi-user.target.wants/supervisor.service
+
+
+
+RUN echo  "\n\
+    \n[inet_http_server]\
+    \nport = 0.0.0.0:9001\
+    \nusername = admin\
+    \npassword = admin" >> /etc/supervisor/supervisord.conf
 
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -93,11 +109,17 @@ WORKDIR /var/www/vhosts/codigito.es
 
 COPY entrypoint.sh /tmp
 RUN chmod 777 /tmp/*
-RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
+RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc
 RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
-RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc;
-RUN /usr/sbin/service supervisor start
+RUN echo 'alias sconf="cat /etc/supervisor/supervisord.conf"' >> /etc/bash.bashrc
+RUN echo 'alias econf="sudo nano -w /etc/supervisor/supervisord.conf"' >> /etc/bash.bashrc
+RUN echo 'alias slog="grc tail -f /var/log/supervisor/*"' >> /etc/bash.bashrc
+RUN echo 'alias clog="grc tail -f /var/www/vhosts/codigito.es/var/log/*"' >> /etc/bash.bashrc
+RUN echo 'alias alog="grc tail -f /var/www/vhosts/codigito.es/var/log/*   /var/log/supervisor/*"' >> /etc/bash.bashrc
+RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc
 
-
-CMD ["/tmp/entrypoint.sh"]
+RUN chown 1000:1000 -R /var/log/supervisor
+USER markitos
+CMD sudo service supervisor start && tail -f /dev/null 
+# CMD ["/tmp/entrypoint.sh"]
 # CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
