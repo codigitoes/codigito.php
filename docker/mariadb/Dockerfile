@@ -18,6 +18,5 @@ RUN cp -a all.sql /docker-entrypoint-initdb.d/ && \
     cp -a test.sh /docker-entrypoint-initdb.d/ && \
     chown -R mysql:mysql /docker-entrypoint-initdb.d/  && \
     sed -i  s/#bind-address=0.0.0.0/bind-address=0.0.0.0/ /etc/mysql/my.cnf  && \
-    sed -i  "s/= 100$/= 1000/" /etc/mysql/my.cnf
 
 CMD ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
