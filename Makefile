@@ -1,8 +1,15 @@
-all: 
-	bash docker/bin/stop.sh  ;
+all.dev:
+	make pre ; 
 	bash docker/bin/start.sh dev   ; 
+	make post 
+all.prod:
+	make pre ;
+	bash docker/bin/start.sh prod   ; 
+	make post
+pre: 
+	bash docker/bin/stop.sh
+post: 
 	bash docker/bin/install.sh   ;
-	# bash docker/bin/recreatedb.sh   ;
 	bash docker/bin/dumpdb.sh   ;
 	bash docker/bin/rabbit.sh
 stop:

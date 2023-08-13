@@ -86,5 +86,6 @@ RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/ba
 RUN echo 'alias slog="grc tail -f /var/log/supervisor/*"' >> /etc/bash.bashrc
 RUN echo 'alias clog="grc tail -f /var/www/vhosts/codigito.es/var/log/*"' >> /etc/bash.bashrc
 RUN echo 'alias alog="grc tail -f /var/www/vhosts/codigito.es/var/log/*   /var/log/supervisor/*"' >> /etc/bash.bashrc
+RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

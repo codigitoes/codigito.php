@@ -116,7 +116,6 @@ services:
     volumes:
       - ../www/:/var/www/vhosts/codigito.es/
     extra_hosts:
-      - 'mariadb:172.27.102.12'
       - 'codigito.api:172.27.102.11'
       - 'codigito.cdn:172.27.102.11'
     hostname: codigito.www
