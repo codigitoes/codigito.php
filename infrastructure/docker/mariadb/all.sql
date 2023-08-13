@@ -7,7 +7,6 @@ FLUSH PRIVILEGES;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-use `codigito`;
 SET FOREIGN_KEY_CHECKS=0;
 
 --

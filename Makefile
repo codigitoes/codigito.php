@@ -1,48 +1,48 @@
 all.dev:
 	make pre ; 
-	bash docker/bin/start.sh dev   ; 
+	bash infrastructure/docker/bin/start.sh dev   ; 
 	make post 
 all.prod:
 	make pre ;
-	bash docker/bin/start.sh prod   ; 
+	bash infrastructure/docker/bin/start.sh prod   ; 
 	make post
 pre: 
-	bash docker/bin/stop.sh
+	bash infrastructure/docker/bin/stop.sh
 post: 
-	bash docker/bin/install.sh   ;
-	bash docker/bin/dumpdb.sh   ;
-	bash docker/bin/rabbit.sh
+	bash infrastructure/docker/bin/install.sh   ;
+	bash infrastructure/docker/bin/dumpdb.sh   ;
+	bash infrastructure/docker/bin/rabbit.sh
 stop:
-	bash docker/bin/stop.sh
+	bash infrastructure/docker/bin/stop.sh
 apish:
-	bash docker/bin/apish.sh 
+	bash infrastructure/docker/bin/apish.sh 
 adminsh:
-	bash docker/bin/adminsh.sh
+	bash infrastructure/docker/bin/adminsh.sh
 wwwsh:
-	bash docker/bin/wwwsh.sh
+	bash infrastructure/docker/bin/wwwsh.sh
 rabbitsh:
-	bash docker/bin/rabbitsh.sh
+	bash infrastructure/docker/bin/rabbitsh.sh
 tests:
-	bash docker/bin/tests.sh
+	bash infrastructure/docker/bin/tests.sh
 truncatealltables:
-	bash docker/bin/truncatealltables.sh
+	bash infrastructure/docker/bin/truncatealltables.sh
 dumpdb:
-	bash docker/bin/dumpdb.sh
+	bash infrastructure/docker/bin/dumpdb.sh
 install: 
-	bash docker/bin/install.sh
+	bash infrastructure/docker/bin/install.sh
 rabbit:
-	bash docker/bin/rabbit.sh
+	bash infrastructure/docker/bin/rabbit.sh
 recreatedb:
-	bash docker/bin/recreatedb.sh
+	bash infrastructure/docker/bin/recreatedb.sh
 format:
-	bash docker/bin/format.sh
+	bash infrastructure/docker/bin/format.sh
 env.dev:
-	bash docker/bin/env.dev.sh
+	bash infrastructure/docker/bin/env.dev.sh
 env.prod:
-	bash docker/bin/env.prod.sh
+	bash infrastructure/docker/bin/env.prod.sh
 restart.api.dev:
-	bash docker/bin/restart.sh dev codigito.api
+	bash infrastructure/docker/bin/restart.sh dev codigito.api
 start.dev:
-	bash docker/bin/stop.sh ; bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev && bash docker/bin/env.dev.sh 
+	bash infrastructure/docker/bin/stop.sh ; bash infrastructure/docker/bin/env.dev.sh && bash infrastructure/docker/bin/start.sh dev && bash infrastructure/docker/bin/env.dev.sh 
 start.prod:
-	bash docker/bin/stop.sh ; bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod && bash docker/bin/env.prod.sh
+	bash infrastructure/docker/bin/stop.sh ; bash infrastructure/docker/bin/env.prod.sh && bash infrastructure/docker/bin/start.sh prod && bash infrastructure/docker/bin/env.prod.sh
