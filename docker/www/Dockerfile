@@ -52,7 +52,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # create user
 RUN echo markitos
 RUN groupadd -g 1000 markitos
-RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && echo "markitos:markitos" | chpasswd && adduser markitos sudo && chown -R markitos:markitos /var/www
+RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && echo "markitos:markitos" | chpasswd && adduser markitos sudo && chown -R markitos:markitos /var/www /home/markitos
 RUN echo "markitos    ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # timezone

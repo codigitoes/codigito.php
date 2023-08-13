@@ -68,7 +68,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # create user
 RUN echo markitos
 RUN groupadd -g 1000 markitos
-RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && echo "markitos:markitos" | chpasswd && adduser markitos sudo && chown -R markitos:markitos /var/www
+RUN useradd markitos -u 1000 -g 1000 -m -s /bin/bash && echo "markitos:markitos" | chpasswd && adduser markitos sudo && chown -R markitos:markitos /var/www /home/markitos
 RUN echo "markitos    ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # timezone
@@ -93,8 +93,6 @@ RUN a2dissite 000-default
 COPY rabbitmq.supervisor.conf /etc/supervisor/conf.d/rabbitmq.supervisor.conf
 COPY apache2.supervisor.conf /etc/supervisor/conf.d/apache2.supervisor.conf
 RUN sed -i  s/\-n// /etc/systemd/system/multi-user.target.wants/supervisor.service
-
-
 
 RUN echo  "\n\
     \n[inet_http_server]\
