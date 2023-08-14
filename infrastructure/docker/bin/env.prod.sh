@@ -8,6 +8,6 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )/"
 cd $DIR"../../"
 
-cp api/.env.production api/.env
-cp admin/.env.production admin/.env
-cp www/.env.production www/.env
+cp ../api/.env.template api/.env 
+cp ../admin/.env.template admin/.env
+cp ../www/.env.template www/.env

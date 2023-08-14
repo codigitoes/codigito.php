@@ -2,6 +2,9 @@ FROM php:8.1-apache
 
 ARG DEPLOY_ENV
 
+WORKDIR /var/www/vhosts/codigito.es
+
+
 RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
 RUN apt-get update && apt-get install -y \
     git \
@@ -78,7 +81,6 @@ RUN a2dissite 000-default
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-WORKDIR /var/www/vhosts/codigito.es
 COPY entrypoint.sh /tmp
 RUN chmod 777 /tmp/*
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
@@ -88,4 +90,7 @@ RUN echo 'alias clog="grc tail -f /var/www/vhosts/codigito.es/var/log/*"' >> /et
 RUN echo 'alias alog="grc tail -f /var/www/vhosts/codigito.es/var/log/*   /var/log/supervisor/*"' >> /etc/bash.bashrc
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc
 
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+RUN chown 1000:1000 -R /var/log/apache2
+USER root
+CMD sudo /usr/sbin/apache2ctl -D FOREGROUND
+# CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

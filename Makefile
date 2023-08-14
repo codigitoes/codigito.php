@@ -1,16 +1,21 @@
-all.dev:
-	make pre ; 
-	bash infrastructure/docker/bin/start.sh dev   ; 
-	make post 
-all.prod:
-	make pre ;
-	bash infrastructure/docker/bin/start.sh prod   ; 
-	make post
+all-dev:
+	bash infrastructure/docker/bin/stop.sh 
+	bash infrastructure/docker/bin/env.dev.sh && bash infrastructure/docker/bin/start.sh dev && bash infrastructure/docker/bin/env.dev.sh
+	bash infrastructure/docker/bin/recreatedb.sh 
+	bash infrastructure/docker/bin/rabbit.sh 
+	bash infrastructure/docker/bin/dumpdb.sh 
+all-prod:
+	bash infrastructure/docker/bin/stop.sh 
+	bash infrastructure/docker/bin/env.prod.sh && bash infrastructure/docker/bin/start.sh prod && bash infrastructure/docker/bin/env.prod.sh
+	bash infrastructure/docker/bin/install.sh
+	bash infrastructure/docker/bin/recreatedb.sh 
+	bash infrastructure/docker/bin/rabbit.sh 
+	bash infrastructure/docker/bin/dumpdb.sh 
 pre: 
 	bash infrastructure/docker/bin/stop.sh
-post: 
-	bash infrastructure/docker/bin/install.sh   ;
-	bash infrastructure/docker/bin/dumpdb.sh   ;
+prod: 
+	bash infrastructure/docker/bin/install.sh   
+	bash infrastructure/docker/bin/dumpdb.sh   
 	bash infrastructure/docker/bin/rabbit.sh
 stop:
 	bash infrastructure/docker/bin/stop.sh
@@ -36,13 +41,13 @@ recreatedb:
 	bash infrastructure/docker/bin/recreatedb.sh
 format:
 	bash infrastructure/docker/bin/format.sh
-env.dev:
+env-dev:
 	bash infrastructure/docker/bin/env.dev.sh
-env.prod:
+env-prod:
 	bash infrastructure/docker/bin/env.prod.sh
-restart.api.dev:
+restart-pi-dev:
 	bash infrastructure/docker/bin/restart.sh dev codigito.api
-start.dev:
+start-dev:
 	bash infrastructure/docker/bin/stop.sh ; bash infrastructure/docker/bin/env.dev.sh && bash infrastructure/docker/bin/start.sh dev && bash infrastructure/docker/bin/env.dev.sh 
-start.prod:
+start-prod:
 	bash infrastructure/docker/bin/stop.sh ; bash infrastructure/docker/bin/env.prod.sh && bash infrastructure/docker/bin/start.sh prod && bash infrastructure/docker/bin/env.prod.sh

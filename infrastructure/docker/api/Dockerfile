@@ -2,6 +2,8 @@ FROM php:8.1-apache
 
 ARG DEPLOY_ENV
 
+WORKDIR /var/www/vhosts/codigito.es
+
 RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
 RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
 RUN apt-get update && apt-get install -y \
@@ -103,8 +105,6 @@ RUN echo  "\n\
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-WORKDIR /var/www/vhosts/codigito.es
-
 COPY entrypoint.sh /tmp
 RUN chmod 777 /tmp/*
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc
@@ -117,7 +117,7 @@ RUN echo 'alias alog="grc tail -f /var/www/vhosts/codigito.es/var/log/*   /var/l
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc
 
 RUN chown 1000:1000 -R /var/log/supervisor
-USER markitos
+USER root
 CMD sudo service supervisor stop  ; sudo supervisord -c /etc/supervisor/supervisord.conf && sudo supervisorctl status  && tail -f /dev/null 
 # CMD ["/tmp/entrypoint.sh"]
 # CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
