@@ -116,8 +116,7 @@ RUN echo 'alias clog="grc tail -f /var/www/vhosts/codigito.es/var/log/*"' >> /et
 RUN echo 'alias alog="grc tail -f /var/www/vhosts/codigito.es/var/log/*   /var/log/supervisor/*"' >> /etc/bash.bashrc
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc
 
-RUN chown 1000:1000 -R /var/log/supervisor
+
 USER root
-CMD sudo service supervisor stop  ; sudo supervisord -c /etc/supervisor/supervisord.conf && sudo supervisorctl status  && tail -f /dev/null 
-# CMD ["/tmp/entrypoint.sh"]
-# CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+RUN chmod -R 777  /var/log/apache2/* 2>&1 
+CMD sudo service supervisor stop  2>&1  ;  sudo supervisord -c /etc/supervisor/supervisord.conf && tail -f /var/log/supervisor/*

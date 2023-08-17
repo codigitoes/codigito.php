@@ -8,6 +8,8 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )/"
 cd $DIR"../../"
 
-cp ../api/.env.template api/.env 
-cp ../admin/.env.template admin/.env 
-cp ../www/.env.template www/.env
+pwd
+exit
+cp ../docker/api/.env.template api/.env 
+cp ../docker/admin/.env.template admin/.env 
+cp ../docker/www/.env.template www/.env

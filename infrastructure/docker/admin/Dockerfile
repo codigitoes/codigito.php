@@ -80,15 +80,12 @@ RUN a2dissite 000-default
 # Clean up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY entrypoint.sh /tmp
-RUN chmod 777 /tmp/*
 RUN echo 'alias maria="mysql -h codigito.mariadb -u codigito -pcodigito codigito"' >> /etc/bash.bashrc;
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/vendor/bin' >> /etc/bash.bashrc;
 RUN echo 'alias slog="grc tail -f /var/log/apache2/*"' >> /etc/bash.bashrc
 RUN echo 'alias clog="grc tail -f /var/www/vhosts/codigito.es/var/log/*"' >> /etc/bash.bashrc
 RUN echo 'alias alog="grc tail -f /var/www/vhosts/codigito.es/var/log/*   /var/log/apache2/*"' >> /etc/bash.bashrc
 
-RUN chown 1000:1000 -R /var/log/apache2
 USER root
-CMD sudo /usr/sbin/apache2ctl -D FOREGROUND
-# CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+RUN chmod -R 7777  /var/log/apache2/* 2>&1 
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

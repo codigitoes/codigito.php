@@ -1,21 +1,21 @@
 all-dev:
-	bash infrastructure/docker/bin/stop.sh 
-	bash infrastructure/docker/bin/env.dev.sh && bash infrastructure/docker/bin/start.sh dev && bash infrastructure/docker/bin/env.dev.sh
-	bash infrastructure/docker/bin/recreatedb.sh 
-	bash infrastructure/docker/bin/rabbit.sh 
+	bash infrastructure/docker/bin/stop.sh ; \
+	bash infrastructure/docker/bin/env.dev.sh && bash infrastructure/docker/bin/start.sh dev && bash infrastructure/docker/bin/env.dev.sh; \
+	bash infrastructure/docker/bin/recreatedb.sh ; \
+	bash infrastructure/docker/bin/rabbit.sh ; \
 	bash infrastructure/docker/bin/dumpdb.sh 
 all-prod:
-	bash infrastructure/docker/bin/stop.sh 
-	bash infrastructure/docker/bin/env.prod.sh && bash infrastructure/docker/bin/start.sh prod && bash infrastructure/docker/bin/env.prod.sh
-	bash infrastructure/docker/bin/install.sh
-	bash infrastructure/docker/bin/recreatedb.sh 
-	bash infrastructure/docker/bin/rabbit.sh 
+	bash infrastructure/docker/bin/stop.sh ; \
+	bash infrastructure/docker/bin/env.prod.sh && bash infrastructure/docker/bin/start.sh prod && bash infrastructure/docker/bin/env.prod.sh; \
+	bash infrastructure/docker/bin/install.sh; \
+	bash infrastructure/docker/bin/recreatedb.sh; \ 
+	bash infrastructure/docker/bin/rabbit.sh ; \
 	bash infrastructure/docker/bin/dumpdb.sh 
 pre: 
 	bash infrastructure/docker/bin/stop.sh
 prod: 
-	bash infrastructure/docker/bin/install.sh   
-	bash infrastructure/docker/bin/dumpdb.sh   
+	bash infrastructure/docker/bin/install.sh   ; \
+	bash infrastructure/docker/bin/dumpdb.sh   ; \
 	bash infrastructure/docker/bin/rabbit.sh
 stop:
 	bash infrastructure/docker/bin/stop.sh
@@ -45,7 +45,7 @@ env-dev:
 	bash infrastructure/docker/bin/env.dev.sh
 env-prod:
 	bash infrastructure/docker/bin/env.prod.sh
-restart-pi-dev:
+restart-api-dev:
 	bash infrastructure/docker/bin/restart.sh dev codigito.api
 start-dev:
 	bash infrastructure/docker/bin/stop.sh ; bash infrastructure/docker/bin/env.dev.sh && bash infrastructure/docker/bin/start.sh dev && bash infrastructure/docker/bin/env.dev.sh 
