@@ -9,4 +9,4 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )/"
 cd $DIR"../"
 
-for i in $(docker ps -q) ; do docker stop  $i ; done
+for i in $(docker ps -q) ; do docker container stop  $i && sleep 0.5 ; done

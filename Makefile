@@ -1,53 +1,42 @@
-all-dev:
-	bash infrastructure/docker/bin/stop.sh ; \
-	bash infrastructure/docker/bin/env.dev.sh && bash infrastructure/docker/bin/start.sh dev && bash infrastructure/docker/bin/env.dev.sh; \
-	bash infrastructure/docker/bin/recreatedb.sh ; \
-	bash infrastructure/docker/bin/rabbit.sh ; \
-	bash infrastructure/docker/bin/dumpdb.sh 
+all-dev: stop env-dev start-dev env-dev install recreatedb rabbit dumpdb
 all-prod:
-	bash infrastructure/docker/bin/stop.sh ; \
-	bash infrastructure/docker/bin/env.prod.sh && bash infrastructure/docker/bin/start.sh prod && bash infrastructure/docker/bin/env.prod.sh; \
-	bash infrastructure/docker/bin/install.sh; \
-	bash infrastructure/docker/bin/recreatedb.sh; \ 
-	bash infrastructure/docker/bin/rabbit.sh ; \
-	bash infrastructure/docker/bin/dumpdb.sh 
-pre: 
-	bash infrastructure/docker/bin/stop.sh
-prod: 
-	bash infrastructure/docker/bin/install.sh   ; \
-	bash infrastructure/docker/bin/dumpdb.sh   ; \
-	bash infrastructure/docker/bin/rabbit.sh
+	bash docker/bin/stop.sh ; \
+	bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod && bash docker/bin/env.prod.sh; \
+	bash docker/bin/install.sh; \
+	bash docker/bin/recreatedb.sh; \ 
+	bash docker/bin/rabbit.sh ; \
+	bash docker/bin/dumpdb.sh 
 stop:
-	bash infrastructure/docker/bin/stop.sh
+	bash docker/bin/stop.sh
 apish:
-	bash infrastructure/docker/bin/apish.sh 
+	bash docker/bin/apish.sh 
 adminsh:
-	bash infrastructure/docker/bin/adminsh.sh
+	bash docker/bin/adminsh.sh
 wwwsh:
-	bash infrastructure/docker/bin/wwwsh.sh
+	bash docker/bin/wwwsh.sh
 rabbitsh:
-	bash infrastructure/docker/bin/rabbitsh.sh
+	bash docker/bin/rabbitsh.sh
 tests:
-	bash infrastructure/docker/bin/tests.sh
+	bash docker/bin/tests.sh
 truncatealltables:
-	bash infrastructure/docker/bin/truncatealltables.sh
+	bash docker/bin/truncatealltables.sh
 dumpdb:
-	bash infrastructure/docker/bin/dumpdb.sh
+	bash docker/bin/dumpdb.sh
 install: 
-	bash infrastructure/docker/bin/install.sh
+	bash docker/bin/install.sh
 rabbit:
-	bash infrastructure/docker/bin/rabbit.sh
+	bash docker/bin/rabbit.sh
 recreatedb:
-	bash infrastructure/docker/bin/recreatedb.sh
+	bash docker/bin/recreatedb.sh
 format:
-	bash infrastructure/docker/bin/format.sh
+	bash docker/bin/format.sh
 env-dev:
-	bash infrastructure/docker/bin/env.dev.sh
+	bash docker/bin/env.dev.sh
 env-prod:
-	bash infrastructure/docker/bin/env.prod.sh
+	bash docker/bin/env.prod.sh
 restart-api-dev:
-	bash infrastructure/docker/bin/restart.sh dev codigito.api
+	bash docker/bin/restart.sh dev codigito.api
 start-dev:
-	bash infrastructure/docker/bin/stop.sh ; bash infrastructure/docker/bin/env.dev.sh && bash infrastructure/docker/bin/start.sh dev && bash infrastructure/docker/bin/env.dev.sh 
+	bash docker/bin/stop.sh ; bash docker/bin/env.dev.sh && bash docker/bin/start.sh dev && bash docker/bin/env.dev.sh 
 start-prod:
-	bash infrastructure/docker/bin/stop.sh ; bash infrastructure/docker/bin/env.prod.sh && bash infrastructure/docker/bin/start.sh prod && bash infrastructure/docker/bin/env.prod.sh
+	bash docker/bin/stop.sh ; bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod && bash docker/bin/env.prod.sh
