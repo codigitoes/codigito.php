@@ -63,7 +63,6 @@ services:
       - 8001:80
       - 4431:443
       - 9001:9001
-
     volumes:
       - ../api/:/var/www/vhosts/codigito.es/
     extra_hosts:
