@@ -58,9 +58,6 @@ services:
       args:
         DEPLOY_ENV: ${DEPLOY_ENV}
         platform: 'linux/arm64'
-    depends_on:
-      - codigito.mariadb
-      - codigito.rabbitmq
     container_name: 'codigito.api'
     ports:
       - 8001:80
