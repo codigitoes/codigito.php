@@ -1,4 +1,4 @@
-all-dev: stop env-dev start-dev env-dev install recreatedb rabbit dumpdb
+all-dev: stop env-dev start-dev env-dev install recreatedb dumpdb rabbit
 all-prod:
 	bash docker/bin/stop.sh ; \
 	bash docker/bin/env.prod.sh && bash docker/bin/start.sh prod && bash docker/bin/env.prod.sh; \
