@@ -1,0 +1,7 @@
+172.27.102.11 codigito.api
+172.27.102.11 codigito.cdn
+172.27.102.14 codigito.www
+172.27.102.16 codigito.grafana
+172.27.102.13 codigito.admin
+172.27.102.12 codigito.mariadb
+172.27.102.15 codigito.rabbitmq
