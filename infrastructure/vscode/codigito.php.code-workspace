@@ -3,5 +3,15 @@
         {
             "path": "../../"
         }
-    ]
+    ],
+    "settings": {
+        "better-phpunit.docker.enable": true,
+        "better-phpunit.docker.command": "docker exec -it `docker ps | grep codigito.api | head -n1 | awk '{print $1;}'`",
+        "better-phpunit.docker.paths": {
+            "/Users/marco.rubio/desarrollo/codigito.php/api": ".",
+        },
+        "better-phpunit.phpunitBinary": null, // A custom phpunit binary. Ex: 'phpunit', '/usr/local/bin/phpunit'
+        "better-phpunit.commandSuffix": "--configuration=phpunit.xml.dist", // Specify options to appended only to the 'run suite' command, for example add options like '--testsuite unit' or '--coverage --coverage-xml'.
+        "better-phpunit.suiteSuffix": null, // Specify options to appended only to the 'run suite' command, for example add options like '--testsuite unit' or '--coverage --coverage-xml'.
+    },
 }
