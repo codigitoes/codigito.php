@@ -1,13 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import ThemeConfig from './config/theme.config.tsx'
-import App from './components/app/App.tsx'
+import { ThemeProvider } from '@emotion/react';
+import { CssBaseline } from '@mui/material';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import Dashboard from './dashboard/Dashboard';
+import theme from './theme';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ThemeConfig>
-      <App />
-    </ThemeConfig>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Dashboard />
+    </ThemeProvider>
   </React.StrictMode>,
-)
+);
