@@ -5,7 +5,6 @@ ARG DEPLOY_ENV
 WORKDIR /var/www/vhosts/codigito.es
 
 RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
-RUN echo 'alias ls="ls --col"' >> /etc/bash.bashrc
 RUN apt-get update && apt-get install -y \
     git \
     sshpass \
