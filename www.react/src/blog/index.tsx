@@ -11,7 +11,7 @@ interface Blogpost {
 }
 
 const endpoint: string = 'http://localhost:8001/api/client/web/list';
-const HomePage: React.FC = () => {
+const BlogPage: React.FC = () => {
     // const navigate = useNavigate();
 
     const fetchState = useFetch<{
@@ -44,4 +44,4 @@ const HomePage: React.FC = () => {
     );
 }
 
-export default HomePage;
+export default BlogPage;

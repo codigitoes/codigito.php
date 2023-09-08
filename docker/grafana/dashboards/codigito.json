@@ -1,0 +1,177 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                    "type": "grafana",
+                    "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 1,
+    "id": 1,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+        {
+            "datasource": {
+                "type": "mysql",
+                "uid": "P5F7A2D3CFD9AF4BD"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "continuous-GrYlRd"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 14,
+                "w": 13,
+                "x": 0,
+                "y": 0
+            },
+            "id": 1,
+            "options": {
+                "displayMode": "lcd",
+                "minVizHeight": 10,
+                "minVizWidth": 0,
+                "orientation": "horizontal",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showUnfilled": true,
+                "valueMode": "color"
+            },
+            "pluginVersion": "10.0.0",
+            "targets": [
+                {
+                    "dataset": "codigito",
+                    "datasource": {
+                        "type": "mysql",
+                        "uid": "P5F7A2D3CFD9AF4BD"
+                    },
+                    "editorMode": "builder",
+                    "format": "table",
+                    "rawQuery": true,
+                    "rawSql": "SELECT COUNT(id) AS \"blogposts\" FROM codigito.blogposts LIMIT 50 ",
+                    "refId": "A",
+                    "sql": {
+                        "columns": [
+                            {
+                                "alias": "\"blogposts\"",
+                                "name": "COUNT",
+                                "parameters": [
+                                    {
+                                        "name": "id",
+                                        "type": "functionParameter"
+                                    }
+                                ],
+                                "type": "function"
+                            }
+                        ],
+                        "groupBy": [
+                            {
+                                "property": {
+                                    "type": "string"
+                                },
+                                "type": "groupBy"
+                            }
+                        ],
+                        "limit": 50
+                    },
+                    "table": "blogposts"
+                },
+                {
+                    "dataset": "codigito",
+                    "datasource": {
+                        "type": "mysql",
+                        "uid": "P5F7A2D3CFD9AF4BD"
+                    },
+                    "editorMode": "builder",
+                    "format": "table",
+                    "hide": false,
+                    "rawQuery": true,
+                    "rawSql": "SELECT COUNT(id) AS \"tags\" FROM codigito.tags LIMIT 50 ",
+                    "refId": "B",
+                    "sql": {
+                        "columns": [
+                            {
+                                "alias": "\"tags\"",
+                                "name": "COUNT",
+                                "parameters": [
+                                    {
+                                        "name": "id",
+                                        "type": "functionParameter"
+                                    }
+                                ],
+                                "type": "function"
+                            }
+                        ],
+                        "groupBy": [
+                            {
+                                "property": {
+                                    "type": "string"
+                                },
+                                "type": "groupBy"
+                            }
+                        ],
+                        "limit": 50
+                    },
+                    "table": "tags"
+                }
+            ],
+            "title": "Panel Title",
+            "transformations": [],
+            "type": "bargauge"
+        }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-6h",
+        "to": "now"
+    },
+    "timepicker": {
+        "refresh_intervals": [],
+        "time_options": []
+    },
+    "timezone": "browser",
+    "title": "Codigito",
+    "uid": "cLV5GDCkz",
+    "version": 16,
+    "weekStart": ""
+}

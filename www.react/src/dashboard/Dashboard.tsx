@@ -1,8 +1,6 @@
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,22 +15,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import * as React from 'react';
-import HomePage from '../home';
-import Chart from './Chart';
-import Deposits from "./Deposits";
-import { mainListItems, secondaryListItems } from './listItems';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" sx={{ pt: 4 }}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>
-      {new Date().getFullYear()}
-    </Typography>
-  );
-}
+import { mainListItems } from './listItems';
+import Copyright from '../components/Copyright';
+import BlogPage from '../blog';
+import { Outlet } from 'react-router-dom';
 
 const drawerWidth: number = 240;
 
@@ -142,8 +128,6 @@ export default function Dashboard() {
           <Divider />
           <List component="nav">
             {mainListItems}
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
           </List>
         </Drawer>
         <Box
@@ -163,7 +147,7 @@ export default function Dashboard() {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <HomePage />
+                  <Outlet />
                 </Paper>
               </Grid>
             </Grid>
