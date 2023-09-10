@@ -1,0 +1,18 @@
+<script>
+  $(function(){
+
+    $('.modal-effect').on('click', function(e){
+      e.preventDefault();
+      var effect = $(this).attr('data-effect');
+      $('#viewmodel').addClass(effect);
+      $('#view-modal-content').html($('#' + $('#'+$(this).data('html-id')).attr('id')).attr('value'));
+    });
+
+    $('#view-modal').on('hidden.bs.modal', function (e) {
+      $('#view-modal-content').html('');
+      $(this).removeClass (function (index, className) {
+          return (className.match (/(^|\s)effect-\S+/g) || []).join(' ');
+      });
+    });
+  });
+</script>

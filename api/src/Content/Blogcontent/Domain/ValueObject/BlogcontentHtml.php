@@ -10,7 +10,7 @@ use Codigito\Shared\Domain\Exception\InvalidParameterException;
 class BlogcontentHtml extends LimitedString
 {
     public const MINIMUM_CHARS = 5;
-    public const MAXIMUM_CHARS = 50000;
+    public const MAXIMUM_CHARS = 100000;
 
     public function __construct(string $value)
     {
@@ -19,6 +19,6 @@ class BlogcontentHtml extends LimitedString
 
     protected function throwException(string $value): void
     {
-        throw new InvalidParameterException('invalid blogcontent html: '.strlen($value).' min:'.self::MINIMUM_CHARS.' max:'.self::MAXIMUM_CHARS);
+        throw new InvalidParameterException('invalid blogcontent html: ' . strlen($value) . ' min:' . self::MINIMUM_CHARS . ' max:' . self::MAXIMUM_CHARS);
     }
 }

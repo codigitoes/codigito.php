@@ -2,6 +2,9 @@
     "folders": [
         {
             "path": "../../"
+        },
+        {
+            "path": "../../../spikes/react-node-api-front-mui"
         }
     ],
     "settings": {

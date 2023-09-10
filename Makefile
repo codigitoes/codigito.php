@@ -5,6 +5,8 @@ stop:
 	bash docker/bin/stop.sh
 apish:
 	bash docker/bin/apish.sh 
+frontendsh:
+	bash docker/bin/frontendsh.sh 
 adminsh:
 	bash docker/bin/adminsh.sh
 wwwsh:

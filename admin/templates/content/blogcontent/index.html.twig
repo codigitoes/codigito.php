@@ -6,13 +6,13 @@
     <div class="row">
         <div class="col-lg-12 mg-t-20 mg-lg-t-0">
             <div class="list-group list-group-striped list-group-user">
-
                 {% for blogcontent in blogcontents %}
                 <div class="list-group-item">
                     <div class="user-name-address">
                         <h6 class="text-primary">posicion {{ blogcontent.position }}</h6>
                         {% if blogcontent.html is not null %}
                             <span>{{ blogcontent.html[:1000] ~ '...' }}</span>
+                            <input type="hidden" id="{{ blogcontent.id }}" value="{{ blogcontent.html }}" />
                         {% endif %}
 
                         {% if blogcontent.youtube is not null %}
@@ -23,13 +23,12 @@
                     <img class="media-img" src="{{ blogcontent.image }}" alt="Image">          
                     {% endif %}
                     <div class="user-btn-wrapper">
-                      <a href="#" class="btn btn-outline-primary btn-icon">
+                      <a href="javascript:;" data-html-id="{{blogcontent.id}}" data-toggle="modal" data-target="#view-modal" class="modal-effect btn btn-outline-primary btn-icon">
                         <div class="tx-20"><i class="icon fa fa-eye"></i></div>
                       </a>
                     </div>                
                 </div>
                 {% endfor %}
-
             </div>
         </div>
     </div>
@@ -50,5 +49,21 @@
     </div>
 </div>
 
+<div id="view-modal" class="modal fade">
+    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content tx-size-sm">
+        <div class="modal-header pd-x-20">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body pd-0" id="view-modal-content">
+        </div><!-- modal-body -->
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    </div><!-- modal-dialog -->
+</div><!-- modal -->
 
 {% include '/shared/end.html.twig' %}
