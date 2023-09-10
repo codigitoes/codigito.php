@@ -56,4 +56,4 @@ RUN chown markitos:markitos ../codigito.es
 RUN echo 'alias maria="mysql -h mariadb -u xxx -xxx xxx"' >> /etc/bash.bashrc;
 RUN echo 'export PATH=${PATH}:/var/www/vhosts/codigito.es/node_modules/.bin' >> /etc/bash.bashrc
 
-CMD ["npm", "run", "dev"]
+CMD ["/bin/bash", "-c", "npm install && npm run dev"]
