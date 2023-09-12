@@ -48,6 +48,14 @@
         }
     }
 
+    .tab-title {
+        color: $soft-color;
+    }
+
+    .tab-title:hover {
+        color: $blue-color;
+    }
+
     .video-responsive {
         overflow: hidden;
         padding-bottom: 56.25%;

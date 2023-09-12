@@ -1,4 +1,4 @@
-import LockOutlinedIcon from '@mui/icons-material/LockClockOutlined';
+import RegisterIcon from '@mui/icons-material/AppRegistrationOutlined';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -10,48 +10,42 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useUserContext, useUserToggleContext } from '../../components/UserProvider';
-import { useEffect } from 'react';
 
-const endpoint: string = 'http://localhost:8001/api/login_check';
+const endpoint: string = 'http://localhost:8001/api/client/web/register';
 
-const LoginPage = () => {
+const RegisterPage = () => {
     const navigate = useNavigate();
-    const setToken = useUserToggleContext();
-    const token = useUserContext();
-
-    useEffect(() => {
-        console.log("effec");
-
-        if (token !== null) {
-            setToken(null);
-            navigate('/login');
-        }
-    });
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
-        const email = formData.get('email');
+        const name = formData.get('name');
         const password = formData.get('password');
+        const rePassword = formData.get('repassword');
+        const email = formData.get('email');
+
+        if (password !== rePassword) {
+            alert('Password dont match - Confirm password');
+            return;
+        }
 
         try {
             const { data } = await axios.post(
                 endpoint,
                 {
+                    name,
                     email,
                     password,
                 }
             );
-            if (data.token) {
-                setToken(data.token);
-                navigate('/');
-
+            if (data.id) {
+                navigate('/login');
                 return;
             }
-            alert('unauthorized');
-        } catch (error) {
-            alert('unauthorized');
+
+            alert('Registration Failed!');
+        } catch (error: any) {
+            const errors = await error.response.data.errors;
+            alert(errors.join('\n\n'));
         }
     };
 
@@ -67,10 +61,10 @@ const LoginPage = () => {
                 }}
             >
                 <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-                    <LockOutlinedIcon />
+                    <RegisterIcon />
                 </Avatar>
                 <Typography component='h1' variant='h5'>
-                    Sign in
+                    Register
                 </Typography>
                 <Box
                     component='form'
@@ -78,6 +72,16 @@ const LoginPage = () => {
                     noValidate
                     sx={{ mt: 1 }}
                 >
+                    <TextField
+                        margin='normal'
+                        required
+                        fullWidth
+                        id='name'
+                        label='Name'
+                        name='name'
+                        autoComplete='name'
+                        autoFocus
+                    />
                     <TextField
                         margin='normal'
                         required
@@ -96,7 +100,17 @@ const LoginPage = () => {
                         label='Password'
                         type='password'
                         id='password'
-                        autoComplete='current-password'
+                        autoComplete='password'
+                    />
+                    <TextField
+                        margin='normal'
+                        required
+                        fullWidth
+                        name='repassword'
+                        label='Confirm Password'
+                        type='password'
+                        id='repassword'
+                        autoComplete='repassword'
                     />
                     <Button
                         type='submit'
@@ -110,10 +124,10 @@ const LoginPage = () => {
                         <Grid item>
                             <Link
                                 component={NavLink}
-                                to='/register'
+                                to='/login'
                                 variant='body1'
                             >
-                                {"Don't have an account? Sign Up"}
+                                {'You have an account? Sign In'}
                             </Link>
                         </Grid>
                     </Grid>
@@ -123,4 +137,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default RegisterPage;

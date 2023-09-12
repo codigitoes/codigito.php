@@ -9,9 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Codigito\Shared\Domain\Filter\Page;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ListIndexAction extends BaseAction
+class BlogIndexAction extends BaseAction
 {
-    #[Route('/api/client/web/list/{pattern?}', name: 'client_web_list_index', methods: ['GET'])]
+    #[Route('/api/client/web/blog/{pattern?}', name: 'client_web_list_index', methods: ['GET'])]
     public function execute(
         Request $request,
         ?string $pattern = null

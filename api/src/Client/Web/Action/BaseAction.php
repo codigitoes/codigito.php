@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Codigito\Client\Web\Action;
 
+use Codigito\Auth\Credential\Application\CredentialCreate\CredentialCreateCommand;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialId;
+use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
 use Throwable;
 use Codigito\Shared\Domain\Filter\Page;
 use Codigito\Content\Tag\Application\TagAll\TagAllQuery;
@@ -36,6 +39,11 @@ abstract class BaseAction extends AbstractController
     protected function fidelizationMailingCreate(string $email): void
     {
         $this->command->execute(new MailingCreateCommand(MailingId::randomUuidV4(), $email));
+    }
+
+    protected function register(string $id, string $email, string $password): void
+    {
+        $this->command->execute(new CredentialCreateCommand($id, $email, $password, CredentialRoles::user()->value));
     }
 
     protected function getFortune(): array
@@ -131,6 +139,25 @@ abstract class BaseAction extends AbstractController
         return $result;
     }
 
+    protected function getBlogpostsThatContainTag(string $tag): array
+    {
+        $result = [];
+
+        try {
+            $query  = new BlogpostSearchQuery($tag, 1);
+            $model = $this->bus->execute($query);
+            foreach ($model->toPrimitives() as $aBlogpost) {
+                $aBlogpost['image'] = $this->getCdnUrl($aBlogpost['image']);
+                $aBlogpost['tags']  = explode(',', $aBlogpost['tags']);
+
+                $result[] = $aBlogpost;
+            }
+        } finally {
+        }
+
+        return $result;
+    }
+
     protected function getTags(): array
     {
         $result = [];
@@ -154,6 +181,6 @@ abstract class BaseAction extends AbstractController
             return null;
         }
 
-        return $_ENV['CDN_URL'].ltrim($uri, '/');
+        return $_ENV['CDN_URL'] . ltrim($uri, '/');
     }
 }

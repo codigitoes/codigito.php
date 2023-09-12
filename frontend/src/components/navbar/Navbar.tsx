@@ -1,10 +1,15 @@
 import React from 'react';
 import './navbar.scss';
+import { Link } from 'react-router-dom';
+import { useUserContext } from '../UserProvider';
+import { LockOpenTwoTone, LogoutOutlined } from '@mui/icons-material';
 
 interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ }) => {
+    const token = useUserContext();
+
     return (
         <>
             <div className='navbar'>
@@ -25,10 +30,30 @@ const Navbar: React.FC<NavbarProps> = ({ }) => {
                         <span>markitos</span>
                     </div>
                     <img src="/settings.svg" alt="" className="icon" /> */}
-                    <div className="user">
-                        <img src="/login.png" alt="login" className="icon" />
-                        <span>login</span>
-                    </div>
+                    {token === null &&
+                        <>
+                            <Link to="/login">
+                                <div className="user">
+                                    <img src="/login.png" alt="login" className="icon" />
+                                    <span>login</span>
+                                </div>
+                            </Link>
+                            <Link to="/register">
+                                <div className="user">
+                                    <LockOpenTwoTone />
+                                    <span>registro</span>
+                                </div>
+                            </Link>
+                        </>
+                    }
+                    {token !== null &&
+                        <Link to="/logout">
+                            <div className="user">
+                                <LogoutOutlined />
+                                <span>salir</span>
+                            </div>
+                        </Link>
+                    }
                 </div>
             </div>
         </>

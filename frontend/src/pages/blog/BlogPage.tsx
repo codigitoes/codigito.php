@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import "./blog.scss";
+import { CircularProgress } from "@mui/material";
 
 interface BlogPageProps {
 }
@@ -13,16 +14,20 @@ interface Blogpost {
     created: string;
 }
 
-const endpoint: string = 'http://localhost:8001/api/client/web/list';
+const endpoint: string = 'http://localhost:8001/api/client/web/blog';
 
 const BlogPage: React.FC<BlogPageProps> = ({ }) => {
+    const { pattern } = useParams();
+    const endpointFiltered = pattern !== undefined ? `${endpoint}/${pattern}` : endpoint;
 
     const fetchState = useFetch<{
         blogposts: Blogpost[]
-    }>(endpoint);
+    }>(endpointFiltered);
+
     if (fetchState.state === 'loading' || fetchState.state === 'idle') {
-        return (<div>loading...</div>);
+        return (<div><CircularProgress /></div>);
     }
+
 
     const blogposts: Blogpost[] = fetchState.data?.blogposts ? fetchState.data.blogposts : [];
 

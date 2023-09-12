@@ -1,8 +1,21 @@
-// BG
+// BG & BORDER
+$white-bg: #ffffff;
 $main-bg: #2a3447;
-$soft-bg: #384256;
+$soft-bg: #375082;
 $dark-bg: #222b3c;
 //TEXT
+$blue-color: #1976d2;
 $main-color: white;
-$soft-color: #ddd;
+$soft-color: #dfcbcb;
 $dark-color: #2a3447;
+
+:export {
+    whiteBg: $white-bg;
+    mainBg: $main-bg;
+    softBg: $soft-bg;
+    darkBg: $dark-bg;
+    blueColor: $blue-color;
+    mainColor: $main-color;
+    softColor: $soft-color;
+    darkColor: $dark-color;
+}

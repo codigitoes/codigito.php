@@ -1,0 +1,9 @@
+@import "../../styles/variables.scss";
+
+.hover-chip span {
+    color: $main-color;
+}
+
+.hover-chip span:hover {
+    color: $blue-color;
+}

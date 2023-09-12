@@ -9,9 +9,9 @@
         margin-bottom: 20px;
 
         .title {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 200;
-            color: $soft-color;
+            color: $main-color;
             text-transform: uppercase;
 
             @include lg {
@@ -25,6 +25,7 @@
             gap: 10px;
             padding: 10px;
             border-radius: 5px;
+            font-weight: 300;
 
             &:hover {
                 background-color: $soft-bg;

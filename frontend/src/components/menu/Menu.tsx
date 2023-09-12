@@ -1,6 +1,6 @@
 import React from 'react';
-import './menu.scss';
 import { Link } from 'react-router-dom';
+import './menu.scss';
 
 interface MenuProps {
 }
@@ -21,7 +21,7 @@ const Menu: React.FC<MenuProps> = ({ }) => {
                     </Link>
                 </div>
                 <div className="item">
-                    <span className="title">Personal</span>
+                    <span className="title">Categorias</span>
                     <Link className='listItem' to="/">
                         <img src="/settings.svg" alt="" />
                         <span className='listItemTitle'>Perfil</span>
