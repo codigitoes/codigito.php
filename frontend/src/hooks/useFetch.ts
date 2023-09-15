@@ -47,7 +47,6 @@ export default function useFetch<T>(url: string) {
         }
 
         fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url]);
 
     return fetchState;

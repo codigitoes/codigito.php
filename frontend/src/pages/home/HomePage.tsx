@@ -3,7 +3,7 @@ import "./home.scss";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../../components/UserProvider";
 
-const HomePage: React.FC<{}> = ({}) => {
+const HomePage: React.FC = () => {
   const token = useUserContext();
 
   return (
