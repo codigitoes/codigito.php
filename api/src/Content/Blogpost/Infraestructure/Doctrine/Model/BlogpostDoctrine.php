@@ -12,6 +12,7 @@ use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostImage;
 use Codigito\Shared\Infraestructure\Doctrine\Model\DoctrineModel;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostYoutube;
 
 /**
  * @ORM\Entity(repositoryClass="Codigito\Content\Blogpost\Infraestructure\Repository\BlogpostWriterDoctrine", readOnly=true)
@@ -38,6 +39,11 @@ class BlogpostDoctrine implements DoctrineModel
     private string $image;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private string $youtube;
+
+    /**
      * @ORM\Column(type="string", length=100, nullable=false)
      */
     private string $tags;
@@ -52,6 +58,7 @@ class BlogpostDoctrine implements DoctrineModel
         $this->id      = $blogpost->id->value;
         $this->name    = $blogpost->name->value;
         $this->image   = $blogpost->image->value;
+        $this->youtube   = $blogpost->youtube->value;
         $this->tags    = $blogpost->tags->value;
         $this->created = $blogpost->created;
     }
@@ -86,6 +93,11 @@ class BlogpostDoctrine implements DoctrineModel
         return $this->image;
     }
 
+    public function getYoutube(): string
+    {
+        return $this->youtube;
+    }
+
     public function getTags(): string
     {
         return $this->tags;
@@ -102,6 +114,7 @@ class BlogpostDoctrine implements DoctrineModel
             new BlogpostId($this->id),
             new BlogpostName($this->name),
             new BlogpostImage($this->image),
+            new BlogpostYoutube($this->youtube),
             new BlogpostTags($this->tags),
             $this->created
         );

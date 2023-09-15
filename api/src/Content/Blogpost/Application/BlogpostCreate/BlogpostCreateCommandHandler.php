@@ -13,6 +13,7 @@ use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 use Codigito\Content\Blogpost\Domain\Repository\BlogpostWriter;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostImage;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostYoutube;
 
 class BlogpostCreateCommandHandler implements CommandHandler
 {
@@ -30,6 +31,7 @@ class BlogpostCreateCommandHandler implements CommandHandler
             new BlogpostId($command->id),
             new BlogpostName($command->name),
             new BlogpostImage($image),
+            new BlogpostYoutube($command->youtube),
             new BlogpostTags($command->tags)
         );
 

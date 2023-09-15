@@ -1,3 +1,4 @@
+import { Tag } from '@mui/icons-material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, CircularProgress, Stack, Tab, Typography } from '@mui/material';
 import React from 'react';
@@ -5,13 +6,13 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import HoverChip from '../../components/hoverchip/HoverChip';
 import useFetch from '../../hooks/useFetch';
 import './blogpost.scss';
-import { Tag, TagFaces, TagFacesOutlined, TagOutlined, TagRounded } from '@mui/icons-material';
 
 
 interface Blogpost {
     id: string;
     name: string;
     image: string;
+    youtube: string;
     tags: string[];
     created: string;
     content: any[];
@@ -49,50 +50,8 @@ const BlogpostPage: React.FC<{}> = () => {
         setValue(newValue);
     };
 
-    let contentYoutube: any;
-    let contentOther: any[] = new Array();
     const blogpost = fetchState.data?.blogpost;
     const others = fetchState.data?.others || [];
-    const collection = fetchState.data?.blogpost.content || [];
-
-    collection.map((content: BlogpostContent) => {
-        const isYoutube = content.youtube !== null;
-        if (isYoutube) {
-            contentYoutube = (<div key={content.id} style={{
-                "width": "90%"
-            }}>
-                <div className="video-responsive box">
-                    <iframe
-                        src={content.youtube}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        title="Embedded youtube"
-                    />
-                </div>
-                <Typography>
-
-                </Typography>
-
-            </div>)
-        }
-
-        const isHtml = content.html !== null;
-        {
-            isHtml && contentOther.push(<div key={content.id} style={{
-                "width": "90%"
-            }}><div dangerouslySetInnerHTML={{ __html: content.html }} /></div>)
-        }
-        const isImage = content.image !== null;
-        {
-            isImage && contentOther.push(<div key={content.id} style={{
-                "width": "90%"
-            }}><Link to="">
-                    <div className="box">
-                        <img src={content.image} alt="" />
-                    </div>
-                </Link></div>)
-        }
-    })
 
     return (
         <div className='blogpost-page'>
@@ -100,7 +59,6 @@ const BlogpostPage: React.FC<{}> = () => {
                 <TabContext value={value}>
                     <TabList onChange={handleChange} aria-label="lab API tabs example">
                         <Tab className='tab-title' label="Contenido" value="0" />
-                        <Tab className='tab-title' label="Detalles" value="1" />
                         <Tab className='tab-title' label="Relacionados" value="2" />
                     </TabList>
                     <TabPanel value="0">
@@ -115,12 +73,22 @@ const BlogpostPage: React.FC<{}> = () => {
                                 <HoverChip label={tag} key={tag} onClick={() => navigate(endpointFilter + tag)} icon={<Tag />} />
                             ))}
                         </Stack>
-                        {contentYoutube}
-                    </TabPanel>
-                    <TabPanel value="1">
-                        {contentOther.map((element) => {
-                            return element
-                        })}
+                        <div style={{
+                            "width": "90%"
+                        }}>
+                            <div className="video-responsive box">
+                                <iframe
+                                    src={blogpost?.youtube}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    title="Embedded youtube"
+                                />
+                            </div>
+                            <Typography>
+
+                            </Typography>
+
+                        </div>
                     </TabPanel>
                     <TabPanel value="2">
                         <div className='blog-page'>

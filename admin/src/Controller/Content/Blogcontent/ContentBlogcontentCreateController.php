@@ -60,7 +60,7 @@ class ContentBlogcontentCreateController extends BaseWebActionController
             $this->addFlash(
                 'error',
                 'Error creando blog content!. detalles: '
-                    .implode("\n", $errors)
+                    . implode("\n", $errors)
             );
 
             return null;

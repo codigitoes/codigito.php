@@ -12,6 +12,7 @@ class BlogpostCreateCommand implements Command
         public readonly string $id,
         public readonly string $name,
         public readonly string $base64image,
+        public readonly string $youtube,
         public readonly string $tags
     ) {
     }

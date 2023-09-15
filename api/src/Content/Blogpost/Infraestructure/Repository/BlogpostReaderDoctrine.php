@@ -95,6 +95,7 @@ class BlogpostReaderDoctrine implements BlogpostReader
             $blogpost->getId(),
             $blogpost->getName(),
             $blogpost->getImage(),
+            $blogpost->getYoutube(),
             $blogpost->getTags(),
             Codigito::datetimeToHuman($blogpost->getCreated())
         );

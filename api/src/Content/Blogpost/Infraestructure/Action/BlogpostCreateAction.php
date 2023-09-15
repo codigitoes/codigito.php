@@ -16,6 +16,7 @@ use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostBase64Image;
 use Codigito\Content\Blogpost\Application\BlogpostCreate\BlogpostCreateCommand;
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostYoutube;
 use Codigito\Content\Tag\Application\TagExistsValidator\TagExistsValidatorCommand;
 
 class BlogpostCreateAction extends BaseAction
@@ -33,6 +34,7 @@ class BlogpostCreateAction extends BaseAction
             [
                 'name'        => '',
                 'base64image' => '',
+                'youtube' => '',
                 'tags'        => '',
             ]
         );
@@ -70,6 +72,7 @@ class BlogpostCreateAction extends BaseAction
         $validator->register('name', BlogpostName::class);
         $validator->register('base64image', BlogpostBase64Image::class);
         $validator->register('tags', BlogpostTags::class);
+        $validator->register('youtube', BlogpostYoutube::class);
 
         return $validator->validate($this->parameters);
     }
@@ -80,6 +83,7 @@ class BlogpostCreateAction extends BaseAction
             $this->parameters['id'],
             $this->parameters['name'],
             $this->parameters['base64image'],
+            $this->parameters['youtube'],
             $this->parameters['tags']
         );
     }
