@@ -6,12 +6,17 @@ import LoginPage from '../pages/login/LoginPage';
 import RegisterPage from '../pages/register/RegisterPage';
 import '../styles/global.scss';
 import { Layout } from './Layout';
+import SettingsPage from '../pages/settings/SettingsPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
+      {
+        path: "/settings",
+        element: <SettingsPage />
+      },
       {
         path: "/logout",
         element: <LoginPage />
@@ -21,15 +26,19 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: "/blog",
+        path: "/blogposts",
         element: <BlogPage />
       },
       {
-        path: "/blogpost/:id",
+        path: "/blogposts/:id",
         element: <BlogpostPage />
       },
       {
-        path: "/blog/:pattern",
+        path: "/blogposts/tag/:tag",
+        element: <BlogPage />
+      },
+      {
+        path: "/blogposts",
         element: <BlogPage />
       }]
   },

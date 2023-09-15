@@ -19,6 +19,6 @@ class BlogcontentHtml extends LimitedString
 
     protected function throwException(string $value): void
     {
-        throw new InvalidParameterException('invalid blogcontent html: ' . strlen($value) . ' min:' . self::MINIMUM_CHARS . ' max:' . self::MAXIMUM_CHARS);
+        throw new InvalidParameterException('invalid blogcontent html: '.strlen($value).' min:'.self::MINIMUM_CHARS.' max:'.self::MAXIMUM_CHARS);
     }
 }

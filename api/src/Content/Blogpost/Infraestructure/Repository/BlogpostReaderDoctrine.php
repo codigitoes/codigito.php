@@ -53,7 +53,7 @@ class BlogpostReaderDoctrine implements BlogpostReader
 
             return $result->toModel();
         } catch (Throwable) {
-            throw new NotFoundException('blogpost not found: '.json_encode($criteria));
+            throw new NotFoundException('blogpost not found: ' . json_encode($criteria));
         }
     }
 
@@ -64,7 +64,7 @@ class BlogpostReaderDoctrine implements BlogpostReader
 
             return $this->getReadModel($result);
         } catch (Throwable) {
-            throw new NotFoundException('blogpost not found: '.json_encode($criteria));
+            throw new NotFoundException('blogpost not found: ' . json_encode($criteria));
         }
     }
 

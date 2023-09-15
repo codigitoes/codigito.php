@@ -1,10 +1,11 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Box, CircularProgress, Stack, Tab } from '@mui/material';
+import { Box, CircularProgress, Stack, Tab, Typography } from '@mui/material';
 import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import HoverChip from '../../components/hoverchip/HoverChip';
 import useFetch from '../../hooks/useFetch';
 import './blogpost.scss';
+import { Tag, TagFaces, TagFacesOutlined, TagOutlined, TagRounded } from '@mui/icons-material';
 
 
 interface Blogpost {
@@ -25,8 +26,8 @@ interface BlogpostContent {
     created: string;
 }
 
-const endpointDetails: string = 'http://localhost:8001/api/client/web/detail/';
-const filterByTagUrl: string = '/blog/';
+const endpoint: string = 'http://localhost:8001/api/client/web/blogposts/';
+const endpointFilter: string = '/blogposts/tag/';
 
 
 const BlogpostPage: React.FC<{}> = () => {
@@ -37,7 +38,8 @@ const BlogpostPage: React.FC<{}> = () => {
         blogpost: Blogpost,
         tags: string[],
         others?: Blogpost[]
-    }>(endpointDetails + id);
+    }>(endpoint + id);
+
     const [value, setValue] = React.useState("0");
     if (fetchState.state === 'loading' || fetchState.state === 'idle') {
         return (<div><CircularProgress /></div>);
@@ -67,6 +69,10 @@ const BlogpostPage: React.FC<{}> = () => {
                         title="Embedded youtube"
                     />
                 </div>
+                <Typography>
+
+                </Typography>
+
             </div>)
         }
 
@@ -88,8 +94,6 @@ const BlogpostPage: React.FC<{}> = () => {
         }
     })
 
-
-
     return (
         <div className='blogpost-page'>
             <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -108,7 +112,7 @@ const BlogpostPage: React.FC<{}> = () => {
                             margin={2}
                         >
                             {blogpost?.tags.map(tag => (
-                                <HoverChip label={tag} key={tag} onClick={() => navigate(filterByTagUrl + tag)} />
+                                <HoverChip label={tag} key={tag} onClick={() => navigate(endpointFilter + tag)} icon={<Tag />} />
                             ))}
                         </Stack>
                         {contentYoutube}
@@ -125,7 +129,7 @@ const BlogpostPage: React.FC<{}> = () => {
                                     return null;
                                 }
                                 return (
-                                    <Link to={`/blogpost/${aBlogpost.id}`} key={aBlogpost.id} onClick={() => setValue("0")}>
+                                    <Link to={`/blogposts/${aBlogpost.id}`} key={aBlogpost.id} onClick={() => setValue("0")}>
                                         <div className="box blog-item">
                                             <img src={aBlogpost.image} alt="" />
                                             <span>{aBlogpost.name}</span>

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Codigito\Client\Web\Action;
 
 use Codigito\Auth\Credential\Application\CredentialCreate\CredentialCreateCommand;
-use Codigito\Auth\Credential\Domain\ValueObject\CredentialId;
 use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
 use Throwable;
 use Codigito\Shared\Domain\Filter\Page;
@@ -20,6 +19,8 @@ use Codigito\Content\Blogpost\Application\BlogpostLatest\BlogpostLatestQuery;
 use Codigito\Content\Blogpost\Application\BlogpostRandom\BlogpostRandomQuery;
 use Codigito\Content\Blogpost\Application\BlogpostSearch\BlogpostSearchQuery;
 use Codigito\Content\Blogcontent\Application\BlogcontentAll\BlogcontentAllQuery;
+use Codigito\Content\Blogcontent\Application\BlogcontentDelete\BlogcontentDeleteCommand;
+use Codigito\Content\Blogpost\Application\BlogpostSearchByTag\BlogpostSearchByTagQuery;
 use Codigito\Fidelization\Mailing\Application\MailingCreate\MailingCreateCommand;
 use Codigito\Fidelization\Mailing\Application\MailingConfirm\MailingConfirmCommand;
 
@@ -44,6 +45,11 @@ abstract class BaseAction extends AbstractController
     protected function register(string $id, string $email, string $password): void
     {
         $this->command->execute(new CredentialCreateCommand($id, $email, $password, CredentialRoles::user()->value));
+    }
+
+    protected function deleteBlogcontent(string $blogpostId, string $blogcontentId): void
+    {
+        $this->command->execute(new BlogcontentDeleteCommand($blogcontentId, $blogpostId));
     }
 
     protected function getFortune(): array
@@ -144,13 +150,30 @@ abstract class BaseAction extends AbstractController
         $result = [];
 
         try {
-            $query  = new BlogpostSearchQuery($tag, 1);
+            $query = new BlogpostSearchQuery($tag, 1);
             $model = $this->bus->execute($query);
             foreach ($model->toPrimitives() as $aBlogpost) {
                 $aBlogpost['image'] = $this->getCdnUrl($aBlogpost['image']);
                 $aBlogpost['tags']  = explode(',', $aBlogpost['tags']);
 
                 $result[] = $aBlogpost;
+            }
+        } finally {
+        }
+
+        return $result;
+    }
+
+    protected function getBlogpostsByTag(string $tag): array
+    {
+        $result = [];
+
+        try {
+            $query = new BlogpostSearchByTagQuery($tag);
+            $model = $this->bus->execute($query);
+            foreach ($model->toPrimitives() as $aTag) {
+                $aTag['image'] = $this->getCdnUrl($aTag['image']);
+                $result[] = $aTag;
             }
         } finally {
         }

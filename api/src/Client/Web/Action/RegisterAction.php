@@ -16,14 +16,14 @@ class RegisterAction extends BaseAction
     {
         $parameters = json_decode($request->getContent(), true);
         $email      = isset($parameters['email']) ? $parameters['email'] : '';
-        $password      = isset($parameters['password']) ? $parameters['password'] : '';
-        $name      = isset($parameters['name']) ? $parameters['name'] : '';
-        $id = CredentialId::randomUuidV4();
+        $password   = isset($parameters['password']) ? $parameters['password'] : '';
+        $name       = isset($parameters['name']) ? $parameters['name'] : '';
+        $id         = CredentialId::randomUuidV4();
         try {
             $this->register($id, $email, $password);
 
             return $this->json([
-                'id' => $id,
+                'id'      => $id,
                 'message' => 'register realizada, gracias :)',
             ]);
         } catch (\Throwable $th) {

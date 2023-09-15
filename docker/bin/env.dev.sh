@@ -11,4 +11,3 @@ cd $DIR"../"
 
 cp ../api/.env.template ../api/.env 
 cp ../admin/.env.template ../admin/.env 
-cp ../www/.env.template ../www/.env

@@ -32,6 +32,11 @@ final class Page
         return new Page($page, $limit);
     }
 
+    final public static function all(): static
+    {
+        return new Page(self::FIRST_PAGE, 99999999);
+    }
+
     final public static function first25(): static
     {
         return new Page(self::FIRST_PAGE, self::PAGE_LIMIT);

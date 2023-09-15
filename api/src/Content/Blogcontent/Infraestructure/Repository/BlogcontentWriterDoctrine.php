@@ -34,7 +34,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
             if ($th instanceof NotFoundException) {
                 throw $th;
             }
-            throw new InternalErrorException('cant delete blogocontent: ' . $id->value);
+            throw new InternalErrorException('cant delete blogocontent: '.$id->value);
         }
     }
 
@@ -52,7 +52,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
         try {
             $result = $query->getSingleResult();
         } catch (Throwable) {
-            throw new NotFoundException('blogcontent not found: ' . $id->value);
+            throw new NotFoundException('blogcontent not found: '.$id->value);
         }
 
         return $result;
@@ -62,7 +62,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
     {
         $doctrine = $this->manager->find(BlogcontentDoctrine::class, $blogcontent->id->value);
         if (is_null($doctrine)) {
-            throw new NotFoundException('blogcontent not found: ' . $blogcontent->id->value);
+            throw new NotFoundException('blogcontent not found: '.$blogcontent->id->value);
         }
 
         $doctrine->changeImage($blogcontent->image);
@@ -82,7 +82,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
             $queryBuilder->setParameter('youtube', $blogcontent->youtube->value);
             $queryBuilder->getQuery()->execute();
         } catch (Throwable) {
-            throw new InternalErrorException('cant update blogocontent: ' . $blogcontent->id->value);
+            throw new InternalErrorException('cant update blogocontent: '.$blogcontent->id->value);
         }
     }
 
@@ -107,7 +107,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
             $this->manager->persist(new BlogcontentDoctrine($blogcontent));
             $this->manager->flush();
         } catch (Throwable) {
-            throw new InternalErrorException('cant save blogocontent: ' . $blogcontent->id->value);
+            throw new InternalErrorException('cant save blogocontent: '.$blogcontent->id->value);
         }
     }
 

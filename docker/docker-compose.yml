@@ -97,28 +97,6 @@ services:
       codigito-network:
         ipv4_address: 172.27.102.13
 
-  codigito.www:
-    user: "1000:1000"
-    build:
-      context: www
-      args:
-        DEPLOY_ENV: ${DEPLOY_ENV}
-    depends_on:
-      - codigito.api
-    container_name: 'codigito.www'
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ../www/:/var/www/vhosts/codigito.es/
-    extra_hosts:
-      - 'codigito.api:172.27.102.11'
-      - 'codigito.cdn:172.27.102.11'
-    hostname: codigito.www
-    networks:
-      codigito-network:
-        ipv4_address: 172.27.102.14
-
   codigito.frontend:
     platform: 'linux/arm64'
     user: "1000:1000"
@@ -130,7 +108,7 @@ services:
       - codigito.api
     container_name: 'codigito.frontend'
     ports:
-      - 8080:8080
+      - 80:8080
     volumes:
       - ../frontend/:/var/www/vhosts/codigito.es/
     extra_hosts:

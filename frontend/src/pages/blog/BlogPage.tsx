@@ -14,11 +14,11 @@ interface Blogpost {
     created: string;
 }
 
-const endpoint: string = 'http://localhost:8001/api/client/web/blog';
+const endpoint: string = 'http://localhost:8001/api/client/web/blogposts';
 
 const BlogPage: React.FC<BlogPageProps> = ({ }) => {
-    const { pattern } = useParams();
-    const endpointFiltered = pattern !== undefined ? `${endpoint}/${pattern}` : endpoint;
+    const { tag } = useParams();
+    const endpointFiltered = tag !== undefined ? `${endpoint}/tag/${tag}` : endpoint;
 
     const fetchState = useFetch<{
         blogposts: Blogpost[]
@@ -37,7 +37,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ }) => {
             <div className='blog-page'>
                 {blogposts.map((blogpost) => {
                     return (
-                        <Link to={`/blogpost/${blogpost.id}`} key={blogpost.id}>
+                        <Link to={`/blogposts/${blogpost.id}`} key={blogpost.id}>
                             <div className="box blog-item">
                                 <img src={blogpost.image} alt="" />
                                 <span>{blogpost.name}</span>

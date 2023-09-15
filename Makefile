@@ -9,8 +9,6 @@ frontendsh:
 	bash docker/bin/frontendsh.sh 
 adminsh:
 	bash docker/bin/adminsh.sh
-wwwsh:
-	bash docker/bin/wwwsh.sh
 rabbitsh:
 	bash docker/bin/rabbitsh.sh
 tests:

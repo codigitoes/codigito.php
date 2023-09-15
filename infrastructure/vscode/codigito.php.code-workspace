@@ -5,6 +5,9 @@
         },
         {
             "path": "../../../spikes/react-node-api-front-mui"
+        },
+        {
+            "path": "../../../spikes/react-admin-ui-completed"
         }
     ],
     "settings": {

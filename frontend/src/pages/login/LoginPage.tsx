@@ -21,8 +21,6 @@ const LoginPage = () => {
     const token = useUserContext();
 
     useEffect(() => {
-        console.log("effec");
-
         if (token !== null) {
             setToken(null);
             navigate('/login');
@@ -87,6 +85,7 @@ const LoginPage = () => {
                         name='email'
                         autoComplete='email'
                         autoFocus
+                        value={'markitosco@gmail.com'}
                     />
                     <TextField
                         margin='normal'
@@ -97,6 +96,7 @@ const LoginPage = () => {
                         type='password'
                         id='password'
                         autoComplete='current-password'
+                        value={'markitosco@gmail.com'}
                     />
                     <Button
                         type='submit'

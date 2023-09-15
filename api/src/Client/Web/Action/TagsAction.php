@@ -13,7 +13,7 @@ class TagsAction extends BaseAction
     public function execute(): Response
     {
         return $this->json([
-            'tags'             => $this->getTags()
+            'tags' => $this->getTags(),
         ]);
     }
 }
