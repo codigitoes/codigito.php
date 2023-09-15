@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-const endpoint: string = 'http://localhost:8001/api/client/web/register';
+const endpoint = 'http://localhost:8001/api/client/web/register';
 
 const RegisterPage = () => {
     const navigate = useNavigate();

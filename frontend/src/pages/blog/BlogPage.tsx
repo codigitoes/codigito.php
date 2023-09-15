@@ -14,7 +14,7 @@ interface Blogpost {
     created: string;
 }
 
-const endpoint: string = 'http://localhost:8001/api/client/web/blogposts';
+const endpoint = 'http://localhost:8001/api/client/web/blogposts';
 
 const BlogPage: React.FC<BlogPageProps> = ({ }) => {
     const { tag } = useParams();

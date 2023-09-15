@@ -9,52 +9,52 @@ import { Layout } from "./Layout";
 import SettingsPage from "../pages/settings/SettingsPage";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Layout />,
-        children: [
-            {
-                path: "/settings",
-                element: <SettingsPage />,
-            },
-            {
-                path: "/logout",
-                element: <LoginPage />,
-            },
-            {
-                path: "/",
-                element: <HomePage />,
-            },
-            {
-                path: "/blogposts",
-                element: <BlogPage />,
-            },
-            {
-                path: "/blogposts/:id",
-                element: <BlogpostPage />,
-            },
-            {
-                path: "/blogposts/tag/:tag",
-                element: <BlogPage />,
-            },
-            {
-                path: "/blogposts",
-                element: <BlogPage />,
-            },
-        ],
-    },
-    {
-        path: "/login",
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/settings",
+        element: <SettingsPage />,
+      },
+      {
+        path: "/logout",
         element: <LoginPage />,
-    },
-    {
-        path: "/register",
-        element: <RegisterPage />,
-    },
+      },
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/blogposts",
+        element: <BlogPage />,
+      },
+      {
+        path: "/blogposts/:id",
+        element: <BlogpostPage />,
+      },
+      {
+        path: "/blogposts/tag/:tag",
+        element: <BlogPage />,
+      },
+      {
+        path: "/blogposts",
+        element: <BlogPage />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+  },
 ]);
 
-const AppRouterProvider: React.FC<{}> = () => {
-    return <RouterProvider router={router} />;
+const AppRouterProvider: React.FC = () => {
+  return <RouterProvider router={router} />;
 };
 
 export default AppRouterProvider;

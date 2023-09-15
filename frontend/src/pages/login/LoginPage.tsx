@@ -13,7 +13,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useUserContext, useUserToggleContext } from '../../components/UserProvider';
 import { useEffect } from 'react';
 
-const endpoint: string = 'http://localhost:8001/api/login_check';
+const endpoint = 'http://localhost:8001/api/login_check';
 
 const LoginPage = () => {
     const navigate = useNavigate();
