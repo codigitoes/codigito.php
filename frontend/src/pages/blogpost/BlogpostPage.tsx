@@ -1,14 +1,6 @@
 import { Tag } from "@mui/icons-material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import {
-  Box,
-  Card,
-  CardContent,
-  CircularProgress,
-  Stack,
-  Tab,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Stack, Tab } from "@mui/material";
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import HoverChip from "../../components/hoverchip/HoverChip";
