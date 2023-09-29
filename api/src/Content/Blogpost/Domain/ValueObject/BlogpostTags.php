@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Blogpost\Domain\ValueObject;
 
-use Throwable;
 use Codigito\Content\Shared\Domain\ValueObject\TagName;
 use Codigito\Shared\Domain\Exception\InvalidParameterException;
 
@@ -21,7 +20,7 @@ class BlogpostTags
         foreach ($itemsValue as $index => $anItem) {
             try {
                 new TagName($anItem);
-            } catch (Throwable) {
+            } catch (\Throwable) {
                 $worngValues[] = $anItem;
             }
         }

@@ -7,7 +7,7 @@ namespace Codigito\Shared\Infraestructure\Rabbitmq;
 final class RabbitMqConnection
 {
     private static ?\AMQPConnection $connection = null;
-    private static ?\AMQPChannel    $channel    = null;
+    private static ?\AMQPChannel $channel       = null;
     /** @var \AMQPExchange[] */
     private static array $exchanges = [];
     /** @var \AMQPQueue[] */

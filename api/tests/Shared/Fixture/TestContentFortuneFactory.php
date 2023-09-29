@@ -47,7 +47,7 @@ trait TestContentFortuneFactory
         return new FortuneWriterDoctrine($manager);
     }
 
-    final protected function FortunePersisted(EntityManager $manager, ?Fortune $model = null): Fortune
+    final protected function FortunePersisted(EntityManager $manager, Fortune $model = null): Fortune
     {
         if (is_null($model)) {
             $model = $this->RandomFortune();
@@ -68,9 +68,9 @@ trait TestContentFortuneFactory
     }
 
     final protected function FortuneFromValues(
-        ?FortuneId $id = null,
-        ?FortuneName $name = null,
-        ?\DateTimeInterface $created = null
+        FortuneId $id = null,
+        FortuneName $name = null,
+        \DateTimeInterface $created = null
     ): Fortune {
         is_null($id)      && $id      = FortuneId::random();
         is_null($name)    && $name    = new FortuneName(Codigito::randomString());

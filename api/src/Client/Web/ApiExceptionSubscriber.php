@@ -32,8 +32,8 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(
-            KernelEvents::EXCEPTION => 'onKernelException'
-        );
+        return [
+            KernelEvents::EXCEPTION => 'onKernelException',
+        ];
     }
 }

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Codigito\Shared\Domain\ValueObject;
 
-use Throwable;
-
 abstract class Base64Image
 {
     public const AVAILABLE_EXTENSIONS = ['jpeg', 'jpg', 'png', 'gif'];
@@ -40,7 +38,7 @@ abstract class Base64Image
     {
         try {
             $gdImage = imagecreatefromstring(base64_decode($this->value));
-        } catch (Throwable) {
+        } catch (\Throwable) {
             $this->throwException('cant create image from received base64');
         }
         $temporalyFile = sys_get_temp_dir().DIRECTORY_SEPARATOR.UuidV4Id::randomUuidV4();

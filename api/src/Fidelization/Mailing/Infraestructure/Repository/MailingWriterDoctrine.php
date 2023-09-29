@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Codigito\Fidelization\Mailing\Infraestructure\Repository;
 
-use Throwable;
 use Doctrine\ORM\EntityManagerInterface;
 use Codigito\Fidelization\Mailing\Domain\Model\Mailing;
 use Codigito\Fidelization\Mailing\Domain\ValueObject\MailingId;
@@ -56,7 +55,7 @@ class MailingWriterDoctrine implements MailingWriter
             $queryBuilder->where('c.id = :id');
             $queryBuilder->setParameter('id', $mailing->id->value);
             $queryBuilder->getQuery()->execute();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new MailingCantUpdateException($mailing->id->value);
         }
     }
@@ -100,7 +99,7 @@ class MailingWriterDoctrine implements MailingWriter
 
         try {
             $result = $query->getSingleResult();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new MailingNotFoundException($id->value);
         }
 

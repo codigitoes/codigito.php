@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Fortune\Infraestructure\Repository;
 
-use Throwable;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManagerInterface;
 use Codigito\Shared\Domain\Filter\Criteria;
@@ -44,7 +43,7 @@ class FortuneReaderDoctrine implements FortuneReader
             $result = $this->getQueryForSearch($criteria)->setMaxResults(1)->getOneOrNullResult();
 
             return $result->toModel();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new NotFoundException('fortune not found: '.json_encode($criteria));
         }
     }
@@ -78,7 +77,7 @@ class FortuneReaderDoctrine implements FortuneReader
             $result = $this->getQueryForRandom()->getOneOrNullResult();
 
             return $this->getReadModel($result);
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new NotFoundException('fortune random not found');
         }
     }

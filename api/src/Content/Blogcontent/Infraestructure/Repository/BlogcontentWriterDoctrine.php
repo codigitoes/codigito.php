@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Blogcontent\Infraestructure\Repository;
 
-use Throwable;
 use Doctrine\ORM\EntityManagerInterface;
 use Codigito\Content\Blogcontent\Domain\Model\Blogcontent;
 use Codigito\Content\Blogcontent\Domain\ValueObject\BlogcontentId;
@@ -51,7 +50,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
         $query = $qb->getQuery();
         try {
             $result = $query->getSingleResult();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new NotFoundException('blogcontent not found: '.$id->value);
         }
 
@@ -81,7 +80,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
             $queryBuilder->setParameter('image', $blogcontent->image->value);
             $queryBuilder->setParameter('youtube', $blogcontent->youtube->value);
             $queryBuilder->getQuery()->execute();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new InternalErrorException('cant update blogocontent: '.$blogcontent->id->value);
         }
     }
@@ -106,7 +105,7 @@ class BlogcontentWriterDoctrine implements BlogcontentWriter
 
             $this->manager->persist(new BlogcontentDoctrine($blogcontent));
             $this->manager->flush();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new InternalErrorException('cant save blogocontent: '.$blogcontent->id->value);
         }
     }

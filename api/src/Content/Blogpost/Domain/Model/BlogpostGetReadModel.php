@@ -14,7 +14,8 @@ class BlogpostGetReadModel implements ReadModel
         public readonly string $image,
         public readonly string $youtube,
         public readonly string $tags,
-        public readonly string $created
+        public readonly string $created,
+        public readonly ?string $html = null
     ) {
     }
 
@@ -24,9 +25,10 @@ class BlogpostGetReadModel implements ReadModel
             'id'      => $this->id,
             'name'    => $this->name,
             'image'   => $this->image,
-            'youtube'   => $this->youtube,
+            'youtube' => $this->youtube,
             'tags'    => $this->tags,
             'created' => $this->created,
+            'html'    => $this->html,
         ];
     }
 }

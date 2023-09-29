@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Codigito\Fidelization\Mailing\Infraestructure\Repository;
 
-use Throwable;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManagerInterface;
 use Codigito\Shared\Domain\Filter\Criteria;
@@ -43,7 +42,7 @@ class MailingReaderDoctrine implements MailingReader
             $result = $this->getQueryForSearch($criteria)->setMaxResults(1)->getSingleResult();
 
             return $result->toModel();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new MailingNotFoundException(json_encode($criteria));
         }
     }
@@ -63,7 +62,7 @@ class MailingReaderDoctrine implements MailingReader
             $result = $this->getQueryForSearch($criteria)->setMaxResults(1)->getSingleResult();
 
             return $this->getReadModel($result);
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new MailingNotFoundException(json_encode($criteria));
         }
     }

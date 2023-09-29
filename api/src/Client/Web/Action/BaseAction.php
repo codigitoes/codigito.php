@@ -6,7 +6,6 @@ namespace Codigito\Client\Web\Action;
 
 use Codigito\Auth\Credential\Application\CredentialCreate\CredentialCreateCommand;
 use Codigito\Auth\Credential\Domain\ValueObject\CredentialRoles;
-use Throwable;
 use Codigito\Shared\Domain\Filter\Page;
 use Codigito\Content\Tag\Application\TagAll\TagAllQuery;
 use Codigito\Shared\Infraestructure\Query\QueryStaticBus;
@@ -59,7 +58,7 @@ abstract class BaseAction extends AbstractController
         try {
             $model  = $this->bus->execute(new FortuneGetQuery());
             $result = $model->toPrimitives();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             $result = [];
         }
 
@@ -67,7 +66,7 @@ abstract class BaseAction extends AbstractController
     }
 
     protected function getBlogposts(
-        ?string $pattern = null,
+        string $pattern = null,
         ?int $page = Page::FIRST_PAGE
     ) {
         $result = [];
@@ -173,7 +172,7 @@ abstract class BaseAction extends AbstractController
             $model = $this->bus->execute($query);
             foreach ($model->toPrimitives() as $aTag) {
                 $aTag['image'] = $this->getCdnUrl($aTag['image']);
-                $result[] = $aTag;
+                $result[]      = $aTag;
             }
         } finally {
         }
@@ -198,12 +197,12 @@ abstract class BaseAction extends AbstractController
         return $result;
     }
 
-    protected function getCdnUrl(?string $uri = null): string|null
+    protected function getCdnUrl(string $uri = null): string|null
     {
         if (is_null($uri)) {
             return null;
         }
 
-        return $_ENV['CDN_URL'] . ltrim($uri, '/');
+        return $_ENV['CDN_URL'].ltrim($uri, '/');
     }
 }

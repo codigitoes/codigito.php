@@ -55,7 +55,7 @@ trait TestContentTagFactory
         @unlink($_ENV['CDN_BASEDIR'].$model->image->value);
     }
 
-    final protected function TagPersisted(EntityManager $manager, ?Tag $model = null): Tag
+    final protected function TagPersisted(EntityManager $manager, Tag $model = null): Tag
     {
         if (is_null($model)) {
             $model = $this->RandomTag();
@@ -82,10 +82,10 @@ trait TestContentTagFactory
     }
 
     final protected function TagFromValues(
-        ?TagId $id = null,
-        ?TagName $name = null,
-        ?TagImage $image = null,
-        ?\DateTimeInterface $created = null
+        TagId $id = null,
+        TagName $name = null,
+        TagImage $image = null,
+        \DateTimeInterface $created = null
     ): Tag {
         is_null($id)      && $id      = TagId::random();
         is_null($name)    && $name    = new TagName(Codigito::randomString());

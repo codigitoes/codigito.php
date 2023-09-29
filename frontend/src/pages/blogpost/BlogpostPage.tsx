@@ -1,6 +1,14 @@
 import { Tag } from "@mui/icons-material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { Box, CircularProgress, Stack, Tab, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  CircularProgress,
+  Stack,
+  Tab,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import HoverChip from "../../components/hoverchip/HoverChip";
@@ -14,6 +22,7 @@ interface Blogpost {
   youtube: string;
   tags: string[];
   created: string;
+  html: string | null;
   others?: Blogpost[];
 }
 
@@ -84,7 +93,6 @@ const BlogpostPage: React.FC = () => {
                   title="Embedded youtube"
                 />
               </div>
-              <Typography></Typography>
             </div>
           </TabPanel>
           <TabPanel value="2">

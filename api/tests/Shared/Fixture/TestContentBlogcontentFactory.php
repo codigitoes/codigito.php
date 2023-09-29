@@ -76,7 +76,7 @@ trait TestContentBlogcontentFactory
         @unlink($_ENV['CDN_BASEDIR'].$model->image->value);
     }
 
-    final protected function BlogcontentPersisted(EntityManager $manager, ?Blogcontent $model = null): Blogcontent
+    final protected function BlogcontentPersisted(EntityManager $manager, Blogcontent $model = null): Blogcontent
     {
         if (is_null($model)) {
             $model = $this->RandomBlogcontent();
@@ -113,13 +113,13 @@ trait TestContentBlogcontentFactory
     }
 
     final protected function BlogcontentFromValues(
-        ?BlogcontentId $id = null,
-        ?BlogpostId $blogpostId = null,
-        ?BlogcontentPosition $position = null,
-        ?\DateTimeInterface $created = null,
-        ?BlogcontentHtml $html = null,
-        ?BlogcontentImage $image = null,
-        ?BlogcontentYoutube $youtube = null
+        BlogcontentId $id = null,
+        BlogpostId $blogpostId = null,
+        BlogcontentPosition $position = null,
+        \DateTimeInterface $created = null,
+        BlogcontentHtml $html = null,
+        BlogcontentImage $image = null,
+        BlogcontentYoutube $youtube = null
     ): Blogcontent {
         is_null($id)         && $id         = BlogcontentId::random();
         is_null($blogpostId) && $blogpostId = $this->BlogpostId();

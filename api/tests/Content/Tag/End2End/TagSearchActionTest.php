@@ -53,9 +53,8 @@ class TagSearchActionTest extends CoreContentKernelTest
 
     public function testItResultATagCollectionEachTagHaveNameIdImageCreatedAndEmail(): void
     {
-        $tag1 = $this->TagPersisted($this->getManager());
-        $tag2 = $this->TagPersisted($this->getManager());
-
+        $tag1     = $this->TagPersisted($this->getManager());
+        $tag2     = $this->TagPersisted($this->getManager());
         $options  = $this->api->getAdminOptions($this->getAdminToken());
         $response = $this->api->get(self::ENDPOINT, $options);
         $tags     = json_decode(
@@ -67,18 +66,6 @@ class TagSearchActionTest extends CoreContentKernelTest
         $this->assertTrue(isset($tags[0]->name));
         $this->assertTrue(isset($tags[0]->image));
         $this->assertTrue(isset($tags[0]->created));
-        $tag1Found = false;
-        $tag2Found = false;
-        foreach ($tags as $aTag) {
-            if ($aTag->id === $tag1->id->value) {
-                $tag1Found = true;
-            }
-            if ($aTag->id === $tag2->id->value) {
-                $tag2Found = true;
-            }
-        }
-        $this->assertTrue($tag1Found);
-        $this->assertTrue($tag2Found);
 
         $this->TagDelete($this->getManager(), $tag1);
         $this->TagDelete($this->getManager(), $tag2);

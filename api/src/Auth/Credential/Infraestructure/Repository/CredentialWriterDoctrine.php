@@ -15,7 +15,6 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Throwable;
 
 class CredentialWriterDoctrine extends ServiceEntityRepository implements CredentialWriter
 {
@@ -58,7 +57,7 @@ class CredentialWriterDoctrine extends ServiceEntityRepository implements Creden
         $query = $qb->getQuery();
         try {
             $result = $query->getSingleResult();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new NotFoundException('user not found id: '.$id->value);
         }
 
@@ -82,7 +81,7 @@ class CredentialWriterDoctrine extends ServiceEntityRepository implements Creden
             $queryBuilder->setParameter('id', $credential->id->value);
             $queryBuilder->setParameter('password', $credential->password->value);
             $queryBuilder->getQuery()->execute();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new InternalErrorException('cant update credential: '.$credential->id->value);
         }
     }

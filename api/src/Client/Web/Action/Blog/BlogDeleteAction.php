@@ -7,7 +7,6 @@ namespace Codigito\Client\Web\Action\Blog;
 use Codigito\Client\Web\Action\BaseAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Throwable;
 
 class BlogDeleteAction extends BaseAction
 {

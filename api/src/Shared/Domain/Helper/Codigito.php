@@ -101,6 +101,22 @@ final class Codigito
         return self::randomString().'@'.self::randomString().'.'.self::randomString(3);
     }
 
+    final public static function randomHtml()
+    {
+        return '<h2>Any HTML List</h2>
+        <ul>
+          <li>Coffee</li>
+          <li>Tea</li>
+          <li>Milk</li>
+        </ul>  
+        <h2>Any HTML Ordered List</h2>
+        <ol>
+          <li>Coffee</li>
+          <li>Tea</li>
+          <li>Milk</li>
+        </ol> ';
+    }
+
     final public static function randomString(int $length = 10)
     {
         $characters       = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

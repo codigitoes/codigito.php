@@ -8,9 +8,7 @@ use Codigito\Shared\Domain\Filter\Criteria;
 use Codigito\Shared\Domain\Filter\Filter;
 use Codigito\Shared\Domain\Filter\FilterField;
 use Codigito\Shared\Domain\Filter\Filters;
-use Codigito\Shared\Domain\Filter\FilterTypeIn;
 use Codigito\Shared\Domain\Filter\FilterTypeLike;
-use Codigito\Shared\Domain\Filter\FilterTypeLikesOr;
 use Codigito\Shared\Domain\Filter\FilterValue;
 use Codigito\Shared\Domain\Filter\Order;
 use Codigito\Shared\Domain\Filter\Page;
@@ -25,7 +23,7 @@ class BlogpostSearchByTagCriteria extends Criteria
                 new FilterField('tags'),
                 new FilterTypeLike(),
                 new FilterValue($tag)
-            )
+            ),
         ];
 
         parent::__construct(

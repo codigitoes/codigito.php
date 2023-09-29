@@ -15,7 +15,6 @@ use Codigito\Shared\Domain\Helper\Codigito;
 use Codigito\Shared\Infraestructure\Filter\CriteriaDoctrine;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
-use Throwable;
 
 class TagReaderDoctrine implements TagReader
 {
@@ -31,7 +30,7 @@ class TagReaderDoctrine implements TagReader
             $result = $this->getQueryForSearch($criteria)->setMaxResults(1)->getSingleResult();
 
             return $result->toModel();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new NotFoundException('tag not found: '.json_encode($criteria));
         }
     }
@@ -42,7 +41,7 @@ class TagReaderDoctrine implements TagReader
             $result = $this->getQueryForSearch($criteria)->setMaxResults(1)->getSingleResult();
 
             return $this->getReadModel($result);
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new NotFoundException('tag not found: '.json_encode($criteria));
         }
     }

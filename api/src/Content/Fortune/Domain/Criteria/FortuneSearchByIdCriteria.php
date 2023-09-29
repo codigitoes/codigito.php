@@ -17,7 +17,7 @@ class FortuneSearchByIdCriteria extends Criteria
 {
     public function __construct(
         public readonly string $id,
-        ?string $fieldName = null
+        string $fieldName = null
     ) {
         $idKey = 'id';
         if ($fieldName) {

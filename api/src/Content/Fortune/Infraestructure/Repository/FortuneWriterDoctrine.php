@@ -12,7 +12,6 @@ use Codigito\Shared\Domain\Exception\InternalErrorException;
 use Codigito\Shared\Domain\Exception\InvalidParameterException;
 use Codigito\Shared\Domain\Exception\NotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
-use Throwable;
 
 class FortuneWriterDoctrine implements FortuneWriter
 {
@@ -75,7 +74,7 @@ class FortuneWriterDoctrine implements FortuneWriter
 
         try {
             $result = $query->getSingleResult();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new NotFoundException('fortune not found: '.$id->value);
         }
 

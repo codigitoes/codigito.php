@@ -16,6 +16,7 @@ use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostBase64Image;
 use Codigito\Content\Blogpost\Application\BlogpostCreate\BlogpostCreateCommand;
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostHtml;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostYoutube;
 use Codigito\Content\Tag\Application\TagExistsValidator\TagExistsValidatorCommand;
 
@@ -34,8 +35,9 @@ class BlogpostCreateAction extends BaseAction
             [
                 'name'        => '',
                 'base64image' => '',
-                'youtube' => '',
+                'youtube'     => '',
                 'tags'        => '',
+                'html'        => '',
             ]
         );
         $errors = $this->validateParameters();
@@ -68,23 +70,36 @@ class BlogpostCreateAction extends BaseAction
 
     private function validateParameters(): array
     {
+        $hasHtml = (isset($this->parameters['html']) && '' !== $this->parameters['html']);
+        if (false === $hasHtml) {
+            unset($this->parameters['html']);
+        }
         $validator = new ParametersValidator();
         $validator->register('name', BlogpostName::class);
         $validator->register('base64image', BlogpostBase64Image::class);
         $validator->register('tags', BlogpostTags::class);
         $validator->register('youtube', BlogpostYoutube::class);
+        if ($hasHtml) {
+            $validator->register('html', BlogpostHtml::class);
+        }
 
         return $validator->validate($this->parameters);
     }
 
     private function createCommandFromParameters(): BlogpostCreateCommand
     {
+        $html = null;
+        if (isset($this->parameters['html'])) {
+            $html = $this->parameters['html'];
+        }
+
         return new BlogpostCreateCommand(
             $this->parameters['id'],
             $this->parameters['name'],
             $this->parameters['base64image'],
             $this->parameters['youtube'],
-            $this->parameters['tags']
+            $this->parameters['tags'],
+            $html
         );
     }
 }

@@ -30,9 +30,9 @@ class Blogcontent implements DomainModel
         BlogcontentId $id,
         BlogpostId $blogpostId,
         BlogcontentPosition $position,
-        ?BlogcontentHtml $html = null,
-        ?BlogcontentImage $image = null,
-        ?BlogcontentYoutube $youtube = null
+        BlogcontentHtml $html = null,
+        BlogcontentImage $image = null,
+        BlogcontentYoutube $youtube = null
     ) {
         $result = new static(
             $id,
@@ -52,9 +52,9 @@ class Blogcontent implements DomainModel
         BlogpostId $blogpostId,
         BlogcontentPosition $position,
         \DateTimeInterface $created,
-        ?BlogcontentHtml $html = null,
-        ?BlogcontentImage $image = null,
-        ?BlogcontentYoutube $youtube = null
+        BlogcontentHtml $html = null,
+        BlogcontentImage $image = null,
+        BlogcontentYoutube $youtube = null
     ) {
         return new static(
             $id,

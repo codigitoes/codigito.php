@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Blogpost\Domain\Model;
 
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostHtml;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostImage;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
 use Codigito\Content\Shared\Domain\ValueObject\BlogpostId;
@@ -20,7 +21,8 @@ class Blogpost implements DomainModel
         public BlogpostImage $image,
         public BlogpostYoutube $youtube,
         public BlogpostTags $tags,
-        public readonly \DateTimeInterface $created
+        public readonly \DateTimeInterface $created,
+        public ?BlogpostHtml $html = null,
     ) {
     }
 
@@ -29,7 +31,8 @@ class Blogpost implements DomainModel
         BlogpostName $name,
         BlogpostImage $image,
         BlogpostYoutube $youtube,
-        BlogpostTags $tags
+        BlogpostTags $tags,
+        BlogpostHtml $html = null
     ) {
         $result = new static(
             $id,
@@ -37,7 +40,8 @@ class Blogpost implements DomainModel
             $image,
             $youtube,
             $tags,
-            new \DateTime()
+            new \DateTime(),
+            $html
         );
 
         return $result;
@@ -49,7 +53,8 @@ class Blogpost implements DomainModel
         BlogpostImage $image,
         BlogpostYoutube $youtube,
         BlogpostTags $tags,
-        \DateTimeInterface $created
+        \DateTimeInterface $created,
+        BlogpostHtml $html = null
     ) {
         return new static(
             $id,
@@ -57,7 +62,8 @@ class Blogpost implements DomainModel
             $image,
             $youtube,
             $tags,
-            $created
+            $created,
+            $html
         );
     }
 
@@ -82,9 +88,10 @@ class Blogpost implements DomainModel
             'id'      => $this->id->value,
             'name'    => $this->name->value,
             'image'   => $this->image->value,
-            'youtube'   => $this->youtube->value,
+            'youtube' => $this->youtube->value,
             'tags'    => $this->tags->value,
             'created' => Codigito::datetimeToHuman($this->created),
+            'html'    => $this->html?->value,
         ];
     }
 }

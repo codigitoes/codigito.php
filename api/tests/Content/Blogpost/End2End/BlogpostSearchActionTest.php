@@ -66,6 +66,8 @@ class BlogpostSearchActionTest extends CoreContentKernelTest
         $this->assertTrue(isset($blogposts[0]->id));
         $this->assertTrue(isset($blogposts[0]->name));
         $this->assertTrue(isset($blogposts[0]->image));
+        $this->assertTrue(isset($blogposts[0]->youtube));
+        $this->assertTrue(isset($blogposts[0]->html));
         $this->assertTrue(isset($blogposts[0]->created));
         $blogpost1Found = false;
         $blogpost2Found = false;

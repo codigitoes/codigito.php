@@ -7,6 +7,7 @@ namespace Codigito\Content\Blogpost\Infraestructure\Doctrine\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Codigito\Shared\Domain\Model\DomainModel;
 use Codigito\Content\Blogpost\Domain\Model\Blogpost;
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostHtml;
 use Codigito\Content\Shared\Domain\ValueObject\BlogpostId;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostImage;
@@ -49,6 +50,11 @@ class BlogpostDoctrine implements DoctrineModel
     private string $tags;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $html = null;
+
+    /**
      * @ORM\Column(type="datetime", nullable=false, options={"default": "CURRENT_TIMESTAMP"})
      */
     private \DateTimeInterface $created;
@@ -58,8 +64,9 @@ class BlogpostDoctrine implements DoctrineModel
         $this->id      = $blogpost->id->value;
         $this->name    = $blogpost->name->value;
         $this->image   = $blogpost->image->value;
-        $this->youtube   = $blogpost->youtube->value;
+        $this->youtube = $blogpost->youtube->value;
         $this->tags    = $blogpost->tags->value;
+        $this->html    = $blogpost->html?->value;
         $this->created = $blogpost->created;
     }
 
@@ -103,6 +110,11 @@ class BlogpostDoctrine implements DoctrineModel
         return $this->tags;
     }
 
+    public function getHtml(): string|null
+    {
+        return $this->html;
+    }
+
     public function getCreated(): \DateTimeInterface
     {
         return $this->created;
@@ -110,13 +122,19 @@ class BlogpostDoctrine implements DoctrineModel
 
     public function toModel(): DomainModel
     {
+        $html = null;
+        if ($this->html) {
+            $html = new BlogpostHtml($this->html);
+        }
+
         return Blogpost::createForRead(
             new BlogpostId($this->id),
             new BlogpostName($this->name),
             new BlogpostImage($this->image),
             new BlogpostYoutube($this->youtube),
             new BlogpostTags($this->tags),
-            $this->created
+            $this->created,
+            $html
         );
     }
 }

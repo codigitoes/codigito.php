@@ -10,8 +10,8 @@ trait BlogcontentEndpointTrait
 
     private function endpoint(
         string $blogpost_id,
-        ?string $id = null,
-        ?string $extraQuery = null
+        string $id = null,
+        string $extraQuery = null
     ): string {
         $endpoint = str_replace('{blogpost_id}', $blogpost_id, $this->ENDPOINT);
         if (is_string($id)) {

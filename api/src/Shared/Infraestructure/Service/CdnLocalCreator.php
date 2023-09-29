@@ -7,7 +7,6 @@ namespace Codigito\Shared\Infraestructure\Service;
 use Codigito\Shared\Domain\Exception\InternalErrorException;
 use Codigito\Shared\Domain\Service\CdnCreator;
 use Codigito\Shared\Domain\ValueObject\UuidV4Id;
-use Throwable;
 
 class CdnLocalCreator implements CdnCreator
 {
@@ -25,7 +24,7 @@ class CdnLocalCreator implements CdnCreator
             }
 
             @unlink($this->basedir.DIRECTORY_SEPARATOR.$filename);
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new InternalErrorException('cant delete file: '.$filename);
         }
     }

@@ -16,7 +16,7 @@ class Api
         try {
             return (new Client())->get(self::getApiEndpoint($endpoint), [
                 RequestOptions::HEADERS => [
-                    'Authorization' => 'Bearer ' . $token,
+                    'Authorization' => 'Bearer '.$token,
                     'Accept' => 'application/json',
                 ],
             ]);
@@ -27,7 +27,7 @@ class Api
 
     private static function getApiEndpoint(string $uri): string
     {
-        return $_ENV['API_URL'] . ltrim($uri, '/');
+        return $_ENV['API_URL'].ltrim($uri, '/');
     }
 
     final public static function contentFortuneAll(string $token): ResponseInterface
@@ -44,7 +44,7 @@ class Api
         string $token,
         string $blogpostId
     ): ResponseInterface {
-        return self::get($token, '/api/admin/content/blogposts/' . $blogpostId . '/blogcontents');
+        return self::get($token, '/api/admin/content/blogposts/'.$blogpostId.'/blogcontents');
     }
 
     final public static function contentTagAll(string $token): ResponseInterface
@@ -58,7 +58,7 @@ class Api
             return (new Client())->post(self::getApiEndpoint($enpoint), [
                 RequestOptions::JSON => $body,
                 RequestOptions::HEADERS => [
-                    'Authorization' => 'Bearer ' . $token,
+                    'Authorization' => 'Bearer '.$token,
                     'Accept' => 'application/json',
                 ],
             ]);
@@ -83,7 +83,7 @@ class Api
         ?string $html = null,
         ?string $youtube = null
     ): ResponseInterface {
-        return self::post($token, '/api/admin/content/blogposts/' . $blogpostId . '/blogcontents', [
+        return self::post($token, '/api/admin/content/blogposts/'.$blogpostId.'/blogcontents', [
             'html' => $html,
             'base64image' => $base64Image,
             'youtube' => $youtube,
@@ -95,13 +95,15 @@ class Api
         string $tags,
         ?string $base64Image = null,
         string $youtube,
-        ?string $name = null
+        ?string $name = null,
+        ?string $html = null
     ): ResponseInterface {
         return self::post($token, '/api/admin/content/blogposts', [
             'tags' => $tags,
             'name' => $name,
             'base64image' => $base64Image,
             'youtube' => $youtube,
+            'html' => $html,
         ]);
     }
 

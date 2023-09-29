@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Blogpost\Infraestructure\Repository;
 
-use Throwable;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManagerInterface;
 use Codigito\Shared\Domain\Filter\Criteria;
@@ -52,8 +51,8 @@ class BlogpostReaderDoctrine implements BlogpostReader
             $result = $this->getQueryForSearch($criteria)->setMaxResults(1)->getSingleResult();
 
             return $result->toModel();
-        } catch (Throwable) {
-            throw new NotFoundException('blogpost not found: ' . json_encode($criteria));
+        } catch (\Throwable) {
+            throw new NotFoundException('blogpost not found: '.json_encode($criteria));
         }
     }
 
@@ -63,8 +62,8 @@ class BlogpostReaderDoctrine implements BlogpostReader
             $result = $this->getQueryForSearch($criteria)->setMaxResults(1)->getSingleResult();
 
             return $this->getReadModel($result);
-        } catch (Throwable) {
-            throw new NotFoundException('blogpost not found: ' . json_encode($criteria));
+        } catch (\Throwable) {
+            throw new NotFoundException('blogpost not found: '.json_encode($criteria));
         }
     }
 
@@ -97,7 +96,8 @@ class BlogpostReaderDoctrine implements BlogpostReader
             $blogpost->getImage(),
             $blogpost->getYoutube(),
             $blogpost->getTags(),
-            Codigito::datetimeToHuman($blogpost->getCreated())
+            Codigito::datetimeToHuman($blogpost->getCreated()),
+            $blogpost->getHtml()
         );
     }
 

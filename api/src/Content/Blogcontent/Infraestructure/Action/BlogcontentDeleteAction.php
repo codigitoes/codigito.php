@@ -34,7 +34,7 @@ class BlogcontentDeleteAction extends AbstractController
 
         try {
             $this->bus->execute(new BlogcontentDeleteCommand($id, $blogpost_id));
-            $result    = $this->json(null, Response::HTTP_OK);
+            $result = $this->json(null, Response::HTTP_OK);
         } catch (\Throwable $th) {
             $code = Response::HTTP_INTERNAL_SERVER_ERROR;
             if ($th instanceof DomainException) {

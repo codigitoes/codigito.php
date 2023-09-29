@@ -34,13 +34,15 @@ class ContentBlogpostCreateController extends BaseWebActionController
         $base64Cover = base64_encode(file_get_contents($request->files->get('imagen')->getPathname()));
         $youtube = $request->request->get('youtube');
         $name = $request->request->get('name');
+        $html = $request->request->get('html');
         $tags = implode(',', $request->get('tags'));
         $response = Api::contentBlogpostCreate(
             $this->getToken(),
             $tags,
             $base64Cover,
             $youtube,
-            $name
+            $name,
+            $html
         );
         $id = json_decode($response->getBody()->getContents())->id;
         if (Response::HTTP_CREATED !== $response->getStatusCode()) {
@@ -48,7 +50,7 @@ class ContentBlogpostCreateController extends BaseWebActionController
             $this->addFlash(
                 'error',
                 'Error creando blog post!. detalles: '
-                    . implode("\n", $errors)
+                    .implode("\n", $errors)
             );
 
             return null;

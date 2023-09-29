@@ -21,6 +21,6 @@ class BlogpostYoutube
 
     protected function throwException(string $value): void
     {
-        throw new InvalidParameterException('invalid blogcontent youtube url: ' . $value);
+        throw new InvalidParameterException('invalid blogpost youtube url: '.$value);
     }
 }

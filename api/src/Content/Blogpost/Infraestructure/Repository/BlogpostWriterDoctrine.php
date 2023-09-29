@@ -12,7 +12,6 @@ use Codigito\Shared\Domain\Exception\InternalErrorException;
 use Codigito\Shared\Domain\Exception\InvalidParameterException;
 use Codigito\Shared\Domain\Exception\NotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
-use Throwable;
 
 class BlogpostWriterDoctrine implements BlogpostWriter
 {
@@ -51,7 +50,7 @@ class BlogpostWriterDoctrine implements BlogpostWriter
         $query = $qb->getQuery();
         try {
             $result = $query->getSingleResult();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new NotFoundException('blogpost not found: '.$id->value);
         }
 
@@ -78,7 +77,7 @@ class BlogpostWriterDoctrine implements BlogpostWriter
             $queryBuilder->setParameter('name', $blogpost->name->value);
             $queryBuilder->setParameter('image', $blogpost->image->value);
             $queryBuilder->getQuery()->execute();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new InternalErrorException('cant update blogpost: '.$blogpost->id->value);
         }
     }

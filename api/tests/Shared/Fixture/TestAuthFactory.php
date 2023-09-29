@@ -38,9 +38,9 @@ trait TestAuthFactory
         EntityManagerInterface $manager,
         ManagerRegistry $registry,
         UserPasswordHasherInterface $hasher,
-        ?CredentialEmail $email = null,
-        ?CredentialPassword $password = null,
-        ?CredentialRoles $roles = null
+        CredentialEmail $email = null,
+        CredentialPassword $password = null,
+        CredentialRoles $roles = null
     ): Credential {
         $credential = $this->RandomCredentialForNew(null, $email, $password, $roles);
         $this->CredentialWriter(
@@ -87,10 +87,10 @@ trait TestAuthFactory
     }
 
     final protected function RandomCredentialForNew(
-        ?CredentialId $id = null,
-        ?CredentialEmail $email = null,
-        ?CredentialPassword $password = null,
-        ?CredentialRoles $roles = null
+        CredentialId $id = null,
+        CredentialEmail $email = null,
+        CredentialPassword $password = null,
+        CredentialRoles $roles = null
     ): Credential {
         is_object($id) ? $id : $id                   = CredentialId::random();
         is_object($email) ? $email : $email          = new CredentialEmail(Codigito::randomEmail());

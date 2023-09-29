@@ -23,6 +23,8 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
                 'tags'        => $this->getTagName().','.$this->getTagName(),
                 'name'        => Codigito::randomString(),
                 'base64image' => self::$BASE64_IMAGE,
+                'youtube'     => self::$YOUTUBE,
+                'html'        => $this->BlogpostHtml()->value,
             ],
         ];
         $options  = array_merge($auth, $body);
@@ -37,7 +39,7 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         $this->BlogpostDelete($this->getManager(), $actual);
     }
 
-    public function testItShouldResultFixedErrorsIfImageAndNameTagsNotFound(): void
+    public function testItShouldResultFixedErrorsIfImageYoutubeNameTagsNotFound(): void
     {
         $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
@@ -52,10 +54,11 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         $expected = [
             InvalidParameterException::PREFIX.' invalid blogpost name: ',
             InvalidParameterException::PREFIX.' invalid blogpost base64 image: base64 image cannot be empty',
+            InvalidParameterException::PREFIX.' invalid blogpost youtube url: ',
             InvalidParameterException::PREFIX.' invalid blogpost tags: invalid names: ',
         ];
 
-        self::assertCount(3, $errors);
+        self::assertCount(4, $errors);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
         self::assertEquals($expected, $errors);
     }
@@ -69,6 +72,8 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
                 'tags'        => $this->getTagName().','.$newName,
                 'name'        => Codigito::randomString(),
                 'base64image' => self::$BASE64_IMAGE,
+                'youtube'     => self::$YOUTUBE,
+                'html'        => $this->BlogpostHtml()->value,
             ],
         ];
         $options  = array_merge($auth, $body);
@@ -83,13 +88,42 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
         self::assertStringContainsString($newName, $errors[0]);
     }
 
+    public function testItShouldResultAnErrorIfYoutubeNotFound(): void
+    {
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
+        $body = [
+            'json' => [
+                'tags'        => $this->getTagName(),
+                'name'        => Codigito::randomString(),
+                'base64image' => self::$BASE64_IMAGE,
+                'html'        => $this->BlogpostHtml()->value,
+            ],
+        ];
+        $options = array_merge($auth, $body);
+
+        $response = $this->api->post(self::ENDPOINT, $options);
+        $errors   = json_decode(
+            $response->getBody()->getContents()
+        )->errors;
+
+        $expected = [
+            InvalidParameterException::PREFIX.' invalid blogpost youtube url: ',
+        ];
+
+        self::assertCount(1, $errors);
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals($expected, $errors);
+    }
+
     public function testItShouldResultAnErrorIfImageNotFound(): void
     {
         $auth = $this->api->getAdminOptions($this->getAdminToken());
         $body = [
             'json' => [
-                'tags' => $this->getTagName(),
-                'name' => Codigito::randomString(),
+                'tags'    => $this->getTagName(),
+                'name'    => Codigito::randomString(),
+                'youtube' => self::$YOUTUBE,
+                'html'    => $this->BlogpostHtml()->value,
             ],
         ];
         $options = array_merge($auth, $body);
@@ -112,6 +146,8 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
                 'tags'        => $this->getTagName(),
                 'name'        => Codigito::randomString(),
                 'base64image' => 'xxxxx',
+                'youtube'     => self::$YOUTUBE,
+                'html'        => $this->BlogpostHtml()->value,
             ],
         ];
         $options = array_merge($auth, $body);
@@ -123,6 +159,31 @@ class BlogpostCreateActionTest extends CoreContentKernelTest
 
         self::assertIsArray($errors);
         self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+    }
+
+    public function testItShouldResultAnErrorIfHtmlItsNotAValidHtmlFormat(): void
+    {
+        $auth = $this->api->getAdminOptions($this->getAdminToken());
+        $body = [
+            'json' => [
+                'tags'        => $this->getTagName(),
+                'name'        => Codigito::randomString(),
+                'base64image' => self::$BASE64_IMAGE,
+                'youtube'     => self::$YOUTUBE,
+                'html'        => 'no valid html',
+            ],
+        ];
+        $options = array_merge($auth, $body);
+
+        $response = $this->api->post(self::ENDPOINT, $options);
+        $errors   = json_decode(
+            $response->getBody()->getContents()
+        )->errors;
+
+        self::assertIsArray($errors);
+        self::assertStringStartsWith(InvalidParameterException::PREFIX, $errors[0]);
+        self::assertStringContainsStringIgnoringCase('html', $errors[0]);
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }

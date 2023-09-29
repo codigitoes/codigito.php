@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Codigito\Content\Blogcontent\Infraestructure\Repository;
 
-use Throwable;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityManagerInterface;
 use Codigito\Shared\Domain\Filter\Criteria;
@@ -31,7 +30,7 @@ class BlogcontentReaderDoctrine implements BlogcontentReader
             $result = $this->getQueryForSearch($criteria)->setMaxResults(1)->getSingleResult();
 
             return $result->toModel();
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new NotFoundException('blogcontent not found: '.json_encode($criteria));
         }
     }
@@ -42,7 +41,7 @@ class BlogcontentReaderDoctrine implements BlogcontentReader
             $result = $this->getQueryForSearch($criteria)->setMaxResults(1)->getSingleResult();
 
             return $this->getReadModel($result);
-        } catch (Throwable) {
+        } catch (\Throwable) {
             throw new NotFoundException('blogcontent not found: '.json_encode($criteria));
         }
     }

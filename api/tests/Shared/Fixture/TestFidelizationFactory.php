@@ -48,7 +48,7 @@ trait TestFidelizationFactory
         return new MailingWriterDoctrine($manager);
     }
 
-    final protected function MailingPersisted(EntityManager $manager, ?Mailing $model = null): Mailing
+    final protected function MailingPersisted(EntityManager $manager, Mailing $model = null): Mailing
     {
         if (is_null($model)) {
             $model = $this->RandomMailing();
@@ -70,10 +70,10 @@ trait TestFidelizationFactory
     }
 
     final protected function MailingFromValues(
-        ?MailingId $id = null,
-        ?MailingEmail $email = null,
-        ?MailingConfirmed $confirmed = null,
-        ?\DateTimeInterface $created = null
+        MailingId $id = null,
+        MailingEmail $email = null,
+        MailingConfirmed $confirmed = null,
+        \DateTimeInterface $created = null
     ): Mailing {
         is_null($id)        && $id        = MailingId::random();
         is_null($email)     && $email     = new MailingEmail(Codigito::randomEmail());

@@ -47,8 +47,7 @@ final class RabbitMqConfigurer
         string $exchangeName,
         string $retryExchangeName,
         string $deadLetterExchangeName
-    ): callable
-    {
+    ): callable {
         return function (DomainEventSubscriber $subscriber) use (
             $exchangeName,
             $retryExchangeName,

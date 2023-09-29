@@ -15,7 +15,7 @@ class BlogpostListAction extends BaseAction
     #[Route('/api/client/web/blogposts', name: 'client_web_blogposts_index', methods: ['GET'])]
     public function execute(
         Request $request,
-        ?string $pattern = null
+        string $pattern = null
     ): Response {
         $page = (int) $request->query->get('page', Page::FIRST_PAGE);
         if (false === is_numeric($page)) {

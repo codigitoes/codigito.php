@@ -17,7 +17,7 @@ class MailingSearchByIdCriteria extends Criteria
 {
     public function __construct(
         public readonly string $id,
-        ?string $fieldEmail = null
+        string $fieldEmail = null
     ) {
         $idKey = 'id';
         if ($fieldEmail) {

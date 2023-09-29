@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Codigito\Content\Blogpost\Application\BlogpostSearchByTag;
 
 use Codigito\Content\Blogpost\Domain\Criteria\BlogpostSearchByTagCriteria;
-use Codigito\Content\Blogpost\Domain\Criteria\BlogpostSearchCriteria;
 use Codigito\Content\Blogpost\Domain\Model\BlogpostCollectionReadModel;
 use Codigito\Content\Blogpost\Domain\Repository\BlogpostReader;
 use Codigito\Shared\Domain\Query\Query;

@@ -11,6 +11,7 @@ use Codigito\Content\Blogpost\Domain\Model\Blogpost;
 use Codigito\Content\Shared\Domain\ValueObject\BlogpostId;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostName;
 use Codigito\Content\Blogpost\Domain\Repository\BlogpostWriter;
+use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostHtml;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostImage;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostTags;
 use Codigito\Content\Blogpost\Domain\ValueObject\BlogpostYoutube;
@@ -32,7 +33,8 @@ class BlogpostCreateCommandHandler implements CommandHandler
             new BlogpostName($command->name),
             new BlogpostImage($image),
             new BlogpostYoutube($command->youtube),
-            new BlogpostTags($command->tags)
+            new BlogpostTags($command->tags),
+            $this->getHtmlFromCommand($command)
         );
 
         try {
@@ -42,5 +44,14 @@ class BlogpostCreateCommandHandler implements CommandHandler
 
             throw $th;
         }
+    }
+
+    private function getHtmlFromCommand(Command $command): BlogpostHtml|null
+    {
+        if ($command->html) {
+            return new BlogpostHtml($command->html);
+        }
+
+        return null;
     }
 }

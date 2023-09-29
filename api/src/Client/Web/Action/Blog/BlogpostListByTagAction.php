@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Codigito\Client\Web\Action\Blog;
 
 use Codigito\Client\Web\Action\BaseAction;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Codigito\Shared\Domain\Filter\Page;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BlogpostListByTagAction extends BaseAction
@@ -17,8 +15,8 @@ class BlogpostListByTagAction extends BaseAction
         string $tag
     ): Response {
         return $this->json([
-            'blogposts'        => $this->getBlogpostsByTag($tag),
-            'selected_tag' => $tag
+            'blogposts'    => $this->getBlogpostsByTag($tag),
+            'selected_tag' => $tag,
         ]);
     }
 }

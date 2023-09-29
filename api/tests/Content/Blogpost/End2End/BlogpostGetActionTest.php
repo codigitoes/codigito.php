@@ -57,6 +57,8 @@ class BlogpostGetActionTest extends CoreContentKernelTest
         self::assertEquals($actual->id, $blogpost->id->value);
         self::assertEquals($actual->name, $blogpost->name->value);
         self::assertEquals($actual->image, $blogpost->image->value);
+        self::assertEquals($actual->youtube, $blogpost->youtube->value);
+        self::assertEquals($actual->html, $blogpost->html->value);
         self::assertEquals($actual->created, Codigito::datetimeToHuman($blogpost->created));
 
         $this->BlogpostDelete($this->getManager(), $blogpost);
